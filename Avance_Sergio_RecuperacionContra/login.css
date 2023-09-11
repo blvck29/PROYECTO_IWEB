@@ -1,0 +1,46 @@
+#formulario-container {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#formulario {
+    text-align: center;
+}
+
+#formulario input[type="text"],
+#formulario input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+	max-width: 400px
+}
+
+input[type="submit"] {
+    background-color: #0F0533; 
+    color: white; 
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#contraseña {
+	color : blue;
+}
+
+.recuadro {
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    vertical-align: middle;
+	border-radius: 10px;
+	border: 1px solid black;
+	
+}
+
+
+
+
+
