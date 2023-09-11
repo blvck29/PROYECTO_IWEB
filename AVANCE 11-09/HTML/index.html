@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta http-equiv=”Content-Type” content=”text/html; charset=ISO-8859-1″>    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.84.0">
+    <title>Semana de Ingeniería</title>
+
+    <link rel="canonical" href="#">
+
+    <link rel="icon" type="image/jpg" href="favicon.png"/>
+
+    
+
+    <!-- Bootstrap core CSS -->
+<link href="../HTML/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+	
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../HTML/carousel/css/style.css">
+    <link rel="stylesheet" href="../HTML/assets/dist/css/login.css">
+	  <link rel="stylesheet" href="../HTML/assets/dist/css/popUp.css">
+    
+  </head>
+  <body>
+
+<main>
+
+  <div class="container-img-responsive">
+    <div class="container col-xxl-8 px-4 py-5">
+      <div class="row flex-lg-row-reverse align-items-center g-5 py-5 ">
+        <div class="col-10 col-sm-8 col-lg-6"></div>
+        <div class="col-lg-6">
+          <h1 class=" fst-italic fw-bold lh-1 mb-2 text-white ">¡INICIA LA SEMANA DE INGENIERÍA 2023!</h1>
+          <p class="lead fs-3 text-white">LUNES 16 DE OCTUBRE</p>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</main>
+
+
+<div id="formulario-container">
+    <div id="formulario">
+        
+      <form action="procesar_formulario.php" method="POST">
+            <label for="usuario"><strong>Correo:</strong></label>
+			<br>
+            <input type="campoRegistro" id="usuario" name="usuario" required><br><br>
+            
+            <label for="contrasena"><strong>Contraseña:</strong></label>
+			<br>
+            <input type="campoRegistro" id="contrasena" name="contrasena" required><br><br>
+            
+            <input type="submit" value="Iniciar Sesión" style = "margin-right: 60px;">
+
+			<a href="../HTML/pages/register_form.html">
+				<input type="button" value="Registrarse" style="background-color: #0F0533; color: white; 
+				padding: 10px 20px;
+				border: none;
+				border-radius: 5px;
+				cursor: pointer;">
+			</a>
+			<br><br>
+
+
+			<p><a href="#" style="color: blue; margin-left: 10px;">¿Olvidó su contraseña? Haga clic aquí para recuperarla.</a></p>
+			<t style="color: black; margin-left: 10px">Se requiere autenticación. Ingrese su correo PUCP y contraseña.</t>
+        </form>
+    </div>
+</div>
+
+
+
+
+    <script src="/assets/dist/js/bootstrap.bundle.min.js"></script>
+      
+  </body>
+</html>
