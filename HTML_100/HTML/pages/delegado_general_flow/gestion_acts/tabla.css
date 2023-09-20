@@ -1,0 +1,223 @@
+.no-overflow {
+    overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #757474 #F5F5F5;
+}
+
+
+
+.table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+
+.table, .generaltable, .rolecap, .userenrolment, #categoryquestions, .grading-report, .gradereport-grader-table, #completion-progress {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212121;
+}
+
+.table.table-sm th, .table.table-sm td, .generaltable.table-sm th, .table-sm.rolecap th, .generaltable.table-sm td, .table-sm.rolecap td, .userenrolment.table-sm th, .userenrolment.table-sm td, #categoryquestions.table-sm th, #categoryquestions.table-sm td, .grading-report.table-sm th, .grading-report.table-sm td, .gradereport-grader-table.table-sm th, .gradereport-grader-table.table-sm td, #completion-progress.table-sm th, #completion-progress.table-sm td {
+    padding: 0.3rem;
+}
+
+
+.table tbody th, .table thead th, .generaltable tbody th, .rolecap tbody th, .generaltable thead th, .rolecap thead th, .userenrolment tbody th, .userenrolment thead th, #categoryquestions tbody th, #categoryquestions thead th, .grading-report tbody th, .grading-report thead th, .gradereport-grader-table tbody th, .gradereport-grader-table thead th, #completion-progress tbody th, #completion-progress thead th {
+    font-size: .75rem;
+    font-weight: 500;
+}
+
+
+.table thead th, .generaltable thead th, .rolecap thead th, .userenrolment thead th, #categoryquestions thead th, .grading-report thead th, .gradereport-grader-table thead th, #completion-progress thead th {
+    border-bottom: 2px solid #E1E1E1;
+    color: #6B6B6B;
+}
+
+
+.table th, .table td, .generaltable th, .rolecap th, .generaltable td, .rolecap td, .userenrolment th, .userenrolment td, #categoryquestions th, #categoryquestions td, .grading-report th, .grading-report td, .gradereport-grader-table th, .gradereport-grader-table td, #completion-progress th, #completion-progress td {
+    border: 0;
+    padding: 0.75rem;
+    vertical-align: middle;
+}
+
+
+.table-sm th, .table-sm td {
+    padding: 0.3rem;
+    font-size: 15px;
+}
+
+
+th {
+    text-align: inherit;
+    text-align: -webkit-match-parent;
+}
+
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+
+th {
+    display: table-cell;
+    vertical-align: inherit;
+    font-weight: bold;
+    text-align: -internal-center;
+}
+
+.table, .generaltable, .rolecap, .userenrolment, #categoryquestions, .grading-report, .gradereport-grader-table, #completion-progress {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212121;
+}
+
+
+table {
+    border-collapse: collapse;
+}
+
+table {
+    border-collapse: separate;
+    text-indent: initial;
+    border-spacing: 2px;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+
+.table, .generaltable, .rolecap, .userenrolment, #categoryquestions, .grading-report, .gradereport-grader-table, #completion-progress {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212121;
+}
+
+
+table {
+    border-collapse: collapse;
+}
+
+table {
+    border-collapse: separate;
+    text-indent: initial;
+    border-spacing: 2px;
+}
+
+
+.table tbody tr:nth-of-type(odd), .generaltable tbody tr:nth-of-type(odd), .rolecap tbody tr:nth-of-type(odd), .userenrolment tbody tr:nth-of-type(odd), #categoryquestions tbody tr:nth-of-type(odd), .grading-report tbody tr:nth-of-type(odd), .gradereport-grader-table tbody tr:nth-of-type(odd), #completion-progress tbody tr:nth-of-type(odd) {
+    background-color: transparent;
+}
+
+
+.table tbody tr, .generaltable tbody tr, .rolecap tbody tr, .userenrolment tbody tr, #categoryquestions tbody tr, .grading-report tbody tr, .gradereport-grader-table tbody tr, #completion-progress tbody tr {
+    background-color: transparent;
+    border-bottom: 1px solid #E1E1E1;
+}
+
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+
+
+.table, .generaltable, .rolecap, .userenrolment, #categoryquestions, .grading-report, .gradereport-grader-table, #completion-progress {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212121;
+}
+
+
+table {
+    border-collapse: collapse;
+}
+
+
+body {
+    margin: 0;
+    font-family: "Poppins",sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212121;
+    text-align: left;
+    background-color: #fff;
+}
+
+
+:root {
+    --blue: #406CD2;
+    --purple: #D0C6F0;
+    --red: #ef1010;
+    --orange: #4c2101;
+    --yellow: #F7B742;
+    --green: #027654;
+    --white: #fff;
+    --gray: #757474;
+    --gray-dark: #434343;
+    --primary-color-100: #e6eaf7;
+    --primary-color-200: #ccd5f0;
+    --primary-color-300: #b3c0e8;
+    --primary-color-400: #8096d9;
+    --primary-color-500: #3357c2;
+    --primary-color-600: #002db3;
+    --primary-color-700: #001b6b;
+    --primary-color-800: #00175a;
+    --primary-color-900: #000e36;
+    --gray-100: #F5F5F5;
+    --gray-200: #EEE;
+    --gray-300: #E1E1E1;
+    --gray-400: #D8D8D8;
+    --gray-500: #B7B7B7;
+    --gray-600: #757474;
+    --gray-700: #6B6B6B;
+    --gray-800: #434343;
+    --gray-900: #212121;
+    --primary: #002db3;
+    --secondary: #757474;
+    --success: #002db3;
+    --info: #406CD2;
+    --warning: #F7B742;
+    --danger: #ef1010;
+    --light: #757474;
+    --dark: #212121;
+    --breakpoint-xs: 0;
+    --breakpoint-sm: 320px;
+    --breakpoint-md: 768px;
+    --breakpoint-lmd: 1000px;
+    --breakpoint-lg: 1200px;
+    --breakpoint-xl: 1600px;
+    --breakpoint-xxl: 3000px;
+    --font-family-sans-serif: "Inter",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    --font-family-monospace: "SFMono-Regular",Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+}
+
+
+
+.custom-form-group {
+    position: relative;
+    display: inline-block;
+    margin-right: 50px; /* Espacio entre elementos */
+  }
+
+
+
+  
