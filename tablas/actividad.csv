@@ -1,0 +1,8 @@
+idActividad,titulo,banner,miniatura,idEncargado
+AJEDREZ,Ajedrez,NULL,NULL,16
+BASQUET,Basquet,NULL,NULL,14
+ESPORTS,eSports,NULL,NULL,10
+FUTBOL,Futbol,NULL,NULL,11
+KARATE,Karate,NULL,NULL,12
+TENIS,Tenis,NULL,NULL,15
+VOLEY,Voley,NULL,NULL,13

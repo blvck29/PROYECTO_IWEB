@@ -1,0 +1,7 @@
+idEvento,titulo,sub-titulo,hora,fecha,lugar,imagen,descripcion,id_Estado,idActividad
+1,"VALORANT - Jornada 1","Fibra Tóxica vs. Electroshock",17:30:00,2023-10-18,"Av. La Marina 223 2do piso",NULL,"Partido de clasificación de Valorant",PUBLIC,ESPORTS
+2,"FUTBOL - Jornada 1","Naranja Mecánica vs. PXO",19:00:00,2023-10-18,"PUCP, Cancha de Minas",NULL,"Partidos de clasificación Futbol",PUBLIC,FUTBOL
+3,"VOLEY - Jornada 1","Fibra Tóxica vs. Hormigón Armado",21:00:00,2023-10-18,"PUCP, Cancha de Minas",NULL,"Partidos de clasificación Futbol",PUBLIC,FUTBOL
+4,"LOL - Jornada 1","Fibra Tóxica vs. Naranja Mecánica",11:00:00,2023-10-17,"Av. Universitaria 561 3er piso",NULL,"Partido de clasificación de LOL",PUBLIC,ESPORTS
+5,"VALORANT - Jornada 2","PXO vs. Hormigón Armado",15:00:00,2023-10-19,"Av. La Marina 223 2do piso",NULL,"Partido de clasificación de Valorant",PUBLIC,ESPORTS
+6,"BASQUET - Jornada 1","Fibra Tóxica vs. Electroshock",10:00:00,2023-10-19,"PUCP, Polideportivo",NULL,"Partidos de clasificación Basquet",PUBLIC,BASQUET

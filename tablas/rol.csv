@@ -1,0 +1,6 @@
+idRol,nombre
+ADMINPRI,"Admin Gen"
+ADMINSEC,"Admin Act"
+GRADUAT,"User Graduated"
+STUDENT,"User Student"
+UNSET,"No definido"
