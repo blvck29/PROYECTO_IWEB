@@ -1,0 +1,451 @@
+*,*:after,*:before{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.chart-wrap{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 25%; /*acaaa se mueve el grafico solo*/
+}
+.pie-chart{
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background-color: #f5f5f5;
+    margin-left: 130px;
+}
+
+#contenedor {
+    width: 20%; 
+    margin: center; 
+    text-align: center;
+}
+/*Para la barra progresiva de Grafica de Relación Porcentual******** */
+.containerBarraP{
+    width: 30%;
+    height: 30vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5%;
+    flex-direction: column;
+
+}
+.skills h2{
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-top: 40px;
+    margin-bottom: 5px;
+    color: #000;
+    font-size: 20px; /*Modifica el tamaño de la letra de Alumnos y Egresados*/
+}
+.progress-bar{
+    background: #959595;
+    width: 350%;
+    height: 10px;
+    border-radius: 5px;
+    margin-left: 100px;
+}
+.progress-bar div{
+    height: 10px;
+    border-radius: 5px;
+    width: 10%;
+    
+}
+
+.alumnos{
+    background: #19609F;
+    animation: alumnos 1s linear forwards;
+}
+.egresados{
+    background: #8F153C;
+    animation: egresados 1s linear forwards;
+}
+.alumnos span{
+    border: 1px solid #19609F;
+}
+.egresados span{
+    border: 1px solid #8F153C;
+}
+@keyframes alumnos{
+    100%{
+        width: 35%;
+    }
+}
+@keyframes egresados{
+    100%{
+        width: 65%;
+    }
+}
+
+/*Para la barra progresiva de Grafica de Recaudaciones*/
+
+.alumnos_recaudaciones{
+    background: #19609F;
+    animation: alumnos_recaudaciones 1s linear forwards;
+}
+.egresados_recaudaciones{
+    background: #8F153C;
+    animation: egresados_recaudaciones 1s linear forwards;
+}
+.alumnos_recaudaciones span{
+    border: 1px solid #19609F;
+}
+.egresados_recaudaciones span{
+    border: 1px solid #8F153C;
+}
+
+@keyframes alumnos_recaudaciones{
+    100%{
+        width: 18%;
+    }
+}
+@keyframes egresados_recaudaciones{
+    100%{
+        width: 82%;
+    }
+}
+
+/*Para la barra progresiva de Apoyos por Actividad*/
+
+.containerBarraP_Apoyos{
+    width: 30%;
+    height: 30vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5%;
+    flex-direction: column;
+}
+
+.skills_apoyos h2{
+    font-weight: 400;
+    letter-spacing: 1 px;
+    margin-top: 40px;
+    margin-bottom: 5px;
+    color: #000;
+    font-size: 20px; /*Modifica el tamaño de la letra*/
+}
+
+.barra{
+    background: #19609F;
+    animation: barra 1s linear forwards;
+    
+}
+.participantes{
+    background: #8F153C;
+    animation: participantes 1s linear forwards;
+}
+.barra span{
+    border: 1px solid #19609F;
+   
+    
+}
+.participantes span{
+    border: 1px solid #8F153C;
+}
+
+@keyframes barra{
+    100%{
+        width: 78%;
+    }
+}
+@keyframes participantes{
+    100%{
+        width: 22%;
+    }
+}
+
+/*Grafico de barras de Recaudaciones*/
+.board{
+    margin: auto;
+    width: 70%;
+    height: 700px;
+    background-color: #f5f5f5;
+    padding: 10px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+.titulo_grafica{ /*Mueve el titulo de la gráfica*/
+    width: 100%;
+    height: 10%;
+}
+.titulo_grafica>h3{ /*Mueve el h3 del titulo de la grafica*/
+    padding: 0;
+    margin: 0px;
+    text-align: center;
+    color: #666666;
+    margin-bottom: 5px;
+}
+.sub_board{
+    width: 100%;
+    height: 90%;
+    padding: 10px;
+    margin-top: 0px;
+    background-color:#f5f5f5;
+    overflow: hidden;
+    box-sizing: border-box;
+    border-radius: 20px;
+    margin-left: -45px;
+}
+.sep_board{
+    width: 100%;
+    height: 10%;
+}
+.cont_board{
+    width: 100%;
+    height: 80%;
+}
+.graf_board{
+    width: 85%;
+    height: 100%;
+    float: right;
+    margin-top: 0px;
+    background-color: darkgrey;
+    border-left: 2px solid #999999;
+    border-bottom: 2px solid #999999;
+    box-sizing: border-box;
+    display: flex;
+    background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, 
+    rgba(0,0,0,0) 9.5%,  rgba(0,0,0,0.3) 10%, rgba(0,0,0,0) 10.5%, 
+    rgba(0,0,0,0) 19.5%, rgba(0,0,0,0.3) 20%, rgba(0,0,0,0) 20.5%, 
+    rgba(0,0,0,0) 29.5%, rgba(0,0,0,0.3) 30%, rgba(0,0,0,0) 30.5%, 
+    rgba(0,0,0,0) 39.5%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0) 40.5%, 
+    rgba(0,0,0,0) 49.5%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0) 50.5%, 
+    rgba(0,0,0,0) 59.5%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0) 60.5%, 
+    rgba(0,0,0,0) 69.5%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 70.5%, 
+    rgba(0,0,0,0) 79.5%, rgba(0,0,0,0.3) 80%, rgba(0,0,0,0) 80.5%, 
+    rgba(0,0,0,0) 89.5%, rgba(0,0,0,0.3) 90%, rgba(0,0,0,0) 90.5%,  
+    rgba(0,0,0,0) 100%);
+
+    background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%, 
+    rgba(0,0,0,0) 9.5%,  rgba(0,0,0,0.3) 10%, rgba(0,0,0,0) 10.5%, 
+    rgba(0,0,0,0) 19.5%, rgba(0,0,0,0.3) 20%, rgba(0,0,0,0) 20.5%, 
+    rgba(0,0,0,0) 29.5%, rgba(0,0,0,0.3) 30%, rgba(0,0,0,0) 30.5%, 
+    rgba(0,0,0,0) 39.5%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0) 40.5%, 
+    rgba(0,0,0,0) 49.5%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0) 50.5%, 
+    rgba(0,0,0,0) 59.5%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0) 60.5%, 
+    rgba(0,0,0,0) 69.5%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 70.5%, 
+    rgba(0,0,0,0) 79.5%, rgba(0,0,0,0.3) 80%, rgba(0,0,0,0) 80.5%, 
+    rgba(0,0,0,0) 89.5%, rgba(0,0,0,0.3) 90%, rgba(0,0,0,0) 90.5%,  
+    rgba(0,0,0,0) 100%);
+
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,
+    rgba(0,0,0,0) 9.5%,  rgba(0,0,0,0.3) 10%, rgba(0,0,0,0) 10.5%, 
+    rgba(0,0,0,0) 19.5%, rgba(0,0,0,0.3) 20%, rgba(0,0,0,0) 20.5%, 
+    rgba(0,0,0,0) 29.5%, rgba(0,0,0,0.3) 30%, rgba(0,0,0,0) 30.5%, 
+    rgba(0,0,0,0) 39.5%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0) 40.5%, 
+    rgba(0,0,0,0) 49.5%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0) 50.5%, 
+    rgba(0,0,0,0) 59.5%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0) 60.5%, 
+    rgba(0,0,0,0) 69.5%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 70.5%, 
+    rgba(0,0,0,0) 79.5%, rgba(0,0,0,0.3) 80%, rgba(0,0,0,0) 80.5%, 
+    rgba(0,0,0,0) 89.5%, rgba(0,0,0,0.3) 90%, rgba(0,0,0,0) 90.5%, 
+    rgba(0,0,0,0) 100%);
+
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#00ffffff',GradientType=0 );
+}
+.barra_plot{
+    width:20%;
+    height: 100%;
+    margin-right: 15px;
+    margin-left: 150px;
+    background-color: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+}
+.sub_barra_egresados{
+    width: 100%;
+    height: 80%;
+    background: #00799b;
+    background: -moz-linear-gradient(top, #8F153C 0%, #8F153C 100%);
+    background: -webkit-linear-gradient(top, #8F153C 0%,#8F153C 100%);
+    background: linear-gradient(to bottom, #8F153C 0%,#8F153C 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00799b', endColorstr='#64d1be',GradientType=0 );
+    
+    -webkit-border-radius: 3px 3px 0 0;
+    border-radius: 3px 3px 0 0;
+}
+.sub_barra_alumnos{
+    width: 100%;
+    height: 80%;
+    background: #00799b;
+    background: -moz-linear-gradient(top, #19609F 0%, #19609F 100%);
+    background: -webkit-linear-gradient(top, #19609F 0%,#19609F 100%);
+    background: linear-gradient(to bottom, #19609F 0%,#19609F 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00799b', endColorstr='#64d1be',GradientType=0 );
+    
+    -webkit-border-radius: 3px 3px 0 0;
+    border-radius: 3px 3px 0 0;
+}
+.tag_g{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin-bottom: 30px;
+    text-align: center;
+    margin-top: -20px;
+    z-index: 2;
+}
+.tag_leyenda{
+    width: 100%;
+    text-align: center;
+    margin-top: 5px;
+}
+.tag_board{
+    height: 100%;
+    width: 15%;
+    border-bottom: 2px solid rgba(0,0,0,0);
+    box-sizing: border-box;
+}
+.sub_tag_board{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+}
+.sub_tag_board>div{
+    width: 100%;
+    height: 10%;
+    text-align: right;
+    padding-right: 10px;
+    box-sizing: border-box;
+}
+.b1{ height: 82%} /*Se coloca en porcentaje para el aumento o decremento de gráficas de barra*/
+.b2{ height: 18%}
+
+.titulo{
+    margin-left: 150px;
+    margin-top: 5%;
+}
+.resumentexto{
+    margin-left: 150px;
+}
+
+
+
+
+.textoporcentaje{
+    font-family: sans-serif;
+    margin-left: 10%;
+    margin-bottom: -4%;
+  }
+  .chart-wrap1{
+    width: 650px; /*Largo del grafico como un todo*/
+    height: 600px;/*Ancho del gráfico como un todo*/
+    font-family:sans-serif;
+    margin-left: 15%;
+    margin-top: 30%; /*Permite mover mas abajo la grafica total*/
+  }
+   
+  .grid{ /*Para hacer que la barra a sea horizontal*/
+    width:120%; /*Largo del gráfico*/
+    height:100%; /*ancho de las barras (con 60 se juntan)*/ 
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+    border-bottom:2px solid #aaa; /*Color de no se*/
+    background:repeating-linear-gradient(0deg,transparent,transparent 19.5%,fadeout(#aaa,30%) 20%);
+   
+    .bar1 {/*bbbbbbbbbbbb*/
+      background-color:#0000ff; /*Color de las barras*/
+      width:45px; /*nada*/
+      height: var(--bar-value); /*Depende del bar-value)*/
+      align-self:flex-end;
+      margin:0 auto;
+      border-radius:3px 3px 0 0;
+      position:relative; /*Si lo desaparezco desaparecen los textos*/
+   
+      &.bar1:hover{/*cccc*/
+        opacity:0.7;
+      }
+   
+      &::after{
+        content:attr(data-name); /*Si cambio data-name ya no hay palabras en el rectangulo*/
+        top:-3em;
+        padding:10px;
+        display:inline-block;
+        white-space:nowrap;
+        position:absolute;
+        transform:rotate(-45deg);
+      }
+    }
+  
+    .bar2 {/*bbbbbbbbbbbb*/
+      background-color:#ff0000; /*Color de las barras*/
+      width:45px; /*nada*/
+      height: var(--bar-value); /*Depende del bar-value)*/
+      align-self:flex-end;
+      margin:0 auto;
+      border-radius:3px 3px 0 0;
+      position:relative; /*Si lo desaparezco desaparecen los textos*/
+   
+      &.bar2:hover{/*cccc*/
+        opacity:0.7;
+      }
+   
+      &::after{
+        content:attr(data-name); /*Si cambio data-name ya no hay palabras en el rectangulo*/
+        top:-3em;
+        padding:10px;
+        display:inline-block;
+        white-space:nowrap;
+        position:absolute;
+        transform:rotate(-45deg);
+      }
+    }
+   
+    &.horizontal{
+      flex-direction:column; /*Desaparecen solo las barras*/
+      border-bottom:none;
+      border-left:2px solid #aaa; /*Borde del lado izquierdo*/
+      background:repeating-linear-gradient(90deg,transparent,transparent 19.5%,fadeout(#aaa,30%) 20%); /*Son las barritas guía*/
+      .bar1{
+        height:45px; /*Ancho de las barras*/
+        width: var(--bar-value); /*Depende del valor de la barra (largo)*/
+        align-self:flex-start; /*Para que empiecen desde la izquierda*/
+        margin:auto 0 auto 0;
+        border-radius:0 3px 3px 0; /*Modifica la forma de la barra*/
+   
+        &::after{
+          top:initial; /*Modifica la altura de las palabras*/
+          left:100%;/*Ubicacion de las letras en base a los rectangulos (es lo malo)*/
+          padding:0 10px; /*Arregla la ubicacion de las palabras respecto a las barras*/
+          display:inline-block;
+          white-space:nowrap;
+          position:absolute;
+          transform:rotate(0deg); /*Para rotar las letras*/
+          line-height:45px; /*Palabras centradas en los rectangulos*/
+        }
+      }
+  
+      .bar2{
+        height:45px; /*Ancho de las barras*/
+        width: var(--bar-value); /*Depende del valor de la barra (largo)*/
+        align-self:flex-start; /*Para que empiecen desde la izquierda*/
+        margin:auto 0 auto 0;
+        border-radius:0 3px 3px 0; /*Modifica la forma de la barra*/
+   
+        &::after{
+          top:initial; /*Modifica la altura de las palabras*/
+          left:100%;/*Ubicacion de las letras en base a los rectangulos (es lo malo)*/
+          padding:0 10px; /*Arregla la ubicacion de las palabras respecto a las barras*/
+          display:inline-block;
+          white-space:nowrap;
+          position:absolute;
+          transform:rotate(0deg); /*Para rotar las letras*/
+          line-height:45px; /*Palabras centradas en los rectangulos*/
+        }
+      }
+  
+    }
+  
+    .containerbarraApoyos{/*Para la separación de doble barra*/
+      margin-bottom: 30px;
+    }
+  }
