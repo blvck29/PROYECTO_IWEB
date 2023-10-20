@@ -1,4 +1,4 @@
 idRol_Inscrito,nombre
 BARRA,Barra
 MEMBER,Participante
-UNSET,"No definido"
+UNSET,Undefined

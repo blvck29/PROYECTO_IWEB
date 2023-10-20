@@ -1,0 +1,4 @@
+idRegistro_Donaciones,idUsuario,comprobante,monto,comprobado
+1,106,NULL,20.5,1
+2,102,NULL,54,0
+3,105,NULL,155,1
