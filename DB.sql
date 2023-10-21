@@ -132,16 +132,17 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- Table `proyectoweb`.`fotos_album`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `proyectoweb`.`fotos_album` (
-  `Id Recuerdo` VARCHAR(45) NOT NULL,
+  `IdFoto` INT NOT NULL AUTO_INCREMENT,
   `idEvento` INT NOT NULL,
   `Foto` LONGBLOB NULL DEFAULT NULL,
   `Descricipcion` VARCHAR(45) NULL DEFAULT NULL,
-  PRIMARY KEY (`Id Recuerdo`, `idEvento`),
+  PRIMARY KEY (`IdFoto`, `idEvento`),
   INDEX `fk_Foto_Album_Evento1_idx` (`idEvento` ASC) VISIBLE,
   CONSTRAINT `fk_Foto_Album_Evento1`
     FOREIGN KEY (`idEvento`)
     REFERENCES `proyectoweb`.`evento` (`idEvento`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 10
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -196,7 +197,7 @@ CREATE TABLE IF NOT EXISTS `proyectoweb`.`registro_donaciones` (
     FOREIGN KEY (`idUsuario`)
     REFERENCES `proyectoweb`.`usuarios` (`idUsuario`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 2
+AUTO_INCREMENT = 4
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -213,6 +214,7 @@ CREATE TABLE IF NOT EXISTS `proyectoweb`.`token_generado` (
     FOREIGN KEY (`idUsuario`)
     REFERENCES `proyectoweb`.`usuarios` (`idUsuario`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 23
 DEFAULT CHARACTER SET = utf8mb3;
 
 
