@@ -1,0 +1,835 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+
+*{
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none !important;
+    list-style: none !important;
+}
+
+body{
+    background-color: aliceblue;
+}
+
+p {
+    margin-top: 0.5rem !important;
+    margin-bottom: 0.2rem !important;
+}
+
+.montserrat-t {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+}
+
+/* Navbar Styles */
+
+header {
+    width: 100%;
+    height: 5rem;
+    background-color: #04011E;
+    display: flex;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 0 8rem;
+}
+
+.logo {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+.logo-img {
+    height: 45px;
+}
+
+.bars {
+    display: none;
+}
+
+.nav-bar ul {
+    display: flex;
+}
+
+.nav-bar ul li a {
+    display: block;
+    color: #fff;
+    font-size: .9rem;
+    padding: 10px 25px;
+    transition: 0.2s;
+    margin: 15px 5px 0;
+}
+
+.nav-bar ul li a:hover {
+    color: #78D3D0;
+}
+
+.nav-bar ul li a.active {
+    color: #78D3D0;
+}
+
+
+.nav-icon2 {
+    margin-right: 8px;
+}
+
+@media (max-width: 1260px) {
+    header {
+        padding: 0 4rem;
+    }
+    .bars {
+        display: block;
+        cursor: pointer;
+    }
+    .bars .line {
+        width: 28px;
+        height: 3px;
+        background-color: #fff;
+        border-radius: 1px;
+        margin: 6px 0;
+    }
+    .nav-bar {
+        height: 0;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        right: 0;
+        width: 100vw;
+        background-color: rgba(4,1,30, .8);
+        transition: 0.5s;
+        overflow: hidden;
+    }
+    .nav-bar.active {
+        height: 275px;
+        z-index: 10;
+    }
+    .nav-bar ul {
+        display: block;
+        width: fit-content;
+        margin: 15px auto 0 auto;
+        text-align: center;
+        transition: 0.5s;
+        opacity: 0;
+    }
+    .nav-bar.active ul {
+        opacity: 1;
+    }
+    .nav-bar ul li a {
+        margin-bottom: 10px;
+        margin-top: 5px;
+    }
+}
+/* Navbar Styles END */
+
+.carousel-item img {
+    
+}
+
+
+/* Carousel Styles */
+
+.carousel-images {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
+}
+
+.carousel-caption{
+    padding-bottom: 20rem !important;
+}
+
+.btn-transparent {
+    background: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+}
+.btn-transparent:hover {
+    background-color: #fff;
+}
+
+.btn-rounded {
+    border-radius: 70px;
+}
+
+.btn-large {
+    padding: 11px 45px;
+    font-size: 18px;
+}
+/* Carousel Styles END*/
+
+
+
+/* Login Styles */
+section.index{
+    justify-content: center;
+    align-items: center;
+    justify-items: center; 
+    width: 100%;
+    min-height: 100vh;
+    background: url(../images/fondoF.jpg) no-repeat center;
+    background-size: cover;
+    display: grid; 
+    grid-template-columns: 1fr; 
+    grid-template-rows: 90% 10%; 
+    gap: 0 0;
+    grid-template-areas: 
+    "."
+    ".";
+}
+
+
+.t-light {
+    font-size: .9em;
+    font-weight: lighter;
+}
+
+
+.login-container {
+    position: relative;
+    width: 410px;
+    border: 2px solid rgba(255,255,255, .6);
+    border-radius: 20px;
+    backdrop-filter: blur(25px);
+    height: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px;
+}
+
+.login-container h2 {
+    margin-top: 10px;
+    font-size: 2.3rem;
+    color: #fff;
+    text-align: center;
+}
+
+.login-input {
+    position: relative;
+    margin: 30px 0;
+    width: 300px;
+    border-bottom: 2px solid #fff;
+}
+
+.login-input label{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    color: #fff;
+    font-size: 1rem;
+    pointer-events: none;
+    transition: .4s;
+    font-weight: bold;
+}
+
+input:focus ~ label,
+input:valid ~ label {
+    top: -5px;
+}
+
+.login-input input{
+    width: 100%;
+    height: 50px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    padding: — 35px 0 5px;
+    color: #fff;
+}
+
+.login-input i {
+    position: absolute;
+    color: #fff;
+    font-size: 1.6rem;
+    top: 19px;
+    right: 8px;
+}
+
+.login-forgot {
+    margin: -15px 0 15px;
+    font-size: .9em;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+}
+
+.login-forgot label input {
+    margin: 3px;
+}
+
+.login-forgot label a {
+    color: #fff;
+    text-decoration: none;
+    transition: .3s;
+    font-size: .9em;
+}
+
+.login-forgot label a:hover {
+    text-decoration: underline;
+}
+
+.login-button {
+    width: 100%;
+    height: 45px;
+    border-radius: 40px;
+    background: #fff;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    font-size: 1rem;
+    transition: .4s;
+}
+
+.login-button:hover {
+    opacity: .8;
+}
+
+.login-register {
+    font-size: .8rem;
+    color: #fff;
+    text-align: center;
+    margin: 20px 0 10px;
+}
+
+.login-register p a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    transition: .3s;
+}
+
+.login-register p a:hover {
+    text-decoration: underline;
+}
+/* Login Styles END */
+
+
+
+/* Footer Styles */
+.footer-container {
+    position: relative;
+    height: 10vh;
+    backdrop-filter: blur(25px);
+    background-color: rgba(0, 0, 0, 0.4);
+    justify-content: center;
+    align-items: center;
+    justify-items: center; 
+    text-align: center;
+}
+
+.footer-container p {
+    margin-top: 35px !important;
+    text-align: inherit;
+    color: #fff;
+    font-weight: lighter;
+    font-size: .9rem;
+}
+/* Footer Styles END */
+
+
+
+
+/* Register Styles */
+.register-container {
+    position: relative;
+    width: 510px;
+    border: 2px solid rgba(255,255,255, .6);
+    border-radius: 20px;
+    backdrop-filter: blur(25px);
+    height: 770px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px;
+}
+
+.register-container h2 {
+    font-size: 2.3rem;
+    color: #fff;
+    text-align: center;
+}
+
+.register-input {
+    position: relative;
+    margin: 30px 0;
+    width: 400px;
+    border-bottom: 2px solid #fff;
+}
+
+.register-input label{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    color: #fff;
+    font-size: 1rem;
+    pointer-events: none;
+    transition: .4s;
+    font-weight: bold;
+}
+
+input:focus ~ label,
+input:valid ~ label {
+    top: -5px;
+}
+
+.register-input input{
+    width: 100%;
+    height: 50px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    padding: — 35px 0 5px;
+    color: #fff;
+}
+
+
+.register-checkbox {
+    position: relative;
+    margin: 30px 0;
+    width: 400px;
+    color: #fff;
+    margin-left: 5px;
+}
+
+.register-button {
+    width: 100%;
+    height: 45px;
+    border-radius: 40px;
+    background: #fff;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    font-size: 1rem;
+    transition: .4s;
+}
+
+.register-button:hover {
+    opacity: .8;
+}
+
+.register-back {
+    margin: 15px 0 15px;
+    font-size: .9em;
+    color: #fff;
+    display: flex;
+    justify-content: left;
+}
+
+.register-back label input {
+    margin: 3px;
+}
+
+.register-back label a {
+    color: #fff;
+    text-decoration: none;
+    transition: .3s;
+    font-size: .9em;
+}
+
+.register-back label a:hover {
+    text-decoration: underline;
+}
+/* Register Styles END*/
+
+
+
+
+/* Forgot Styles */
+.forgot-container {
+    position: relative;
+    width: 550px;
+    border: 2px solid rgba(255,255,255, .6);
+    border-radius: 20px;
+    backdrop-filter: blur(25px);
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px;
+}
+
+.forgot-container h2 {
+    font-size: 2.3rem;
+    color: #fff;
+    text-align: center;
+}
+
+.forgot-input {
+    position: relative;
+    margin: 30px 0;
+    width: 400px;
+    border-bottom: 2px solid #fff;
+}
+
+.forgot-input label{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    color: #fff;
+    font-size: 1rem;
+    pointer-events: none;
+    transition: .4s;
+    font-weight: bold;
+}
+
+input:focus ~ label,
+input:valid ~ label {
+    top: -5px;
+}
+
+.forgot-input input{
+    width: 100%;
+    height: 50px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    padding: — 35px 0 5px;
+    color: #fff;
+}
+
+.forgot-input i {
+    position: absolute;
+    color: #fff;
+    font-size: 1.6rem;
+    top: 19px;
+    right: 8px;
+}
+
+.forgot-button {
+    width: 100%;
+    height: 45px;
+    border-radius: 40px;
+    background: #fff;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    font-size: 1rem;
+    transition: .4s;
+}
+
+.forgot-button:hover {
+    opacity: .8;
+}
+
+.forgot-back {
+    margin: 15px 0 15px;
+    font-size: .9em;
+    color: #fff;
+    display: flex;
+    justify-content: left;
+}
+
+.forgot-back label input {
+    margin: 3px;
+}
+
+.forgot-back label a {
+    color: #fff;
+    text-decoration: none;
+    transition: .3s;
+    font-size: .9em;
+}
+
+.forgot-back label a:hover {
+    text-decoration: underline;
+}
+/* Forgot Styles END*/
+
+
+
+
+/* NewPass Styles */
+.newpass-container {
+    position: relative;
+    width: 550px;
+    border: 2px solid rgba(255,255,255, .6);
+    border-radius: 20px;
+    backdrop-filter: blur(25px);
+    height: 420px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px;
+}
+
+.newpass-container h2 {
+    font-size: 2.3rem;
+    color: #fff;
+    text-align: center;
+}
+
+.newpass-input {
+    position: relative;
+    margin: 30px 0;
+    width: 400px;
+    border-bottom: 2px solid #fff;
+}
+
+.newpass-input label{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    color: #fff;
+    font-size: 1rem;
+    pointer-events: none;
+    transition: .4s;
+    font-weight: bold;
+}
+
+input:focus ~ label,
+input:valid ~ label {
+    top: -5px;
+}
+
+.newpass-input input{
+    width: 100%;
+    height: 50px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    padding: — 35px 0 5px;
+    color: #fff;
+}
+
+.newpass-input i {
+    position: absolute;
+    color: #fff;
+    font-size: 1.6rem;
+    top: 19px;
+    right: 8px;
+}
+
+.newpass-button {
+    width: 100%;
+    height: 45px;
+    border-radius: 40px;
+    background: #fff;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    font-size: 1rem;
+    transition: .4s;
+}
+
+.newpass-button:hover {
+    opacity: .8;
+}
+
+.newpass-back {
+    margin: 15px 0 15px;
+    font-size: .9em;
+    color: #fff;
+    display: flex;
+    justify-content: left;
+}
+
+.newpass-back label input {
+    margin: 3px;
+}
+
+.newpass-back label a {
+    color: #fff;
+    text-decoration: none;
+    transition: .3s;
+    font-size: .9em;
+}
+
+.newpass-back label a:hover {
+    text-decoration: underline;
+}
+/* NewPass Styles END*/
+
+
+
+
+/* Token Box */
+.otp-bx {
+    display: flex;
+}
+
+.otp-bx input {
+    width: 60px;
+    font-size: 32px;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    border: 2px solid rgba(255,255,255, .6);
+    background: #fff;
+    font-weight: bold;
+    color: black;
+    outline: none;
+    transition: 0.1s;
+    margin: 20px 2px 30px;
+}
+
+.otp-bx input:focus {
+    border: 2px rgb(255, 255, 255);
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, .4);
+}
+
+.space {
+    margin-right: 10px !important;
+}
+
+.disabled {
+    opacity: .5;
+}
+/* Token Box END */
+
+
+
+/* Navegators Preferences */
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* EVENTS Styles */
+
+
+.image-event {
+    max-width: 100%;
+    display: block;
+
+}
+
+.card-list {
+    width: 100%;
+    max-width: 600px;
+}
+
+.card {
+    background-color: #FFF;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05), 0 20px 50px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    overflow: hidden;
+    padding: 0.5rem;
+    position: relative;
+    transition: 0.15s ease-in;
+
+    &:hover,
+    &:focus-within {
+        box-shadow: 0 0 0 2px #78D3D0, 0 10px 60px 0 rgba(0, 0, 0, 0.1);
+        transform: translateY(-5px);
+    }
+}
+
+.card-image {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.card-header {
+    margin-top: 0.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    & a {
+        font-weight: 600;
+        font-size: 1.15rem;
+        line-height: 1.25;
+        padding-right: 1rem;
+        text-decoration: none;
+        color: inherit;
+        will-change: transform;
+
+        &:after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+        }
+    }
+}
+
+.card-header a p {
+    font-weight: 300;
+    font-size: 0.8rem;
+}
+
+.icon-button {
+    border: 0;
+    background-color: #fff;
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    font-size: 1.25rem;
+    transition: 0.25s ease;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05), 0 3px 8px 0 rgba(0, 0, 0, 0.15);
+    z-index: 1;
+    cursor: pointer;
+    color: #565656;
+
+    & svg {
+        width: 1em;
+        height: 1em;
+    }
+
+    &:hover,
+    &:focus {
+        background-color: #EC4646;
+        color: #FFF;
+    }
+}
+
+.card-footer {
+    margin-top: 1.25rem;
+    border-top: 1px solid #ddd;
+    padding-top: 1.25rem;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.card-meta {
+    display: flex;
+    align-items: center;
+    color: #787878;
+
+    &:first-child:after {
+        display: block;
+        content: "";
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background-color: currentcolor;
+        margin-left: 0.75rem;
+        margin-right: 0.75rem;
+    }
+
+    & svg {
+        flex-shrink: 0;
+        width: 1em;
+        height: 1em;
+        margin-right: 0.25em;
+    }
+}
+
+/* END EVENTS Styles */
