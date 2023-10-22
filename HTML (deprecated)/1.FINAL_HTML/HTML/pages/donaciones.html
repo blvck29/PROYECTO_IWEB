@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content=text/html; charset=ISO-8859-1″>    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+        <meta name="generator" content="Hugo 0.84.0">
+        <title>Semana de Ingeniería</title>
+
+
+        <link rel="canonical" href="#">
+
+        <link rel="icon" type="image/jpg" href="../favicon.png"/>
+
+        <!-- Bootstrap core CSS -->
+        <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+        
+        <!-- Custom styles for this template <link href="carousel.css" rel="stylesheet"> -->
+        <link rel="stylesheet" href="../carousel/css/style.css">
+
+
+
+    <style>
+	
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+      
+
+        /* Estilos para el área de arrastre y suelta */
+        #drop-area {
+            border: 2px dashed #ccc;
+            background-image: url(../assets/dist/imgs/upload.jpg);
+            background-repeat: no-repeat;
+            border-radius: 8px;
+            padding: 20px;
+            font-size: 1.2rem;
+            cursor: default;
+            width: 400px; /* Ancho máximo */
+            height: 300px; /* Altura máxima aumentada */
+            margin: 0 auto;
+            margin-bottom: 20px; /* Separación vertical */
+        }
+
+        #drop-area.highlight {
+            background-color: #f7f7f7;
+        }
+
+        /* Estilos para el botón de borrar */
+        #file-delete {
+            background-color: #cd4535;
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: none; /* Inicialmente oculto */
+            width: 150px;
+            margin: 0 auto; /* Centrar el botón de borrar */
+        }
+
+        /* Estilos para la vista previa de la imagen */
+        #file-preview {
+            max-width: 100%;
+            max-height: 300px;
+            margin-top: 20px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* Estilos para el botón Seleccionar Archivo */
+        #file-input {
+            display: none; /* Ocultar el input por defecto */
+        }
+
+      #select-file-button {
+			display:block;
+			text-align:center;
+            background-color: #0073e6;
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 150px;
+            margin: 0 auto; /* Centrar el botón Seleccionar Archivo */
+        }
+		 #send-button {
+        background-color: #4CAF50; /* Color verde */
+        color: #fff;
+        padding: 10px 20px; /* Ajustar el espaciado vertical y horizontal */
+        border-radius: 10px;
+        cursor: pointer;
+        display: none;
+        width: 150px;
+        margin-top: 20px; /* Espaciado desde arriba */
+		margin: 0 auto;
+    }
+    </style>
+	
+	
+	
+	
+    
+  </head>
+  
+  <body>
+
+
+<main>
+  
+  
+  
+  <header>
+    <nav class="sticky-navbar1 navbar navbar-expand-lg navbar-dark blue" aria-label="Eleventh navbar example">
+      <div class="container">
+        <a class="navbar-brand me-5 " href="../pages/home.html">
+          <img class="logo-topbar-fluid" src='../assets/dist/imgs/logo_topbar.png' alt="...">
+        </a>
+        <button class="navbar-toggler justify-content-center" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExample09">
+          <ul class="navbar-nav me-auto mb-4 mb-lg-0">
+            <li class="nav-item">
+              <a href="../pages/mis_eventos.html"><button type="button" class="btn-darkbg btn-outline-wt  me-2">Mis Eventos</button></a>
+            </li>
+            <li class="nav-item">
+              <a href="../pages/donaciones.html"><button type="button" class="btn-darkbg btn-outline-wt  me-2">Donaciones</button></a>
+            </li>
+          </ul>
+          <a href = "../index.html"><button type="button" class="btn-darkbg btn-outline-wt">Cerrar Sesión  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg> </button></a>
+        </div>
+      </div>
+    </nav>
+</header>
+
+
+
+
+
+  <div class="container-img-responsive">
+    <div class="container col-xxl-8 px-4 py-5">
+      <div class="row flex-lg-row-reverse align-items-center g-5 py-5 ">
+        <div class="col-10 col-sm-8 col-lg-6"></div>
+        <div class="col-lg-6">
+          <h1 class=" fst-italic fw-bold lh-1 mb-2 text-white ">¡INICIA LA SEMANA DE INGENIERÍA 2023!</h1>
+          <p class="lead fs-3 text-white">LUNES 16 DE OCTUBRE</p>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul style="text-align: left;"></ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <h2 style="text-align: left;padding-left: 0px;"><strong> </strong></h2>
+            <div class="row">
+                <div class="col-md-6"></div>
+                <div class="col-md-6"></div>
+            </div>
+        </section>
+    </div>
+
+    <div style="padding-top: 2em;"></div>
+
+
+    <div class="container">
+      <div class="modu-dest-intern formato">
+
+
+        
+        <div style="padding-top: 1em;"></div>
+        <div class="container">
+          <div class="alert alert-info" role="alert">
+            <h2 style="text-align: left;padding-left: 0px;">Indicaciones para Donar</h2>
+            <p class="w-lg-50" style="text-align: left;">Gracias por considerar realizar una donación. Para realiza una donacion a la AITEL deberá depositar (mediante PLIN o YAPE) el dinero que desee teniendo las siguiente consideraciones:</p>
+            <ul style="text-align: left;">
+                <li style="text-align: left;">Si usted es egresado, el monto mínimode donación es de s/. 100.</li>
+                <li style="text-align: left;">Si usted es alumno, no hay cantidad mínima de donación.</li>
+            </ul>
+          </div>
+    
+    
+        </div>
+    
+    
+      <div class="container">
+        <div style="padding-top: 3em;"></div>
+        <h3 style="font-weight: bold;">Puede realizar su donacion mediante</h3>
+        <div style="padding-top: 3em;"></div>
+      </div>
+      <div class="container">
+          <div class="row">
+            <div class="col text-start">
+              <div class="row">
+                <div class="col text-center"><img src="../assets/dist/imgs/yape.png" width="240"/></div>
+                <div class="col text-center">
+                  <figure class="figure"><img class="figure-img" src="../assets/dist/imgs/qr.jpg" width="220"/>
+                    <figcaption class="figure-caption text-break" style="font-weight: bold;"><span>Yapea al </span><span style="color: rgba(193,13,13,0.75);">955054066</span></figcaption>
+                  </figure>
+                </div>
+              </div>
+            </div>
+            <div class="col text-start">
+              <div class="row">
+                <div class="col text-center"><img src="../assets/dist/imgs/plin.png" width="240"/></div>
+                <div class="col text-center">
+                  <figure class="figure"><img class="figure-img" src="../assets/dist/imgs/qr.jpg" width="220"/>
+                    <figcaption class="figure-caption text-break" style="font-weight: bold;"><span>O plinea al </span><span style="color: rgba(193,13,13,0.75);">955054066</span></figcaption>
+                  </figure>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="padding-top: 3em;"></div>
+    
+    
+    
+      <div class="container">
+        <h3 style="font-weight: bold;">Suba su comprobante de pago</h3>
+        <div style="padding-top: 3em;"></div>
+    
+    
+      <imgprv>
+        <div class="container-imagen">
+          <input type="file" id="file" accept="image/*" hidden>
+          <div class="img-area" data-img="">
+            <i class='bx bxs-cloud-upload icon'></i>
+            <h3>Arrastre imagen</h3>
+            <p>Tamaño de imagen menor a <span>4MB</span></p>
+          </div>
+          <button class="select-image">Seleccionar Imagen</button>
+        </div>
+        
+        <script src="../assets/dist/js/script_img.js"></script>
+      
+      </imgprv>
+    
+    
+      </html>
+    
+    
+        <div style="padding-top: 3em;"></div>
+    
+      <div class="container" style="text-align: center;">
+        
+        <div class="row">
+            <div class="col-9 align-self-center mx-auto ">
+              <div class="alert alert-primary" role="alert">
+                Si usted es egresado, el monto mínimo de donación es de s/.100 
+              </div>
+            </div>
+        </div>
+    </div>
+    
+    
+        <div style="padding-top: 2em;"></div>
+    
+    
+        <div class="donate-container">
+          <div class="col1-donate">
+            <div class="col text-center" style="border-style: solid;border-radius: 10px;">
+              <div style="padding-top: 1em;"></div>
+              <p>!Todos los telecos que nos van apoyando!</p>
+              <p class="d-md-inline"><span style="border-style: solid;border-radius: 9px;font-weight: bold;"> 21 personas  </span></p>
+              <div style="padding-top: 1em;"></div>
+            </div>
+          </div>
+          <div class="col2-donate">
+            <div class="col text-center" style="border-style: solid;border-radius: 10px;">
+              <div style="padding-top: 1em;"></div>
+              <p>!Total de donaciones hechas por telecos!</p>
+              <p class="d-md-inline"><span style="border-style: solid;border-radius: 9px;font-weight: bold;"> S/. 802  </span></p>
+              <div style="padding-top: 1em;"></div>
+            </div>
+          </div>
+        </div>
+    
+    
+    
+    <div style="padding-top: 3em;"></div>
+
+
+
+
+      </div>
+    </div>
+
+
+
+
+    
+
+
+
+
+
+
+</main>
+<div class="container-fluid" style="padding-left: 0px; padding-right: 0px;">
+  <footer class="text-center" style="background: #042454;">
+        <div class="container text-white py-4 py-lg-5">
+            <p class="text-white mb-0"><br>© Pontificia Universidad Católica del Perú - Todos los derechos reservados<br><br></p>
+        </div>
+    </footer>
+</div>
+
+    
+      
+  </body>
+  <script src="/carousel/js/script.js"></script>
+  <script src="/assets/dist/js/bootstrap.bundle.min.js"></script>
+
+</html>

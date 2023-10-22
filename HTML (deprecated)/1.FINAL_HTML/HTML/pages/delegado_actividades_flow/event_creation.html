@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta http-equiv=”Content-Type” content=”text/html; charset=ISO-8859-1″>    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+        <meta name="generator" content="Hugo 0.84.0">
+        <title>Semana de Ingeniería</title>
+
+
+        <link rel="canonical" href="#">
+
+        <link rel="icon" type="image/jpg" href="../favicon.png"/>
+
+        <!-- Bootstrap core CSS -->
+        <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+        <!-- Custom styles for this template <link href="carousel.css" rel="stylesheet"> -->
+
+        <!-- Swiper CSS -->
+        <link rel="stylesheet" href="../carousel/css/swiper-bundle.min.css">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="../carousel/css/style.css">
+                                        
+    </head>    
+
+
+    <body>
+        <main>
+                <header>
+                    <nav class="sticky-navbar1 navbar navbar-expand-lg navbar-dark blue" aria-label="Eleventh navbar example">
+                      <div class="container">
+                        <a class="navbar-brand me-5 " href="#">
+                          <img class="logo-topbar-fluid" src='../assets/dist/imgs/logo_topbar.png' alt="...">
+                        </a>
+                        <button class="navbar-toggler justify-content-center" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+                          <span class="navbar-toggler-icon"></span>
+                        </button>
+                
+                        <div class="collapse navbar-collapse" id="navbarsExample09">
+                          <ul class="navbar-nav me-auto mb-4 mb-lg-0">
+                            <li class="nav-item">
+                              <button type="button" class="btn-darkbg btn-outline-wt  me-2" href = "#">Mis Eventos</button>
+                            </li>
+                            <li class="nav-item">
+                              <button type="button" class="btn-darkbg btn-outline-wt  me-2" href = "#">Donaciones</button>
+                            </li>
+                          </ul>
+                          
+                          <button type="button" class="btn-darkbg btn-outline-wt" href = "#">Cerrar Sesión   <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg> </button>
+                
+                        </div>
+                      </div>
+                    </nav>
+                </header>
+            
+              
+    
+
+            <div class="container-img-responsive">
+                <div class="container col-xxl-8 px-4 py-5">
+                  <div class="row flex-lg-row-reverse align-items-center g-5 py-5 ">
+                    <div class="col-10 col-sm-8 col-lg-6"></div>
+                    <div class="col-lg-6">
+                      <h1 class=" fst-italic fw-bold lh-1 mb-2 text-white ">¡INICIA LA SEMANA DE INGENIERÍA 2023!</h1>
+                      <p class="lead fs-3 text-white">LUNES 16 DE OCTUBRE</p>
+                      <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              
+
+
+
+
+        <div class = "container">
+              <div style="padding-top: 4em;"></div>
+
+                <h1 class="fw-bold lh-1 mb-2">Crear Evento</h1>
+                
+                <div style="padding-top: 2em;"></div>
+                <hr class="hr hr-blurry"/>
+
+                <div class="row">
+                  <div class="col-md-6">
+                      <div class="event-section">
+                        <div style="padding-top: 2em;"></div>
+                          <form>
+                              <div class="form-group">
+                                  <label for="nombre"><strong>Nombre de evento:</strong></label>
+                                  <input type="text" class="form-control" id="nombre">
+                              </div>
+                              <br/>
+                              <div class="form-group">
+                                  <label for="fecha-evento"><strong>Fecha de evento:</strong></label>
+                                  <input type="date" class="form-control" id="fecha-evento">
+                              </div>
+                              <br/>
+                              <div class="form-group">
+                                  <label for="Asistentes"><strong>Asistentes:</strong></label>
+                                  <input type="number" class="form-control" id="Asistentes">
+                              </div>
+                              <br/>
+                              <div class="form-group">
+                                  <label for="lugar-evento"><strong>Lugar de evento:</strong></label>
+                                  <input type="text" class="form-control" id="lugar-evento">
+                              </div>
+                              <br/>
+                              <div class="form-group">
+                                  <label for="asistentes-esperados"><strong>Asistentes Esperados:</strong></label>
+                                  <input type="number" class="form-control" id="asistentes-esperados">
+                              </div>
+                              <br/>
+                              <div class="form-group">
+                                  <label for="cantidad-maxima"><strong>Cantidad Máxima:</strong></label>
+                                  <input type="number" class="form-control" id="cantidad-maxima">
+                                  <br/>
+                              </div>
+                          </form>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+          
+                    
+                    <div class="event-section">
+                      <div style="padding-top: 2em;"></div>
+                      <h4 style="margin-left: 70px;"><strong>Subir imagen del evento</strong></h4>
+                      <div style="padding-top: 3em;"></div>
+                      
+                      <input type="file" accept="image/*" id="event-image-input" style="display: none;">
+                      <label for="event-image-input" class="event-image-label">
+                        <div class="container" style="padding-left: 100px;">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" fill="currentColor" class="bi bi-cloud-upload" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M4.406 1.342A5.53 5.53 0 0 1 8 0c2.69 0 4.923 2 5.166 4.579C14.758 4.804 16 6.137 16 7.773 16 9.569 14.502 11 12.687 11H10a.5.5 0 0 1 0-1h2.688C13.979 10 15 8.988 15 7.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 2.825 10.328 1 8 1a4.53 4.53 0 0 0-2.941 1.1c-.757.652-1.153 1.438-1.153 2.055v.448l-.445.049C2.064 4.805 1 5.952 1 7.318 1 8.785 2.23 10 3.781 10H6a.5.5 0 0 1 0 1H3.781C1.708 11 0 9.366 0 7.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383z"/>
+                            <path fill-rule="evenodd" d="M7.646 4.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V14.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3z"/>
+                          </svg>
+                          <p  style="margin-left: 0px;">Presione para subir imagen</p>
+                        </div>
+                      </label>
+                      <img id="preview-image" src="#" alt="Preview de la imagen" style="display: none; max-width: 100%; margin-top: 10px;">
+                  </div>
+                
+              </div>
+              <div class="row mt-4">
+                  <div class="col-md-6">
+                      
+                  </div>
+                  <div class="col-md-6 text-right">
+                    <button class="button-2">Guardar Borrador</button>
+                    
+                    <button class="button-2">Publicar Evento</button>
+                    <br/>
+                    <br/>
+                    
+                    
+                  </div>
+                  
+              </div>
+
+
+
+
+        </div>
+
+
+
+        </main>
+        
+
+
+
+        
+    </body>
+
+    <!-- Core JS -->
+    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/dist/js/dist_masonry.pkgd.min.js"></script>
+
+    <!-- Swiper JS -->
+    <script src="../carousel/js/swiper-bundle.min.js"></script>
+
+    <!-- JavaScript -->
+    <script src="../carousel/js/script.js"></script>
+</html>

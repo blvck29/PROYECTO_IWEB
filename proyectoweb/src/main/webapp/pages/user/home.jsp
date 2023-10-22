@@ -112,7 +112,7 @@
 
 <div class="container">
 
-    <div style="margin-bottom: 35px"></div>
+    <div style="margin-bottom: 45px"></div>
 
     <h2><i class="fa-solid fa-star" style="color: #8de7ef;"></i><strong style="padding-left: 10px">Eventos Destacados</strong></h2>
 
@@ -124,7 +124,7 @@
             <div class="card-list">
                 <article class="card">
                     <figure class="card-image">
-                        <img class="image-event" src="https://images.unsplash.com/photo-1494253109108-2e30c049369b?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTYyNDcwMTUwOQ&ixlib=rb-1.2.1&q=85" alt="An orange painted blue, cut in half laying on a blue background" />
+                        <img class="image-event" src="../../images/placeholder_events.jpg" alt="An orange painted blue, cut in half laying on a blue background" />
                     </figure>
                     <div class="card-header">
                         <a href="#">Partido de Valorant <p>Fibra Tóxica vs. Electroshock</p></a>
@@ -164,7 +164,7 @@
             <div class="card-list">
                 <article class="card">
                     <figure class="card-image">
-                        <img class="image-event" src="https://images.unsplash.com/photo-1494253109108-2e30c049369b?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTYyNDcwMTUwOQ&ixlib=rb-1.2.1&q=85" alt="An orange painted blue, cut in half laying on a blue background" />
+                        <img class="image-event" src="../../images/placeholder_events.jpg" alt="An orange painted blue, cut in half laying on a blue background" />
                     </figure>
                     <div class="card-header">
                         <a href="#">When life gives you oranges</a>
@@ -204,7 +204,7 @@
             <div class="card-list">
                 <article class="card">
                     <figure class="card-image">
-                        <img class="image-event" src="https://images.unsplash.com/photo-1494253109108-2e30c049369b?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTYyNDcwMTUwOQ&ixlib=rb-1.2.1&q=85" alt="An orange painted blue, cut in half laying on a blue background" />
+                        <img class="image-event" src="../../images/placeholder_events.jpg" alt="An orange painted blue, cut in half laying on a blue background" />
                     </figure>
                     <div class="card-header">
                         <a href="#">When life gives you oranges</a>
@@ -244,7 +244,7 @@
             <div class="card-list">
                 <article class="card">
                     <figure class="card-image">
-                        <img class="image-event" src="https://images.unsplash.com/photo-1494253109108-2e30c049369b?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTYyNDcwMTUwOQ&ixlib=rb-1.2.1&q=85" alt="An orange painted blue, cut in half laying on a blue background" />
+                        <img class="image-event" src="../../images/placeholder_events.jpg" alt="An orange painted blue, cut in half laying on a blue background" />
                     </figure>
                     <div class="card-header">
                         <a href="#">When life gives you oranges</a>
@@ -284,7 +284,7 @@
             <div class="card-list">
                 <article class="card">
                     <figure class="card-image">
-                        <img class="image-event" src="https://images.unsplash.com/photo-1494253109108-2e30c049369b?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTYyNDcwMTUwOQ&ixlib=rb-1.2.1&q=85" alt="An orange painted blue, cut in half laying on a blue background" />
+                        <img class="image-event" src="../../images/placeholder_events.jpg" alt="An orange painted blue, cut in half laying on a blue background" />
                     </figure>
                     <div class="card-header">
                         <a href="#">When life gives you oranges</a>
@@ -324,7 +324,7 @@
             <div class="card-list">
                 <article class="card">
                     <figure class="card-image">
-                        <img class="image-event" src="https://images.unsplash.com/photo-1494253109108-2e30c049369b?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTYyNDcwMTUwOQ&ixlib=rb-1.2.1&q=85" alt="An orange painted blue, cut in half laying on a blue background" />
+                        <img class="image-event" src="../../images/placeholder_events.jpg" alt="An orange painted blue, cut in half laying on a blue background" />
                     </figure>
                     <div class="card-header">
                         <a href="#">When life gives you oranges</a>
@@ -364,7 +364,7 @@
             <div class="card-list">
                 <article class="card">
                     <figure class="card-image">
-                        <img class="image-event" src="https://images.unsplash.com/photo-1494253109108-2e30c049369b?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTYyNDcwMTUwOQ&ixlib=rb-1.2.1&q=85" alt="An orange painted blue, cut in half laying on a blue background" />
+                        <img class="image-event" src="../../images/placeholder_events.jpg" alt="An orange painted blue, cut in half laying on a blue background" />
                     </figure>
                     <div class="card-header">
                         <a href="#">When life gives you oranges</a>
@@ -404,7 +404,7 @@
             <div class="card-list">
                 <article class="card">
                     <figure class="card-image">
-                        <img class="image-event" src="https://images.unsplash.com/photo-1494253109108-2e30c049369b?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTYyNDcwMTUwOQ&ixlib=rb-1.2.1&q=85" alt="An orange painted blue, cut in half laying on a blue background" />
+                        <img class="image-event" src="../../images/placeholder_events.jpg" alt="An orange painted blue, cut in half laying on a blue background" />
                     </figure>
                     <div class="card-header">
                         <a href="#">When life gives you oranges</a>
