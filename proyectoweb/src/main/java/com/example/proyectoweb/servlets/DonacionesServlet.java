@@ -1,9 +1,9 @@
 package com.example.proyectoweb.servlets;
 
 import com.example.proyectoweb.model.beans.Donaciones;
-import com.example.proyectoweb.model.beans.Evento;
+
 import com.example.proyectoweb.model.daos.DonacionesDao;
-import com.example.proyectoweb.model.daos.EventosDao;
+
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
