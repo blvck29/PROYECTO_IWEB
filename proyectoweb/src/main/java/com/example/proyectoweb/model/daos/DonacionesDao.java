@@ -1,7 +1,7 @@
 package com.example.proyectoweb.model.daos;
 
 import com.example.proyectoweb.model.beans.Donaciones;
-import com.example.proyectoweb.model.beans.Evento;
+import com.example.proyectoweb.model.beans.Donaciones;
 
 import java.sql.*;
 import java.util.ArrayList;
