@@ -326,7 +326,7 @@ input:valid ~ label {
 }
 
 .footer-container p {
-    margin: 35px;
+    margin-top: 35px !important;
     text-align: inherit;
     color: #fff;
     font-weight: lighter;

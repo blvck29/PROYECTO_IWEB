@@ -127,13 +127,8 @@
                         <img class="image-event" src="../../images/placeholder_events.jpg" alt="An orange painted blue, cut in half laying on a blue background" />
                     </figure>
                     <div class="card-header">
-                        <a href="#">Partido de Valorant <p>Fibra Tóxica vs. Electroshock</p></a>
-                        <button class="icon-button">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="Heart">
-                                <path d="M7 3C4.239 3 2 5.216 2 7.95c0 2.207.875 7.445 9.488 12.74a.985.985 0 0 0 1.024 0C21.125 15.395 22 10.157 22 7.95 22 5.216 19.761 3 17 3s-5 3-5 3-2.239-3-5-3z" />
-                            </svg>
+                        <a href="#">Partido de Valorant<p>Fibra Tóxica vs. Electroshock</p></a>
 
-                        </button>
                     </div>
                     <div class="card-footer">
                         <div class="card-meta card-meta--views">
@@ -167,13 +162,7 @@
                         <img class="image-event" src="../../images/placeholder_events.jpg" alt="An orange painted blue, cut in half laying on a blue background" />
                     </figure>
                     <div class="card-header">
-                        <a href="#">When life gives you oranges</a>
-                        <button class="icon-button">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="Heart">
-                                <path d="M7 3C4.239 3 2 5.216 2 7.95c0 2.207.875 7.445 9.488 12.74a.985.985 0 0 0 1.024 0C21.125 15.395 22 10.157 22 7.95 22 5.216 19.761 3 17 3s-5 3-5 3-2.239-3-5-3z" />
-                            </svg>
-
-                        </button>
+                        <a href="#">Partido de Valorant <p>Fibra Tóxica vs. Electroshock</p></a>
                     </div>
                     <div class="card-footer">
                         <div class="card-meta card-meta--views">
@@ -181,7 +170,7 @@
                                 <circle cx="12" cy="8" r="4" />
                                 <path d="M18 21v-2a4 4 0 0 0-4-4H10a4 4 0 0 0-4 4v2" />
                             </svg>
-                            2,465
+                            5
                         </div>
                         <div class="card-meta card-meta--date">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="Calendar">
@@ -190,7 +179,7 @@
                                 <path d="M16 2v4" />
                                 <path d="M2 10h20" />
                             </svg>
-                            Jul 26, 2019
+                            18 Oct, 2023
                         </div>
                     </div>
                 </article>
@@ -207,21 +196,15 @@
                         <img class="image-event" src="../../images/placeholder_events.jpg" alt="An orange painted blue, cut in half laying on a blue background" />
                     </figure>
                     <div class="card-header">
-                        <a href="#">When life gives you oranges</a>
-                        <button class="icon-button">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="Heart">
-                                <path d="M7 3C4.239 3 2 5.216 2 7.95c0 2.207.875 7.445 9.488 12.74a.985.985 0 0 0 1.024 0C21.125 15.395 22 10.157 22 7.95 22 5.216 19.761 3 17 3s-5 3-5 3-2.239-3-5-3z" />
-                            </svg>
-
-                        </button>
+                        <a href="#">Partido de Valorant <p>Fibra Tóxica vs. Electroshock</p></a>
                     </div>
                     <div class="card-footer">
                         <div class="card-meta card-meta--views">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="EyeOpen">
-                                <path d="M21.257 10.962c.474.62.474 1.457 0 2.076C19.764 14.987 16.182 19 12 19c-4.182 0-7.764-4.013-9.257-5.962a1.692 1.692 0 0 1 0-2.076C4.236 9.013 7.818 5 12 5c4.182 0 7.764 4.013 9.257 5.962z" />
-                                <circle cx="12" cy="12" r="3" />
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="8" r="4" />
+                                <path d="M18 21v-2a4 4 0 0 0-4-4H10a4 4 0 0 0-4 4v2" />
                             </svg>
-                            2,465
+                            5
                         </div>
                         <div class="card-meta card-meta--date">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="Calendar">
@@ -230,7 +213,7 @@
                                 <path d="M16 2v4" />
                                 <path d="M2 10h20" />
                             </svg>
-                            Jul 26, 2019
+                            18 Oct, 2023
                         </div>
                     </div>
                 </article>
@@ -247,21 +230,15 @@
                         <img class="image-event" src="../../images/placeholder_events.jpg" alt="An orange painted blue, cut in half laying on a blue background" />
                     </figure>
                     <div class="card-header">
-                        <a href="#">When life gives you oranges</a>
-                        <button class="icon-button">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="Heart">
-                                <path d="M7 3C4.239 3 2 5.216 2 7.95c0 2.207.875 7.445 9.488 12.74a.985.985 0 0 0 1.024 0C21.125 15.395 22 10.157 22 7.95 22 5.216 19.761 3 17 3s-5 3-5 3-2.239-3-5-3z" />
-                            </svg>
-
-                        </button>
+                        <a href="#">Partido de Valorant <p>Fibra Tóxica vs. Electroshock</p></a>
                     </div>
                     <div class="card-footer">
                         <div class="card-meta card-meta--views">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="EyeOpen">
-                                <path d="M21.257 10.962c.474.62.474 1.457 0 2.076C19.764 14.987 16.182 19 12 19c-4.182 0-7.764-4.013-9.257-5.962a1.692 1.692 0 0 1 0-2.076C4.236 9.013 7.818 5 12 5c4.182 0 7.764 4.013 9.257 5.962z" />
-                                <circle cx="12" cy="12" r="3" />
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="8" r="4" />
+                                <path d="M18 21v-2a4 4 0 0 0-4-4H10a4 4 0 0 0-4 4v2" />
                             </svg>
-                            2,465
+                            5
                         </div>
                         <div class="card-meta card-meta--date">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="Calendar">
@@ -270,7 +247,7 @@
                                 <path d="M16 2v4" />
                                 <path d="M2 10h20" />
                             </svg>
-                            Jul 26, 2019
+                            18 Oct, 2023
                         </div>
                     </div>
                 </article>
@@ -287,21 +264,15 @@
                         <img class="image-event" src="../../images/placeholder_events.jpg" alt="An orange painted blue, cut in half laying on a blue background" />
                     </figure>
                     <div class="card-header">
-                        <a href="#">When life gives you oranges</a>
-                        <button class="icon-button">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="Heart">
-                                <path d="M7 3C4.239 3 2 5.216 2 7.95c0 2.207.875 7.445 9.488 12.74a.985.985 0 0 0 1.024 0C21.125 15.395 22 10.157 22 7.95 22 5.216 19.761 3 17 3s-5 3-5 3-2.239-3-5-3z" />
-                            </svg>
-
-                        </button>
+                        <a href="#">Partido de Valorant <p>Fibra Tóxica vs. Electroshock</p></a>
                     </div>
                     <div class="card-footer">
                         <div class="card-meta card-meta--views">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="EyeOpen">
-                                <path d="M21.257 10.962c.474.62.474 1.457 0 2.076C19.764 14.987 16.182 19 12 19c-4.182 0-7.764-4.013-9.257-5.962a1.692 1.692 0 0 1 0-2.076C4.236 9.013 7.818 5 12 5c4.182 0 7.764 4.013 9.257 5.962z" />
-                                <circle cx="12" cy="12" r="3" />
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="8" r="4" />
+                                <path d="M18 21v-2a4 4 0 0 0-4-4H10a4 4 0 0 0-4 4v2" />
                             </svg>
-                            2,465
+                            5
                         </div>
                         <div class="card-meta card-meta--date">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="Calendar">
@@ -310,7 +281,7 @@
                                 <path d="M16 2v4" />
                                 <path d="M2 10h20" />
                             </svg>
-                            Jul 26, 2019
+                            18 Oct, 2023
                         </div>
                     </div>
                 </article>
@@ -327,21 +298,15 @@
                         <img class="image-event" src="../../images/placeholder_events.jpg" alt="An orange painted blue, cut in half laying on a blue background" />
                     </figure>
                     <div class="card-header">
-                        <a href="#">When life gives you oranges</a>
-                        <button class="icon-button">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="Heart">
-                                <path d="M7 3C4.239 3 2 5.216 2 7.95c0 2.207.875 7.445 9.488 12.74a.985.985 0 0 0 1.024 0C21.125 15.395 22 10.157 22 7.95 22 5.216 19.761 3 17 3s-5 3-5 3-2.239-3-5-3z" />
-                            </svg>
-
-                        </button>
+                        <a href="#">Partido de Valorant <p>Fibra Tóxica vs. Electroshock</p></a>
                     </div>
                     <div class="card-footer">
                         <div class="card-meta card-meta--views">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="EyeOpen">
-                                <path d="M21.257 10.962c.474.62.474 1.457 0 2.076C19.764 14.987 16.182 19 12 19c-4.182 0-7.764-4.013-9.257-5.962a1.692 1.692 0 0 1 0-2.076C4.236 9.013 7.818 5 12 5c4.182 0 7.764 4.013 9.257 5.962z" />
-                                <circle cx="12" cy="12" r="3" />
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="8" r="4" />
+                                <path d="M18 21v-2a4 4 0 0 0-4-4H10a4 4 0 0 0-4 4v2" />
                             </svg>
-                            2,465
+                            5
                         </div>
                         <div class="card-meta card-meta--date">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="Calendar">
@@ -350,7 +315,7 @@
                                 <path d="M16 2v4" />
                                 <path d="M2 10h20" />
                             </svg>
-                            Jul 26, 2019
+                            18 Oct, 2023
                         </div>
                     </div>
                 </article>
@@ -367,21 +332,15 @@
                         <img class="image-event" src="../../images/placeholder_events.jpg" alt="An orange painted blue, cut in half laying on a blue background" />
                     </figure>
                     <div class="card-header">
-                        <a href="#">When life gives you oranges</a>
-                        <button class="icon-button">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="Heart">
-                                <path d="M7 3C4.239 3 2 5.216 2 7.95c0 2.207.875 7.445 9.488 12.74a.985.985 0 0 0 1.024 0C21.125 15.395 22 10.157 22 7.95 22 5.216 19.761 3 17 3s-5 3-5 3-2.239-3-5-3z" />
-                            </svg>
-
-                        </button>
+                        <a href="#">Partido de Valorant <p>Fibra Tóxica vs. Electroshock</p></a>
                     </div>
                     <div class="card-footer">
                         <div class="card-meta card-meta--views">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="EyeOpen">
-                                <path d="M21.257 10.962c.474.62.474 1.457 0 2.076C19.764 14.987 16.182 19 12 19c-4.182 0-7.764-4.013-9.257-5.962a1.692 1.692 0 0 1 0-2.076C4.236 9.013 7.818 5 12 5c4.182 0 7.764 4.013 9.257 5.962z" />
-                                <circle cx="12" cy="12" r="3" />
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="8" r="4" />
+                                <path d="M18 21v-2a4 4 0 0 0-4-4H10a4 4 0 0 0-4 4v2" />
                             </svg>
-                            2,465
+                            5
                         </div>
                         <div class="card-meta card-meta--date">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="Calendar">
@@ -390,7 +349,7 @@
                                 <path d="M16 2v4" />
                                 <path d="M2 10h20" />
                             </svg>
-                            Jul 26, 2019
+                            18 Oct, 2023
                         </div>
                     </div>
                 </article>
@@ -407,21 +366,15 @@
                         <img class="image-event" src="../../images/placeholder_events.jpg" alt="An orange painted blue, cut in half laying on a blue background" />
                     </figure>
                     <div class="card-header">
-                        <a href="#">When life gives you oranges</a>
-                        <button class="icon-button">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="Heart">
-                                <path d="M7 3C4.239 3 2 5.216 2 7.95c0 2.207.875 7.445 9.488 12.74a.985.985 0 0 0 1.024 0C21.125 15.395 22 10.157 22 7.95 22 5.216 19.761 3 17 3s-5 3-5 3-2.239-3-5-3z" />
-                            </svg>
-
-                        </button>
+                        <a href="#">Partido de Valorant <p>Fibra Tóxica vs. Electroshock</p></a>
                     </div>
                     <div class="card-footer">
                         <div class="card-meta card-meta--views">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="EyeOpen">
-                                <path d="M21.257 10.962c.474.62.474 1.457 0 2.076C19.764 14.987 16.182 19 12 19c-4.182 0-7.764-4.013-9.257-5.962a1.692 1.692 0 0 1 0-2.076C4.236 9.013 7.818 5 12 5c4.182 0 7.764 4.013 9.257 5.962z" />
-                                <circle cx="12" cy="12" r="3" />
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="8" r="4" />
+                                <path d="M18 21v-2a4 4 0 0 0-4-4H10a4 4 0 0 0-4 4v2" />
                             </svg>
-                            2,465
+                            5
                         </div>
                         <div class="card-meta card-meta--date">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="Calendar">
@@ -430,7 +383,7 @@
                                 <path d="M16 2v4" />
                                 <path d="M2 10h20" />
                             </svg>
-                            Jul 26, 2019
+                            18 Oct, 2023
                         </div>
                     </div>
                 </article>
@@ -438,6 +391,50 @@
 
         </div>
     </div>
+
+
+    <nav class="mt-4">
+        <ul class="pagination justify-content-center">
+            <!---->
+            <li class="page-item active">
+                <a href="#" class="page-link">1</a>
+            </li>
+            <li class="page-item">
+                <a href="#" class="page-link">2</a>
+            </li>
+            <li class="page-item">
+                <a href="#" class="page-link">3</a>
+            </li>
+            <li class="page-item">
+                <a href="#" class="page-link">4</a>
+            </li>
+            <li class="page-item">
+                <a href="#" class="page-link">5</a>
+            </li>
+            <li class="page-item">
+                <a href="#" class="page-link">6</a>
+            </li>
+            <li class="page-item">
+                <a href="#" aria-label="Next" class="page-link">
+                    <span aria-hidden="true">»</span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+
+
+
+
+
+    <div style="margin-bottom: 45px"></div>
+
+    <h2><i class="fa-solid fa-star" style="color: #8de7ef;"></i><strong style="padding-left: 10px">Actividades</strong></h2>
+
+    <div style="margin-bottom: 25px"></div>
+
+
 
 
     <script src="../../js/slider.js"></script>
