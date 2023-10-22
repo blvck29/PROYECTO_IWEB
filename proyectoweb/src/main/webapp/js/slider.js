@@ -1,8 +1,8 @@
 function cambiarImagenSegunResolucion() {
-    var slide1 = document.getElementById("slide1");
-    var slide2 = document.getElementById("slide2");
-    var slide3 = document.getElementById("slide3");
-    var windowWidth = window.innerWidth;
+    const slide1 = document.getElementById("slide1");
+    const slide2 = document.getElementById("slide2");
+    const slide3 = document.getElementById("slide3");
+    const windowWidth = window.innerWidth;
 
     if (windowWidth <= 460 && windowWidth > 0) {
         slide1.src = slide1.getAttribute("data-src-xsmall");

@@ -125,9 +125,6 @@ header {
 }
 /* Navbar Styles END */
 
-.carousel-item img {
-    
-}
 
 
 /* Carousel Styles */
@@ -159,6 +156,12 @@ header {
 .btn-large {
     padding: 11px 45px;
     font-size: 18px;
+}
+
+.slick-prev:before,
+.slick-next:before
+{
+    color: #78D3D0 !important;
 }
 /* Carousel Styles END*/
 
@@ -833,3 +836,10 @@ input::-webkit-inner-spin-button {
 }
 
 /* END EVENTS Styles */
+
+
+
+/* ACTIVITIES Styles */
+
+
+/* END ACTIVITIES Styles */
