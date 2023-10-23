@@ -886,10 +886,10 @@ input::-webkit-inner-spin-button {
 /* END ACTIVITIES Styles */
 
 
-a{
+.a-button{
     color: #f8f9fa !important;
 }
 
-a:hover {
+.a-button:hover {
     color: #282828 !important;
 }
