@@ -32,7 +32,7 @@
 
 <body>
 <header>
-    <div class="logo"><a href="#"><img class="logo-img" src='../../images/logo_topbar.png' alt="logo"></a></div>
+    <div class="logo"><a href="home.jsp"><img class="logo-img" src='../../images/logo_topbar.png' alt="logo"></a></div>
 
     <div class="bars">
         <div class="line"></div>
@@ -43,13 +43,13 @@
     <nav class="nav-bar">
         <ul>
             <li>
-                <a href="#" class="active">Inicio</a>
+                <a href="home.jsp" class="active">Inicio</a>
             </li>
             <li>
-                <a href="#">Mis Eventos</a>
+                <a href="events.jsp">Mis Eventos</a>
             </li>
             <li>
-                <a href="#">Donaciones</a>
+                <a href="donate.jsp">Donaciones</a>
             </li>
             <li>
                 <a href="#"><i class="fa-solid fa-user nav-icon2"></i>Usuario</a>
@@ -428,8 +428,9 @@
         </ul>
     </nav>
 
+    <div style="margin-bottom: 45px"></div>
 
-
+    <hr>
 
 
 
@@ -501,7 +502,9 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
             <h3 class="fw-bold text-white">Realiza tu donativo a la Fibra Tóxica, sé un hincha de corazón</h3>
             <div style="margin-bottom: 20px"></div>
             <div class="justify-content-sm-center">
-                <button type="button" class="btn btn-outline-light btn-lg px-4"><a class="a-button" href="#">Donar</a></button>
+                <button type="button" class="btn btn-outline-info btn-lg px-4">
+                    <a href="donate.jsp" class="link-info link-opacity">Donar</a>
+                </button>
             </div>
         </div>
     </div>
@@ -840,13 +843,13 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
 
 <div class="container-fluid" style="background-color: #fff; padding-right: 0; padding-left: 0">
-    <div class="my-4"></div>
+        <div class="my-4"></div>
         <footer id="sticky-footer" class="flex-shrink-0 py-4 text-white-50" style="background-color: #04011E">
-            <div class="nav justify-content-center border-bottom pb-3 mb-3">
-                <p style="width: 100%; text-align: center">
+            <div class="container"><div class="nav justify-content-center border-bottom pb-3 mb-3">
+                <p style="text-align: center">
                     <small class="text-center">&copy; Pontificia Universidad Católica del Perú - Todos los derechos reservados</small>
                 </p>
-            </div>
+            </div></div>
         </footer>
 </div>
 

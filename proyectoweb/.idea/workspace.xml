@@ -10,11 +10,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="250e9528-0acf-42db-be38-0516405aa721" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/images/plin.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/images/qr.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/images/yape.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/upload.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/pages/super_admin/lista.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/pages/super_admin/tablaInscritos.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/pages/user/donate.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/pages/user/events.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/bootstrap/bootstrap.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/bootstrap/bootstrap.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/delegadoGeneral/tablaInscritos.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/delegadoGeneral/tablaInscritos.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/user/home-old.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/donaciones/lista.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/delegadoGeneral/tablaInscritos.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/user/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/user/home.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/proyectoweb-1.0-SNAPSHOT/css/bootstrap/bootstrap.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/proyectoweb-1.0-SNAPSHOT/css/bootstrap/bootstrap.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/proyectoweb-1.0-SNAPSHOT/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/proyectoweb-1.0-SNAPSHOT/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/proyectoweb-1.0-SNAPSHOT/pages/user/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/proyectoweb-1.0-SNAPSHOT/pages/user/home.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -294,7 +307,7 @@
       <workItem from="1697986544928" duration="1766000" />
       <workItem from="1697988458211" duration="578000" />
       <workItem from="1697989048037" duration="8516000" />
-      <workItem from="1698081400013" duration="4774000" />
+      <workItem from="1698081400013" duration="14087000" />
     </task>
     <servers />
   </component>

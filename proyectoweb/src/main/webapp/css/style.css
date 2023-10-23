@@ -11,6 +11,11 @@
     list-style: none !important;
 }
 
+ol, ul, dl {
+    margin-top: 0 !important;
+    margin-bottom: 1rem !important;
+}
+
 body{
     background-color: aliceblue;
 }
@@ -18,6 +23,10 @@ body{
 p {
     margin-top: 0.5rem !important;
     margin-bottom: 0.2rem !important;
+}
+
+bold {
+    font-weight: bold;
 }
 
 .montserrat-t {
@@ -110,7 +119,7 @@ header {
     .nav-bar ul {
         display: block;
         width: fit-content;
-        margin: 15px auto 0 auto;
+        margin: 15px auto 0 auto !important;
         text-align: center;
         transition: 0.5s;
         opacity: 0;
@@ -886,10 +895,34 @@ input::-webkit-inner-spin-button {
 /* END ACTIVITIES Styles */
 
 
-.a-button{
-    color: #f8f9fa !important;
+/* Donate Styles */
+.link-opacity:hover {
+    color: #fff !important;
 }
 
-.a-button:hover {
-    color: #282828 !important;
+.file-upload-name {
+    background: #585858;
+    padding: 0.5rem;
+    color: white;
+    margin-top: 0.2rem;
 }
+
+.alert {
+    border-left: 1px solid;
+}
+
+#img-preview-responsive {
+    min-height: auto;
+}
+
+#preview {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+}
+
+#preview img {
+    max-width: 100% !important;
+    height: auto !important;
+}
+/* END Donate Styles */
