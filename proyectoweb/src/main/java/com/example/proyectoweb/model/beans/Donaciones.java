@@ -49,7 +49,4 @@ public class Donaciones {
     public void setComprobado(boolean comprobado) {
         this.comprobado = comprobado;
     }
-
-    public void setIdRegistro_Donaciones(Blob blob) {
-    }
 }

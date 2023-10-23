@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class DonacionesDao {
     public ArrayList<Donaciones> listar(){
         ArrayList<Donaciones> listaDonaciones = new ArrayList<>();
+
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
         }catch (ClassNotFoundException e){
@@ -27,8 +28,8 @@ public class DonacionesDao {
             while (rs.next()){
                 Donaciones donaciones = new Donaciones();
                 donaciones.setIdRegistro_Donaciones(rs.getInt(1));
-                donaciones.setIdRegistro_Donaciones(rs.getInt(2));
-                donaciones.setIdRegistro_Donaciones(rs.getBlob(3));
+                donaciones.setIdUsuario(rs.getInt(2));
+                donaciones.setComprobante(rs.getBlob(3));
                 donaciones.setMonto(rs.getDouble(4));
                 donaciones.setComprobado(rs.getBoolean(5));
                 listaDonaciones.add(donaciones);
@@ -37,7 +38,6 @@ public class DonacionesDao {
         } catch (SQLException e){
             e.printStackTrace();
         }
-
         return listaDonaciones;
     }
 }

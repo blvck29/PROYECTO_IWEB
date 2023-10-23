@@ -7,7 +7,7 @@
 %>
 <html>
     <head>
-      <title>Title</title>
+        <title>Title</title>
     </head>
     <body>
         <h1> Lista de Donaciones </h1>
@@ -24,9 +24,8 @@
                 <td> <%= dona.getIdRegistro_Donaciones() %></td>
                 <td> <%= dona.getIdUsuario() %></td>
                 <td> <%= dona.getComprobante() %></td>
-                <td> <%= dona.getComprobante() %></td>
                 <td> <%= dona.getMonto() %></td>
-                <td> <%= dona.getComprobante() %></td>
+                <td> <%= dona.isComprobado() %></td>
             </tr>
             <% } %>
         </table>
