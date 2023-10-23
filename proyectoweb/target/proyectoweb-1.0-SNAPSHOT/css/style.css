@@ -865,16 +865,6 @@ input::-webkit-inner-spin-button {
     overflow: hidden;
     background-attachment: fixed;
 }
-.text-light {
-    --mdb-text-opacity: 1;
-    color: rgba(var(--mdb-light-rgb),var(--mdb-text-opacity))!important;
-}
-.text-center {
-    text-align: center!important;
-}
-.justify-content-center {
-    justify-content: center!important;
-}
 .flex-column {
     flex-direction: column!important;
 }
@@ -894,3 +884,12 @@ input::-webkit-inner-spin-button {
 }
 
 /* END ACTIVITIES Styles */
+
+
+a{
+    color: #f8f9fa !important;
+}
+
+a:hover {
+    color: #282828 !important;
+}

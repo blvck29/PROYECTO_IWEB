@@ -492,16 +492,16 @@
 
 <div style="margin-bottom: 50px"></div>
 
-<div class="container-fluid" style="padding-left: 0 !important; padding-right: 0 !important">
-    <div class="bg-dark text-secondary px-4 py-5 text-center">
+<div class="container-fluid" style="padding-left:0 !important; padding-right: 0 !important; background: rgb(45,0,83) !important;
+background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgba(21,0,48,1) 100%) !important;">
+    <div class="text-secondary px-4 py-5 text-center">
         <div class="py-5">
-            <h1 class="display-5 fw-bold text-white">Dark mode hero</h1>
-            <div class="col-lg-6 mx-auto">
-                <p class="fs-5 mb-4">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
-                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                    <button type="button" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold">Custom button</button>
-                    <button type="button" class="btn btn-outline-light btn-lg px-4">Secondary</button>
-                </div>
+            <h1 class="display-5 fw-bold text-white">Contamos con tu Apoyo!</h1>
+            <div style="margin-bottom: 20px"></div>
+            <h3 class="fw-bold text-white">Realiza tu donativo a la Fibra Tóxica, sé un hincha de corazón</h3>
+            <div style="margin-bottom: 20px"></div>
+            <div class="justify-content-sm-center">
+                <button type="button" class="btn btn-outline-light btn-lg px-4"><a class="a-button" href="#">Donar</a></button>
             </div>
         </div>
     </div>
@@ -839,18 +839,15 @@
 <div style="margin-bottom: 50px"></div>
 
 
-<div class="container-fluid" style="background-color: #fff">
-    <div class="container">
-        <footer class="py-3 my-4">
-            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Inicio</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Mis Eventos</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Donaciones</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Cerrar Sesión</a></li>
-            </ul>
-            <p class="text-center text-muted">© Pontificia Universidad Católica del Perú - Todos los derechos reservados</p>
+<div class="container-fluid" style="background-color: #fff; padding-right: 0; padding-left: 0">
+    <div class="my-4"></div>
+        <footer id="sticky-footer" class="flex-shrink-0 py-4 text-white-50" style="background-color: #04011E">
+            <div class="nav justify-content-center border-bottom pb-3 mb-3">
+                <p style="width: 100%; text-align: center">
+                    <small class="text-center">&copy; Pontificia Universidad Católica del Perú - Todos los derechos reservados</small>
+                </p>
+            </div>
         </footer>
-    </div>
 </div>
 
 
