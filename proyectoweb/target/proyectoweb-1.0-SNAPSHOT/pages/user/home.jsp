@@ -114,11 +114,11 @@
 
 <div class="container">
 
-    <div style="margin-bottom: 45px"></div>
+    <div style="margin-bottom: 50px"></div>
 
     <h2><i class="fa-solid fa-star" style="color: #8de7ef;"></i><strong style="padding-left: 10px">Eventos Destacados</strong></h2>
 
-    <div style="margin-bottom: 25px"></div>
+    <div style="margin-bottom: 40px"></div>
 
 
 
@@ -138,17 +138,17 @@
                     <div class="card-footer">
                         <div class="card-meta card-meta--views">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="8" r="4" />
-                                <path d="M18 21v-2a4 4 0 0 0-4-4H10a4 4 0 0 0-4 4v2" />
+                                <circle cx="12" cy="8" r="4"></circle>
+                                <path d="M18 21v-2a4 4 0 0 0-4-4H10a4 4 0 0 0-4 4v2"></path>
                             </svg>
                             5
                         </div>
                         <div class="card-meta card-meta--date">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="Calendar">
-                                <rect x="2" y="4" width="20" height="18" rx="4" />
-                                <path d="M8 2v4" />
-                                <path d="M16 2v4" />
-                                <path d="M2 10h20" />
+                                <rect x="2" y="4" width="20" height="18" rx="4"></rect>
+                                <path d="M8 2v4"></path>
+                                <path d="M16 2v4"></path>
+                                <path d="M2 10h20"></path>
                             </svg>
                             18 Oct, 2023
                         </div>
@@ -172,17 +172,17 @@
                     <div class="card-footer">
                         <div class="card-meta card-meta--views">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="8" r="4" />
-                                <path d="M18 21v-2a4 4 0 0 0-4-4H10a4 4 0 0 0-4 4v2" />
+                                <circle cx="12" cy="8" r="4"></circle>
+                                <path d="M18 21v-2a4 4 0 0 0-4-4H10a4 4 0 0 0-4 4v2"></path>
                             </svg>
                             5
                         </div>
                         <div class="card-meta card-meta--date">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="Calendar">
-                                <rect x="2" y="4" width="20" height="18" rx="4" />
-                                <path d="M8 2v4" />
-                                <path d="M16 2v4" />
-                                <path d="M2 10h20" />
+                                <rect x="2" y="4" width="20" height="18" rx="4"></rect>
+                                <path d="M8 2v4"></path>
+                                <path d="M16 2v4"></path>
+                                <path d="M2 10h20"></path>
                             </svg>
                             18 Oct, 2023
                         </div>
@@ -206,17 +206,17 @@
                     <div class="card-footer">
                         <div class="card-meta card-meta--views">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="8" r="4" />
-                                <path d="M18 21v-2a4 4 0 0 0-4-4H10a4 4 0 0 0-4 4v2" />
+                                <circle cx="12" cy="8" r="4"></circle>
+                                <path d="M18 21v-2a4 4 0 0 0-4-4H10a4 4 0 0 0-4 4v2"></path>
                             </svg>
                             5
                         </div>
                         <div class="card-meta card-meta--date">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="Calendar">
-                                <rect x="2" y="4" width="20" height="18" rx="4" />
-                                <path d="M8 2v4" />
-                                <path d="M16 2v4" />
-                                <path d="M2 10h20" />
+                                <rect x="2" y="4" width="20" height="18" rx="4"></rect>
+                                <path d="M8 2v4"></path>
+                                <path d="M16 2v4"></path>
+                                <path d="M2 10h20"></path>
                             </svg>
                             18 Oct, 2023
                         </div>
@@ -240,17 +240,17 @@
                     <div class="card-footer">
                         <div class="card-meta card-meta--views">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="8" r="4" />
-                                <path d="M18 21v-2a4 4 0 0 0-4-4H10a4 4 0 0 0-4 4v2" />
+                                <circle cx="12" cy="8" r="4"></circle>
+                                <path d="M18 21v-2a4 4 0 0 0-4-4H10a4 4 0 0 0-4 4v2"></path>
                             </svg>
                             5
                         </div>
                         <div class="card-meta card-meta--date">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="Calendar">
-                                <rect x="2" y="4" width="20" height="18" rx="4" />
-                                <path d="M8 2v4" />
-                                <path d="M16 2v4" />
-                                <path d="M2 10h20" />
+                                <rect x="2" y="4" width="20" height="18" rx="4"></rect>
+                                <path d="M8 2v4"></path>
+                                <path d="M16 2v4"></path>
+                                <path d="M2 10h20"></path>
                             </svg>
                             18 Oct, 2023
                         </div>
@@ -274,17 +274,17 @@
                     <div class="card-footer">
                         <div class="card-meta card-meta--views">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="8" r="4" />
-                                <path d="M18 21v-2a4 4 0 0 0-4-4H10a4 4 0 0 0-4 4v2" />
+                                <circle cx="12" cy="8" r="4"></circle>
+                                <path d="M18 21v-2a4 4 0 0 0-4-4H10a4 4 0 0 0-4 4v2"></path>
                             </svg>
                             5
                         </div>
                         <div class="card-meta card-meta--date">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="Calendar">
-                                <rect x="2" y="4" width="20" height="18" rx="4" />
-                                <path d="M8 2v4" />
-                                <path d="M16 2v4" />
-                                <path d="M2 10h20" />
+                                <rect x="2" y="4" width="20" height="18" rx="4"></rect>
+                                <path d="M8 2v4"></path>
+                                <path d="M16 2v4"></path>
+                                <path d="M2 10h20"></path>
                             </svg>
                             18 Oct, 2023
                         </div>
@@ -308,17 +308,17 @@
                     <div class="card-footer">
                         <div class="card-meta card-meta--views">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="8" r="4" />
-                                <path d="M18 21v-2a4 4 0 0 0-4-4H10a4 4 0 0 0-4 4v2" />
+                                <circle cx="12" cy="8" r="4"></circle>
+                                <path d="M18 21v-2a4 4 0 0 0-4-4H10a4 4 0 0 0-4 4v2"></path>
                             </svg>
                             5
                         </div>
                         <div class="card-meta card-meta--date">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="Calendar">
-                                <rect x="2" y="4" width="20" height="18" rx="4" />
-                                <path d="M8 2v4" />
-                                <path d="M16 2v4" />
-                                <path d="M2 10h20" />
+                                <rect x="2" y="4" width="20" height="18" rx="4"></rect>
+                                <path d="M8 2v4"></path>
+                                <path d="M16 2v4"></path>
+                                <path d="M2 10h20"></path>
                             </svg>
                             18 Oct, 2023
                         </div>
@@ -342,17 +342,17 @@
                     <div class="card-footer">
                         <div class="card-meta card-meta--views">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="8" r="4" />
-                                <path d="M18 21v-2a4 4 0 0 0-4-4H10a4 4 0 0 0-4 4v2" />
+                                <circle cx="12" cy="8" r="4"></circle>
+                                <path d="M18 21v-2a4 4 0 0 0-4-4H10a4 4 0 0 0-4 4v2"></path>
                             </svg>
                             5
                         </div>
                         <div class="card-meta card-meta--date">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="Calendar">
-                                <rect x="2" y="4" width="20" height="18" rx="4" />
-                                <path d="M8 2v4" />
-                                <path d="M16 2v4" />
-                                <path d="M2 10h20" />
+                                <rect x="2" y="4" width="20" height="18" rx="4"></rect>
+                                <path d="M8 2v4"></path>
+                                <path d="M16 2v4"></path>
+                                <path d="M2 10h20"></path>
                             </svg>
                             18 Oct, 2023
                         </div>
@@ -376,17 +376,17 @@
                     <div class="card-footer">
                         <div class="card-meta card-meta--views">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="8" r="4" />
-                                <path d="M18 21v-2a4 4 0 0 0-4-4H10a4 4 0 0 0-4 4v2" />
+                                <circle cx="12" cy="8" r="4"></circle>
+                                <path d="M18 21v-2a4 4 0 0 0-4-4H10a4 4 0 0 0-4 4v2"></path>
                             </svg>
                             5
                         </div>
                         <div class="card-meta card-meta--date">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="Calendar">
-                                <rect x="2" y="4" width="20" height="18" rx="4" />
-                                <path d="M8 2v4" />
-                                <path d="M16 2v4" />
-                                <path d="M2 10h20" />
+                                <rect x="2" y="4" width="20" height="18" rx="4"></rect>
+                                <path d="M8 2v4"></path>
+                                <path d="M16 2v4"></path>
+                                <path d="M2 10h20"></path>
                             </svg>
                             18 Oct, 2023
                         </div>
@@ -437,131 +437,454 @@
 
     <h2><i class="fa-solid fa-star" style="color: #8de7ef;"></i><strong style="padding-left: 10px">Actividades</strong></h2>
 
-    <div style="margin-bottom: 25px"></div>
+    <div style="margin-bottom: 50px"></div>
 
 
-    <div class="slick-light px-3">
-        <div class="slick-slider slick-initialized" dir="ltr">
-            <button type="button" data-role="none" class="slick-arrow slick-prev" style="display: block;"> Previous</button>
-            <div class="slick-list">
-                <div class="slick-track" style="width: 3960px; opacity: 1; transform: translate3d(-1080px, 0px, 0px);">
-                    <div data-index="-3" tabindex="-1" class="slick-slide slick-cloned" aria-hidden="true" style="width: 360px;">
-                        <div>
-                            <div class="px-3" tabindex="-1" style="width: 100%; display: inline-block;">
-                                <a href="https://www.joinnus.com/organizer/brisasdeltiticaca?utm_medium=trends_button&amp;utm_source=web.joinnus&amp;utm_campaign=web.joinnus_trends_brisas&amp;utm_term=trends_brisas&amp;utm_content=trends_brisas" class="card-category">
-                                    <img class="rounded shadow w-100" src="https://cdn.joinnus.com/files/2023/01/FINAL2.gif" alt="">
-                                    <h5 class="text-dark"><strong></strong></h5>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div data-index="-2" tabindex="-1" class="slick-slide slick-cloned" aria-hidden="true" style="width: 360px;">
-                        <div>
-                            <div class="px-3" tabindex="-1" style="width: 100%; display: inline-block;">
-                                <a href="https://www.joinnus.com/organizer/kandavu/?utm_medium=trends_button&amp;utm_source=web.joinnus&amp;utm_campaign=web.joinnus_trends_kandavu&amp;utm_term=trends_kandavu&amp;utm_content=trends_kandavu" class="card-category">
-                                    <img class="rounded shadow w-100" src="https://cdn.joinnus.com/files/2023/06/KANDAVU - 405x180.jpg" alt="">
-                                    <h5 class="text-dark"><strong></strong></h5>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div data-index="-1" tabindex="-1" class="slick-slide slick-cloned" aria-hidden="true" style="width: 360px;">
-                        <div>
-                            <div class="px-3" tabindex="-1" style="width: 100%; display: inline-block;">
-                                <a href="https://prime.joinnus.com/landing/funjungle?utm_medium=trends_button&amp;utm_source=web.joinnus&amp;utm_campaign=web.joinnus_trends_funjungle&amp;utm_term=trends_funjungle&amp;utm_content=trends_funjungle" class="card-category">
-                                    <img class="rounded shadow w-100" src="https://cdn.joinnus.com/files/2023/08/FUNJUNGLE.gif" alt="">
-                                    <h5 class="text-dark"><strong></strong></h5>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div data-index="0" class="slick-slide slick-active slick-current" tabindex="-1" aria-hidden="false" style="outline: none; width: 360px;">
-                        <div>
-                            <div class="px-3" tabindex="-1" style="width: 100%; display: inline-block;">
-                                <a href="https://hazteintimo.clubalianzalima.com.pe/?utm_medium=trends_button&amp;utm_source=web.joinnus&amp;utm_campaign=web.joinnus_trends_hazteintimo&amp;utm_term=trends_hazteintimo&amp;utm_content=trends_hazteintimo" class="card-category">
-                                    <img class="rounded shadow w-100" src="https://cdn.joinnus.com/files/2023/01/HAZTE-INTIO-DESTACADO.png" alt="">
-                                    <h5 class="text-dark"><strong></strong></h5>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div data-index="1" class="slick-slide slick-active" tabindex="-1" aria-hidden="false" style="outline: none; width: 360px;">
-                        <div>
-                            <div class="px-3" tabindex="-1" style="width: 100%; display: inline-block;">
-                                <a href="https://www.joinnus.com/organizer/brisasdeltiticaca?utm_medium=trends_button&amp;utm_source=web.joinnus&amp;utm_campaign=web.joinnus_trends_brisas&amp;utm_term=trends_brisas&amp;utm_content=trends_brisas" class="card-category">
-                                    <img class="rounded shadow w-100" src="https://cdn.joinnus.com/files/2023/01/FINAL2.gif" alt="">
-                                    <h5 class="text-dark"><strong></strong></h5>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div data-index="2" class="slick-slide slick-active" tabindex="-1" aria-hidden="false" style="outline: none; width: 360px;">
-                        <div>
-                            <div class="px-3" tabindex="-1" style="width: 100%; display: inline-block;">
-                                <a href="https://www.joinnus.com/organizer/kandavu/?utm_medium=trends_button&amp;utm_source=web.joinnus&amp;utm_campaign=web.joinnus_trends_kandavu&amp;utm_term=trends_kandavu&amp;utm_content=trends_kandavu" class="card-category">
-                                    <img class="rounded shadow w-100" src="https://cdn.joinnus.com/files/2023/06/KANDAVU - 405x180.jpg" alt="">
-                                    <h5 class="text-dark"><strong></strong></h5>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div data-index="3" class="slick-slide" tabindex="-1" aria-hidden="true" style="outline: none; width: 360px;">
-                        <div>
-                            <div class="px-3" tabindex="-1" style="width: 100%; display: inline-block;">
-                                <a href="https://prime.joinnus.com/landing/funjungle?utm_medium=trends_button&amp;utm_source=web.joinnus&amp;utm_campaign=web.joinnus_trends_funjungle&amp;utm_term=trends_funjungle&amp;utm_content=trends_funjungle" class="card-category">
-                                    <img class="rounded shadow w-100" src="https://cdn.joinnus.com/files/2023/08/FUNJUNGLE.gif" alt="">
-                                    <h5 class="text-dark"><strong></strong></h5>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div data-index="4" tabindex="-1" class="slick-slide slick-cloned" aria-hidden="true" style="width: 360px;">
-                        <div>
-                            <div class="px-3" tabindex="-1" style="width: 100%; display: inline-block;">
-                                <a href="https://hazteintimo.clubalianzalima.com.pe/?utm_medium=trends_button&amp;utm_source=web.joinnus&amp;utm_campaign=web.joinnus_trends_hazteintimo&amp;utm_term=trends_hazteintimo&amp;utm_content=trends_hazteintimo" class="card-category">
-                                    <img class="rounded shadow w-100" src="https://cdn.joinnus.com/files/2023/01/HAZTE-INTIO-DESTACADO.png" alt="">
-                                    <h5 class="text-dark"><strong></strong></h5>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div data-index="5" tabindex="-1" class="slick-slide slick-cloned" aria-hidden="true" style="width: 360px;">
-                        <div>
-                            <div class="px-3" tabindex="-1" style="width: 100%; display: inline-block;">
-                                <a href="https://www.joinnus.com/organizer/brisasdeltiticaca?utm_medium=trends_button&amp;utm_source=web.joinnus&amp;utm_campaign=web.joinnus_trends_brisas&amp;utm_term=trends_brisas&amp;utm_content=trends_brisas" class="card-category">
-                                    <img class="rounded shadow w-100" src="https://cdn.joinnus.com/files/2023/01/FINAL2.gif" alt="">
-                                    <h5 class="text-dark"><strong></strong></h5>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div data-index="6" tabindex="-1" class="slick-slide slick-cloned" aria-hidden="true" style="width: 360px;">
-                        <div>
-                            <div class="px-3" tabindex="-1" style="width: 100%; display: inline-block;">
-                                <a href="https://www.joinnus.com/organizer/kandavu/?utm_medium=trends_button&amp;utm_source=web.joinnus&amp;utm_campaign=web.joinnus_trends_kandavu&amp;utm_term=trends_kandavu&amp;utm_content=trends_kandavu" class="card-category">
-                                    <img class="rounded shadow w-100" src="https://cdn.joinnus.com/files/2023/06/KANDAVU - 405x180.jpg" alt="">
-                                    <h5 class="text-dark"><strong></strong></h5>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div data-index="7" tabindex="-1" class="slick-slide slick-cloned" aria-hidden="true" style="width: 360px;">
-                        <div>
-                            <div class="px-3" tabindex="-1" style="width: 100%; display: inline-block;">
-                                <a href="https://prime.joinnus.com/landing/funjungle?utm_medium=trends_button&amp;utm_source=web.joinnus&amp;utm_campaign=web.joinnus_trends_funjungle&amp;utm_term=trends_funjungle&amp;utm_content=trends_funjungle" class="card-category">
-                                    <img class="rounded shadow w-100" src="https://cdn.joinnus.com/files/2023/08/FUNJUNGLE.gif" alt="">
-                                    <h5 class="text-dark"><strong></strong></h5>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+
+
+
+    <div class="carousel-act">
+        <div class="bg-image" style="max-width: 22rem;">
+            <img src="../../images/placeholder_acts.jpg" class="w-100" alt="event">
+            <div class="mask text-light d-flex justify-content-center flex-column text-center" style="background-color: rgba(0, 0, 0, 0.5)">
+                <h4>Custom heading</h4>
+                <p class="m-0">paragraph</p>
+            </div>
+        </div>
+        <div class="bg-image" style="max-width: 22rem;">
+            <img src="../../images/placeholder_acts.jpg" class="w-100" alt="event">
+            <div class="mask text-light d-flex justify-content-center flex-column text-center" style="background-color: rgba(0, 0, 0, 0.5)">
+                <h4>Custom heading</h4>
+                <p class="m-0">paragraph</p>
+            </div>
+        </div>
+        <div class="bg-image" style="max-width: 22rem;">
+            <img src="../../images/placeholder_acts.jpg" class="w-100" alt="event">
+            <div class="mask text-light d-flex justify-content-center flex-column text-center" style="background-color: rgba(0, 0, 0, 0.5)">
+                <h4>Custom heading</h4>
+                <p class="m-0">paragraph</p>
+            </div>
+        </div>
+        <div class="bg-image" style="max-width: 22rem;">
+            <img src="../../images/placeholder_acts.jpg" class="w-100" alt="event">
+            <div class="mask text-light d-flex justify-content-center flex-column text-center" style="background-color: rgba(0, 0, 0, 0.5)">
+                <h4>Custom heading</h4>
+                <p class="m-0">paragraph</p>
+            </div>
+        </div>
+        <div class="bg-image" style="max-width: 22rem;">
+            <img src="../../images/placeholder_acts.jpg" class="w-100" alt="event">
+            <div class="mask text-light d-flex justify-content-center flex-column text-center" style="background-color: rgba(0, 0, 0, 0.5)">
+                <h4>Custom heading</h4>
+                <p class="m-0">paragraph</p>
+            </div>
+        </div>
+        <div class="bg-image" style="max-width: 22rem;">
+            <img src="../../images/placeholder_acts.jpg" class="w-100" alt="event">
+            <div class="mask text-light d-flex justify-content-center flex-column text-center" style="background-color: rgba(0, 0, 0, 0.5)">
+                <h4>Custom heading</h4>
+                <p class="m-0">paragraph</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div style="margin-bottom: 50px"></div>
+
+<div class="container-fluid" style="padding-left: 0 !important; padding-right: 0 !important">
+    <div class="bg-dark text-secondary px-4 py-5 text-center">
+        <div class="py-5">
+            <h1 class="display-5 fw-bold text-white">Dark mode hero</h1>
+            <div class="col-lg-6 mx-auto">
+                <p class="fs-5 mb-4">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    <button type="button" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold">Custom button</button>
+                    <button type="button" class="btn btn-outline-light btn-lg px-4">Secondary</button>
                 </div>
             </div>
-            <button type="button" data-role="none" class="slick-arrow slick-next" style="display: block;"> Next</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container">
+    <div style="margin-bottom: 50px"></div>
+
+    <h2><i class="fa-solid fa-star" style="color: #8de7ef;"></i><strong style="padding-left: 10px">Eventos Finalizados</strong></h2>
+
+    <div style="margin-bottom: 40px"></div>
+
+
+    <div class="row align-content-center" data-masonry='{"percentPosition": true }'>
+        <div class="col-sm-6 col-lg-3 mb-4">
+
+            <div class="card-list">
+                <article class="card">
+                    <figure class="card-image">
+                        <img class="image-event" src="../../images/placeholder_events.jpg" alt="An orange painted blue, cut in half laying on a blue background" />
+                    </figure>
+                    <div class="card-header">
+                        <a href="#">Partido de Valorant<p>Fibra Tóxica vs. Electroshock</p></a>
+
+                    </div>
+                    <div class="card-footer">
+                        <div class="card-meta card-meta--views">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="8" r="4"></circle>
+                                <path d="M18 21v-2a4 4 0 0 0-4-4H10a4 4 0 0 0-4 4v2"></path>
+                            </svg>
+                            5
+                        </div>
+                        <div class="card-meta card-meta--date">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="Calendar">
+                                <rect x="2" y="4" width="20" height="18" rx="4"></rect>
+                                <path d="M8 2v4"></path>
+                                <path d="M16 2v4"></path>
+                                <path d="M2 10h20"></path>
+                            </svg>
+                            18 Oct, 2023
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+        </div>
+
+
+        <div class="col-sm-6 col-lg-3 mb-4">
+
+            <div class="card-list">
+                <article class="card">
+                    <figure class="card-image">
+                        <img class="image-event" src="../../images/placeholder_events.jpg" alt="An orange painted blue, cut in half laying on a blue background" />
+                    </figure>
+                    <div class="card-header">
+                        <a href="#">Partido de Valorant <p>Fibra Tóxica vs. Electroshock</p></a>
+                    </div>
+                    <div class="card-footer">
+                        <div class="card-meta card-meta--views">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="8" r="4"></circle>
+                                <path d="M18 21v-2a4 4 0 0 0-4-4H10a4 4 0 0 0-4 4v2"></path>
+                            </svg>
+                            5
+                        </div>
+                        <div class="card-meta card-meta--date">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="Calendar">
+                                <rect x="2" y="4" width="20" height="18" rx="4"></rect>
+                                <path d="M8 2v4"></path>
+                                <path d="M16 2v4"></path>
+                                <path d="M2 10h20"></path>
+                            </svg>
+                            18 Oct, 2023
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+        </div>
+
+
+        <div class="col-sm-6 col-lg-3 mb-4">
+
+            <div class="card-list">
+                <article class="card">
+                    <figure class="card-image">
+                        <img class="image-event" src="../../images/placeholder_events.jpg" alt="An orange painted blue, cut in half laying on a blue background" />
+                    </figure>
+                    <div class="card-header">
+                        <a href="#">Partido de Valorant <p>Fibra Tóxica vs. Electroshock</p></a>
+                    </div>
+                    <div class="card-footer">
+                        <div class="card-meta card-meta--views">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="8" r="4"></circle>
+                                <path d="M18 21v-2a4 4 0 0 0-4-4H10a4 4 0 0 0-4 4v2"></path>
+                            </svg>
+                            5
+                        </div>
+                        <div class="card-meta card-meta--date">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="Calendar">
+                                <rect x="2" y="4" width="20" height="18" rx="4"></rect>
+                                <path d="M8 2v4"></path>
+                                <path d="M16 2v4"></path>
+                                <path d="M2 10h20"></path>
+                            </svg>
+                            18 Oct, 2023
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+        </div>
+
+
+        <div class="col-sm-6 col-lg-3 mb-4">
+
+            <div class="card-list">
+                <article class="card">
+                    <figure class="card-image">
+                        <img class="image-event" src="../../images/placeholder_events.jpg" alt="An orange painted blue, cut in half laying on a blue background" />
+                    </figure>
+                    <div class="card-header">
+                        <a href="#">Partido de Valorant <p>Fibra Tóxica vs. Electroshock</p></a>
+                    </div>
+                    <div class="card-footer">
+                        <div class="card-meta card-meta--views">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="8" r="4"></circle>
+                                <path d="M18 21v-2a4 4 0 0 0-4-4H10a4 4 0 0 0-4 4v2"></path>
+                            </svg>
+                            5
+                        </div>
+                        <div class="card-meta card-meta--date">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="Calendar">
+                                <rect x="2" y="4" width="20" height="18" rx="4"></rect>
+                                <path d="M8 2v4"></path>
+                                <path d="M16 2v4"></path>
+                                <path d="M2 10h20"></path>
+                            </svg>
+                            18 Oct, 2023
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+        </div>
+
+
+        <div class="col-sm-6 col-lg-3 mb-4">
+
+            <div class="card-list">
+                <article class="card">
+                    <figure class="card-image">
+                        <img class="image-event" src="../../images/placeholder_events.jpg" alt="An orange painted blue, cut in half laying on a blue background" />
+                    </figure>
+                    <div class="card-header">
+                        <a href="#">Partido de Valorant <p>Fibra Tóxica vs. Electroshock</p></a>
+                    </div>
+                    <div class="card-footer">
+                        <div class="card-meta card-meta--views">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="8" r="4"></circle>
+                                <path d="M18 21v-2a4 4 0 0 0-4-4H10a4 4 0 0 0-4 4v2"></path>
+                            </svg>
+                            5
+                        </div>
+                        <div class="card-meta card-meta--date">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="Calendar">
+                                <rect x="2" y="4" width="20" height="18" rx="4"></rect>
+                                <path d="M8 2v4"></path>
+                                <path d="M16 2v4"></path>
+                                <path d="M2 10h20"></path>
+                            </svg>
+                            18 Oct, 2023
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+        </div>
+
+
+        <div class="col-sm-6 col-lg-3 mb-4">
+
+            <div class="card-list">
+                <article class="card">
+                    <figure class="card-image">
+                        <img class="image-event" src="../../images/placeholder_events.jpg" alt="An orange painted blue, cut in half laying on a blue background" />
+                    </figure>
+                    <div class="card-header">
+                        <a href="#">Partido de Valorant <p>Fibra Tóxica vs. Electroshock</p></a>
+                    </div>
+                    <div class="card-footer">
+                        <div class="card-meta card-meta--views">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="8" r="4"></circle>
+                                <path d="M18 21v-2a4 4 0 0 0-4-4H10a4 4 0 0 0-4 4v2"></path>
+                            </svg>
+                            5
+                        </div>
+                        <div class="card-meta card-meta--date">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="Calendar">
+                                <rect x="2" y="4" width="20" height="18" rx="4"></rect>
+                                <path d="M8 2v4"></path>
+                                <path d="M16 2v4"></path>
+                                <path d="M2 10h20"></path>
+                            </svg>
+                            18 Oct, 2023
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+        </div>
+
+
+        <div class="col-sm-6 col-lg-3 mb-4">
+
+            <div class="card-list">
+                <article class="card">
+                    <figure class="card-image">
+                        <img class="image-event" src="../../images/placeholder_events.jpg" alt="An orange painted blue, cut in half laying on a blue background" />
+                    </figure>
+                    <div class="card-header">
+                        <a href="#">Partido de Valorant <p>Fibra Tóxica vs. Electroshock</p></a>
+                    </div>
+                    <div class="card-footer">
+                        <div class="card-meta card-meta--views">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="8" r="4"></circle>
+                                <path d="M18 21v-2a4 4 0 0 0-4-4H10a4 4 0 0 0-4 4v2"></path>
+                            </svg>
+                            5
+                        </div>
+                        <div class="card-meta card-meta--date">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="Calendar">
+                                <rect x="2" y="4" width="20" height="18" rx="4"></rect>
+                                <path d="M8 2v4"></path>
+                                <path d="M16 2v4"></path>
+                                <path d="M2 10h20"></path>
+                            </svg>
+                            18 Oct, 2023
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+        </div>
+
+
+        <div class="col-sm-6 col-lg-3 mb-4">
+
+            <div class="card-list">
+                <article class="card">
+                    <figure class="card-image">
+                        <img class="image-event" src="../../images/placeholder_events.jpg" alt="An orange painted blue, cut in half laying on a blue background" />
+                    </figure>
+                    <div class="card-header">
+                        <a href="#">Partido de Valorant <p>Fibra Tóxica vs. Electroshock</p></a>
+                    </div>
+                    <div class="card-footer">
+                        <div class="card-meta card-meta--views">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="8" r="4"></circle>
+                                <path d="M18 21v-2a4 4 0 0 0-4-4H10a4 4 0 0 0-4 4v2"></path>
+                            </svg>
+                            5
+                        </div>
+                        <div class="card-meta card-meta--date">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="Calendar">
+                                <rect x="2" y="4" width="20" height="18" rx="4"></rect>
+                                <path d="M8 2v4"></path>
+                                <path d="M16 2v4"></path>
+                                <path d="M2 10h20"></path>
+                            </svg>
+                            18 Oct, 2023
+                        </div>
+                    </div>
+                </article>
+            </div>
+
         </div>
     </div>
 
 
+    <nav class="mt-4">
+        <ul class="pagination justify-content-center">
+            <!---->
+            <li class="page-item active">
+                <a href="#" class="page-link">1</a>
+            </li>
+            <li class="page-item">
+                <a href="#" class="page-link">2</a>
+            </li>
+            <li class="page-item">
+                <a href="#" class="page-link">3</a>
+            </li>
+            <li class="page-item">
+                <a href="#" class="page-link">4</a>
+            </li>
+            <li class="page-item">
+                <a href="#" class="page-link">5</a>
+            </li>
+            <li class="page-item">
+                <a href="#" class="page-link">6</a>
+            </li>
+            <li class="page-item">
+                <a href="#" aria-label="Next" class="page-link">
+                    <span aria-hidden="true">»</span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+
+
+
+
+<div style="margin-bottom: 50px"></div>
+
+
+<div class="container-fluid" style="background-color: #fff">
+    <div class="container">
+        <footer class="py-3 my-4">
+            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Inicio</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Mis Eventos</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Donaciones</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Cerrar Sesión</a></li>
+            </ul>
+            <p class="text-center text-muted">© Pontificia Universidad Católica del Perú - Todos los derechos reservados</p>
+        </footer>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+        $(document).ready(function(){
+            $('.carousel-act').slick({
+                slidesToShow: 3,
+                centerMode: true,
+                responsive: [
+                    {
+                        breakpoint: 1400, // Cuando el ancho de la pantalla sea 768px o menos
+                        settings: {
+                            slidesToShow: 2, // Cambia a mostrar solo 1 diapositiva
+                        }
+                    },
+                    {
+                        breakpoint: 1000, // Cuando el ancho de la pantalla sea 992px o menos
+                        settings: {
+                            slidesToShow: 1, // Cambia a mostrar 2 diapositivas
+                        }
+                    }
+                ]
+            });
+        });
+    </script>
 
 
     <script src="../../js/slider.js"></script>
@@ -569,8 +892,6 @@
     <script src="../../js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-
-</div>
 
 
 
