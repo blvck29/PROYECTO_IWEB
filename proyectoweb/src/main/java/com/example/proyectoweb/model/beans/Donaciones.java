@@ -8,13 +8,7 @@ public class Donaciones {
     private Blob comprobante;
     private double monto;
     private boolean comprobado;
-    public Donaciones(int idRegistro_Donaciones, int idUsuario, Blob comprobante, double monto, boolean comprobado) {
-        this.setIdRegistro_Donaciones(idRegistro_Donaciones);
-        this.setIdUsuario(idUsuario);
-        this.setComprobante(comprobante);
-        this.setMonto(monto);
-        this.setComprobante(comprobante);
-    }
+
 
     public int getIdRegistro_Donaciones() {
         return idRegistro_Donaciones;
@@ -54,5 +48,8 @@ public class Donaciones {
 
     public void setComprobado(boolean comprobado) {
         this.comprobado = comprobado;
+    }
+
+    public void setIdRegistro_Donaciones(Blob blob) {
     }
 }

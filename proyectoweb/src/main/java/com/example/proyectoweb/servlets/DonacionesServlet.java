@@ -14,14 +14,23 @@ import java.util.ArrayList;
 @WebServlet(name = "DonacionesServlet", value = "/DonacionesServlet")
 public class DonacionesServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request,
+                         HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html");
+
         DonacionesDao donacionesDao = new DonacionesDao();
-        ArrayList<Donaciones> listaDonaciones = donacionesDao.getListaDonaciones();
+        ArrayList<Donaciones> listaDonaciones = donacionesDao.listar();
 
+        String vista = "donaciones/lista.jsp";
         request.setAttribute("lista", listaDonaciones);
+        RequestDispatcher rd = request.getRequestDispatcher(vista);
+        rd.forward(request,response);
 
+        /*
+        request.setAttribute("lista", listaDonaciones);
         RequestDispatcher view = request.getRequestDispatcher("home.jsp");
-        view.forward(request,response);
+        view.forward(request,response)
+        */
     }
 
     @Override

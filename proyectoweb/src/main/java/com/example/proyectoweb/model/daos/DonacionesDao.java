@@ -1,34 +1,40 @@
 package com.example.proyectoweb.model.daos;
 
 import com.example.proyectoweb.model.beans.Donaciones;
-import com.example.proyectoweb.model.beans.Donaciones;
 
 import java.sql.*;
 import java.util.ArrayList;
 
 public class DonacionesDao {
-    public ArrayList<Donaciones> getListaDonaciones(){
+    public ArrayList<Donaciones> listar(){
         ArrayList<Donaciones> listaDonaciones = new ArrayList<>();
-
-        try {
-
-            String user = "root";
-            String pass = "root";
-            String url = "jdbc:mysql://localhost:3306/proyectoweb";
-
+        try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection(url,user,pass);
-            Statement stmt = conn.createStatement();
+        }catch (ClassNotFoundException e){
+            throw new RuntimeException(e);
+        }
 
-            ResultSet rs = stmt.executeQuery("SELECT * FROM registro_donaciones");
+        String url = "jdbc:mysql://localhost:3306/proyectoweb";
+        String user = "root";
+        String pass = "root";
+        String sql = "select * from registro_donaciones";
+
+        try(Connection conn = DriverManager.getConnection(url,user,pass);
+            Statement stmt = conn.createStatement();){
+
+            ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()){
-                Donaciones donaciones = new Donaciones(rs.getInt(1),rs.getInt(2), rs.getBlob(3), rs.getDouble(4), rs.getBoolean(5));
+                Donaciones donaciones = new Donaciones();
+                donaciones.setIdRegistro_Donaciones(rs.getInt(1));
+                donaciones.setIdRegistro_Donaciones(rs.getInt(2));
+                donaciones.setIdRegistro_Donaciones(rs.getBlob(3));
+                donaciones.setMonto(rs.getDouble(4));
+                donaciones.setComprobado(rs.getBoolean(5));
                 listaDonaciones.add(donaciones);
             }
 
-
-        } catch (ClassNotFoundException | SQLException e){
+        } catch (SQLException e){
             e.printStackTrace();
         }
 
