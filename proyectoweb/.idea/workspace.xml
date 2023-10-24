@@ -10,9 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="250e9528-0acf-42db-be38-0516405aa721" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/proyectoweb/servlets/DonacionesServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/proyectoweb/servlets/DonacionesServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/proyectoweb/servlets/EventoServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/proyectoweb/servlets/EventoServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/proyectoweb/servlets/UsuarioServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/proyectoweb/servlets/UsuarioServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/user/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/user/home.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/user/per_events.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/user/per_events.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/proyectoweb-1.0-SNAPSHOT/pages/user/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/proyectoweb-1.0-SNAPSHOT/pages/user/home.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -292,7 +293,7 @@
       <workItem from="1697986544928" duration="1766000" />
       <workItem from="1697988458211" duration="578000" />
       <workItem from="1697989048037" duration="8516000" />
-      <workItem from="1698081400013" duration="18788000" />
+      <workItem from="1698081400013" duration="19700000" />
     </task>
     <servers />
   </component>

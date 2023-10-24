@@ -50,13 +50,13 @@
     <nav class="nav-bar">
         <ul>
             <li>
-                <a href="home.jsp" class="active">Inicio</a>
+                <a href="home.jsp">Inicio</a>
             </li>
             <li>
                 <a href="per_events.jsp">Mis Eventos</a>
             </li>
             <li>
-                <a href="donate.jsp">Donaciones</a>
+                <a href="donate.jsp" class="active">Donaciones</a>
             </li>
             <li>
                 <a href="#"><i class="fa-solid fa-user nav-icon2"></i>Usuario</a>

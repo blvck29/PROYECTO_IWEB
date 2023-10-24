@@ -44,10 +44,10 @@
     <nav class="nav-bar">
         <ul>
             <li>
-                <a href="home.jsp" class="active">Inicio</a>
+                <a href="home.jsp">Inicio</a>
             </li>
             <li>
-                <a href="per_events.jsp">Mis Eventos</a>
+                <a href="per_events.jsp" class="active">Mis Eventos</a>
             </li>
             <li>
                 <a href="donate.jsp">Donaciones</a>
@@ -75,7 +75,7 @@
         <div class="input-group-text p-0">
             <label>
                 <select class="form-select form-select-lg shadow-none bg-light border-0" style="font-size: 1rem">
-                    <option style="font-size: 1rem">Filtro</option>
+                    <option style="font-size: 1rem">Todos</option>
                     <option style="font-size: 1rem">Fútbol</option>
                     <option style="font-size: 1rem">Voley</option>
                     <option style="font-size: 1rem">eSports</option>
@@ -84,10 +84,19 @@
                 </select>
             </label>
         </div>
+        <div class="input-group-text p-0">
+            <label>
+                <select class="form-select form-select-lg shadow-none bg-light border-0" style="font-size: 1rem">
+                    <option style="font-size: 1rem">Próximos</option>
+                    <option style="font-size: 1rem">Finalizados</option>
+                </select>
+            </label>
+        </div>
         <input type="text" class="form-control" placeholder="Buscar Evento">
         <button class="input-group-text shadow-none px-4 btn-large">
             <i class="fa-solid fa-magnifying-glass" style="color: #262626;"></i>
         </button>
+
     </div>
 
     <div style="margin-bottom: 50px"></div>
