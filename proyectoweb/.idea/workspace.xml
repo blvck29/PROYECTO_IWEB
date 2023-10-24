@@ -10,10 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="250e9528-0acf-42db-be38-0516405aa721" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/album.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/pages/user/activity.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/user/event.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/user/event.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/user/per_events.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/user/per_events.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/user/event_end.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/user/event_end.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/proyectoweb-1.0-SNAPSHOT/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/proyectoweb-1.0-SNAPSHOT/css/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -47,7 +48,6 @@
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
   </component>
-  <component name="PhpDebugGeneral" listening_started="true" />
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -294,7 +294,7 @@
       <workItem from="1697986544928" duration="1766000" />
       <workItem from="1697988458211" duration="578000" />
       <workItem from="1697989048037" duration="8516000" />
-      <workItem from="1698081400013" duration="22648000" />
+      <workItem from="1698081400013" duration="25585000" />
     </task>
     <servers />
   </component>
