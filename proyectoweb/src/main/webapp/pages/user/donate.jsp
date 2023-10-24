@@ -53,7 +53,7 @@
                 <a href="home.jsp" class="active">Inicio</a>
             </li>
             <li>
-                <a href="events.jsp">Mis Eventos</a>
+                <a href="per_events.jsp">Mis Eventos</a>
             </li>
             <li>
                 <a href="donate.jsp">Donaciones</a>

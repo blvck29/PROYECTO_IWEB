@@ -46,7 +46,7 @@
                 <a href="home.jsp" class="active">Inicio</a>
             </li>
             <li>
-                <a href="events.jsp">Mis Eventos</a>
+                <a href="per_events.jsp">Mis Eventos</a>
             </li>
             <li>
                 <a href="donate.jsp">Donaciones</a>
@@ -121,7 +121,26 @@
     <div style="margin-bottom: 40px"></div>
 
 
+    <div class="input-group mb-3">
+        <div class="input-group-text p-0">
+            <label>
+                <select class="form-select form-select-lg shadow-none bg-light border-0" style="font-size: 1rem">
+                    <option style="font-size: 1rem">Filtro</option>
+                    <option style="font-size: 1rem">Fútbol</option>
+                    <option style="font-size: 1rem">Voley</option>
+                    <option style="font-size: 1rem">eSports</option>
+                    <option style="font-size: 1rem">Basquet</option>
+                    <option style="font-size: 1rem">Ajedrez</option>
+                </select>
+            </label>
+        </div>
+        <input type="text" class="form-control" placeholder="Buscar Evento">
+        <button class="input-group-text shadow-none px-4 btn-large">
+            <i class="fa-solid fa-magnifying-glass" style="color: #262626;"></i>
+        </button>
+    </div>
 
+    <div style="margin-bottom: 50px"></div>
 
     <div class="row align-content-center" data-masonry='{"percentPosition": true }'>
         <div class="col-sm-6 col-lg-3 mb-4">
@@ -442,8 +461,6 @@
 
 
 
-
-
     <div class="carousel-act">
         <div class="bg-image" style="max-width: 22rem;">
             <img src="../../images/placeholder_acts.jpg" class="w-100" alt="event">
@@ -528,6 +545,26 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
     <div style="margin-bottom: 40px"></div>
 
+    <div class="input-group mb-3">
+        <div class="input-group-text p-0">
+            <label>
+                <select class="form-select form-select-lg shadow-none bg-light border-0" style="font-size: 1rem">
+                    <option style="font-size: 1rem">Filtro</option>
+                    <option style="font-size: 1rem">Fútbol</option>
+                    <option style="font-size: 1rem">Voley</option>
+                    <option style="font-size: 1rem">eSports</option>
+                    <option style="font-size: 1rem">Basquet</option>
+                    <option style="font-size: 1rem">Ajedrez</option>
+                </select>
+            </label>
+        </div>
+        <input type="text" class="form-control" placeholder="Buscar Evento">
+        <button class="input-group-text shadow-none px-4 btn-large">
+            <i class="fa-solid fa-magnifying-glass" style="color: #262626;"></i>
+        </button>
+    </div>
+
+    <div style="margin-bottom: 50px"></div>
 
     <div class="row align-content-center" data-masonry='{"percentPosition": true }'>
         <div class="col-sm-6 col-lg-3 mb-4">
@@ -556,7 +593,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                                 <path d="M16 2v4"></path>
                                 <path d="M2 10h20"></path>
                             </svg>
-                            18 Oct, 2023
+                            Finalizado
                         </div>
                     </div>
                 </article>
@@ -590,7 +627,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                                 <path d="M16 2v4"></path>
                                 <path d="M2 10h20"></path>
                             </svg>
-                            18 Oct, 2023
+                            Finalizado
                         </div>
                     </div>
                 </article>
@@ -624,7 +661,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                                 <path d="M16 2v4"></path>
                                 <path d="M2 10h20"></path>
                             </svg>
-                            18 Oct, 2023
+                            Finalizado
                         </div>
                     </div>
                 </article>
@@ -658,7 +695,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                                 <path d="M16 2v4"></path>
                                 <path d="M2 10h20"></path>
                             </svg>
-                            18 Oct, 2023
+                            Finalizado
                         </div>
                     </div>
                 </article>
@@ -692,7 +729,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                                 <path d="M16 2v4"></path>
                                 <path d="M2 10h20"></path>
                             </svg>
-                            18 Oct, 2023
+                            Finalizado
                         </div>
                     </div>
                 </article>
@@ -726,7 +763,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                                 <path d="M16 2v4"></path>
                                 <path d="M2 10h20"></path>
                             </svg>
-                            18 Oct, 2023
+                            Finalizado
                         </div>
                     </div>
                 </article>
@@ -760,7 +797,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                                 <path d="M16 2v4"></path>
                                 <path d="M2 10h20"></path>
                             </svg>
-                            18 Oct, 2023
+                            Finalizado
                         </div>
                     </div>
                 </article>
@@ -794,7 +831,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                                 <path d="M16 2v4"></path>
                                 <path d="M2 10h20"></path>
                             </svg>
-                            18 Oct, 2023
+                            Finalizado
                         </div>
                     </div>
                 </article>

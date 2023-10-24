@@ -30,7 +30,6 @@
     <title>Home | Semana de Ingeniería 2023</title>
 </head>
 
-
 <body>
 <header>
     <div class="logo"><a href="home.jsp"><img class="logo-img" src='../../images/logo_topbar.png' alt="logo"></a></div>
@@ -44,7 +43,7 @@
     <nav class="nav-bar">
         <ul>
             <li>
-                <a href="home.jsp" class="active">Inicio</a>
+                <a href="home.jsp" class="active">Eventos</a>
             </li>
             <li>
                 <a href="events.jsp">Mis Eventos</a>
@@ -60,13 +59,39 @@
             </li>
         </ul>
     </nav>
+
+
 </header>
+
+
+
+<div class="container-fluid" style="padding-left:0 !important; padding-right: 0 !important; background: rgb(45,0,83) !important;
+background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgba(21,0,48,1) 100%) !important;")>
+    <div class="text-secondary px-4 py-5 text-center">
+        <div class="py-5">
+            <h1 class="display-5 fw-bold text-white">Bienvenido, @Admin_act</h1>
+            <div style="margin-bottom: 20px"></div>
+            <h3 class="fw-bold text-white">Todo comienza aquí, crea un evento nuevo...</h3>
+            <div style="margin-bottom: 20px"></div>
+            <div class="justify-content-sm-center">
+                <button type="button" class="btn btn-outline-info btn-lg px-4">
+                    <a href="create.jsp" class="link-info link-opacity">Crear Evento</a>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
 
 <div class="container">
 
     <div style="margin-bottom: 50px"></div>
 
-    <h2><i class="fa-solid fa-star" style="color: #8de7ef;"></i><strong style="padding-left: 10px">Eventos de @Usuario</strong></h2>
+    <h2><i class="fa-solid fa-star" style="color: #8de7ef;"></i><strong style="padding-left: 10px">Eventos de Actividad</strong></h2>
 
     <div style="margin-bottom: 40px"></div>
 
@@ -347,6 +372,7 @@
         </div>
     </div>
 
+
     <nav class="mt-4">
         <ul class="pagination justify-content-center">
             <!---->
@@ -376,7 +402,6 @@
             </li>
         </ul>
     </nav>
-
 </div>
 
 <div style="margin-bottom: 50px"></div>
@@ -395,13 +420,46 @@
 
 
 
+
+
+
+
+
+
+
+
+<script>
+    $(document).ready(function(){
+        $('.carousel-act').slick({
+            slidesToShow: 3,
+            centerMode: true,
+            responsive: [
+                {
+                    breakpoint: 1400, // Cuando el ancho de la pantalla sea 768px o menos
+                    settings: {
+                        slidesToShow: 2, // Cambia a mostrar solo 1 diapositiva
+                    }
+                },
+                {
+                    breakpoint: 1000, // Cuando el ancho de la pantalla sea 992px o menos
+                    settings: {
+                        slidesToShow: 1, // Cambia a mostrar 2 diapositivas
+                    }
+                }
+            ]
+        });
+    });
+</script>
+
+
 <script src="../../js/slider.js"></script>
 <script src="../../js/bootstrap/bootstrap.js"></script>
 <script src="../../js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
-</body>
 
+
+</body>
 
 </html>
