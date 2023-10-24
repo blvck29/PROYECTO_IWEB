@@ -52,6 +52,9 @@
           <a href="../user/per_events.jsp">Estadísticas</a>
         </li>
         <li>
+          <a href="../user/lista_donaciones.jsp">Donaciones</a>
+        </li>
+        <li>
           <a href="#"><i class="fa-solid fa-user nav-icon2"></i>Usuario</a>
         </li>
         <li>
