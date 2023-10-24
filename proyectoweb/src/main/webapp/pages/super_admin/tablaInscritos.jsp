@@ -3,9 +3,20 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <% ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) request.getAttribute("listaUsuarios");%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <title>Administracion de Usuarios</title>
+
+  <!-- Provicionales usados en clase de iweb: -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+        crossorigin="anonymous">
+
+  <!--  -------------------- -->
 
 
   <meta http-equiv=”Content-Type” content=”text/html; charset=ISO-8859-1″>    <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -50,7 +61,7 @@
   <link rel="stylesheet" href="carousel/css/style.css">
 
 
-  <link rel="stylesheet" href="tabla.css">
+  <link rel="stylesheet" href="css/style.css">
 
 </head>
 
@@ -63,7 +74,7 @@
     <nav class="sticky-navbar1 navbar navbar-expand-lg navbar-dark blue" aria-label="Eleventh navbar example">
       <div class="container">
         <a class="navbar-brand me-5 " href="../home.html">
-          <img class="logo-topbar-fluid" src='assets/dist/imgs/logo_topbar.png' alt="...">
+          <img class="logo-topbar-fluid" src='images/logo_topbar.png' alt="...">
         </a>
         <button class="navbar-toggler justify-content-center" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -73,7 +84,7 @@
           <ul class="navbar-nav me-auto mb-4 mb-lg-0">
 
           </ul>
-          <a href = "../../../index.html"><button type="button" class="btn-darkbg btn-outline-wt">Cerrar Sesión  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg> </button></a>
+          <a href = "#"><button type="button" class="btn-darkbg btn-outline-wt">Cerrar Sesión  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg> </button></a>
         </div>
       </div>
     </nav>
@@ -122,27 +133,15 @@
 
             <hr class="hr hr-blurry"/>
 
+           <form method="post" action="<%=request.getContextPath()%>/UsuarioServlet?action=busqueda">
 
             <div class="custom-form-group">
-              <input type="text" class="form-control" id="busqueda" name="busqueda" placeholder="Buscar por nombre">
+              <input type="text" class="form-control" id="busqueda" name="busquedaNombreCodigo" placeholder="Buscar por nombre o código">
 
             </div>
 
 
-
-
-
-
-            <div class="custom-form-group">
-              <input type="text" class="form-control" id="busqueda" name="busqueda" placeholder="Buscar por código">
-            </div>
-
-
-
-
-
-
-            <!-- Menú desplegable de estado -->
+            <!-- Menú desplegable de estado
             <div class="custom-form-group">
               <select class="form-select" id="estado" name="estado">
                 <option value="" disabled selected>Estado</option>
@@ -150,13 +149,12 @@
                 <option value="pendiente">Aprobado</option>
                 <option value="aprobado">Rechazado</option>
                 <option value="aprobado">Baneado</option>
-
               </select>
-            </div>
+            </div> -->
 
-
-            <label><button class="button-borrar-filtro btn-responsive" >Borrar filtros</button>
-            </label>
+            <button type="submit" class="btn btn-primary" >Aplicar filtros</button>
+             <a class="btn btn-primary" href="<%=request.getContextPath()%>/UsuarioServlet" role="button">Borrar filtros</a>
+           </form>
 
 
 

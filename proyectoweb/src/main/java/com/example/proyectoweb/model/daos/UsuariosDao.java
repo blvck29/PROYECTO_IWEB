@@ -56,7 +56,9 @@ public class UsuariosDao {
 
 
 
-    public void buscarUsuarioXNombre(String palabraintroducida){ //admin
+    public ArrayList<Usuario> buscarXnombreYcodigo(String palabraintroducida){ //admin
+
+        ArrayList<Usuario> listaUsuarios = new ArrayList();
 
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -65,35 +67,46 @@ public class UsuariosDao {
         }
 
         //Parámetros de Conexión
+        String url = "jdbc:mysql://localhost:3306/proyectoweb";
         String username = "root";
         String password = "root";
-        String url = "jdbc:mysql://localhost:3306/proyectoweb";
+
 
         //Conexión a la DB
 
-        String sql = "select * from usuarios where lower(nombres) like ? order by nombres desc";
+        String sql = "select * from usuarios where lower(nombres) like ? or codigo =?";
+
 
         try (Connection conn = DriverManager.getConnection(url,username,password);
              PreparedStatement pstmt = conn.prepareStatement(sql)){
-             pstmt.setString(1, palabraintroducida + "%"); //sql
+
+             pstmt.setString(1, palabraintroducida + "%");
+             pstmt.setString(2,palabraintroducida);
+
 
             try(ResultSet rs = pstmt.executeQuery()){
+
                 while(rs.next()){
 
-                    int idUser = rs.getInt(1);
-                    String idRol = rs.getString(2);
-                    String idEstado = rs.getString(3);
-                    String nombre = rs.getString(4);
-                    String apellido = rs.getString(5);
-                    String codigo = rs.getString(6);
-                    String correo = rs.getString(7);
-                    int cantidadActividadesInscrito = rs.getInt(11);
-                    System.out.println("id Usuario: " + idUser + "| id Rol: " + idRol + "| id Estado: " + idEstado + "| Nombre: " + nombre + "| Apellido: " + apellido + "| Código: " + codigo + "| Correo: " + correo + "| cantidad de actividades inscritas: " + cantidadActividadesInscrito);
+                    Usuario usuario = new Usuario();
+
+                    usuario.setNombres(rs.getString(4));
+                    usuario.setApellidos(rs.getString(5));
+                    usuario.setCodigo(rs.getString(6));
+                    usuario.setIdRol(rs.getString(2));
+                    usuario.setIdEstado(rs.getString(3));
+                    usuario.setUltimoLogin(rs.getString(9));
+
+                    listaUsuarios.add(usuario);
+
                 }
+
             }
         }catch (SQLException e){
             throw new RuntimeException(e);
         }
+
+        return listaUsuarios;
 
     }
 

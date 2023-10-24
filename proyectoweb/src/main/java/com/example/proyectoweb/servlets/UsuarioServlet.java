@@ -23,6 +23,24 @@ public class UsuarioServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        UsuariosDao userDao = new UsuariosDao();
+        String action = request.getParameter("action") == null? "buscar" : request.getParameter("action");
+
+        switch(action){
+            case "busqueda":
+                String usuarioBuscado = request.getParameter("busquedaNombreCodigo");
+                ArrayList<Usuario> listaBusqueda = userDao.buscarXnombreYcodigo(usuarioBuscado);
+
+                request.setAttribute("listaUsuarios",listaBusqueda);
+                request.getRequestDispatcher("pages/super_admin/tablaInscritos.jsp").forward(request,response);
+
+
+
+
+
+
+        }
 
     }
+
 }
