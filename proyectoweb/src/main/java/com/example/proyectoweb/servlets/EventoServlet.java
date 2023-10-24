@@ -18,7 +18,7 @@ public class EventoServlet extends HttpServlet {
 
         request.setAttribute("lista", listaEventos);
 
-        RequestDispatcher view = request.getRequestDispatcher("home.jsp");
+        RequestDispatcher view = request.getRequestDispatcher("pages/user/home.jsp");
         view.forward(request,response);
     }
 
