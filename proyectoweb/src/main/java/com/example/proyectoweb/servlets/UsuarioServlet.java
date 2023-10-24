@@ -18,7 +18,7 @@ public class UsuarioServlet extends HttpServlet {
         //Listar:
         ArrayList<Usuario> listaUsuarios = userDao.listarTodosUsuarios();
         request.setAttribute("listaUsuarios",listaUsuarios);
-        request.getRequestDispatcher("pages/delegadoGeneral/tablaInscritos.jsp").forward(request,response);
+        request.getRequestDispatcher("pages/superAdmin/tablaInscritos.jsp").forward(request,response);
     }
 
     @Override
