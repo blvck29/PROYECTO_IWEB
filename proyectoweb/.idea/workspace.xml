@@ -3,6 +3,7 @@
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
       <artifact name="proyectoweb:war" />
+      <artifact name="proyectoweb:war exploded" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
@@ -73,7 +74,7 @@
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/User/Downloads/proyectoweb",
+    "last_opened_file_path": "C:/Users/User/Downloads/PROYECTO_IWEB/proyectoweb",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -314,6 +315,7 @@
       <workItem from="1698081400013" duration="4774000" />
       <workItem from="1698099194778" duration="7189000" />
       <workItem from="1698107081854" duration="1418000" />
+      <workItem from="1698108700606" duration="347000" />
     </task>
     <servers />
   </component>
