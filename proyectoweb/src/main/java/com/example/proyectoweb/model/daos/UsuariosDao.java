@@ -74,14 +74,14 @@ public class UsuariosDao {
 
         //Conexión a la DB
 
-        String sql = "select * from usuarios where lower(nombres) like ? or codigo =?";
+        String sql = "select * from usuarios where lower(nombres) like ? or codigo like ?";
 
 
         try (Connection conn = DriverManager.getConnection(url,username,password);
              PreparedStatement pstmt = conn.prepareStatement(sql)){
 
              pstmt.setString(1, palabraintroducida + "%");
-             pstmt.setString(2,palabraintroducida);
+             pstmt.setString(2,palabraintroducida + "%");
 
 
             try(ResultSet rs = pstmt.executeQuery()){
