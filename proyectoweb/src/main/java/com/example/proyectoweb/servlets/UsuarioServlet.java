@@ -16,13 +16,13 @@ public class UsuarioServlet extends HttpServlet {
         UsuariosDao userDao = new UsuariosDao();
 
         String action = request.getParameter("action") == null? "lista" : request.getParameter("action");
-
+        
         switch (action){
             case "lista":
                 //Listar:
                 ArrayList<Usuario> listaUsuarios = userDao.listarTodosUsuarios();
                 request.setAttribute("listaUsuarios",listaUsuarios);
-                request.getRequestDispatcher("pages/super_admin/tablaInscritos.jsp").forward(request,response);
+                request.getRequestDispatcher("pages/super_admin/tabla_inscritos.jsp").forward(request,response);
                 break;
 
             case "editar":
@@ -58,7 +58,7 @@ public class UsuarioServlet extends HttpServlet {
                 ArrayList<Usuario> listaBusqueda = userDao.buscarXnombreYcodigo(usuarioBuscado);
 
                 request.setAttribute("listaUsuarios",listaBusqueda);
-                request.getRequestDispatcher("pages/super_admin/tablaInscritos.jsp").forward(request,response);
+                request.getRequestDispatcher("pages/super_admin/tabla_inscritos.jsp").forward(request,response);
 
 
 

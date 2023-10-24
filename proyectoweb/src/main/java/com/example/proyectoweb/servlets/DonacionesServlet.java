@@ -23,7 +23,7 @@ public class DonacionesServlet extends HttpServlet {
         DonacionesDao donacionesDao = new DonacionesDao();
         ArrayList<Donaciones> listaDonaciones = donacionesDao.listar();
 
-        String vista = "pages/super_admin/lista.jsp";
+        String vista = "pages/super_admin/lista_donaciones.jsp";
         request.setAttribute("lista", listaDonaciones);
         RequestDispatcher rd = request.getRequestDispatcher(vista);
         rd.forward(request,response);
