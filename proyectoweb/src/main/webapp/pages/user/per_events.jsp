@@ -111,7 +111,7 @@
                         <img class="image-event" src="../../images/placeholder_events.jpg" alt="An orange painted blue, cut in half laying on a blue background" />
                     </figure>
                     <div class="card-header">
-                        <a href="#">Partido de Valorant<p>Fibra Tóxica vs. Electroshock</p></a>
+                        <a href="event.jsp">Partido de Valorant<p>Fibra Tóxica vs. Electroshock</p></a>
 
                     </div>
                     <div class="card-footer">

@@ -887,6 +887,52 @@ input::-webkit-inner-spin-button {
 /* END ACTIVITIES Styles */
 
 
+/* MAPA Styles*/
+
+.univ-mapa .modu-dest-intern {
+    padding: 22px 24px 40px 24px;
+}
+.modu-dest-intern {
+    background: url('https://cdn01.pucp.education/template/inst-homepucp/images/textura-dest.gif');
+    padding: 22px 24px;
+    border-bottom: 5px solid #D8DEE0;
+    margin-bottom: 70px;
+    width: 100%;
+    text-align: center;
+}
+
+.univ-mapa .mapita-iframe iframe {
+    height: 161px;
+}
+.mapita-iframe iframe {
+    width: 100%;
+    height: 300px;
+    margin-bottom: 25px;
+}
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+iframe {
+    overflow-clip-margin: content-box !important;
+    border-width: 2px;
+    border-style: inset;
+    border-color: initial;
+    border-image: initial;
+    overflow: clip !important;
+}
+.modu-dest-intern {
+    background: url(https://cdn01.pucp.education/template/inst-homepucp/images/textura-dest.gif);
+    padding: 22px 24px;
+    border-bottom: 5px solid #D8DEE0;
+    margin-bottom: 70px;
+    text-align: center;
+}
+/* MAPA Styles END */
+
+
 .a-button{
     color: #f8f9fa !important;
 }
