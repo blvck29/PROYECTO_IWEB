@@ -1,4 +1,8 @@
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.example.proyectoweb.model.beans.Usuario" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<% ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) request.getAttribute("listaUsuarios");%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,10 +18,10 @@
 
   <link rel="canonical" href="#">
 
-  <link rel="icon" type="image/jpg" href="../../../favicon.png"/>
+  <link rel="icon" type="image/jpg" href="favicon.png"/>
 
   <!-- Bootstrap core CSS -->
-  <link href="../../../css/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
 
 
 
@@ -43,7 +47,7 @@
 
 
   <!-- CSS -->
-  <link rel="stylesheet" href="../../../carousel/css/style.css">
+  <link rel="stylesheet" href="carousel/css/style.css">
 
 
   <link rel="stylesheet" href="tabla.css">
@@ -59,7 +63,7 @@
     <nav class="sticky-navbar1 navbar navbar-expand-lg navbar-dark blue" aria-label="Eleventh navbar example">
       <div class="container">
         <a class="navbar-brand me-5 " href="../home.html">
-          <img class="logo-topbar-fluid" src='../../../assets/dist/imgs/logo_topbar.png' alt="...">
+          <img class="logo-topbar-fluid" src='assets/dist/imgs/logo_topbar.png' alt="...">
         </a>
         <button class="navbar-toggler justify-content-center" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -176,8 +180,7 @@
           <div class="row" data-masonry='{"percentPosition": true }'>
 
 
-            </form>
-            <form autocomplete="off" action="https://aula-ielcdelperu.com/av/admin/user.php" method="post" accept-charset="utf-8" id="mform2_c5Hfs9zIVAeeWpH" class="mform">
+            <form autocomplete="off"  method="post" accept-charset="utf-8" id="mform2_c5Hfs9zIVAeeWpH" class="mform">
               <div style="display: none;"><input name="sesskey" type="hidden" value="mfwKCcurEd">
                 <input name="_qf__user_active_filter_form" type="hidden" value="1">
               </div>
@@ -200,16 +203,52 @@
 
             <tbody>
 
+            <% for (Usuario usuario: listaUsuarios){ %>
             <tr class="">
-              <td class="centeralign cell c0" style=""><a>Capibara123</a></td>
-              <td class="centeralign cell c1" style="">20231234</td>
-              <td class="cell c2" style="">Alumno</td>
-              <td class="cell c3" style="">Sin Asignar</td>
-              <td class="cell c4" style="">3 horas 52 minutos</td>
-              <td class="cell c5" style="">
+              <td class="centeralign cell c0" style=""><a><%= usuario.getNombres()+" "+ usuario.getApellidos()%></a></td>
+              <td class="centeralign cell c1" style=""><%= usuario.getCodigo() %></td>
+
+              <% String condicion ="a";
+                switch(usuario.getIdRol()){
+                  case "ADMINPRI":
+                    condicion = "Administrador Principal";
+                    break;
+                  case "ADMINSEC":
+                    condicion = "Administrador Secundario";
+                    break;
+                  case "STUDENT":
+                    condicion = "Estudiante";
+                    break;
+                  case "GRADUAT":
+                    condicion = "Graduado";
+                    break;
+                  default:
+                    condicion = "No definido";
+                }%>
 
 
-                <a><span>
+              <td class="cell c2" style=""><%= condicion %></td>
+
+            <% String estado ="a";
+              switch(usuario.getIdEstado()){
+              case "ACC":
+                estado = "Aceptado";
+                break;
+              case "VER":
+                estado = "Verificado";
+                break;
+              case "PEN":
+                estado = "Pendiente";
+                break;
+              case "BAN":
+                estado = "Baneado";
+                break;
+              default:
+                estado = "a";
+            }%>
+              <td class="cell c3" style=""><%= estado %></td>
+              <td class="cell c4" style=""><%= usuario.getUltimoLogin() %></td>
+              <td class="cell c5" style=""><a><span>
                     <div class="custom-form-group">
                       <select class="form-select" id="estado" name="estado" onchange="redireccionar()">
                           <option value="" disabled selected>Por Verificar</option>
@@ -219,11 +258,14 @@
                           <option value="pendiente">Baneado</option>
                       </select>
                   </div>
+              </span></a></td>
 
-
-                        </span></a></td>
               <td class="cell c6 lastcol" style=""></td>
             </tr>
+
+            <%}%>
+
+
 
             </tbody>
 

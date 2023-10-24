@@ -1,8 +1,60 @@
 package com.example.proyectoweb.model.daos;
 
+import com.example.proyectoweb.model.beans.Usuario;
+
 import java.sql.*;
+import java.util.ArrayList;
 
 public class UsuariosDao {
+
+    public ArrayList<Usuario> listarTodosUsuarios (){ //admin
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        }catch(ClassNotFoundException e){
+            throw new RuntimeException(e);
+        }
+
+        //Parámetros de Conexión
+        String url = "jdbc:mysql://localhost:3306/proyectoweb";
+        String username = "root";
+        String password = "root";
+
+
+        //Conexión a la DB
+
+        String sql = "select * from usuarios";
+
+        ArrayList<Usuario> listaUsuarios = new ArrayList();
+
+        try(Connection conn = DriverManager.getConnection(url,username,password);
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql)){
+
+            while(rs.next()){
+
+                Usuario usuario = new Usuario();
+
+                usuario.setNombres(rs.getString(4));
+                usuario.setApellidos(rs.getString(5));
+                usuario.setCodigo(rs.getString(6));
+                usuario.setIdRol(rs.getString(2));
+                usuario.setIdEstado(rs.getString(3));
+                usuario.setUltimoLogin(rs.getString(9));
+
+                listaUsuarios.add(usuario);
+
+
+            }
+
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+
+        return listaUsuarios;
+    }
+
+
+
 
     public void buscarUsuarioXNombre(String palabraintroducida){ //admin
 
@@ -45,46 +97,9 @@ public class UsuariosDao {
 
     }
 
-    public void listarTodosUsuarios (){ //admin
-        try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        }catch(ClassNotFoundException e){
-            throw new RuntimeException(e);
-        }
-
-        //Parámetros de Conexión
-        String username = "root";
-        String password = "root";
-        String url = "jdbc:mysql://localhost:3306/proyectoweb";
-
-        //Conexión a la DB
-
-        String sql = "select * from usuarios";
-
-        try(Connection conn = DriverManager.getConnection(url,username,password);
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(sql)){
-
-            while(rs.next()){
-                int idUser = rs.getInt(1);
-                String idRol = rs.getString(2);
-                String idEstado = rs.getString(3);
-                String nombre = rs.getString(4);
-                String apellido = rs.getString(5);
-                String codigo = rs.getString(6);
-                String correo = rs.getString(7);
-                int cantidadActividadesInscrito = rs.getInt(11);
-                System.out.println("id Usuario: " + idUser + "| id Rol: " + idRol + "| id Estado: " + idEstado + "| Nombre: " + nombre + "| Apellido: " + apellido + "| Código: " + codigo + "| Correo: " + correo + "| cantidad de actividades inscritas: " + cantidadActividadesInscrito);
 
 
-            }
 
-        }catch(SQLException e){
-            throw new RuntimeException(e);
-        }
-
-
-    }
 
     public void listarUsuariosNoBaneados(){ //admin
         try{
