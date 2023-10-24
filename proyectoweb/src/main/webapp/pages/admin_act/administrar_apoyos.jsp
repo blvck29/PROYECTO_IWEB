@@ -2,7 +2,7 @@
 <%@ page import="com.example.proyectoweb.model.beans.Usuario" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<% ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) request.getAttribute("listaUsuarios");%>
+<% ArrayList<Usuario> listaApoyos = (ArrayList<Usuario>) request.getAttribute("listaApoyos");%>
 
 <!doctype html>
 <html lang="es">
@@ -70,9 +70,9 @@
   <div class="row">
     <div class="col-md-12">
       <div style="padding-top: 2em;"></div>
-      <h1 class="fw-bold lh-1 mb-2" style="text-align: left;">Interfaz de Administración de Usuarios</h1>
+      <h1 class="fw-bold lh-1 mb-2" style="text-align: left;">Interfaz de Administración de Apoyos</h1>
       <div style="padding-top: 0.5em;"></div>
-      <p class="fw-bold lh-1 mb-2" style="text-align: left;">Administrar Usuarios</p>
+      <p class="fw-bold lh-1 mb-2" style="text-align: left;">Administrar Apoyos</p>
       <div style="padding-top: 1em;"></div>
 
       <hr class="hr hr-blurry"/>
@@ -90,7 +90,7 @@
   </div>
 </div>
 
-
+<br>
 
 <div class="container">
   <form autocomplete="off"  method="post" accept-charset="utf-8" id="mform2_c5Hfs9zIVAeeWpH" class="mform">
@@ -99,15 +99,14 @@
     </div>
   </form>
 </div>
-
 <div class="table-responsive container">
   <table class="admintable generaltable table-sm" id="users">
     <thead>
+
     <tr>
       <th class="header c0 centeralign" style="" scope="col"><a><strong>NOMBRE</strong></a> / <a><strong>APELLIDO</strong></a></th>
       <th class="header c1 centeralign" style="" scope="col"><a><strong>CÓDIGO</strong></a></th>
       <th class="header c2" style="" scope="col"><a><strong>ROL</strong></a></th>
-      <th class="header c3" style="" scope="col"><a><strong>ESTADO</strong></a></th>
       <th class="header c4" style="" scope="col"><a><strong>ULTIMO ACCESO</strong></a></th>
       <th class="header c5" style="" scope="col">EDITAR</th>
       <td class="header c6 lastcol" style=""></td>
@@ -118,7 +117,7 @@
 
     <tbody>
 
-    <% for (Usuario usuario: listaUsuarios){ %>
+    <% for (Usuario usuario: listaApoyos){ %>
     <tr class="">
       <td class="centeralign cell c0" style=""><a><%= usuario.getNombres()+" "+ usuario.getApellidos()%></a></td>
       <td class="centeralign cell c1" style=""><%= usuario.getCodigo() %></td>
@@ -143,29 +142,9 @@
 
 
       <td class="cell c2" style=""><%= rol %></td>
+      <td class="cell c3" style=""><%= usuario.getUltimoLogin() %></td>
+      <td class="cell c4" style=""><a href="<%=request.getContextPath()%>/UsuarioServlet?action=editar&id=<%=usuario.getCodigo()%>"><img width="24" height="24" src="https://img.icons8.com/sf-regular/48/edit-row.png" alt="edit-row"/></a></td>
 
-      <% String estado ="a";
-        switch(usuario.getIdEstado()){
-          case "ACC":
-            estado = "Aceptado";
-            break;
-          case "VER":
-            estado = "Verificado";
-            break;
-          case "PEN":
-            estado = "Pendiente";
-            break;
-          case "BAN":
-            estado = "Baneado";
-            break;
-          default:
-            estado = "a";
-        }%>
-      <td class="cell c3" style=""><%= estado %></td>
-      <td class="cell c4" style=""><%= usuario.getUltimoLogin() %></td>
-      <td class="cell c5" style=""><a href="<%=request.getContextPath()%>/UsuarioServlet?action=editar&id=<%=usuario.getCodigo()%>"><img width="24" height="24" src="https://img.icons8.com/sf-regular/48/edit-row.png" alt="edit-row"/></a></td>
-
-      <td class="cell c6 lastcol" style=""></td>
     </tr>
 
     <%}%>
