@@ -1,10 +1,14 @@
 package com.example.proyectoweb.servlets;
 
+import com.example.proyectoweb.model.beans.Rol;
+import com.example.proyectoweb.model.daos.RolesDao;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 
 @WebServlet(name = "RolServlet", value = "/RolServlet")
 public class RolServlet extends HttpServlet {

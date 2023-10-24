@@ -1,10 +1,13 @@
 package com.example.proyectoweb.servlets;
 
+import com.example.proyectoweb.model.beans.EstadoUsuario;
+import com.example.proyectoweb.model.daos.EstadoUsuariosDao;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 @WebServlet(name = "EstadoUsuarioServlet", value = "/EstadoUsuarioServlet")
 public class EstadoUsuarioServlet extends HttpServlet {
