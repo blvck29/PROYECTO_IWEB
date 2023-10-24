@@ -32,13 +32,13 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/consoles/db/63fa9b15-319a-4f80-b309-b2c741f4c71b/console.sql" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/example/proyectoweb/model/beans/Usuario.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/example/proyectoweb/model/daos/EventosDao.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/example/proyectoweb/model/daos/UsuariosDao.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/example/proyectoweb/servlets/DonacionesServlet.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/example/proyectoweb/servlets/UsuarioServlet.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/webapp/css/style.css" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/webapp/pages/super_admin/editarEstado.jsp" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" root2="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/webapp/pages/super_admin/tablaInscritos.jsp" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="SKIP_INSPECTION" />
   </component>
   <component name="LogFilters">
@@ -69,7 +69,7 @@
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/User/Desktop/clase iweb/clase10crud-master",
+    "last_opened_file_path": "C:/Users/Piero/Downloads/clase10crud-master",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -297,6 +297,7 @@
       <workItem from="1697988458211" duration="578000" />
       <workItem from="1697989048037" duration="8516000" />
       <workItem from="1698081400013" duration="18788000" />
+      <workItem from="1698174490105" duration="3098000" />
     </task>
     <servers />
   </component>

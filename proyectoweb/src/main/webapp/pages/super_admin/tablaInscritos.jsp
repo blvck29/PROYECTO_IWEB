@@ -206,26 +206,26 @@
               <td class="centeralign cell c0" style=""><a><%= usuario.getNombres()+" "+ usuario.getApellidos()%></a></td>
               <td class="centeralign cell c1" style=""><%= usuario.getCodigo() %></td>
 
-              <% String condicion ="a";
+              <% String rol ="a";
                 switch(usuario.getIdRol()){
                   case "ADMINPRI":
-                    condicion = "Administrador Principal";
+                    rol = "Administrador Principal";
                     break;
                   case "ADMINSEC":
-                    condicion = "Administrador Secundario";
+                    rol = "Administrador Secundario";
                     break;
                   case "STUDENT":
-                    condicion = "Estudiante";
+                    rol = "Estudiante";
                     break;
                   case "GRADUAT":
-                    condicion = "Graduado";
+                    rol = "Graduado";
                     break;
                   default:
-                    condicion = "No definido";
+                    rol = "No definido";
                 }%>
 
 
-              <td class="cell c2" style=""><%= condicion %></td>
+              <td class="cell c2" style=""><%= rol %></td>
 
             <% String estado ="a";
               switch(usuario.getIdEstado()){
@@ -246,17 +246,7 @@
             }%>
               <td class="cell c3" style=""><%= estado %></td>
               <td class="cell c4" style=""><%= usuario.getUltimoLogin() %></td>
-              <td class="cell c5" style=""><a><span>
-                    <div class="custom-form-group">
-                      <select class="form-select" id="estado" name="estado" onchange="redireccionar()">
-                          <option value="" disabled selected>Por Verificar</option>
-
-                          <option value="proximos">Aprobado</option>
-                          <option value="pendiente">Rechazado</option>
-                          <option value="pendiente">Baneado</option>
-                      </select>
-                  </div>
-              </span></a></td>
+              <td class="cell c5" style=""><a href="<%=request.getContextPath()%>/UsuarioServlet?action=editarEstado&id=<%=usuario.getCodigo()%>"><img width="24" height="24" src="https://img.icons8.com/sf-regular/48/edit-row.png" alt="edit-row"/></a></td>
 
               <td class="cell c6 lastcol" style=""></td>
             </tr>

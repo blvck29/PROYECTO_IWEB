@@ -13,13 +13,39 @@ import java.util.ArrayList;
 public class UsuarioServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action") == null? "listar" : request.getParameter("action");
+
         UsuariosDao userDao = new UsuariosDao();
 
-        //Listar:
-        ArrayList<Usuario> listaUsuarios = userDao.listarTodosUsuarios();
-        request.setAttribute("listaUsuarios",listaUsuarios);
-        request.getRequestDispatcher("pages/super_admin/tablaInscritos.jsp").forward(request,response);
+        switch (action){
+            case "listar":
+                //Listar:
+                ArrayList<Usuario> listaUsuarios = userDao.listarTodosUsuarios();
+                request.setAttribute("listaUsuarios",listaUsuarios);
+                request.getRequestDispatcher("pages/super_admin/tablaInscritos.jsp").forward(request,response);
+
+            case "editarEstado":
+                String codigo = request.getParameter("id");
+                Usuario usuario = userDao.buscarPorCodigo(codigo);
+
+                if(usuario != null){
+                    request.setAttribute("usuario",usuario);
+                    request.getRequestDispatcher("pages/super_admin/editarEstado.jsp").forward(request,response);
+                }
+                else{
+                    response.sendRedirect(request.getContextPath()+"/UsuarioServlet");
+                }
+
+
+
+        }
+
+
+
     }
+
+
+
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
