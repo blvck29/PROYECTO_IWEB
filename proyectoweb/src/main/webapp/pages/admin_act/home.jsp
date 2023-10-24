@@ -49,6 +49,9 @@
                 <a href="events.jsp">Mis Eventos</a>
             </li>
             <li>
+                <a href="#">Gestionar Apoyos</a>
+            </li>
+            <li>
                 <a href="donate.jsp">Donaciones</a>
             </li>
             <li>
