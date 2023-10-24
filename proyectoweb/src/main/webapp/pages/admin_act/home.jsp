@@ -46,13 +46,10 @@
                 <a href="home.jsp" class="active">Eventos</a>
             </li>
             <li>
-                <a href="events.jsp">Mis Eventos</a>
+                <a href="new_event.jsp">Crear Evento</a>
             </li>
             <li>
-                <a href="#">Gestionar Apoyos</a>
-            </li>
-            <li>
-                <a href="donate.jsp">Donaciones</a>
+                <a href="administrar_apoyos.jsp">Gestionar Apoyos</a>
             </li>
             <li>
                 <a href="#"><i class="fa-solid fa-user nav-icon2"></i>Usuario</a>
