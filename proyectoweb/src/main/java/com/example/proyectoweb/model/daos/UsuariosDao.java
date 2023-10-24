@@ -74,14 +74,14 @@ public class UsuariosDao {
 
         //Conexión a la DB
 
-        String sql = "select * from usuarios where lower(nombres) like ? or codigo like ?";
+        String sql = "select * from usuarios where lower(nombres) like ? or codigo =?";
 
 
         try (Connection conn = DriverManager.getConnection(url,username,password);
              PreparedStatement pstmt = conn.prepareStatement(sql)){
 
              pstmt.setString(1, palabraintroducida + "%");
-             pstmt.setString(2,palabraintroducida+ "%");
+             pstmt.setString(2,palabraintroducida);
 
 
             try(ResultSet rs = pstmt.executeQuery()){
@@ -111,32 +111,38 @@ public class UsuariosDao {
     }
 
 
-    public Usuario buscarPorCodigo(String codigo){
+    public Usuario buscarXcodigo(String codigo){ //admin
 
         Usuario usuario = null;
 
-        try {
+        try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
+        }catch(ClassNotFoundException e){
             throw new RuntimeException(e);
         }
 
+        //Parámetros de Conexión
         String url = "jdbc:mysql://localhost:3306/proyectoweb";
         String username = "root";
         String password = "root";
 
-        String sql = "select * from usuarios where codigo=?";
+
+        //Conexión a la DB
+
+        String sql = "select * from usuarios where codigo =?";
 
 
-        try (Connection conn = DriverManager.getConnection(url, username, password);
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try (Connection conn = DriverManager.getConnection(url,username,password);
+             PreparedStatement pstmt = conn.prepareStatement(sql)){
 
-            pstmt.setString(1,codigo);
+            pstmt.setString(1, codigo);
+
 
             try(ResultSet rs = pstmt.executeQuery()){
-                while (rs.next()) {
-                    usuario = new Usuario();
 
+                while(rs.next()){
+
+                    usuario = new Usuario();
                     usuario.setNombres(rs.getString(4));
                     usuario.setApellidos(rs.getString(5));
                     usuario.setCodigo(rs.getString(6));
@@ -144,14 +150,48 @@ public class UsuariosDao {
                     usuario.setIdEstado(rs.getString(3));
                     usuario.setUltimoLogin(rs.getString(9));
                     usuario.setCorreo(rs.getString(7));
+
+
                 }
+
             }
-        } catch (SQLException e) {
+        }catch (SQLException e){
             throw new RuntimeException(e);
         }
 
         return usuario;
+
     }
+
+
+     public void actualizarEstado(Usuario usuario){
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        String url = "jdbc:mysql://localhost:3306/hr";
+        String username = "root";
+        String password = "root";
+
+        String sql = "update usuarios set idEstado = ?  where codigo = ?";
+
+        try(Connection connection = DriverManager.getConnection(url,username,password);
+            PreparedStatement pstmt = connection.prepareStatement(sql)){
+
+            pstmt.setString(1,usuario.getIdEstado());
+            pstmt.setString(2,usuario.getCodigo());
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+
 
 
 

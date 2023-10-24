@@ -136,23 +136,10 @@
            <form method="post" action="<%=request.getContextPath()%>/UsuarioServlet?action=busqueda">
 
             <div class="custom-form-group">
-              <input type="text" class="form-control" id="busqueda" name="busquedaNombreCodigo" placeholder="Buscar por nombre o código">
-
+              <input type="text" class="form-control" name="busquedaNombreCodigo" placeholder="Buscar por nombre o código">
             </div>
+            <button type="submit" class="btn btn-primary">Aplicar filtros</button>
 
-
-            <!-- Menú desplegable de estado
-            <div class="custom-form-group">
-              <select class="form-select" id="estado" name="estado">
-                <option value="" disabled selected>Estado</option>
-                <option value="verificar">Por verificar</option>
-                <option value="pendiente">Aprobado</option>
-                <option value="aprobado">Rechazado</option>
-                <option value="aprobado">Baneado</option>
-              </select>
-            </div> -->
-
-            <button type="submit" class="btn btn-primary" >Aplicar filtros</button>
              <a class="btn btn-primary" href="<%=request.getContextPath()%>/UsuarioServlet" role="button">Borrar filtros</a>
            </form>
 
@@ -189,7 +176,7 @@
             <tr>
               <th class="header c0 centeralign" style="" scope="col"><a><strong>NOMBRE</strong></a> / <a><strong>APELLIDO</strong></a></th>
               <th class="header c1 centeralign" style="" scope="col"><a><strong>CÓDIGO</strong></a></th>
-              <th class="header c2" style="" scope="col"><a><strong>CONDICIÓN</strong></a></th>
+              <th class="header c2" style="" scope="col"><a><strong>ROL</strong></a></th>
               <th class="header c3" style="" scope="col"><a><strong>ESTADO</strong></a></th>
               <th class="header c4" style="" scope="col"><a><strong>ULTIMO ACCESO</strong></a></th>
               <th class="header c5" style="" scope="col">EDITAR</th>
@@ -246,7 +233,7 @@
             }%>
               <td class="cell c3" style=""><%= estado %></td>
               <td class="cell c4" style=""><%= usuario.getUltimoLogin() %></td>
-              <td class="cell c5" style=""><a href="<%=request.getContextPath()%>/UsuarioServlet?action=editarEstado&id=<%=usuario.getCodigo()%>"><img width="24" height="24" src="https://img.icons8.com/sf-regular/48/edit-row.png" alt="edit-row"/></a></td>
+              <td class="cell c5" style=""><a href="<%=request.getContextPath()%>/UsuarioServlet?action=editar&id=<%=usuario.getCodigo()%>"><img width="24" height="24" src="https://img.icons8.com/sf-regular/48/edit-row.png" alt="edit-row"/></a></td>
 
               <td class="cell c6 lastcol" style=""></td>
             </tr>
@@ -294,17 +281,6 @@
               </ul>
             </nav>
 
-
-
-
-
-
-
-
-
-
-
-
           </div>
         </div>
 
@@ -325,18 +301,18 @@
 
 </body>
 
-<script src="../../assets/dist/js/script_dropdown.js"></script>
+<script src="js/script_dropdown.js"></script>
 
 
 <!-- Core JS -->
-<script src="../../assets/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../../assets/dist/js/dist_masonry.pkgd.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/dist_masonry.pkgd.min.js"></script>
 
 <!-- Swiper JS -->
-<script src="../../carousel/js/swiper-bundle.min.js"></script>
+<script src="js/swiper-bundle.min.js"></script>
 
 <!-- JavaScript -->
-<script src="../../carousel/js/script.js"></script>
+<script src="js/script.js"></script>
 
 
 

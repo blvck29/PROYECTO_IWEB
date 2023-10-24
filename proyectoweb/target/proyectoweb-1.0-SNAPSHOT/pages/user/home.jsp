@@ -125,7 +125,7 @@
         <div class="input-group-text p-0">
             <label>
                 <select class="form-select form-select-lg shadow-none bg-light border-0" style="font-size: 1rem">
-                    <option style="font-size: 1rem">Filtro</option>
+                    <option style="font-size: 1rem">Todos</option>
                     <option style="font-size: 1rem">Fútbol</option>
                     <option style="font-size: 1rem">Voley</option>
                     <option style="font-size: 1rem">eSports</option>
@@ -549,7 +549,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
         <div class="input-group-text p-0">
             <label>
                 <select class="form-select form-select-lg shadow-none bg-light border-0" style="font-size: 1rem">
-                    <option style="font-size: 1rem">Filtro</option>
+                    <option style="font-size: 1rem">Todos</option>
                     <option style="font-size: 1rem">Fútbol</option>
                     <option style="font-size: 1rem">Voley</option>
                     <option style="font-size: 1rem">eSports</option>

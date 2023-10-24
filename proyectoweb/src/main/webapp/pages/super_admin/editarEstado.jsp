@@ -1,21 +1,20 @@
 <%@ page import="com.example.proyectoweb.model.beans.Usuario" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<% Usuario usuario = (Usuario) request.getAttribute("usuario");%>
+<% Usuario usuario = (Usuario) request.getAttribute("usuario"); %>
 
 <html lang="en">
 <head>
-
-    <!-- Provicionales usados en clase de iweb: -->
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
           crossorigin="anonymous">
 
-    <!--  -------------------- -->
 
-    <meta http-equiv=”Content-Type” content=”text/html; charset=ISO-8859-1″>    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv=”Content-Type” content=”text/html; charset=ISO-8859-1″>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
@@ -24,13 +23,13 @@
 
     <link rel="canonical" href="#">
 
-    <link rel="icon" type="image/jpg" href="../../../../favicon.png"/>
-    <link rel="stylesheet" type="text/css" href="estilos.css">
+    <link rel="icon" type="image/jpg" href="favicon.png"/>
+    <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" type="text/css" href="cuerpo.css">
 
 
     <!-- Bootstrap core CSS -->
-    <link href="../../../../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <style>
         .bd-placeholder-img {
@@ -55,8 +54,13 @@
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="swiper-bundle.min.css">
 
+
+
     <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="carousel/css/style.css">
+
+
+    <link rel="stylesheet" href="css/style.css">
 
 </head>
 <body>
@@ -69,7 +73,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark blue" aria-label="Eleventh navbar example">
             <div class="container">
                 <a class="navbar-brand me-5 " href="#">
-                    <img class="logo-topbar-fluid" src='assets/dist/imgs/logo_topbar.png' alt="...">
+                    <img class="logo-topbar-fluid" src='images/logo_topbar.png' alt="...">
                 </a>
                 <button class="navbar-toggler justify-content-center" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -110,16 +114,9 @@
 
     <div class="b-example-divider"></div>
 
-</main>
 
 
-<script src="/assets/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- Swiper JS (Carrusel)-->
-<script src="/assets/dist/js/swiper-bundle.min.js"></script>
-
-<!-- JavaScript (Carrusel)-->
-<script src="/assets/dist/js/script.js"></script>
 
 <div class="container">
     <h1 ><strong>Estado de Usuario</strong></h1>
@@ -128,10 +125,10 @@
         <div class="col-md-6">
             <div class="event-section">
 
-                <form>
+
                     <div class="form-group">
                         <label for="nombre"><strong>Nombre y apellidos:</strong></label>
-                        <input class="form-control" type="text" value="<%=usuario.getNombres() + " " + usuario.getApellidos()%>" aria-label="Disabled input example" disabled readonly>
+                        <input class="form-control" type="text" value="<%=usuario.getNombres() + " "+ usuario.getApellidos()%>" aria-label="Disabled input example" disabled readonly>
                     </div>
                     <br/>
                     <div class="form-group">
@@ -144,30 +141,32 @@
                         <input class="form-control" type="text" value="<%=usuario.getCorreo()%>" aria-label="Disabled input example" disabled readonly>
                     </div>
                     <br/>
-                    <div class="form-group">
-                        <label for="correoPUCP"><strong>Rol:</strong></label>
-                        <% String rol ="a";
-                            switch(usuario.getIdRol()){
-                                case "ADMINPRI":
-                                    rol = "Administrador Principal";
-                                    break;
-                                case "ADMINSEC":
-                                    rol = "Administrador Secundario";
-                                    break;
-                                case "STUDENT":
-                                    rol = "Estudiante";
-                                    break;
-                                case "GRADUAT":
-                                    rol = "Graduado";
-                                    break;
-                                default:
-                                    rol = "No definido";
-                            }%>
-                        <input class="form-control" type="text" value="<%=rol%>" aria-label="Disabled input example" disabled readonly>
-                    </div>
-                    <br/>
-                    <div class="form-group">
+                <% String rol ="a";
+                    switch(usuario.getIdRol()){
+                        case "ADMINPRI":
+                            rol = "Administrador Principal";
+                            break;
+                        case "ADMINSEC":
+                            rol = "Administrador Secundario";
+                            break;
+                        case "STUDENT":
+                            rol = "Estudiante";
+                            break;
+                        case "GRADUAT":
+                            rol = "Graduado";
+                            break;
+                        default:
+                            rol = "No definido";
+                    }%>
+                <div class="form-group">
+                    <label for="correoPUCP"><strong>Rol:</strong></label>
+                    <input class="form-control" type="text" value="<%=rol%>" aria-label="Disabled input example" disabled readonly>
+                </div>
+
+                <br>
+                <div class="form-group">
                         <label for="correoPUCP"><strong>Estado actual:</strong></label>
+
                         <% String estado ="a";
                             switch(usuario.getIdEstado()){
                                 case "ACC":
@@ -185,27 +184,82 @@
                                 default:
                                     estado = "a";
                             }%>
+
                         <input class="form-control" type="text" value="<%=estado%>" aria-label="Disabled input example" disabled readonly>
                     </div>
                     <br/>
-
                     <div class="form-group">
-                        <label for="EstadoAlumno"><strong>Estado actual del alumno:</strong></label>
+                        <label for="EstadoAlumno"><strong>Editar estado:</strong></label>
                         <br/>
+
+                        <% if (estado.equals("Aceptado")){%>
                         <div class="radio-buttons">
-                            <label><input type="radio" name="status" value="porVerificar"> Por verificar <br></label>
+                            <label><input type="radio" name="status" value="denegado"> Baneado </label>
+                        </div>
+                    </div>
+                        <br/>
+                        <div class="button-container">
+                            <a class="btn btn-primary" href="<%=request.getContextPath()%>/UsuarioServlet" role="button">Cancelar</a>
+                            <a class="btn btn-primary" href="<%=request.getContextPath()%>/UsuarioServlet" role="button">Guardar cambios</a>
+                        </div>
+
+
+                         <%}else if (estado.equals("Verificado")){%>
+                        <div class="radio-buttons">
                             <label><input type="radio" name="status" value="aprobado"> Aprobado <br></label>
                             <label><input type="radio" name="status" value="denegado"> Denegado </label>
                         </div>
-                    </div>
-                    <br/>
-                    <div class="button-container">
-                        <button type="button" class="btn btn-primary">Cancelar</button>
-                        <button type="button" class="btn btn-primary">Guardar Cambios</button>
-                    </div>
+                     </div>
+                        <br/>
+                        <div class="button-container">
+                            <a class="btn btn-primary" href="<%=request.getContextPath()%>/UsuarioServlet" role="button">Cancelar</a>
+                            <a class="btn btn-primary" href="<%=request.getContextPath()%>/UsuarioServlet" role="button">Guardar cambios</a>
+                        </div>
 
-                </form>
+
+                         <%}else if (estado.equals("Pendiente")){%>
+                         <input class="form-control" type="text" value="Esperando a que el usuario confirme su contraseña por correo" aria-label="Disabled input example" disabled readonly>
+                     </div>
+                    <br/>
+                        <div class="button-container">
+                            <a class="btn btn-primary" href="<%=request.getContextPath()%>/UsuarioServlet" role="button">Regresar</a>
+                        </div>
+
+                        <%}%>
+
+
+
+
+
+
+
             </div>
         </div>
+</main>
+<br>
+<br>
+<br>
+<br>
+
+
+       <div class="container-fluid" style="padding-left: 0px; padding-right: 0px;">
+            <footer class="text-center" style="background: #042454;">
+                <div class="container text-white py-4 py-lg-5">
+                    <p class="text-white mb-0"><br>© Pontificia Universidad Católica del Perú - Todos los derechos reservados<br><br></p>
+                </div>
+            </footer>
+        </div>
+
+
 </body>
+
+
+<script src="/assets/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Swiper JS (Carrusel)-->
+<script src="/assets/dist/js/swiper-bundle.min.js"></script>
+
+<!-- JavaScript (Carrusel)-->
+<script src="/assets/dist/js/script.js"></script>
+
 </html>
