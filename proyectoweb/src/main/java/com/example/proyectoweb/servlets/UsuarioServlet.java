@@ -16,7 +16,7 @@ public class UsuarioServlet extends HttpServlet {
         UsuariosDao userDao = new UsuariosDao();
 
         String action = request.getParameter("action") == null? "lista" : request.getParameter("action");
-        
+
         switch (action){
             case "lista":
                 //Listar:
@@ -31,7 +31,7 @@ public class UsuarioServlet extends HttpServlet {
 
                 if(usuario != null){
                     request.setAttribute("usuario", usuario);
-                    request.getRequestDispatcher("pages/super_admin/editarEstado.jsp").forward(request,response);
+                    request.getRequestDispatcher("pages/super_admin/editar_estado.jsp").forward(request,response);
                 }
                 else{
                     response.sendRedirect(request.getContextPath()+"/UsuarioServlet");

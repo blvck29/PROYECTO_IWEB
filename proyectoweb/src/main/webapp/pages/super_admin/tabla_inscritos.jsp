@@ -49,10 +49,7 @@
           <a href="tabla_inscritos.jsp" class="active">Usuarios</a>
         </li>
         <li>
-          <a href="../user/per_events.jsp">Mis Eventos</a>
-        </li>
-        <li>
-          <a href="donate.jsp">Donaciones</a>
+          <a href="../user/per_events.jsp">Estadísticas</a>
         </li>
         <li>
           <a href="#"><i class="fa-solid fa-user nav-icon2"></i>Usuario</a>
