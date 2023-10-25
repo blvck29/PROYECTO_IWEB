@@ -13,13 +13,22 @@ import java.util.ArrayList;
 public class ActividadServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       ActividadesDao actividadesDaoDao = new ActividadesDao();
-       ArrayList<Actividad> listaActividades = actividadesDaoDao.getListaActividades();
 
-       request.setAttribute("lista", listaActividades);
+        String action = request.getParameter("action") == null? "listarAct" : request.getParameter("action");
 
-       RequestDispatcher view = request.getRequestDispatcher("home.jsp");
-       view.forward(request,response);
+        switch(action){
+            case "listarAct":
+                ActividadesDao actividadesDao = new ActividadesDao();
+                ArrayList<Actividad> listaActividades = actividadesDao.getListaActividades();
+                request.setAttribute("lista", listaActividades);
+                request.getRequestDispatcher("/pages/super_admin/lista_actividades.jsp").forward(request,response);
+                
+                break;
+
+
+        }
+
+
 
     }
 

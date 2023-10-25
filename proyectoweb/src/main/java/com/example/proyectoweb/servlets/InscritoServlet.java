@@ -19,8 +19,11 @@ public class InscritoServlet extends HttpServlet {
 
         String action = request.getParameter("action") == null? "listarApoyos" : request.getParameter("action");
 
+        InscritosDao insDao = new InscritosDao();
+
         switch (action){
             case "listarApoyos":
+                String idStr = request.getParameter("id");
 
                 break;
 
