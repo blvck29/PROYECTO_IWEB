@@ -38,7 +38,7 @@
                     <label><a href="pages/system/password_recovery/email.jsp">Olvidé la contraseña</a></label>
                 </div>
 
-                <a href="pages/user/home.jsp"><input type="submit" value="Acceder" class="login-button"></a>
+                <a href="<%=request.getContextPath()%>/home"><input type="submit" value="Acceder" class="login-button"></a>
 
             </form>
 

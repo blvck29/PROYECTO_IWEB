@@ -9,15 +9,15 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet(name = "EventoServlet", value = "/admin_act_home")
-public class EventoServlet extends HttpServlet {
+@WebServlet(name = "HomeUserEventoServlet", value = "/home")
+public class HomeUserEventoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EventosDao eventoDao = new EventosDao();
 
         ArrayList<Evento> listaEventos = eventoDao.listarEventos();
         request.setAttribute("listaEventos", listaEventos);
-        request.getRequestDispatcher("/pages/admin_act/home.jsp").forward(request,response);
+        request.getRequestDispatcher("/pages/user/home.jsp").forward(request,response);
     }
 
     @Override
