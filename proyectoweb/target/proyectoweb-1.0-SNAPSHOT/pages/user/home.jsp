@@ -130,13 +130,9 @@
         <div class="input-group-text p-0">
             <label>
                 <select class="form-select form-select-lg shadow-none bg-light border-0" style="font-size: 1rem">
-                    <%for (){%>
-                    <option style="font-size: 1rem">Todos</option>
-                    <option style="font-size: 1rem">Fútbol</option>
-                    <option style="font-size: 1rem">Voley</option>
-                    <option style="font-size: 1rem">eSports</option>
-                    <option style="font-size: 1rem">Basquet</option>
-                    <option style="font-size: 1rem">Ajedrez</option>
+                    <%for (Actividad act : listaActividades){%>
+                    <option style="font-size: 1rem"><%act.getTitulo();%></option>
+                    <%}%>
                 </select>
             </label>
         </div>
