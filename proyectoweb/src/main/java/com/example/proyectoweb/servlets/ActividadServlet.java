@@ -8,6 +8,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 @WebServlet(name = "ActividadServlet", value = "/admin_gen_activities")
@@ -40,6 +41,7 @@ public class ActividadServlet extends HttpServlet {
 
         switch (action){
             case "busqueda":
+
                 
 
                 break;

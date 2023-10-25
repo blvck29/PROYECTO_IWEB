@@ -37,6 +37,8 @@ public class ActividadesDao {
         return listaActividades;
     }
 
+
+
     public ArrayList<DelegadoAct> listarNombresEncargadosAct(){
 
         try{
