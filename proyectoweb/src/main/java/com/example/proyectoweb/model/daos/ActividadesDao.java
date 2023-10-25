@@ -125,7 +125,7 @@ public class ActividadesDao {
 
                     DelegadoAct delegadoAct = new DelegadoAct();
 
-                    delegadoAct.se
+
 
                 }
 
