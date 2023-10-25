@@ -1,265 +1,158 @@
-<%@ page import="com.example.proyectoweb.model.beans.Usuario" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
-<% Usuario usuario = (Usuario) request.getAttribute("usuario"); %>
 
-<html lang="en">
+<!doctype html>
+<html lang="es">
 <head>
-
+    <meta http-equiv="Content-Type" content=text/html; charset=ISO-8859-1″>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-          crossorigin="anonymous">
-
-
-    <meta http-equiv=”Content-Type” content=”text/html; charset=ISO-8859-1″>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.84.0">
-    <title>Semana de Ingeniería</title>
-
-    <link rel="canonical" href="#">
-
-    <link rel="icon" type="image/jpg" href="favicon.png"/>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" type="text/css" href="cuerpo.css">
-
-
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-        }
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-    </style>
-
-
-    <!-- Custom styles for this template <link href="carousel.css" rel="stylesheet"> -->
-    <link href="headers.css" rel="stylesheet">
-
-    <!-- Swiper CSS -->
-    <link rel="stylesheet" href="swiper-bundle.min.css">
-
-
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="carousel/css/style.css">
-
 
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+
+    <script src="https://kit.fontawesome.com/a2dd6045c4.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.17.4/dist/css/uikit.min.css" />
+
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.17.4/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.17.4/dist/js/uikit-icons.min.js"></script>
+
+    <link rel="icon" type="image/jpg" href="favicon.png" />
+
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+
+    <title>Administrar Usuario | Semana de Ingeniería 2023</title>
 </head>
+
 <body>
+<header>
+    <div class="logo"><a href="tabla_inscritos.jsp"><img class="logo-img" src="images/logo_topbar.png" alt="logo"></a></div>
+
+    <div class="bars">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+
+    <nav class="nav-bar">
+        <ul>
+            <li>
+                <a href="tabla_inscritos.jsp" class="active">Usuarios</a>
+            </li>
+            <li>
+                <a href="lista_actividades.jsp">Actividades</a>
+            </li>
+            <li>
+                <a href="statistics.jsp.jsp">Estadísticas</a>
+            </li>
+            <li>
+                <a href="lista_donaciones.jsp.jsp">Donaciones</a>
+            </li>
+            <li>
+                <a href="/proyectoweb"><i class="fa-solid fa-door-open nav-icon2"></i>Cerrar Sesión</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<div class="container">
+    <div style="margin-bottom: 50px"></div>
+
+    <h2><i class="fa-solid fa-star" style="color: #8de7ef;"></i><strong style="padding-left: 10px">Administrar Usuario</strong></h2>
+
+    <div style="margin-bottom: 20px"></div>
+    <hr>
+    <div style="margin-bottom: 30px"></div>
 
 
-<main>
+    <div class="form-group">
+        <label for="name"><strong>Nombre y apellidos:</strong></label>
+        <input class="form-control" id="name" type="text" value="Barack Obama" aria-label="Disabled input example" disabled="" readonly="">
+    </div>
+    <div style="margin-bottom: 20px"></div>
 
-    <header>
+    <div class="form-group">
+        <label for="codigoPUCP"><strong>Código PUCP:</strong></label>
+        <input class="form-control" id="codigoPUCP" type="text" value="20200101" aria-label="Disabled input example" disabled="" readonly="">
+    </div>
+    <div style="margin-bottom: 20px"></div>
 
-        <nav class="navbar navbar-expand-lg navbar-dark blue" aria-label="Eleventh navbar example">
-            <div class="container">
-                <a class="navbar-brand me-5 " href="#">
-                    <img class="logo-topbar-fluid" src='images/logo_topbar.png' alt="...">
-                </a>
-                <button class="navbar-toggler justify-content-center" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+    <div class="form-group">
+        <label for="correoPUCP"><strong>Correo PUCP:</strong></label>
+        <input class="form-control" id="correoPUCP" type="text" value="a20200101@pucp.edu.pe" aria-label="Disabled input example" disabled="" readonly="">
+    </div>
+    <div style="margin-bottom: 20px"></div>
 
-                <div class="collapse navbar-collapse" id="navbarsExample09">
-                    <ul class="navbar-nav me-auto mb-4 mb-lg-0">
-                        <li class="nav-item">
-                            <button type="button" class="btn-darkbg btn-outline-wt  me-2" href = "#">Estadísticas</button>
-                        </li>
-                        <li class="nav-item">
-                            <button type="button" class="btn-darkbg btn-outline-wt  me-2" href = "#">Administración</button>
-                        </li>
-                    </ul>
-                    <button type="button" class="btn-darkbg btn-outline-wt" href = "#">Cerrar Sesión   <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg> </button>
+    <div class="form-group">
+        <label for="correoPUCP"><strong>Rol:</strong></label>
+        <input class="form-control" type="text" value="Estudiante" aria-label="Disabled input example" disabled="" readonly="">
+    </div>
+    <div style="margin-bottom: 20px"></div>
 
+    <div class="form-group">
+        <label for="correoPUCP"><strong>Estado actual:</strong></label>
+        <input class="form-control" type="text" value="Verificado" aria-label="Disabled input example" disabled="" readonly="">
+    </div>
+    <div style="margin-bottom: 20px"></div>
 
-                </div>
-            </div>
-        </nav>
-    </header>
+    <div class="form-group">
+        <label><strong>Editar estado:</strong></label>
+        <div style="margin-bottom: 20px"></div>
 
-    <div class="container-img-responsive">
-        <div class="container col-xxl-8 px-4 py-5">
-            <div class="row flex-lg-row-reverse align-items-center g-5 py-5 ">
-                <div class="col-10 col-sm-8 col-lg-6"></div>
-                <div class="col-lg-6">
-                    <p class="lead fs-3 text-white">Administración-Administración de Usuarios</p>
-                    <h1 class=" fst-italic fw-bold lh-1 mb-2 text-white "><strong>Administración de Usuarios</strong></h1>
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                    </div>
-                </div>
-            </div>
+        <div class="radio-buttons">
+            <label style="padding-right: 30px"><input type="radio" name="status" value="aprobado"> Aprobado <br></label>
+            <label><input type="radio" name="status" value="denegado"> Denegado </label>
         </div>
+
+        <div style="margin-bottom: 20px"></div>
+
+        <div class="button-container">
+            <a class="btn btn-primary" href="/proyectoweb/UsuarioServlet" role="button">Cancelar</a>
+            <a class="btn btn-primary" href="/proyectoweb/UsuarioServlet" role="button">Guardar cambios</a>
+        </div>
+        <div style="margin-bottom: 50px"></div>
+
+
     </div>
 
 
 
-    <div class="b-example-divider"></div>
 
 
 
-
-
-<div class="container">
-    <h1 ><strong>Estado de Usuario</strong></h1>
-    <br/>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="event-section">
-
-
-                    <div class="form-group">
-                        <label for="nombre"><strong>Nombre y apellidos:</strong></label>
-                        <input class="form-control" type="text" value="<%=usuario.getNombres() + " "+ usuario.getApellidos()%>" aria-label="Disabled input example" disabled readonly>
-                    </div>
-                    <br/>
-                    <div class="form-group">
-                        <label for="codigoPUCP"><strong>Código PUCP:</strong></label>
-                        <input class="form-control" type="text" value="<%=usuario.getCodigo()%>" aria-label="Disabled input example" disabled readonly>
-                    </div>
-                    <br/>
-                    <div class="form-group">
-                        <label for="correoPUCP"><strong>Correo PUCP:</strong></label>
-                        <input class="form-control" type="text" value="<%=usuario.getCorreo()%>" aria-label="Disabled input example" disabled readonly>
-                    </div>
-                    <br/>
-                <% String rol ="a";
-                    switch(usuario.getIdRol()){
-                        case "ADMINPRI":
-                            rol = "Administrador Principal";
-                            break;
-                        case "ADMINSEC":
-                            rol = "Administrador Secundario";
-                            break;
-                        case "STUDENT":
-                            rol = "Estudiante";
-                            break;
-                        case "GRADUAT":
-                            rol = "Graduado";
-                            break;
-                        default:
-                            rol = "No definido";
-                    }%>
-                <div class="form-group">
-                    <label for="correoPUCP"><strong>Rol:</strong></label>
-                    <input class="form-control" type="text" value="<%=rol%>" aria-label="Disabled input example" disabled readonly>
-                </div>
-
-                <br>
-                <div class="form-group">
-                        <label for="correoPUCP"><strong>Estado actual:</strong></label>
-
-                        <% String estado ="a";
-                            switch(usuario.getIdEstado()){
-                                case "ACC":
-                                    estado = "Aceptado";
-                                    break;
-                                case "VER":
-                                    estado = "Verificado";
-                                    break;
-                                case "PEN":
-                                    estado = "Pendiente";
-                                    break;
-                                case "BAN":
-                                    estado = "Baneado";
-                                    break;
-                                default:
-                                    estado = "a";
-                            }%>
-
-                        <input class="form-control" type="text" value="<%=estado%>" aria-label="Disabled input example" disabled readonly>
-                    </div>
-                    <br/>
-                    <div class="form-group">
-                        <label for="EstadoAlumno"><strong>Editar estado:</strong></label>
-                        <br/>
-
-                        <% if (estado.equals("Aceptado")){%>
-                        <div class="radio-buttons">
-                            <label><input type="radio" name="status" value="denegado"> Baneado </label>
-                        </div>
-                    </div>
-                        <br/>
-                        <div class="button-container">
-                            <a class="btn btn-primary" href="<%=request.getContextPath()%>/UsuarioServlet" role="button">Cancelar</a>
-                            <a class="btn btn-primary" href="<%=request.getContextPath()%>/UsuarioServlet" role="button">Guardar cambios</a>
-                        </div>
-
-
-                         <%}else if (estado.equals("Verificado")){%>
-                        <div class="radio-buttons">
-                            <label><input type="radio" name="status" value="aprobado"> Aprobado <br></label>
-                            <label><input type="radio" name="status" value="denegado"> Denegado </label>
-                        </div>
-                     </div>
-                        <br/>
-                        <div class="button-container">
-                            <a class="btn btn-primary" href="<%=request.getContextPath()%>/UsuarioServlet" role="button">Cancelar</a>
-                            <a class="btn btn-primary" href="<%=request.getContextPath()%>/UsuarioServlet" role="button">Guardar cambios</a>
-                        </div>
-
-
-                         <%}else if (estado.equals("Pendiente")){%>
-                         <input class="form-control" type="text" value="Esperando a que el usuario confirme su contraseña por correo" aria-label="Disabled input example" disabled readonly>
-                     </div>
-                    <br/>
-                        <div class="button-container">
-                            <a class="btn btn-primary" href="<%=request.getContextPath()%>/UsuarioServlet" role="button">Regresar</a>
-                        </div>
-
-                        <%}%>
+    <script src="js/bootstrap/bootstrap.js"></script>
+    <script src="js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async=""></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
 
 
+</div>
 
-
-
-
+<div class="container-fluid" style="background-color: #fff; padding-right: 0; padding-left: 0">
+    <div class="my-4"></div>
+    <footer id="sticky-footer" class="flex-shrink-0 py-4 text-white-50" style="background-color: #04011E">
+        <div class="container">
+            <div class="nav justify-content-center border-bottom pb-3 mb-3">
+                <p style="text-align: center">
+                    <small class="text-center">© Pontificia Universidad Católica del Perú - Todos los derechos reservados</small>
+                </p>
             </div>
         </div>
-</main>
-<br>
-<br>
-<br>
-<br>
-
-
-       <div class="container-fluid" style="padding-left: 0px; padding-right: 0px;">
-            <footer class="text-center" style="background: #042454;">
-                <div class="container text-white py-4 py-lg-5">
-                    <p class="text-white mb-0"><br>© Pontificia Universidad Católica del Perú - Todos los derechos reservados<br><br></p>
-                </div>
-            </footer>
-        </div>
-
-
+    </footer>
+</div>
 </body>
-
-
-<script src="/assets/dist/js/bootstrap.bundle.min.js"></script>
-
-<!-- Swiper JS (Carrusel)-->
-<script src="/assets/dist/js/swiper-bundle.min.js"></script>
-
-<!-- JavaScript (Carrusel)-->
-<script src="/assets/dist/js/script.js"></script>
 
 </html>

@@ -49,16 +49,16 @@
           <a href="tabla_inscritos.jsp" class="active">Usuarios</a>
         </li>
         <li>
-          <a href="../user/per_events.jsp">Estadísticas</a>
+          <a href="lista_actividades.jsp">Actividades</a>
         </li>
         <li>
-          <a href="../user/lista_donaciones.jsp">Donaciones</a>
+          <a href="statistics.jsp.jsp">Estadísticas</a>
         </li>
         <li>
-          <a href="#"><i class="fa-solid fa-user nav-icon2"></i>Usuario</a>
+          <a href="lista_donaciones.jsp.jsp">Donaciones</a>
         </li>
         <li>
-          <a href="<%=request.getContextPath()%>"><i class="fa-solid fa-door-open nav-icon2"></i>Cerrar Sesión</a>
+          <a href="/proyectoweb"><i class="fa-solid fa-door-open nav-icon2"></i>Cerrar Sesión</a>
         </li>
       </ul>
     </nav>
