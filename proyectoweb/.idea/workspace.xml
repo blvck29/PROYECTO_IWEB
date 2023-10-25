@@ -33,12 +33,14 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/main/java/com/example/proyectoweb/model/beans/Usuario.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/example/proyectoweb/model/daos/ActividadesDao.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/example/proyectoweb/model/daos/EventosDao.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/example/proyectoweb/model/daos/InscritosDao.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/example/proyectoweb/model/daos/UsuariosDao.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/example/proyectoweb/servlets/ActividadServlet.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/example/proyectoweb/servlets/DonacionesServlet.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/example/proyectoweb/servlets/EventoServlet.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/example/proyectoweb/servlets/HomeUserEventoServlet.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/example/proyectoweb/servlets/InscritoServlet.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/example/proyectoweb/servlets/UsuarioServlet.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/webapp/css/style.css" root0="SKIP_INSPECTION" />
@@ -46,6 +48,7 @@
     <setting file="file://$PROJECT_DIR$/src/main/webapp/pages/admin_act/home.jsp" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" root2="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/webapp/pages/super_admin/lista_actividades.jsp" root0="FORCE_HIGHLIGHTING" root1="SKIP_INSPECTION" root2="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/webapp/pages/super_admin/tabla_inscritos.jsp" root0="FORCE_HIGHLIGHTING" root1="SKIP_INSPECTION" root2="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/webapp/pages/user/home.jsp" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" root2="SKIP_INSPECTION" />
   </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
@@ -312,7 +315,7 @@
       <workItem from="1698178571409" duration="397000" />
       <workItem from="1698179172918" duration="487000" />
       <workItem from="1698240836200" duration="7800000" />
-      <workItem from="1698262442134" duration="4542000" />
+      <workItem from="1698262442134" duration="8690000" />
     </task>
     <servers />
   </component>

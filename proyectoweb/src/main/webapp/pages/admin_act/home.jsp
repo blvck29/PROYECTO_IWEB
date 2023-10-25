@@ -101,13 +101,31 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
     <div style="margin-bottom: 40px"></div>
 
+    <div class="input-group mb-3">
+
+        <div class="input-group-text p-0">
+            <label>
+                <select class="form-select form-select-lg shadow-none bg-light border-0" style="font-size: 1rem">
+                    <option style="font-size: 1rem">Próximos</option>
+                    <option style="font-size: 1rem">Finalizados</option>
+                </select>
+            </label>
+        </div>
+        <input type="text" class="form-control" placeholder="Buscar Evento">
+        <button class="input-group-text shadow-none px-4 btn-large">
+            <i class="fa-solid fa-magnifying-glass" style="color: #262626;"></i>
+        </button>
+
+    </div>
+
 
 
 
     <div class="row align-content-center" data-masonry='{"percentPosition": true }'>
 
 
-        <% for (Evento evento : listaEventos) { %>
+        <% for (Evento evento : listaEventos) {
+        if (evento.getIdActividad().equals("ESPORTS")) {%>
         <div class="col-sm-6 col-lg-3 mb-4">
 
             <div class="card-list">
@@ -138,7 +156,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
             </div>
 
         </div>
-
+        <%}%>
         <%}%>
 
 

@@ -23,11 +23,12 @@ public class ActividadServlet extends HttpServlet {
                 ActividadesDao actividadesDao = new ActividadesDao();
 
                 ArrayList<DelegadoAct> listaDelegadosAct = actividadesDao.listarNombresEncargadosAct();
-                ArrayList<Actividad> listaActividades =actividadesDao.getListaActividades();
+                ArrayList<Actividad> listaActividades = actividadesDao.getListaActividades();
+
                 request.setAttribute("listaActividades", listaActividades);
                 request.setAttribute("listaDelegadosAct", listaDelegadosAct);
                 request.getRequestDispatcher("/pages/super_admin/lista_actividades.jsp").forward(request,response);
-                request.getRequestDispatcher("/pages/user/home.jsp").forward(request,response);
+
                 break;
 
         }
@@ -35,6 +36,7 @@ public class ActividadServlet extends HttpServlet {
 
 
     }
+
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -131,7 +131,7 @@
             <label>
                 <select class="form-select form-select-lg shadow-none bg-light border-0" style="font-size: 1rem">
                     <%for (Actividad act : listaActividades){%>
-                    <option style="font-size: 1rem"><%act.getTitulo();%></option>
+                    <option style="font-size: 1rem"><%=act.getTitulo()%></option>
                     <%}%>
                 </select>
             </label>
