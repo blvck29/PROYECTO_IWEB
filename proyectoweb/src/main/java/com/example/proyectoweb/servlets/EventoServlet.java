@@ -17,8 +17,7 @@ public class EventoServlet extends HttpServlet {
 
         ArrayList<Evento> listaEventos = eventoDao.listarEventos();
         request.setAttribute("listaEventos", listaEventos);
-        RequestDispatcher view = request.getRequestDispatcher("pages/admin_act/home.jsp");
-        view.forward(request,response);
+        request.getRequestDispatcher("/pages/admin_act/home.jsp").forward(request,response);
     }
 
     @Override

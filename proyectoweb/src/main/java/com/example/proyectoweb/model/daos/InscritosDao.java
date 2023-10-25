@@ -2,6 +2,7 @@
 package com.example.proyectoweb.model.daos;
 import com.example.proyectoweb.model.beans.Evento;
 import com.example.proyectoweb.model.beans.Inscrito;
+import com.example.proyectoweb.model.beans.Usuario;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -9,40 +10,54 @@ import java.util.ArrayList;
 public class InscritosDao {
 
 
-    public ArrayList<Inscrito> getListaInscritos(){
-        ArrayList<Inscrito> listaInscritos = new ArrayList<>();
+    public ArrayList<Usuario> listarInscritosXevento(int idEvento){
+        ArrayList<Usuario> listaInscritosxEvento = new ArrayList<>();
 
-        try {
-            // hacemos la conexion
-            String user = "root";
-            String pass = "root";
-            String url = "jdbc:mysql://localhost:3306/proyectoweb";
-
+        try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection(url,user,pass);
-
-            // hacemos el statement
-
-            Statement stmt = conn.createStatement();
-
-            ResultSet rs = stmt.executeQuery("SELECT * FROM inscripcion");
-
-            while (rs.next()) {
-                Inscrito inscrito = new Inscrito();
-                inscrito.setIdUsuario(rs.getInt(1));
-                inscrito.setIdEvento(rs.getInt(2));
-                inscrito.setIdRol(rs.getString(3));
-                inscrito.setAceptado(rs.getBoolean(4));
-                listaInscritos.add(inscrito);
-            }
-
-
-        } catch (ClassNotFoundException | SQLException e){
+        }catch(ClassNotFoundException e){
             throw new RuntimeException(e);
         }
 
-        return listaInscritos;
+        //Parámetros de Conexión
+        String url = "jdbc:mysql://localhost:3306/proyectoweb";
+        String username = "root";
+        String password = "root";
+
+
+        String sql = "select * from usuarios where idEvento = ?";
+
+        try (Connection conn = DriverManager.getConnection(url,username,password);
+             PreparedStatement pstmt = conn.prepareStatement(sql)){
+
+            pstmt.setInt(1, idEvento);
+
+
+            try(ResultSet rs = pstmt.executeQuery()){
+
+                while(rs.next()){
+
+                    Usuario usuario = new Usuario();
+                    usuario.setNombres(rs.getString(4));
+                    usuario.setApellidos(rs.getString(5));
+                    usuario.setCodigo(rs.getString(6));
+                    usuario.setIdRol(rs.getString(2));
+                    usuario.setIdEstado(rs.getString(3));
+                    usuario.setUltimoLogin(rs.getString(9));
+                    usuario.setCorreo(rs.getString(7));
+
+                    listaInscritosxEvento.add(usuario);
+                }
+
+            }
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+
+        return listaInscritosxEvento;
+
     }
+
 
 
 
