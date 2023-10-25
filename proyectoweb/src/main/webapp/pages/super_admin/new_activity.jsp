@@ -50,19 +50,19 @@
     <nav class="nav-bar">
         <ul>
             <li>
-                <a href="home.jsp">Eventos</a>
+                <a href="<%=request.getContextPath()%>/admin_gen_home" >Usuarios</a>
             </li>
             <li>
-                <a href="new_event.jsp" class="active">Crear Evento</a>
+                <a href="<%=request.getContextPath()%>/admin_gen_activities" class="active">Actividades</a>
             </li>
             <li>
-                <a href="<%=request.getContextPath()%>/UsuarioServlet?action=listarApoyos">Gestionar Apoyos</a>
+                <a href="<%=request.getContextPath()%>/admin_gen_statistics">Estadísticas</a>
             </li>
             <li>
-                <a href="#"><i class="fa-solid fa-user nav-icon2"></i>Usuario</a>
+                <a href="<%=request.getContextPath()%>/admin_gen_donaciones">Donaciones</a>
             </li>
             <li>
-                <a href="../../index.jsp"><i class="fa-solid fa-door-open nav-icon2"></i>Cerrar Sesión</a>
+                <a href="<%=request.getContextPath()%>"><i class="fa-solid fa-door-open nav-icon2"></i>Cerrar Sesión</a>
             </li>
         </ul>
     </nav>

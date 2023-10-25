@@ -10,7 +10,7 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet(name = "ActividadServlet", value = "/adm_actividades")
+@WebServlet(name = "ActividadServlet", value = "/admin_gen_activities")
 public class ActividadServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -33,6 +33,18 @@ public class ActividadServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        String action = request.getParameter("action") == null? "busqueda" : request.getParameter("action");
+
+        switch (action){
+            case "busqueda":
+                
+
+                break;
+
+
+
+        }
 
     }
 }

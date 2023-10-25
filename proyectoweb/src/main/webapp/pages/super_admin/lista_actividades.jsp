@@ -48,16 +48,16 @@
             <nav class="nav-bar">
                 <ul>
                     <li>
-                        <a href="tabla_inscritos.jsp" class="active">Usuarios</a>
+                        <a href="<%=request.getContextPath()%>/admin_gen_home" >Usuarios</a>
                     </li>
                     <li>
-                        <a href="../user/per_events.jsp">Estadísticas</a>
+                        <a href="<%=request.getContextPath()%>/admin_gen_activities" class="active">Actividades</a>
                     </li>
                     <li>
-                        <a href="../user/lista_donaciones.jsp">Donaciones</a>
+                        <a href="<%=request.getContextPath()%>/admin_gen_statistics">Estadísticas</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa-solid fa-user nav-icon2"></i>Usuario</a>
+                        <a href="<%=request.getContextPath()%>/admin_gen_donaciones">Donaciones</a>
                     </li>
                     <li>
                         <a href="<%=request.getContextPath()%>"><i class="fa-solid fa-door-open nav-icon2"></i>Cerrar Sesión</a>
@@ -73,7 +73,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                 <div class="py-5">
                     <h1 class="display-5 fw-bold text-white">Bienvenido, @Admin_general</h1>
                     <div style="margin-bottom: 20px"></div>
-                    <h3 class="fw-bold text-white">Panel de Administración de Usuarios</h3>
+                    <h3 class="fw-bold text-white">Panel de Administración de Actividades</h3>
                     <div style="margin-bottom: 20px"></div>
                     <div class="justify-content-sm-center">
                     </div>
@@ -88,14 +88,14 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
                 <div class="col-md-12">
 
-                    <form method="post" action="<%=request.getContextPath()%>/UsuarioServlet?action=busqueda">
+                    <form method="post" action="<%=request.getContextPath()%>/admin_gen_activities?action=busqueda">
 
                         <div class="custom-form-group">
-                            <input type="text" class="form-control" name="busquedaNombreCodigo" placeholder="Buscar por nombre o código" style="width: 120%">
+                            <input type="text" class="form-control" name="busquedaNombreCodigo" placeholder="Buscar por título" style="width: 120%">
                         </div>
                         <button type="submit" class="btn btn-primary">Aplicar filtros</button>
 
-                        <a class="btn btn-primary" href="<%=request.getContextPath()%>/UsuarioServlet" role="button">Borrar filtros</a>
+                        <a class="btn btn-primary" href="<%=request.getContextPath()%>/admin_gen_activities" role="button">Borrar filtros</a>
                     </form>
                 </div>
             </div>

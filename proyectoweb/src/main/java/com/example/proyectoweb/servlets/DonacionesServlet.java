@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet(name = "lista_donaciones", value = "/lista_donaciones")
+@WebServlet(name = "lista_donaciones", value = "/admin_gen_donaciones")
 public class DonacionesServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request,

@@ -47,7 +47,7 @@ public class UsuarioServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UsuariosDao userDao = new UsuariosDao();
-        String action = request.getParameter("action") == null? "buscar" : request.getParameter("action");
+        String action = request.getParameter("action") == null? "busqueda" : request.getParameter("action");
 
         switch(action){
             case "busqueda":

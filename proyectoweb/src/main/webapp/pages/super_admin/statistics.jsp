@@ -49,19 +49,19 @@
     <nav class="nav-bar">
         <ul>
             <li>
-                <a href="tabla_inscritos.jsp">Usuarios</a>
+                <a href="<%=request.getContextPath()%>/admin_gen_home">Usuarios</a>
             </li>
             <li>
-                <a href="lista_actividades.jsp">Actividades</a>
+                <a href="<%=request.getContextPath()%>/admin_gen_activities">Actividades</a>
             </li>
             <li>
-                <a href="statistics.jsp.jsp" class="active">Estadísticas</a>
+                <a href="<%=request.getContextPath()%>/admin_gen_statistics" class="active">Estadísticas</a>
             </li>
             <li>
-                <a href="lista_donaciones.jsp.jsp">Donaciones</a>
+                <a href="<%=request.getContextPath()%>/admin_gen_donaciones">Donaciones</a>
             </li>
             <li>
-                <a href="/proyectoweb"><i class="fa-solid fa-door-open nav-icon2"></i>Cerrar Sesión</a>
+                <a href="<%=request.getContextPath()%>"><i class="fa-solid fa-door-open nav-icon2"></i>Cerrar Sesión</a>
             </li>
         </ul>
     </nav>

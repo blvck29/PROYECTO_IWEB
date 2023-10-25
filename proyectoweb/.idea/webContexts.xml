@@ -9,6 +9,7 @@
         <entry key="file://$PROJECT_DIR$/src/main/webapp/pages/admin_act/home.jsp" value="file://$PROJECT_DIR$/src/main/webapp/pages/admin_act" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/pages/delegadoGeneral/tablaInscritos.jsp" value="file://$PROJECT_DIR$/src/main/webapp/pages/delegadoGeneral" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/pages/super_admin/editarEstado.jsp" value="file://$PROJECT_DIR$/src/main/webapp/pages/super_admin" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/pages/super_admin/lista_actividades.jsp" value="file://$PROJECT_DIR$/src/main/webapp/pages/super_admin" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/pages/super_admin/tablaInscritos.jsp" value="file://$PROJECT_DIR$/src/main/webapp/pages/super_admin" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/pages/super_admin/tabla_inscritos.jsp" value="file://$PROJECT_DIR$/src/main/webapp/pages/super_admin" />
       </map>
