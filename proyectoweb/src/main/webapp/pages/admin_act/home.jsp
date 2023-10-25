@@ -79,7 +79,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
             <div style="margin-bottom: 20px"></div>
             <div class="justify-content-sm-center">
                 <button type="button" class="btn btn-outline-info btn-lg px-4">
-                    <a href="create.jsp" class="link-info link-opacity">Crear Evento</a>
+                    <a href="new_event.jsp" class="link-info link-opacity">Crear Evento</a>
                 </button>
             </div>
         </div>

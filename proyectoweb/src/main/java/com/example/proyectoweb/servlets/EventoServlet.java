@@ -15,20 +15,40 @@ import java.util.ArrayList;
 public class EventoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        EventosDao eventoDao = new EventosDao();
-        ActividadesDao actividadesDao = new ActividadesDao();
 
-        ArrayList<Evento> listaEventos = eventoDao.listarEventos();
-        ArrayList<Actividad> listaActividades = actividadesDao.getListaActividades();
+        String action = request.getParameter("action") == null? "admin_act_home" : request.getParameter("action");
 
-        request.setAttribute("listaActividades", listaActividades);
-        request.setAttribute("listaEventos", listaEventos);
-        request.getRequestDispatcher("/pages/admin_act/home.jsp").forward(request,response);
+        switch (action){
+            case "admin_act_home":
+                EventosDao eventoDao = new EventosDao();
+                ActividadesDao actividadesDao = new ActividadesDao();
+
+                ArrayList<Evento> listaEventos = eventoDao.listarEventos();
+                ArrayList<Actividad> listaActividades = actividadesDao.getListaActividades();
+
+                request.setAttribute("listaActividades", listaActividades);
+                request.setAttribute("listaEventos", listaEventos);
+                request.getRequestDispatcher("/pages/admin_act/home.jsp").forward(request,response);
+
+                break;
+
+
+        }
+
+
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        String action = request.getParameter("action") == null? "busqueda" : 
+
+        case "crear_act":
+        request.getRequestDispatcher("/pages/admin_act/new_event.jsp").forward(request,response);
+        break;
+
+        case "edit_act":
+        request.getRequestDispatcher("pages/admin_act/mod_event.jsp").forward(request,response);
     }
 }
 
