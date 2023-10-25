@@ -17,7 +17,7 @@ public class ActividadServlet extends HttpServlet {
         String action = request.getParameter("action") == null? "listarAct" : request.getParameter("action");
 
         switch(action){
-            case "listar":
+            case "listarAct":
                 ActividadesDao actividadesDao = new ActividadesDao();
                 ArrayList<Actividad> listaActividades = actividadesDao.getListaActividades();
                 request.setAttribute("lista", listaActividades);

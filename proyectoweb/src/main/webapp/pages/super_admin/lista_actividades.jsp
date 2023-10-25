@@ -5,7 +5,7 @@
 
 <% ArrayList<Actividad> listaActividad = (ArrayList<Actividad>) request.getAttribute("lista");%>
 
-<!doctype html>
+
 <html lang="es">
 
     <head>
