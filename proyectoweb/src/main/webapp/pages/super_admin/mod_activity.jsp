@@ -50,7 +50,7 @@
     <nav class="nav-bar">
         <ul>
             <li>
-                <a href="home.jsp" class="active">Eventos</a>
+                <a href="home.jsp">Eventos</a>
             </li>
             <li>
                 <a href="new_event.jsp">Crear Evento</a>
@@ -120,9 +120,14 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
 
                 </div>
+
+                <div class="uk-flex uk-flex-center uk-margin-top">
+                    <div class="uk-flex uk-flex-center">
+                        <a id="redirect-button" class="btn btn-secondary m-2" href="http://localhost:8080/proyectoweb/adm_actividades">Cancelar</a>
+                        <button id="reload-button" class="btn btn-primary m-2">Guardar</button>
+                    </div>
+                </div>
             </div>
-
-
 
             <div class="col-lg-6 col-md-12" style="padding-left: 2em; padding-right: 2em; padding-top: 1.5em">
 
@@ -181,15 +186,13 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
 
 
-
-
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const uploadForm = document.querySelector("#upload-form");
         const resetButton = document.querySelector("#reset-button");
 
-        resetButton.addEventListener("click", function() {
-            uploadForm.reset(); // Restablecer el formulario
+        resetButton.addEventListener("click", function(event) {
+            event.preventDefault(); // Prevenir el comportamiento predeterminado del enlace
             const previewList = document.getElementById("preview");
             previewList.innerHTML = ""; // Limpiar la lista de vista previa
         });
