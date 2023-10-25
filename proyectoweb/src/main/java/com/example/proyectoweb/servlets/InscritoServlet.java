@@ -17,27 +17,16 @@ public class InscritoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        InscritosDao inscritoDao = new InscritosDao();
-        UsuariosDao userDao = new UsuariosDao();
+        String action = request.getParameter("action") == null? "listarApoyos" : request.getParameter("action");
 
-        ArrayList<Inscrito> listaInscritos = inscritoDao.getListaInscritos();
-        ArrayList<Usuario> listaUsuarios=new ArrayList<>();
+        switch (action){
+            case "listarApoyos":
+
+                break;
 
 
-
-        for(Inscrito inscrito: listaInscritos ){
-            Usuario usuario=userDao.buscarXid(inscrito.getIdUsuario());
-            listaUsuarios.add(usuario);
         }
 
-
-
-
-        request.setAttribute("listaInscritos", listaInscritos);
-        request.setAttribute("listaUsuarios", listaUsuarios);
-
-        RequestDispatcher view = request.getRequestDispatcher("pages/admin_act/administrar_apoyosxevento.jsp");
-        view.forward(request,response);
     }
 
     @Override
