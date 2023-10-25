@@ -1,6 +1,7 @@
 package com.example.proyectoweb.servlets;
 
 import com.example.proyectoweb.model.beans.Actividad;
+import com.example.proyectoweb.model.beans.DelegadoAct;
 import com.example.proyectoweb.model.daos.ActividadesDao;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -19,10 +20,9 @@ public class ActividadServlet extends HttpServlet {
         switch(action){
             case "listarAct":
                 ActividadesDao actividadesDao = new ActividadesDao();
-                ArrayList<Actividad> listaActividades = actividadesDao.getListaActividades();
-                request.setAttribute("lista", listaActividades);
+                ArrayList<DelegadoAct> listaDelegadosAct = actividadesDao.listarNombresEncargadosAct();
+                request.setAttribute("listaDelegadosAct", listaDelegadosAct);
                 request.getRequestDispatcher("/pages/super_admin/lista_actividades.jsp").forward(request,response);
-                
                 break;
 
 

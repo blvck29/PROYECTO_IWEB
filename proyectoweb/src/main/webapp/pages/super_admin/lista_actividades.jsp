@@ -1,9 +1,10 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.example.proyectoweb.model.beans.Usuario" %>
 <%@ page import="com.example.proyectoweb.model.beans.Actividad" %>
+<%@ page import="com.example.proyectoweb.model.beans.DelegadoAct" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<% ArrayList<Actividad> listaActividad = (ArrayList<Actividad>) request.getAttribute("lista");%>
+<% ArrayList<DelegadoAct> listaDelegadosAct = (ArrayList<DelegadoAct>) request.getAttribute("listaDelegadosAct");%>
 
 
 <html lang="es">
@@ -116,8 +117,10 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
             <table class="admintable generaltable table-sm" id="users">
                 <thead>
                     <tr>
-                        <th class="header c0 centeralign" style="" scope="col"><a><strong>ID ACTIVIDAD</strong></a></th>
-                        <th class="header c1 centeralign" style="" scope="col"><a><strong>NOMBRE</strong></a></th>
+                        <th class="header c1 centeralign" style="" scope="col"><a><strong>TITULO ACTIVIDAD</strong></a></th>
+                        <th class="header c1 centeralign" style="" scope="col"><a><strong>NOMBRE DELEGADO</strong></a></th>
+                        <th class="header c1 centeralign" style="" scope="col"><a><strong>APELLIDO DELEGADO</strong></a></th>
+                        <th class="header c1 centeralign" style="" scope="col"><a><strong>CODIGO DELEGADO</strong></a></th>
                         <th class="header c5" style="" scope="col">EDITAR</th>
                         <td class="header c6 lastcol" style=""></td>
                     </tr>
@@ -127,13 +130,13 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
                 <tbody>
 
-                    <% for (Actividad actividad: listaActividad){ %>
+                    <% for (DelegadoAct delegadoAct: listaDelegadosAct){ %>
                     <tr class="">
-                        <td class="centeralign cell c0" style=""><a><%= actividad.getIdActividad()%></a></td>
-                        <td class="centeralign cell c1" style=""><%= actividad.getTitulo()%></td>
-
-
-                        <td class="cell c5" style=""><a href="#"><img width="24" height="24" src="https://img.icons8.com/sf-regular/48/edit-row.png" alt="edit-row"/></a></td>
+                        <td class="centeralign cell c0" style=""><a><%= delegadoAct.getTituloActividad()%></a></td>
+                        <td class="centeralign cell c1" style=""><%= delegadoAct.getNombre()%></td>
+                        <td class="centeralign cell c1" style=""><%= delegadoAct.getApellido()%></td>
+                        <td class="centeralign cell c1" style=""><%= delegadoAct.getCodigo()%></td>
+                        <td class="cell c5" style=""><a href="<%=request.getContextPath() %>/ActividadServlet?action=Editar"><img width="24" height="24" src="https://img.icons8.com/sf-regular/48/edit-row.png" alt="edit-row"/></a></td>
 
                         <td class="cell c6 lastcol" style=""></td>
                     </tr>
