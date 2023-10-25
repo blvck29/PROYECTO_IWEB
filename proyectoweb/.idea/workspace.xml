@@ -41,6 +41,7 @@
     <setting file="file://$PROJECT_DIR$/src/main/java/com/example/proyectoweb/servlets/UsuarioServlet.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/webapp/css/style.css" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/webapp/pages/admin_act/administrar_apoyos.jsp" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" root2="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/webapp/pages/admin_act/home.jsp" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" root2="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/webapp/pages/super_admin/tabla_inscritos.jsp" root0="FORCE_HIGHLIGHTING" root1="SKIP_INSPECTION" root2="SKIP_INSPECTION" />
   </component>
   <component name="LogFilters">
@@ -307,7 +308,7 @@
       <workItem from="1698174490105" duration="3098000" />
       <workItem from="1698178571409" duration="397000" />
       <workItem from="1698179172918" duration="487000" />
-      <workItem from="1698240836200" duration="4420000" />
+      <workItem from="1698240836200" duration="5044000" />
     </task>
     <servers />
   </component>

@@ -1,5 +1,8 @@
 <%@ page import="com.example.proyectoweb.model.beans.Evento" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+<% ArrayList<Evento> listaEventos = (ArrayList<Evento>) request.getAttribute("listaEventos"); %>
 
 
 <!doctype html>
@@ -104,7 +107,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
     <div class="row align-content-center" data-masonry='{"percentPosition": true }'>
 
 
-        <% for (Evento evento : listaEventos) %>
+        <% for (Evento evento : listaEventos) { %>
         <div class="col-sm-6 col-lg-3 mb-4">
 
             <div class="card-list">
@@ -113,7 +116,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                         <img class="image-event" src="../../images/placeholder_events.jpg" alt="An orange painted blue, cut in half laying on a blue background" />
                     </figure>
                     <div class="card-header">
-                        <a href="#">Partido de Valorant<p>Fibra Tóxica vs. Electroshock</p></a>
+                        <a href="#"><%=evento.getTitulo()%><p><%=evento.getSubTitulo()%></p></a>
 
                     </div>
                     <div class="card-footer">
@@ -135,6 +138,8 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
             </div>
 
         </div>
+
+        <%}%>
 
 
     </div>
