@@ -11,8 +11,8 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet(name = "/admin_act_home", value = "/admin_act_home")
-public class EventoServlet extends HttpServlet {
+@WebServlet(name = "HomeUserEventoServlet", value = "/user_home")
+public class HomeUserEventoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EventosDao eventoDao = new EventosDao();
@@ -23,7 +23,7 @@ public class EventoServlet extends HttpServlet {
 
         request.setAttribute("listaActividades", listaActividades);
         request.setAttribute("listaEventos", listaEventos);
-        request.getRequestDispatcher("/pages/admin_act/home.jsp").forward(request,response);
+        request.getRequestDispatcher("/pages/user/home.jsp").forward(request,response);
     }
 
     @Override

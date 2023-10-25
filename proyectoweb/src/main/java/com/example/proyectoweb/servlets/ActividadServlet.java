@@ -8,9 +8,10 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-@WebServlet(name = "ActividadServlet", value = "/adm_actividades")
+@WebServlet(name = "ActividadServlet", value = "/admin_gen_activities")
 public class ActividadServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -20,9 +21,14 @@ public class ActividadServlet extends HttpServlet {
         switch(action){
             case "listarAct":
                 ActividadesDao actividadesDao = new ActividadesDao();
+
                 ArrayList<DelegadoAct> listaDelegadosAct = actividadesDao.listarNombresEncargadosAct();
+                ArrayList<Actividad> listaActividades = actividadesDao.getListaActividades();
+
+                request.setAttribute("listaActividades", listaActividades);
                 request.setAttribute("listaDelegadosAct", listaDelegadosAct);
                 request.getRequestDispatcher("/pages/super_admin/lista_actividades.jsp").forward(request,response);
+
                 break;
 
         }
@@ -31,8 +37,22 @@ public class ActividadServlet extends HttpServlet {
 
     }
 
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        String action = request.getParameter("action") == null? "busqueda" : request.getParameter("action");
+
+        switch (action){
+            case "busqueda":
+
+                
+
+                break;
+
+
+
+        }
 
     }
 }

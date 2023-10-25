@@ -47,24 +47,25 @@
     </div>
 
     <nav class="nav-bar">
-        <ul>
-            <li>
-                <a href="tabla_inscritos.jsp" class="active">Usuarios</a>
-            </li>
-            <li>
-                <a href="lista_actividades.jsp">Actividades</a>
-            </li>
-            <li>
-                <a href="statistics.jsp.jsp">Estadísticas</a>
-            </li>
-            <li>
-                <a href="lista_donaciones.jsp.jsp">Donaciones</a>
-            </li>
-            <li>
-                <a href="/proyectoweb"><i class="fa-solid fa-door-open nav-icon2"></i>Cerrar Sesión</a>
-            </li>
-        </ul>
-    </nav>
+        <nav class="nav-bar">
+            <ul>
+                <li>
+                    <a href="<%=request.getContextPath()%>/admin_gen_home" class="active">Usuarios</a>
+                </li>
+                <li>
+                    <a href="<%=request.getContextPath()%>/admin_gen_activities">Actividades</a>
+                </li>
+                <li>
+                    <a href="<%=request.getContextPath()%>/admin_gen_statistics">Estadísticas</a>
+                </li>
+                <li>
+                    <a href="<%=request.getContextPath()%>/admin_gen_donaciones">Donaciones</a>
+                </li>
+                <li>
+                    <a href="<%=request.getContextPath()%>"><i class="fa-solid fa-door-open nav-icon2"></i>Cerrar Sesión</a>
+                </li>
+            </ul>
+        </nav>
 </header>
 
 <div class="container">

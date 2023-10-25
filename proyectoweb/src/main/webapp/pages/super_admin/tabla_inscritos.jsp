@@ -46,19 +46,19 @@
     <nav class="nav-bar">
       <ul>
         <li>
-          <a href="tabla_inscritos.jsp" class="active">Usuarios</a>
+          <a href="<%=request.getContextPath()%>/admin_gen_home" class="active">Usuarios</a>
         </li>
         <li>
-          <a href="lista_actividades.jsp">Actividades</a>
+          <a href="<%=request.getContextPath()%>/admin_gen_activities">Actividades</a>
         </li>
         <li>
-          <a href="statistics.jsp.jsp">Estadísticas</a>
+          <a href="<%=request.getContextPath()%>/admin_gen_statistics">Estadísticas</a>
         </li>
         <li>
-          <a href="lista_donaciones.jsp.jsp">Donaciones</a>
+          <a href="<%=request.getContextPath()%>/admin_gen_donaciones">Donaciones</a>
         </li>
         <li>
-          <a href="/proyectoweb"><i class="fa-solid fa-door-open nav-icon2"></i>Cerrar Sesión</a>
+          <a href="<%=request.getContextPath()%>"><i class="fa-solid fa-door-open nav-icon2"></i>Cerrar Sesión</a>
         </li>
       </ul>
     </nav>
@@ -86,14 +86,14 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
       <div class="col-md-12">
 
-        <form method="post" action="<%=request.getContextPath()%>/UsuarioServlet?action=busqueda">
+        <form method="post" action="<%=request.getContextPath()%>/admin_gen_home?action=busqueda">
 
           <div class="custom-form-group">
             <input type="text" class="form-control" name="busquedaNombreCodigo" placeholder="Buscar por nombre o código" style="width: 120%">
           </div>
           <button type="submit" class="btn btn-primary">Aplicar filtros</button>
 
-          <a class="btn btn-primary" href="<%=request.getContextPath()%>/UsuarioServlet" role="button">Borrar filtros</a>
+          <a class="btn btn-primary" href="<%=request.getContextPath()%>/admin_gen_home" role="button">Borrar filtros</a>
         </form>
       </div>
     </div>
@@ -174,7 +174,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
           }%>
         <td class="cell c3" style=""><%= estado %></td>
         <td class="cell c4" style=""><%= usuario.getUltimoLogin() %></td>
-        <td class="cell c5" style=""><a href="<%=request.getContextPath()%>/UsuarioServlet?action=editar&id=<%=usuario.getCodigo()%>"><img width="24" height="24" src="https://img.icons8.com/sf-regular/48/edit-row.png" alt="edit-row"/></a></td>
+        <td class="cell c5" style=""><a href="<%=request.getContextPath()%>/admin_gen_home?action=editar&id=<%=usuario.getCodigo()%>"><img width="24" height="24" src="https://img.icons8.com/sf-regular/48/edit-row.png" alt="edit-row"/></a></td>
 
         <td class="cell c6 lastcol" style=""></td>
       </tr>

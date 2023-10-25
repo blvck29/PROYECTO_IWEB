@@ -9,33 +9,42 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class ActividadesDao {
+
+
     public ArrayList<Actividad> getListaActividades(){
-        ArrayList<Actividad> listaActividades = new ArrayList<>();
 
-        try {
-
-            String user = "root";
-            String pass = "root";
-            String url = "jdbc:mysql://localhost:3306/proyectoweb";
-
+        try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection(url,user,pass);
-            Statement stmt = conn.createStatement();
+        }catch(ClassNotFoundException e){
+            throw new RuntimeException(e);
+        }
 
-            ResultSet rs = stmt.executeQuery("SELECT * FROM actividad");
+        //Parámetros de Conexión
+        String url = "jdbc:mysql://localhost:3306/proyectoweb";
+        String username = "root";
+        String password = "root";
+
+        String sql = "select * from actividad";
+
+        ArrayList<Actividad> listaActividades = new ArrayList();
+
+        try(Connection conn = DriverManager.getConnection(url,username,password);
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql)){
 
             while (rs.next()){
-                Actividad actividad = new Actividad(rs.getString(1),rs.getString(2), rs.getBlob(3), rs.getBlob(4), rs.getInt(5));
+                Actividad actividad = new Actividad(rs.getString(1), rs.getString(2), rs.getBlob(3), rs.getBlob(4), rs.getInt(5));
                 listaActividades.add(actividad);
             }
 
-
-        } catch (ClassNotFoundException | SQLException e){
-            e.printStackTrace();
+        }catch(SQLException e){
+            throw new RuntimeException(e);
         }
 
         return listaActividades;
     }
+
+
 
     public ArrayList<DelegadoAct> listarNombresEncargadosAct(){
 
