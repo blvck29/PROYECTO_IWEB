@@ -49,6 +49,9 @@
           <a href="tabla_inscritos.jsp" class="active">Usuarios</a>
         </li>
         <li>
+          <a href="<%=request.getContextPath()%>/ActividadServlet?action=listarAct" class="active">Actividades</a>
+        </li>
+        <li>
           <a href="../user/per_events.jsp">Estadísticas</a>
         </li>
         <li>
