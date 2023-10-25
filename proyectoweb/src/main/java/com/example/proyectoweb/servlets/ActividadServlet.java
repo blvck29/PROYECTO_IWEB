@@ -20,11 +20,13 @@ public class ActividadServlet extends HttpServlet {
         switch(action){
             case "listarAct":
                 ActividadesDao actividadesDao = new ActividadesDao();
+
                 ArrayList<DelegadoAct> listaDelegadosAct = actividadesDao.listarNombresEncargadosAct();
                 ArrayList<Actividad> listaActividades =actividadesDao.getListaActividades();
                 request.setAttribute("listaActividades", listaActividades);
                 request.setAttribute("listaDelegadosAct", listaDelegadosAct);
                 request.getRequestDispatcher("/pages/super_admin/lista_actividades.jsp").forward(request,response);
+                request.getRequestDispatcher("/pages/user/home.jsp").forward(request,response);
                 break;
 
         }
