@@ -25,7 +25,6 @@ public class ActividadServlet extends HttpServlet {
                 request.getRequestDispatcher("/pages/super_admin/lista_actividades.jsp").forward(request,response);
                 break;
 
-
         }
 
 
