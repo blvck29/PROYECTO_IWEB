@@ -30,24 +30,28 @@ public class ActividadServlet extends HttpServlet {
                 request.getRequestDispatcher("/pages/super_admin/lista_actividades.jsp").forward(request,response);
 
                 break;
+            case "crear":
+                request.getRequestDispatcher("/pages/super_admin/new_activity.jsp").forward(request,response);
+                break;
 
         }
 
 
 
     }
-
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String action = request.getParameter("action") == null? "busqueda" : request.getParameter("action");
 
+        ActividadesDao actividadesDao = new ActividadesDao();
         switch (action){
             case "busqueda":
 
-                
-
+                String actividadBuscada = request.getParameter("busquedaTituloActividad");
+                ArrayList<DelegadoAct> listaActividadFiltrada = actividadesDao.filtrarXTituloActividad(actividadBuscada);
+                request.setAttribute("listaDelegadosAct",listaActividadFiltrada);
+                request.getRequestDispatcher("/pages/super_admin/lista_actividades.jsp").forward(request,response);
                 break;
 
 

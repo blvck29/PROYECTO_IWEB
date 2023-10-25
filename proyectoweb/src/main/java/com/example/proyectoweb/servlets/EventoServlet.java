@@ -41,14 +41,7 @@ public class EventoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String action = request.getParameter("action") == null? "busqueda" : 
 
-        case "crear_act":
-        request.getRequestDispatcher("/pages/admin_act/new_event.jsp").forward(request,response);
-        break;
-
-        case "edit_act":
-        request.getRequestDispatcher("pages/admin_act/mod_event.jsp").forward(request,response);
     }
 }
 

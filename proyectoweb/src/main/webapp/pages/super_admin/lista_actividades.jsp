@@ -7,6 +7,8 @@
 <% ArrayList<DelegadoAct> listaDelegadosAct = (ArrayList<DelegadoAct>) request.getAttribute("listaDelegadosAct");%>
 
 
+
+
 <html lang="es">
 
     <head>
@@ -91,11 +93,12 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                     <form method="post" action="<%=request.getContextPath()%>/admin_gen_activities?action=busqueda">
 
                         <div class="custom-form-group">
-                            <input type="text" class="form-control" name="busquedaNombreCodigo" placeholder="Buscar por título" style="width: 120%">
+                            <input type="text" class="form-control" name="busquedaTituloActividad" placeholder="Buscar por titulo" style="width: 120%">
                         </div>
                         <button type="submit" class="btn btn-primary">Aplicar filtros</button>
 
                         <a class="btn btn-primary" href="<%=request.getContextPath()%>/admin_gen_activities" role="button">Borrar filtros</a>
+                        <a class="btn btn-primary " style = "margin-left: 550px;" href="<%=request.getContextPath()%>/crear">Crear actividad</a>
                     </form>
                 </div>
             </div>
@@ -119,7 +122,6 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                     <tr>
                         <th class="header c1 centeralign" style="" scope="col"><a><strong>TITULO ACTIVIDAD</strong></a></th>
                         <th class="header c1 centeralign" style="" scope="col"><a><strong>NOMBRE DELEGADO</strong></a></th>
-                        <th class="header c1 centeralign" style="" scope="col"><a><strong>APELLIDO DELEGADO</strong></a></th>
                         <th class="header c1 centeralign" style="" scope="col"><a><strong>CODIGO DELEGADO</strong></a></th>
                         <th class="header c5" style="" scope="col">EDITAR</th>
                         <td class="header c6 lastcol" style=""></td>
@@ -133,8 +135,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                     <% for (DelegadoAct delegadoAct: listaDelegadosAct){ %>
                     <tr class="">
                         <td class="centeralign cell c0" style=""><a><%= delegadoAct.getTituloActividad()%></a></td>
-                        <td class="centeralign cell c1" style=""><%= delegadoAct.getNombre()%></td>
-                        <td class="centeralign cell c1" style=""><%= delegadoAct.getApellido()%></td>
+                        <td class="centeralign cell c1" style=""><%= delegadoAct.getNombre() + " " + delegadoAct.getApellido()%> </td>
                         <td class="centeralign cell c1" style=""><%= delegadoAct.getCodigo()%></td>
                         <td class="cell c5" style=""><a href="<%=request.getContextPath() %>/ActividadServlet?action=Editar"><img width="24" height="24" src="https://img.icons8.com/sf-regular/48/edit-row.png" alt="edit-row"/></a></td>
 

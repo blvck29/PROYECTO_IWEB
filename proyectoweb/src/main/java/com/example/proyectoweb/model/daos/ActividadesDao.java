@@ -96,7 +96,7 @@ public class ActividadesDao {
 
     }
 
-    public void filtrarXTituloActividad (String palabraintroducida){
+    public ArrayList<DelegadoAct> filtrarXTituloActividad (String palabraintroducida){
 
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -110,8 +110,13 @@ public class ActividadesDao {
         String username = "root";
         String password = "root";
 
+        ArrayList<DelegadoAct> listaActFiltradas = new ArrayList<>();
+
         // Conexión a DB
-        String sql = "select * from actividades where lower(titulo) like ?";
+        String sql = "SELECT ac.titulo, idEncargado, u.nombres, u.apellidos, u.codigo\n" +
+                "FROM actividad ac\n" +
+                "\n" +
+                "\tINNER JOIN usuarios u on (u.idUsuario = ac.idEncargado);";
 
         try (Connection conn = DriverManager.getConnection(url,username,password);
              PreparedStatement pstmt = conn.prepareStatement(sql)){
@@ -125,11 +130,15 @@ public class ActividadesDao {
 
                     DelegadoAct delegadoAct = new DelegadoAct();
 
+                    delegadoAct.setTituloActividad(rs.getString(1));
 
-
+                    listaActFiltradas.add(delegadoAct);
                 }
 
             }
+
+            return listaActFiltradas;
+
         }catch (SQLException e){
             throw new RuntimeException(e);
         }
