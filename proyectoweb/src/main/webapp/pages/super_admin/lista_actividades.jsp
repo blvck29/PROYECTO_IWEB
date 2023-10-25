@@ -91,11 +91,12 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                     <form method="post" action="<%=request.getContextPath()%>/UsuarioServlet?action=busqueda">
 
                         <div class="custom-form-group">
-                            <input type="text" class="form-control" name="busquedaNombreCodigo" placeholder="Buscar por nombre o código" style="width: 120%">
+                            <input type="text" class="form-control" name="busquedaNombreCodigo" placeholder="Buscar por nombre de actividad" style="width: 120%">
                         </div>
                         <button type="submit" class="btn btn-primary">Aplicar filtros</button>
 
                         <a class="btn btn-primary" href="<%=request.getContextPath()%>/UsuarioServlet" role="button">Borrar filtros</a>
+                        <button type="submit" class="btn btn-primary">Crear Actividad</button>
                     </form>
                 </div>
             </div>

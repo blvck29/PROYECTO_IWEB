@@ -87,4 +87,50 @@ public class ActividadesDao {
 
     }
 
+    public void filtrarXTituloActividad (String palabraintroducida){
+
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        }catch(ClassNotFoundException e){
+            throw new RuntimeException(e);
+        }
+
+
+        //Parámetros de Conexión
+        String url = "jdbc:mysql://localhost:3306/proyectoweb";
+        String username = "root";
+        String password = "root";
+
+        // Conexión a DB
+        String sql = "select * from actividades where lower(titulo) like ?";
+
+        try (Connection conn = DriverManager.getConnection(url,username,password);
+             PreparedStatement pstmt = conn.prepareStatement(sql)){
+
+            pstmt.setString(1, palabraintroducida + "%");
+
+
+            try(ResultSet rs = pstmt.executeQuery()){
+
+                while(rs.next()){
+
+                    DelegadoAct delegadoAct = new DelegadoAct();
+
+                    delegadoAct.se
+
+                }
+
+            }
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+
+
+
+
+    }
+
+
+
+
 }
