@@ -35,7 +35,7 @@
 
 <body>
   <header>
-    <div class="logo"><a href="home.jsp"><img class="logo-img" src='images/logo_topbar.png' alt="logo"></a></div>
+    <div class="logo"><a href="tabla_inscritos.jsp"><img class="logo-img" src='images/logo_topbar.png' alt="logo"></a></div>
 
     <div class="bars">
       <div class="line"></div>
@@ -65,25 +65,31 @@
   </header>
 
 
-
+  <div class="container-fluid" style="padding-left:0 !important; padding-right: 0 !important; background: rgb(45,0,83) !important;
+background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgba(21,0,48,1) 100%) !important;")>
+    <div class="text-secondary px-4 py-5 text-center">
+      <div class="py-5">
+        <h1 class="display-5 fw-bold text-white">Bienvenido, @Admin_general</h1>
+        <div style="margin-bottom: 20px"></div>
+        <h3 class="fw-bold text-white">Panel de Administración de Usuarios</h3>
+        <div style="margin-bottom: 20px"></div>
+        <div class="justify-content-sm-center">
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div style="padding-top: 40px;"></div>
 
   <div class="container">
     <div class="row">
-      <div class="col-md-12">
-        <div style="padding-top: 2em;"></div>
-        <h1 class="fw-bold lh-1 mb-2" style="text-align: left;">Interfaz de Administración de Usuarios</h1>
-        <div style="padding-top: 0.5em;"></div>
-        <p class="fw-bold lh-1 mb-2" style="text-align: left;">Administrar Usuarios</p>
-        <div style="padding-top: 1em;"></div>
 
-        <hr class="hr hr-blurry"/>
+      <div class="col-md-12">
 
         <form method="post" action="<%=request.getContextPath()%>/UsuarioServlet?action=busqueda">
 
           <div class="custom-form-group">
-            <input type="text" class="form-control" name="busquedaNombreCodigo" placeholder="Buscar por nombre o código">
+            <input type="text" class="form-control" name="busquedaNombreCodigo" placeholder="Buscar por nombre o código" style="width: 120%">
           </div>
           <button type="submit" class="btn btn-primary">Aplicar filtros</button>
 
@@ -91,9 +97,9 @@
         </form>
       </div>
     </div>
+    <div style="padding-top: 15px;"></div>
+    <hr class="hr hr-blurry"/>
   </div>
-
-
 
   <div class="container">
     <form autocomplete="off"  method="post" accept-charset="utf-8" id="mform2_c5Hfs9zIVAeeWpH" class="mform">
@@ -102,6 +108,8 @@
       </div>
     </form>
   </div>
+
+  <div style="padding-top: 25px;"></div>
 
   <div class="table-responsive container">
     <table class="admintable generaltable table-sm" id="users">
@@ -208,6 +216,21 @@
     </nav>
   </div>
 
+
+  <div style="margin-bottom: 50px"></div>
+
+
+  <div class="container-fluid" style="background-color: #fff; padding-right: 0; padding-left: 0">
+    <div class="my-4"></div>
+    <footer id="sticky-footer" class="flex-shrink-0 py-4 text-white-50" style="background-color: #04011E">
+      <div class="container"><div class="nav justify-content-center border-bottom pb-3 mb-3">
+        <p style="text-align: center">
+          <small class="text-center">&copy; Pontificia Universidad Católica del Perú - Todos los derechos reservados</small>
+        </p>
+      </div></div>
+    </footer>
+  </div>
+
   <script>
     function redireccionar() {
       var seleccion = document.getElementById("estado").value;
@@ -221,7 +244,6 @@
     }
   </script>
 
-  <script src="js/slider.js"></script>
   <script src="js/bootstrap/bootstrap.js"></script>
   <script src="js/script.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>

@@ -1,8 +1,5 @@
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="com.example.proyectoweb.model.beans.Usuario" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-<% ArrayList<Usuario> listaApoyos = (ArrayList<Usuario>) request.getAttribute("listaApoyos");%>
 
 <!doctype html>
 <html lang="es">
@@ -11,8 +8,8 @@
   <meta http-equiv="Content-Type" content=text/html; charset=ISO-8859-1″>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/bootstrap/bootstrap.css">
   <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 
   <!-- Add the slick-theme.css if you want default styling -->
@@ -23,7 +20,7 @@
   <script src="https://kit.fontawesome.com/a2dd6045c4.js" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 
-  <link rel="icon" type="image/jpg" href="favicon.png" />
+  <link rel="icon" type="image/jpg" href="../../favicon.png" />
 
   <!-- Add the slick-theme.css if you want default styling -->
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
@@ -35,7 +32,7 @@
 
 <body>
 <header>
-  <div class="logo"><a href="home.jsp"><img class="logo-img" src='images/logo_topbar.png' alt="logo"></a></div>
+  <div class="logo"><a href="../home.jsp"><img class="logo-img" src='../../images/logo_topbar.png' alt="logo"></a></div>
 
   <div class="bars">
     <div class="line"></div>
@@ -55,7 +52,7 @@
         <a href="#"><i class="fa-solid fa-user nav-icon2"></i>Usuario</a>
       </li>
       <li>
-        <a href="<%=request.getContextPath()%>"><i class="fa-solid fa-door-open nav-icon2"></i>Cerrar Sesión</a>
+        <a href="#"><i class="fa-solid fa-door-open nav-icon2"></i>Cerrar Sesión</a>
       </li>
     </ul>
   </nav>
@@ -77,14 +74,14 @@
 
       <hr class="hr hr-blurry"/>
 
-      <form method="post" action="<%=request.getContextPath()%>/UsuarioServlet?action=busqueda">
+      <form method="post" action="/UsuarioServlet?action=busqueda">
 
         <div class="custom-form-group">
           <input type="text" class="form-control" name="busquedaNombreCodigo" placeholder="Buscar por nombre o código">
         </div>
         <button type="submit" class="btn btn-primary">Aplicar filtros</button>
 
-        <a class="btn btn-primary" href="<%=request.getContextPath()%>/UsuarioServlet" role="button">Borrar filtros</a>
+        <a class="btn btn-primary" href="/UsuarioServlet" role="button">Borrar filtros</a>
       </form>
     </div>
   </div>
@@ -117,37 +114,17 @@
 
     <tbody>
 
-    <% for (Usuario usuario: listaApoyos){ %>
     <tr class="">
-      <td class="centeralign cell c0" style=""><a><%= usuario.getNombres()+" "+ usuario.getApellidos()%></a></td>
-      <td class="centeralign cell c1" style=""><%= usuario.getCodigo() %></td>
-
-      <% String rol ="a";
-        switch(usuario.getIdRol()){
-          case "ADMINPRI":
-            rol = "Administrador Principal";
-            break;
-          case "ADMINSEC":
-            rol = "Administrador Secundario";
-            break;
-          case "STUDENT":
-            rol = "Estudiante";
-            break;
-          case "GRADUAT":
-            rol = "Graduado";
-            break;
-          default:
-            rol = "No definido";
-        }%>
+      <td class="centeralign cell c0" style=""><a></a></td>
+      <td class="centeralign cell c1" style=""></td>
 
 
-      <td class="cell c2" style=""><%= rol %></td>
-      <td class="cell c3" style=""><%= usuario.getUltimoLogin() %></td>
-      <td class="cell c4" style=""><a href="<%=request.getContextPath()%>/UsuarioServlet?action=editar&id=<%=usuario.getCodigo()%>"><img width="24" height="24" src="https://img.icons8.com/sf-regular/48/edit-row.png" alt="edit-row"/></a></td>
+      <td class="cell c2" style=""></td>
+      <td class="cell c3" style=""></td>
+      <td class="cell c4" style=""><a href="/UsuarioServlet?action=editar&id="><img width="24" height="24" src="https://img.icons8.com/sf-regular/48/edit-row.png" alt="edit-row"/></a></td>
 
     </tr>
 
-    <%}%>
     </tbody>
   </table>
 </div>
@@ -197,9 +174,8 @@
   }
 </script>
 
-<script src="js/slider.js"></script>
-<script src="js/bootstrap/bootstrap.js"></script>
-<script src="js/script.js"></script>
+<script src="../../js/bootstrap/bootstrap.js"></script>
+<script src="../../js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
