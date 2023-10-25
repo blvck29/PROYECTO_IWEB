@@ -125,7 +125,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                                 <circle cx="12" cy="8" r="4"></circle>
                                 <path d="M18 21v-2a4 4 0 0 0-4-4H10a4 4 0 0 0-4 4v2"></path>
                             </svg>
-                            <a href="<%=request.getContextPath()%>/InscritoServlet?action=listarInscritos&id=<%=evento.getIdEvento()%>">Apoyos</a>
+                            <a href="<%=request.getContextPath()%>/InscritoServlet?action=listarInscritos&id=<%=evento.getIdEvento()%>&id2=<%=evento.getTitulo()%>">Apoyos</a>
                         </div>
                         <div class="card-meta card-meta--date">
                             <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" style="fill: #0d6efd">

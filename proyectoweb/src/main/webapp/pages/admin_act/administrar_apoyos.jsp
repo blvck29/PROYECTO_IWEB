@@ -1,6 +1,9 @@
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="com.example.proyectoweb.model.beans.UsuarioInscritoXevento" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
+<% ArrayList<UsuarioInscritoXevento> ListaUsuarioInscritoXeventos = (ArrayList<UsuarioInscritoXevento>) request.getAttribute("listaInscritosXevento");%>
+<% String nombreEvento = (String) request.getAttribute("nombreEvento");%>
 <!doctype html>
 <html lang="es">
 
@@ -8,8 +11,8 @@
   <meta http-equiv="Content-Type" content=text/html; charset=ISO-8859-1″>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="stylesheet" href="../../css/style.css">
-  <link rel="stylesheet" href="../../css/bootstrap/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
   <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 
   <!-- Add the slick-theme.css if you want default styling -->
@@ -20,7 +23,7 @@
   <script src="https://kit.fontawesome.com/a2dd6045c4.js" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 
-  <link rel="icon" type="image/jpg" href="../../favicon.png" />
+  <link rel="icon" type="image/jpg" href="favicon.png" />
 
   <!-- Add the slick-theme.css if you want default styling -->
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
@@ -32,7 +35,7 @@
 
 <body>
 <header>
-  <div class="logo"><a href="home.jsp"><img class="logo-img" src='../../images/logo_topbar.png' alt="logo"></a></div>
+  <div class="logo"><a href="home.jsp"><img class="logo-img" src='images/logo_topbar.png' alt="logo"></a></div>
 
   <div class="bars">
     <div class="line"></div>
@@ -63,14 +66,14 @@
 
 
 <div class="container-fluid" style="padding-left:0 !important; padding-right: 0 !important; background: rgb(45,0,83) !important;
-background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgba(21,0,48,1) 100%) !important;")>
+background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgba(21,0,48,1) 100%) !important;">
   <div class="text-secondary px-4 py-5 text-center">
     <div class="py-5">
       <h1 class="display-5 fw-bold text-white">Bienvenido, @Admin_Act</h1>
       <div style="margin-bottom: 20px"></div>
       <h3 class="fw-bold text-white">Panel de Administración de Apoyos</h3>
       <div style="margin-bottom: 20px"></div>
-      <h4 class="fw-bold text-white">@Evento_Seleccionado</h4>
+      <h4 class="fw-bold text-white"><%=nombreEvento%></h4>
       <div style="margin-bottom: 20px"></div>
       <div class="justify-content-sm-center">
       </div>
@@ -116,9 +119,6 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
     <tr>
       <th class="header c0 centeralign" style="" scope="col"><a><strong>NOMBRE</strong></a> / <a><strong>APELLIDO</strong></a></th>
       <th class="header c1 centeralign" style="" scope="col"><a><strong>CÓDIGO</strong></a></th>
-      <th class="header c2" style="" scope="col"><a><strong>ROL</strong></a></th>
-      <th class="header c3" style="" scope="col"><a><strong>ESTADO</strong></a></th>
-      <th class="header c4" style="" scope="col"><a><strong>ULTIMO ACCESO</strong></a></th>
       <th class="header c5" style="" scope="col">EDITAR</th>
       <td class="header c6 lastcol" style=""></td>
     </tr>
@@ -128,20 +128,16 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
     <tbody>
 
+    <% for (UsuarioInscritoXevento usuario: ListaUsuarioInscritoXeventos){ %>
     <tr class="">
-      <td class="centeralign cell c0" style=""><a></a></td>
-      <td class="centeralign cell c1" style=""></td>
+      <td class="centeralign cell c0" style=""><a><%=usuario.getNombres() + " " +usuario.getApellidos()%> </a></td>
+      <td class="centeralign cell c1" style=""><%= usuario.getCodigo() %></td>
 
+      <td class="cell c3" style=""><a href="/UsuarioServlet?action=editar&id="><img width="24" height="24" src="https://img.icons8.com/sf-regular/48/edit-row.png" alt="edit-row"/></a></td>
 
-      <td class="cell c2" style=""></td>
-
-
-      <td class="cell c3" style=""></td>
-      <td class="cell c4" style=""></td>
-      <td class="cell c5" style=""><a href="/UsuarioServlet?action=editar&id="><img width="24" height="24" src="https://img.icons8.com/sf-regular/48/edit-row.png" alt="edit-row"/></a></td>
-
-      <td class="cell c6 lastcol" style=""></td>
+      <td class="cell c4 lastcol" style=""></td>
     </tr>
+    <%}%>
 
     </tbody>
   </table>
@@ -207,8 +203,8 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
   }
 </script>
 
-<script src="../../js/bootstrap/bootstrap.js"></script>
-<script src="../../js/script.js"></script>
+<script src="js/bootstrap/bootstrap.js"></script>
+<script src="js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
