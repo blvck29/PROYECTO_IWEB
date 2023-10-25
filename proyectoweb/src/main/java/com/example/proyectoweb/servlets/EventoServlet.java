@@ -14,11 +14,10 @@ public class EventoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EventosDao eventoDao = new EventosDao();
-        ArrayList<Evento> listaEventos = eventoDao.getListaEventos();
 
-        request.setAttribute("lista", listaEventos);
-
-        RequestDispatcher view = request.getRequestDispatcher("pages/user/home.jsp");
+        ArrayList<Evento> listaEventos = eventoDao.listarEventos();
+        request.setAttribute("listaEventos", listaEventos);
+        RequestDispatcher view = request.getRequestDispatcher("pages/admin_act/home.jsp");
         view.forward(request,response);
     }
 

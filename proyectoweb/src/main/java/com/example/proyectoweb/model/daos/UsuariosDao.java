@@ -164,6 +164,61 @@ public class UsuariosDao {
     }
 
 
+
+    // Aldoradin: hago esta funcion para poder identificar el usuario en la tabla de apoyos
+    public Usuario buscarXid(int idUsuario){ //admin
+
+        Usuario usuario = null;
+
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        }catch(ClassNotFoundException e){
+            throw new RuntimeException(e);
+        }
+
+        //Parámetros de Conexión
+        String url = "jdbc:mysql://localhost:3306/proyectoweb";
+        String username = "root";
+        String password = "root";
+
+
+        //Conexión a la DB
+
+        String sql = "select * from usuarios where idUsuario =?";
+
+
+        try (Connection conn = DriverManager.getConnection(url,username,password);
+             PreparedStatement pstmt = conn.prepareStatement(sql)){
+
+            pstmt.setInt(1, idUsuario);
+
+
+            try(ResultSet rs = pstmt.executeQuery()){
+
+                while(rs.next()){
+
+                    usuario = new Usuario();
+                    usuario.setNombres(rs.getString(4));
+                    usuario.setApellidos(rs.getString(5));
+                    usuario.setCodigo(rs.getString(6));
+                    usuario.setIdRol(rs.getString(2));
+                    usuario.setIdEstado(rs.getString(3));
+                    usuario.setUltimoLogin(rs.getString(9));
+                    usuario.setCorreo(rs.getString(7));
+
+
+                }
+
+            }
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+
+        return usuario;
+
+    }
+
+
      public void actualizarEstado(Usuario usuario){
 
         try {

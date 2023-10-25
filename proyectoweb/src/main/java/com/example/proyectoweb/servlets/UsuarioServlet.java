@@ -38,15 +38,6 @@ public class UsuarioServlet extends HttpServlet {
                 }
                 break;
 
-            case "listarApoyos":
-                ArrayList<Usuario> listaApoyos = userDao.listarUsuariosAceptados();
-                request.setAttribute("listaApoyos",listaApoyos);
-                request.getRequestDispatcher("pages/admin_act/administrar_apoyos.jsp").forward(request,response);
-
-
-
-
-
 
         }
 
@@ -65,11 +56,7 @@ public class UsuarioServlet extends HttpServlet {
 
                 request.setAttribute("listaUsuarios",listaBusqueda);
                 request.getRequestDispatcher("pages/super_admin/tabla_inscritos.jsp").forward(request,response);
-
-
-
-
-
+                break;
 
         }
 

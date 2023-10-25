@@ -77,14 +77,14 @@
 
       <hr class="hr hr-blurry"/>
 
-      <form method="post" action="<%=request.getContextPath()%>/UsuarioServlet?action=busqueda">
+      <form method="post" action="#">
 
         <div class="custom-form-group">
           <input type="text" class="form-control" name="busquedaNombreCodigo" placeholder="Buscar por nombre o código">
         </div>
         <button type="submit" class="btn btn-primary">Aplicar filtros</button>
 
-        <a class="btn btn-primary" href="<%=request.getContextPath()%>/UsuarioServlet" role="button">Borrar filtros</a>
+        <a class="btn btn-primary" href="#" role="button">Borrar filtros</a>
       </form>
     </div>
   </div>
@@ -143,7 +143,7 @@
 
       <td class="cell c2" style=""><%= rol %></td>
       <td class="cell c3" style=""><%= usuario.getUltimoLogin() %></td>
-      <td class="cell c4" style=""><a href="<%=request.getContextPath()%>/UsuarioServlet?action=editar&id=<%=usuario.getCodigo()%>"><img width="24" height="24" src="https://img.icons8.com/sf-regular/48/edit-row.png" alt="edit-row"/></a></td>
+      <td class="cell c4" style=""><a href="#"><img width="24" height="24" src="https://img.icons8.com/sf-regular/48/edit-row.png" alt="edit-row"/></a></td>
 
     </tr>
 
