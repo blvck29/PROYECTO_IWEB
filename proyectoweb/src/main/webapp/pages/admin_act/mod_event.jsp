@@ -145,7 +145,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
             <div class="col-lg-6 col-md-12" style="padding-left: 2em; padding-right: 2em; padding-top: 1.5em">
 
-                <img src="../../images/placeholder_acts.jpg" alt="imagen de evento" style="height: auto; width: 100%">
+                <img src="../../images/placeholder_events.jpg" alt="imagen de evento" style="height: auto; width: 100%">
 
                 <div style="margin-bottom: 20px"></div>
 
