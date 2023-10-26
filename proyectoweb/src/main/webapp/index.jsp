@@ -20,7 +20,7 @@
     <div class="login-container">
 
         <div class="login-form">
-            <form action="pages/user/home.jsp" method="POST" id="login-formulario">
+            <form method="POST" action="<%=request.getContextPath()%>/user_home?action=login"  >
                 <h2>Iniciar Sesión</h2>
                 <div class="login-input">
                     <i class="fa-solid fa-envelope"></i>
@@ -38,7 +38,7 @@
                     <label><a href="pages/system/password_recovery/email.jsp">Olvidé la contraseña</a></label>
                 </div>
 
-                <a href="<%=request.getContextPath()%>/user_home"><input type="submit" value="Acceder" class="login-button"></a>
+                <a href="#"><input type="submit" value="Acceder" class="login-button"></a>
 
             </form>
 

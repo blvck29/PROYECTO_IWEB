@@ -19,8 +19,7 @@ public class RolServlet extends HttpServlet {
 
         request.setAttribute("lista", listaRol);
 
-        RequestDispatcher view = request.getRequestDispatcher("home.jsp");
-        view.forward(request,response);
+
 
         PrintWriter out=response.getWriter();
         out.println("<html><body>");

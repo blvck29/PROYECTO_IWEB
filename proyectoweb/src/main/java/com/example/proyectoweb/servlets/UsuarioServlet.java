@@ -34,7 +34,7 @@ public class UsuarioServlet extends HttpServlet {
                     request.getRequestDispatcher("pages/super_admin/editar_estado.jsp").forward(request,response);
                 }
                 else{
-                    response.sendRedirect(request.getContextPath()+"/UsuarioServlet");
+                    response.sendRedirect(request.getContextPath()+"/admin_gen_home");
                 }
                 break;
 
