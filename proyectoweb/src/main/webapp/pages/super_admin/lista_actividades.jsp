@@ -70,7 +70,7 @@
 
 
         <div class="container-fluid" style="padding-left:0 !important; padding-right: 0 !important; background: rgb(45,0,83) !important;
-background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgba(21,0,48,1) 100%) !important;")>
+background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgba(21,0,48,1) 100%) !important;">
             <div class="text-secondary px-4 py-5 text-center">
                 <div class="py-5">
                     <h1 class="display-5 fw-bold text-white">Bienvenido, @Admin_general</h1>
@@ -98,7 +98,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                         <button type="submit" class="btn btn-primary">Aplicar filtros</button>
 
                         <a class="btn btn-primary" href="<%=request.getContextPath()%>/admin_gen_activities" role="button">Borrar filtros</a>
-                        <a class="btn btn-primary " style = "margin-left: 550px;" href="<%=request.getContextPath()%>/crear">Crear actividad</a>
+
                     </form>
                 </div>
             </div>
@@ -145,6 +145,14 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                     <%}%>
                 </tbody>
             </table>
+
+            <br>
+
+            <div>
+                <a class="btn btn-primary " style = "margin-left: 2px;" href="<%=request.getContextPath()%>/crear">Crear actividad</a>
+            </div>
+
+
         </div>
 
         <div class="container">

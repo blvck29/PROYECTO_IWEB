@@ -96,7 +96,9 @@ public class ActividadesDao {
 
     }
 
-    public ArrayList<DelegadoAct> filtrarXTituloActividad (String palabraintroducida){
+    public ArrayList<DelegadoAct> filtrarXTitulo (String tituloActividad){
+
+        DelegadoAct actividad = null;
 
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -110,42 +112,42 @@ public class ActividadesDao {
         String username = "root";
         String password = "root";
 
-        ArrayList<DelegadoAct> listaActFiltradas = new ArrayList<>();
+        ArrayList<DelegadoAct> listaActividades = new ArrayList<>();
 
         // Conexión a DB
         String sql = "SELECT ac.titulo, idEncargado, u.nombres, u.apellidos, u.codigo\n" +
                 "FROM actividad ac\n" +
-                "\n" +
-                "\tINNER JOIN usuarios u on (u.idUsuario = ac.idEncargado);";
+                "INNER JOIN usuarios u on (u.idUsuario = ac.idEncargado)\n" +
+                "where lower(ac.titulo) like ?";
 
         try (Connection conn = DriverManager.getConnection(url,username,password);
              PreparedStatement pstmt = conn.prepareStatement(sql)){
 
-            pstmt.setString(1, palabraintroducida + "%");
+            pstmt.setString(1, tituloActividad + "%");
 
 
             try(ResultSet rs = pstmt.executeQuery()){
 
+
                 while(rs.next()){
 
-                    DelegadoAct delegadoAct = new DelegadoAct();
+                    actividad = new DelegadoAct();
+                    actividad.setTituloActividad(rs.getString(1));
+                    actividad.setNombre(rs.getString(3));
+                    actividad.setApellido(rs.getString(4));
+                    actividad.setCodigo(rs.getString(5));
 
-                    delegadoAct.setTituloActividad(rs.getString(1));
-
-                    listaActFiltradas.add(delegadoAct);
+                    listaActividades.add(actividad);
                 }
+
 
             }
 
-            return listaActFiltradas;
+            return listaActividades;
 
         }catch (SQLException e){
             throw new RuntimeException(e);
         }
-
-
-
-
     }
 
 

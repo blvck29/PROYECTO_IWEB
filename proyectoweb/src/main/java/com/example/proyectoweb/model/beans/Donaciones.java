@@ -1,22 +1,15 @@
 package com.example.proyectoweb.model.beans;
 
-import java.sql.Blob;
+import com.mysql.cj.jdbc.Blob;
 
 public class Donaciones {
-    private int idRegistro_Donaciones;
     private int idUsuario;
+    private int idDonaciones;
+    private String nombres;
+    private String apellidos;
     private Blob comprobante;
     private double monto;
     private boolean comprobado;
-
-
-    public int getIdRegistro_Donaciones() {
-        return idRegistro_Donaciones;
-    }
-
-    public void setIdRegistro_Donaciones(int idRegistro_Donaciones) {
-        this.idRegistro_Donaciones = idRegistro_Donaciones;
-    }
 
     public int getIdUsuario() {
         return idUsuario;
@@ -24,6 +17,30 @@ public class Donaciones {
 
     public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
+    }
+
+    public int getIdDonaciones() {
+        return idDonaciones;
+    }
+
+    public void setIdDonaciones(int idDonaciones) {
+        this.idDonaciones = idDonaciones;
+    }
+
+    public String getNombres() {
+        return nombres;
+    }
+
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
+    }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
 
     public Blob getComprobante() {

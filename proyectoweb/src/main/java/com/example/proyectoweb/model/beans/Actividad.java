@@ -10,6 +10,8 @@ public class Actividad {
     private Blob banner;
     private Blob miniatura;
     private int idEncargado;
+
+
     public Actividad(String idActividad, String titulo, Blob banner, Blob miniatura, int idEncargado) {
         this.idActividad = idActividad;
         this.titulo = titulo;

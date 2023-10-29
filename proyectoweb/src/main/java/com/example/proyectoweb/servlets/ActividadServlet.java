@@ -25,7 +25,6 @@ public class ActividadServlet extends HttpServlet {
                 ArrayList<DelegadoAct> listaDelegadosAct = actividadesDao.listarNombresEncargadosAct();
                 ArrayList<Actividad> listaActividades = actividadesDao.getListaActividades();
 
-                request.setAttribute("listaActividades", listaActividades);
                 request.setAttribute("listaDelegadosAct", listaDelegadosAct);
                 request.getRequestDispatcher("/pages/super_admin/lista_actividades.jsp").forward(request,response);
 
@@ -45,11 +44,13 @@ public class ActividadServlet extends HttpServlet {
         String action = request.getParameter("action") == null? "busqueda" : request.getParameter("action");
 
         ActividadesDao actividadesDao = new ActividadesDao();
+
         switch (action){
             case "busqueda":
 
                 String actividadBuscada = request.getParameter("busquedaTituloActividad");
-                ArrayList<DelegadoAct> listaActividadFiltrada = actividadesDao.filtrarXTituloActividad(actividadBuscada);
+                ArrayList<DelegadoAct> listaActividadFiltrada = actividadesDao.filtrarXTitulo(actividadBuscada);
+
                 request.setAttribute("listaDelegadosAct",listaActividadFiltrada);
                 request.getRequestDispatcher("/pages/super_admin/lista_actividades.jsp").forward(request,response);
                 break;

@@ -1,13 +1,19 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.example.proyectoweb.model.beans.Donaciones" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<%
-  ArrayList<Donaciones> lista = (ArrayList<Donaciones>) request.getAttribute("lista");
-%>
+<% ArrayList<Donaciones> listaDonaciones = (ArrayList<Donaciones>) request.getAttribute("listaDonaciones");%>
+
 <html lang="es">
 
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+          crossorigin="anonymous">
+
     <meta http-equiv="Content-Type" content=text/html; charset=ISO-8859-1″>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -30,7 +36,13 @@
     <!-- Add the slick-theme.css if you want default styling -->
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 
+
+
+
+
     <title>Administración de Usuarios | Semana de Ingeniería 2023</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
 </head>
 
 <body>
@@ -66,12 +78,12 @@
 
 
 <div class="container-fluid" style="padding-left:0 !important; padding-right: 0 !important; background: rgb(45,0,83) !important;
-background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgba(21,0,48,1) 100%) !important;")>
+background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgba(21,0,48,1) 100%) !important;">
     <div class="text-secondary px-4 py-5 text-center">
         <div class="py-5">
             <h1 class="display-5 fw-bold text-white">Bienvenido, @Admin_general</h1>
             <div style="margin-bottom: 20px"></div>
-            <h3 class="fw-bold text-white">Panel de Administración de Usuarios</h3>
+            <h3 class="fw-bold text-white">Panel de Donaciones</h3>
             <div style="margin-bottom: 20px"></div>
             <div class="justify-content-sm-center">
             </div>
@@ -81,11 +93,13 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
 <div style="padding-top: 40px;"></div>
 
+
+
+
 <div class="container">
     <div class="row">
 
-        <div class="col-md-12">
-
+        <div class="col-md-10" >
             <form method="post" action="<%=request.getContextPath()%>/UsuarioServlet?action=busqueda">
 
                 <div class="custom-form-group">
@@ -93,9 +107,29 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                 </div>
                 <button type="submit" class="btn btn-primary">Aplicar filtros</button>
 
-                <a class="btn btn-primary" href="<%=request.getContextPath()%>/UsuarioServlet" role="button">Borrar filtros</a>
+                <a class="btn btn-primary" href="<%=request.getContextPath()%>/admin_gen_donaciones" role="button">Borrar filtros</a>
             </form>
         </div>
+
+
+        <div class="col-md-2" >
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                    COMPROBACIÓN
+                </button>
+                <ul class="dropdown-menu dropdown-menu-lg-end">
+                    <li><button class="dropdown-item" type="button">Comprobados</button></li>
+                    <li><button class="dropdown-item" type="button">No comprobados</button></li>
+                </ul>
+            </div>
+        </div>
+
+
+
+
+
+
+
     </div>
     <div style="padding-top: 15px;"></div>
     <hr class="hr hr-blurry"/>
@@ -115,8 +149,8 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
     <table class="admintable generaltable table-sm" id="users">
         <thead>
         <tr>
-            <th class="header c1 centeralign" style="" scope="col"><a><strong>ID REGISTRO DONACIONES</strong></a></th>
-            <th class="header c1 centeralign" style="" scope="col"><a><strong>ID USUARIO</strong></a></th>
+            <th class="header c1 centeralign" style="" scope="col"><a><strong>ID REGISTRO DONACION</strong></a></th>
+            <th class="header c1 centeralign" style="" scope="col"><a><strong>NOMBRE/APELLIDO</strong></a></th>
             <th class="header c1 centeralign" style="" scope="col"><a><strong>COMPROBANTE</strong></a></th>
             <th class="header c1 centeralign" style="" scope="col"><a><strong>MONTO</strong></a></th>
             <th class="header c5" style="" scope="col">COMPROBADO</th>
@@ -129,15 +163,18 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
         <tbody>
 
-        <% for (Donaciones donaciones: lista){ %>
+        <% for (Donaciones donaciones: listaDonaciones){ %>
         <tr class="">
-            <td class="centeralign cell c0" style=""><a><%=donaciones.getIdRegistro_Donaciones() %></a></td>
-            <td class="centeralign cell c1" style=""><%= donaciones.getIdUsuario()%></td>
+            <td class="centeralign cell c0" style=""><a><%=donaciones.getIdDonaciones() %></a></td>
+            <td class="centeralign cell c1" style=""><%= donaciones.getNombres() +" "+ donaciones.getApellidos()%></td>
             <td class="centeralign cell c1" style=""><%= donaciones.getComprobante() %></td>
             <td class="centeralign cell c1" style=""><%= donaciones.getMonto() %></td>
-            <td class="cell c5" style=""><%= donaciones.isComprobado() %></td>
 
-            <td class="cell c6 lastcol" style=""><a href="<%=donaciones.isComprobado() %>/ActividadServlet?action=Editar"><img width="24" height="24" src="https://img.icons8.com/sf-regular/48/edit-row.png" alt="edit-row"/></a></td>
+            <% String comprobacion = donaciones.isComprobado() == true? "Si" : "No"; %>
+
+            <td class="cell c5" style=""><%= comprobacion %></td>
+
+            <td class="cell c6 lastcol" style=""><a href="#"><img width="24" height="24" src="https://img.icons8.com/sf-regular/48/edit-row.png" alt="edit-row"/></a></td>
         </tr>
         <%}%>
         </tbody>
@@ -192,13 +229,17 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 </div>
 
 
-
-<script src="js/bootstrap/bootstrap.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <script src="js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
 
+
+
+
+
 </body>
+
 
 </html>
