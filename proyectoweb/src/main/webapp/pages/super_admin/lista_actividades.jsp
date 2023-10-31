@@ -149,7 +149,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
             <br>
 
             <div>
-                <a class="btn btn-primary " style = "margin-left: 2px;" href="<%=request.getContextPath()%>/crear">Crear actividad</a>
+                <a class="btn btn-primary " style = "margin-left: 2px;" href="<%=request.getContextPath()%>/admin_gen_activities?action=crear">Crear actividad</a>
             </div>
 
 

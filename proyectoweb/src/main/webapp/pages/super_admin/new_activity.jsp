@@ -1,4 +1,8 @@
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.example.proyectoweb.model.beans.Usuario" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+<%ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) request.getAttribute("listaUsuarios");%>
 
 
 <!doctype html>
@@ -8,8 +12,8 @@
     <meta http-equiv="Content-Type" content=text/html; charset=ISO-8859-1″>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="../../css/style.css">
-    <link rel="stylesheet" href="../../css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 
     <!-- Add the slick-theme.css if you want default styling -->
@@ -39,7 +43,7 @@
 
 <body>
 <header>
-    <div class="logo"><a href="home.jsp"><img class="logo-img" src='../../images/logo_topbar.png' alt="logo"></a></div>
+    <div class="logo"><a href="home.jsp"><img class="logo-img" src='images/logo_topbar.png' alt="logo"></a></div>
 
     <div class="bars">
         <div class="line"></div>
@@ -102,19 +106,27 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
                 <div class="card">
                     <div class="card-body" style="padding-left: 35px">
+                        <form method="post" action="<%=request.getContextPath()%>/admin_gen_activities?action=crear">
+                            <div style="padding-top: 1.5em;"></div>
+                            <div class="form-group" style="padding-right: 1rem">
+                                <label for="fecha-evento" style="text-align: left;">
+                                    <strong>Nombre de Actividad:</strong></label>
+                                <input type="text" class="form-control" name="nombreActividad">
+                            </div>
+                            <div style="padding-top: 1.5em;"></div>
+                            <div class="form-group" style="padding-right: 1rem">
+                                <label for="asistentes"><strong>Delegado de Actividad:</strong></label>
 
-                        <div style="padding-top: 1.5em;"></div>
-                        <div class="form-group" style="padding-right: 1rem">
-                            <label for="fecha-evento" style="text-align: left;">
-                                <strong>Nombre de Actividad:</strong></label>
-                            <input type="text" class="form-control" id="fecha-evento">
-                        </div>
-                        <div style="padding-top: 1.5em;"></div>
-                        <div class="form-group" style="padding-right: 1rem">
-                            <label for="asistentes"><strong>Encargado de Actividad:</strong></label>
-                            <input type="text" class="form-control" id="Asistentes">
-                        </div>
-                        <div style="padding-top: 1.5em;"></div>
+
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected>Seleccionar</option>
+                                    <%for (Usuario usuario : listaUsuarios){ %>
+                                    <option value="1" name="delegadoActividad"><%=usuario.getNombres() + " " + usuario.getApellidos()%></option>
+                                    <%}%>
+                                </select>
+                            </div>
+                            <div style="padding-top: 1.5em;"></div>
+                        </form>
 
                     </div>
 
@@ -197,9 +209,9 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 </script>
 
 
-<script src="../../js/upload.js"></script>
-<script src="../../js/bootstrap/bootstrap.js"></script>
-<script src="../../js/script.js"></script>
+<script src="js/upload.js"></script>
+<script src="js/bootstrap/bootstrap.js"></script>
+<script src="js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 

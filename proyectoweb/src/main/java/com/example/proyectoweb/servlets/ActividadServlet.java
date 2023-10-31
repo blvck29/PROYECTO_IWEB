@@ -1,8 +1,10 @@
 package com.example.proyectoweb.servlets;
 
 import com.example.proyectoweb.model.beans.Actividad;
+import com.example.proyectoweb.model.beans.Usuario;
 import com.example.proyectoweb.model.beans.DelegadoAct;
 import com.example.proyectoweb.model.daos.ActividadesDao;
+import com.example.proyectoweb.model.daos.UsuariosDao;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -18,9 +20,11 @@ public class ActividadServlet extends HttpServlet {
 
         String action = request.getParameter("action") == null? "listarAct" : request.getParameter("action");
 
+        ActividadesDao actividadesDao = new ActividadesDao();
+        UsuariosDao userDao = new UsuariosDao();
+
         switch(action){
             case "listarAct":
-                ActividadesDao actividadesDao = new ActividadesDao();
 
                 ArrayList<DelegadoAct> listaDelegadosAct = actividadesDao.listarNombresEncargadosAct();
                 ArrayList<Actividad> listaActividades = actividadesDao.getListaActividades();
@@ -30,6 +34,9 @@ public class ActividadServlet extends HttpServlet {
 
                 break;
             case "crear":
+                ArrayList<Usuario> listaUsuarios = userDao.listarTodosUsuarios();
+
+                request.setAttribute("listaUsuarios",listaUsuarios);
                 request.getRequestDispatcher("/pages/super_admin/new_activity.jsp").forward(request,response);
                 break;
 
@@ -53,6 +60,14 @@ public class ActividadServlet extends HttpServlet {
 
                 request.setAttribute("listaDelegadosAct",listaActividadFiltrada);
                 request.getRequestDispatcher("/pages/super_admin/lista_actividades.jsp").forward(request,response);
+                break;
+
+
+            case "crear":
+                String tituloActividad = request.getParameter("nombreActividad");
+                String idActividad = tituloActividad.toUpperCase();
+
+
                 break;
 
 
