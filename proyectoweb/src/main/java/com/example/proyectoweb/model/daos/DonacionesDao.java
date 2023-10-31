@@ -1,6 +1,7 @@
 package com.example.proyectoweb.model.daos;
 
 import com.example.proyectoweb.model.beans.Donaciones;
+import com.example.proyectoweb.model.beans.Usuario;
 import com.mysql.cj.jdbc.Blob;
 
 import java.sql.*;
@@ -45,4 +46,118 @@ public class DonacionesDao {
         }
         return listaDonacionesAlumno;
     }
+
+
+
+    public ArrayList<Donaciones> buscarPorNombre(String nombre){
+
+        ArrayList<Donaciones> listaDonaciones = new ArrayList();
+
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        }catch(ClassNotFoundException e){
+            throw new RuntimeException(e);
+        }
+
+        //Parámetros de Conexión
+        String url = "jdbc:mysql://localhost:3306/proyectoweb";
+        String username = "root";
+        String password = "root";
+
+
+        //Conexión a la DB
+
+        String sql = "SELECT don.idUsuario, don.idRegistro_Donaciones, u.nombres, u.apellidos, don.comprobante, don.monto, don.comprobado \n" +
+                "FROM registro_donaciones don \n" +
+                "INNER JOIN usuarios u on (u.idUsuario = don.idUsuario) \n" +
+                "where lower(nombres) like ? or lower(apellidos) like ?";
+
+
+        try (Connection conn = DriverManager.getConnection(url,username,password);
+             PreparedStatement pstmt = conn.prepareStatement(sql)){
+
+            pstmt.setString(1, nombre + "%");
+            pstmt.setString(2,nombre + "%");
+
+
+            try(ResultSet rs = pstmt.executeQuery()){
+
+                while(rs.next()){
+
+                    Donaciones donacion = new Donaciones();
+                    donacion.setIdUsuario(rs.getInt(1));
+                    donacion.setIdDonaciones(rs.getInt(2));
+                    donacion.setNombres(rs.getString(3));
+                    donacion.setApellidos(rs.getString(4));
+                    donacion.setComprobante((Blob) rs.getBlob(5));
+                    donacion.setMonto(rs.getDouble(6));
+                    donacion.setComprobado(rs.getBoolean(7));
+
+                    listaDonaciones.add(donacion);
+
+                }
+
+            }
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+
+        return listaDonaciones;
+    }
+
+
+    public ArrayList<Donaciones> listarComprobados(String comprobacion){
+        ArrayList<Donaciones> listaDonaciones = new ArrayList();
+
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        }catch(ClassNotFoundException e){
+            throw new RuntimeException(e);
+        }
+
+        //Parámetros de Conexión
+        String url = "jdbc:mysql://localhost:3306/proyectoweb";
+        String username = "root";
+        String password = "root";
+
+
+        //Conexión a la DB
+
+        String sql = "SELECT don.idUsuario, don.idRegistro_Donaciones, u.nombres, u.apellidos, don.comprobante, don.monto, don.comprobado \n" +
+                "FROM registro_donaciones don \n" +
+                "INNER JOIN usuarios u on (u.idUsuario = don.idUsuario) \n" +
+                "where comprobado = ?";
+
+
+        try (Connection conn = DriverManager.getConnection(url,username,password);
+             PreparedStatement pstmt = conn.prepareStatement(sql)){
+
+            pstmt.setString(1, comprobacion);
+
+            try(ResultSet rs = pstmt.executeQuery()){
+
+                while(rs.next()){
+
+                    Donaciones donacion = new Donaciones();
+                    donacion.setIdUsuario(rs.getInt(1));
+                    donacion.setIdDonaciones(rs.getInt(2));
+                    donacion.setNombres(rs.getString(3));
+                    donacion.setApellidos(rs.getString(4));
+                    donacion.setComprobante((Blob) rs.getBlob(5));
+                    donacion.setMonto(rs.getDouble(6));
+                    donacion.setComprobado(rs.getBoolean(7));
+
+                    listaDonaciones.add(donacion);
+
+                }
+
+            }
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+
+        return listaDonaciones;
+
+    }
 }
+

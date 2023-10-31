@@ -100,10 +100,10 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
     <div class="row">
 
         <div class="col-md-10" >
-            <form method="post" action="<%=request.getContextPath()%>/UsuarioServlet?action=busqueda">
+            <form method="post" action="<%=request.getContextPath()%>/admin_gen_donaciones?action=busqueda">
 
-                <div class="custom-form-group">
-                    <input type="text" class="form-control" name="busquedaNombreCodigo" placeholder="Buscar por nombre o código" style="width: 120%">
+                <div class="custom-form-group" style ="margin-right: 80px">
+                    <input type="text" class="form-control" name="nombreDonante" placeholder="Buscar por nombre o apellido" style="width: 130%">
                 </div>
                 <button type="submit" class="btn btn-primary">Aplicar filtros</button>
 
@@ -118,8 +118,12 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                     COMPROBACIÓN
                 </button>
                 <ul class="dropdown-menu dropdown-menu-lg-end">
-                    <li><button class="dropdown-item" type="button">Comprobados</button></li>
-                    <li><button class="dropdown-item" type="button">No comprobados</button></li>
+                    <form method="post" action="<%=request.getContextPath()%>/admin_gen_donaciones?action=filtrarComprobados&id=1">
+                        <li><button class="dropdown-item" type="submit">Comprobados</button></li>
+                    </form>
+                    <form method="post" action="<%=request.getContextPath()%>/admin_gen_donaciones?action=filtrarComprobados&id=0">
+                        <li><button class="dropdown-item" type="submit">No comprobados</button></li>
+                    </form>
                 </ul>
             </div>
         </div>
