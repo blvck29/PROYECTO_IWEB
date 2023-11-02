@@ -45,6 +45,36 @@ public class ActividadServlet extends HttpServlet {
                 request.getRequestDispatcher("/pages/super_admin/new_activity.jsp").forward(request,response);
                 break;
 
+            case "edit":
+                DelegadoAct actividad = actividadesDao.buscarPorTitulo(request.getParameter("id"));
+                ArrayList<Usuario> listaUsuarios2 = userDao.listarTodosUsuarios();
+                ArrayList<Actividad> listaActividades2 = actividadesDao.getListaActividades();
+
+
+                if (actividad != null){
+                    request.setAttribute("listaActividades",listaActividades2);
+                    request.setAttribute("actividad",actividad);
+                    request.setAttribute("listaUsuarios",listaUsuarios2);
+                    request.getRequestDispatcher("/pages/super_admin/edit_activity.jsp").forward(request, response);
+                }
+                else{
+                    response.sendRedirect(request.getContextPath()+"/admin_gen_activities");
+                }
+                break;
+
+            case "delete":
+                String tituloActividad = request.getParameter("id");
+                String idActividad = tituloActividad.toUpperCase();
+
+                actividadesDao.eliminarActividad(idActividad);
+                response.sendRedirect(request.getContextPath()+ "/admin_gen_activities");
+
+                break;
+
+
+
+
+
         }
 
 
@@ -75,6 +105,16 @@ public class ActividadServlet extends HttpServlet {
                 String idDelegado = request.getParameter("idDelegado");
 
                 actividadesDao.crearActividad(idActividad,tituloActividad,Integer.parseInt(idDelegado));
+                response.sendRedirect(request.getContextPath() + "/admin_gen_activities");
+
+                break;
+
+            case "editar":
+                String tituloActividad2 = request.getParameter("tituloActividad");
+                String idActividad2 = tituloActividad2.toUpperCase();
+                String idDelegado2 = request.getParameter("idDelegado");
+
+                actividadesDao.actualizarActividad(idActividad2, Integer.parseInt(idDelegado2));
                 response.sendRedirect(request.getContextPath() + "/admin_gen_activities");
 
                 break;

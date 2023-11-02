@@ -29,10 +29,8 @@
 
         <link rel="icon" type="image/jpg" href="favicon.png" />
 
-        <!-- Add the slick-theme.css if you want default styling -->
-        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-        <!-- Add the slick-theme.css if you want default styling -->
-        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="js/showError.js"></script>
 
         <title>Administración de Usuarios | Semana de Ingeniería 2023</title>
     </head>
@@ -124,7 +122,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                         <th class="header c1 centeralign" style="" scope="col"><a><strong>NOMBRE DELEGADO</strong></a></th>
                         <th class="header c1 centeralign" style="" scope="col"><a><strong>CODIGO DELEGADO</strong></a></th>
                         <th class="header c5" style="" scope="col">EDITAR</th>
-                        <td class="header c6 lastcol" style=""></td>
+                        <th class="header c6" style="" scope="col">BORRAR</th>
                     </tr>
                 </thead>
 
@@ -137,9 +135,8 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                         <td class="centeralign cell c0" style=""><a><%= delegadoAct.getTituloActividad()%></a></td>
                         <td class="centeralign cell c1" style=""><%= delegadoAct.getNombre() + " " + delegadoAct.getApellido()%> </td>
                         <td class="centeralign cell c1" style=""><%= delegadoAct.getCodigo()%></td>
-                        <td class="cell c5" style=""><a href="<%=request.getContextPath() %>/ActividadServlet?action=Editar"><img width="24" height="24" src="https://img.icons8.com/sf-regular/48/edit-row.png" alt="edit-row"/></a></td>
-
-                        <td class="cell c6 lastcol" style=""></td>
+                        <td class="cell c5" ><a href="<%=request.getContextPath() %>/admin_gen_activities?action=edit&id=<%=delegadoAct.getTituloActividad()%>"><img width="24" height="24" src="https://img.icons8.com/sf-regular/48/edit-row.png" alt="edit-row"/></a></td>
+                        <td class="cell c6 "><a id="borrar"  onclick="return confirmacionEliminar(event)" href="<%=request.getContextPath() %>/admin_gen_activities?action=delete&id=<%=delegadoAct.getTituloActividad()%>"><img width="24" height="24" src="https://img.icons8.com/sf-regular/48/filled-trash.png" alt="filled-trash"/></a></td>
                     </tr>
 
                     <%}%>
@@ -149,7 +146,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
             <br>
 
             <div>
-                <a class="btn btn-primary " style = "margin-left: 2px;" href="<%=request.getContextPath()%>/admin_gen_activities?action=crear">Crear actividad</a>
+                <a class="btn btn-primary" style="margin-left: 2px;" href="<%=request.getContextPath()%>/admin_gen_activities?action=crear">Crear actividad</a>
             </div>
 
 
@@ -203,17 +200,27 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
         </div>
 
         <script>
-            function redireccionar() {
-                var seleccion = document.getElementById("estado").value;
-                if (seleccion === "aprobado") {
-                    window.location.href = "#";
-                } else if (seleccion === "rechazado") {
-                    window.location.href = "#";
-                } else if (seleccion === "ban") {
-                    window.location.href = "#";
-                }
+            function confirmacionEliminar(event) {
+                event.preventDefault(); // Previene ir al href(el cual va al servlet) hasta que se de en borrar
+
+                Swal.fire({
+                    title: '¿Estas seguro de eliminar esta actividad?',
+                    text: "No se podrán revertir estos cambios",
+                    icon: 'warning',
+                    iconColor: '#DC3545',
+                    showCancelButton: true,
+                    cancelButtonColor: '#0D6EFD',
+                    cancelButtonText: 'Cancelar',
+                    confirmButtonColor: '#DC3545',
+                    confirmButtonText: 'Borrar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = document.getElementById('borrar').getAttribute('href');
+                    }
+                });
             }
         </script>
+
 
         <script src="js/bootstrap/bootstrap.js"></script>
         <script src="js/script.js"></script>

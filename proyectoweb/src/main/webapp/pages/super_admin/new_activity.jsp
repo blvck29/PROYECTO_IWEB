@@ -33,7 +33,8 @@
         <% }  %>
     ];
 
-    console.log(idsUsuarios);
+    console.log(titulosActividad);
+    console.log(idsDelegados);
 </script>
 
 
