@@ -1,8 +1,40 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.example.proyectoweb.model.beans.Usuario" %>
+<%@ page import="com.example.proyectoweb.model.beans.Actividad" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <%ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) request.getAttribute("listaUsuarios");%>
+<%ArrayList<Actividad> listaActividades = (ArrayList<Actividad>) request.getAttribute("listaActividades");%>
+
+<%
+    ArrayList<String> titulosActividad = new ArrayList<String>();
+    ArrayList<Integer> listaIdsDelegados = new ArrayList<Integer>();
+
+    for (Actividad act : listaActividades) {
+        titulosActividad.add(act.getTitulo());
+    }
+
+    for (Actividad act : listaActividades) {
+        listaIdsDelegados.add(act.getIdEncargado());
+    }
+%>
+
+<script>
+    var titulosActividad = [
+        <% for (String titulo : titulosActividad) { %>
+        '<%= titulo %>',
+        <% } %>
+    ];
+
+    var idsDelegados = [
+        <%
+        for (Integer id : listaIdsDelegados){%>
+        '<%= id %>',
+        <% }  %>
+    ];
+
+    console.log(idsUsuarios);
+</script>
 
 
 <!doctype html>
@@ -31,12 +63,14 @@
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.17.4/dist/js/uikit.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.17.4/dist/js/uikit-icons.min.js"></script>
 
-    <link rel="icon" type="image/jpg" href="../../favicon.png" />
+    <link rel="icon" type="image/jpg" href="favicon.png" />
 
     <!-- Add the slick-theme.css if you want default styling -->
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <!-- Add the slick-theme.css if you want default styling -->
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/showError.js"></script>
 
     <title>Home | Semana de Ingeniería 2023</title>
 </head>
@@ -77,7 +111,7 @@
 
 
 <div class="container-fluid" style="padding-left:0 !important; padding-right: 0 !important; background: rgb(45,0,83) !important;
-background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgba(21,0,48,1) 100%) !important;")>
+background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgba(21,0,48,1) 100%) !important;">
     <div class="text-secondary px-4 py-5 text-center">
         <div class="py-5">
             <h1 class="display-5 fw-bold text-white" style="font-family: 'Poppins', sans-serif">Creando Nueva Actividad</h1>
@@ -99,46 +133,50 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
     <div style="margin-bottom: 40px"></div>
 
+
+
+
+
+
+
+
     <div class="container">
 
         <div class="row">
             <div class="col-lg-6 col-md-12" style="text-align: left; padding-top: 1.5em">
-
+                <form id="form" method="post" action="<%=request.getContextPath()%>/admin_gen_activities?action=crear">
                 <div class="card">
                     <div class="card-body" style="padding-left: 35px">
-                        <form method="post" action="<%=request.getContextPath()%>/admin_gen_activities?action=crear">
                             <div style="padding-top: 1.5em;"></div>
                             <div class="form-group" style="padding-right: 1rem">
                                 <label for="fecha-evento" style="text-align: left;">
                                     <strong>Nombre de Actividad:</strong></label>
-                                <input type="text" class="form-control" name="nombreActividad">
+                                <input type="text" id="nombreAct" class="form-control" name="nombreActividad" required>
                             </div>
                             <div style="padding-top: 1.5em;"></div>
                             <div class="form-group" style="padding-right: 1rem">
                                 <label for="asistentes"><strong>Delegado de Actividad:</strong></label>
-
-
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected>Seleccionar</option>
+                                <select class="form-select" name="idDelegado" id="idDelegado" aria-label="Default select example" required>
+                                    <option selected disabled value="">Seleccionar</option>
                                     <%for (Usuario usuario : listaUsuarios){ %>
-                                    <option value="1" name="delegadoActividad"><%=usuario.getNombres() + " " + usuario.getApellidos()%></option>
+                                    <option value="<%=usuario.getIdUsuario()%>"><%=usuario.getNombres() + " " + usuario.getApellidos()%></option>
                                     <%}%>
                                 </select>
+                                <div>
+                                </div>
                             </div>
                             <div style="padding-top: 1.5em;"></div>
-                        </form>
-
                     </div>
-
-
                 </div>
 
                     <div class="uk-flex uk-flex-center uk-margin-top">
                         <div class="uk-flex uk-flex-center">
-                            <a id="redirect-button" class="btn btn-secondary m-2" href="http://localhost:8080/proyectoweb/adm_actividades">Cancelar</a>
-                            <button id="reload-button" class="btn btn-primary m-2">Guardar</button>
+                            <a id="redirect-button" class="btn btn-secondary m-2" href="<%=request.getContextPath()%>/admin_gen_activities">Cancelar</a>
+                            <button type="submit" class="btn btn-primary m-2">Guardar</button>
                         </div>
                     </div>
+
+                </form>
             </div>
 
 
@@ -174,6 +212,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
         </div>
     </div>
 
+
 </div>
 
 <div style="margin-bottom: 50px"></div>
@@ -192,21 +231,35 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
 
 
-
-
-
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const uploadForm = document.querySelector("#upload-form");
-        const resetButton = document.querySelector("#reset-button");
+        const nombre = document.getElementById("nombreAct")
+        const form = document.getElementById("form")
+        const idDelegado = document.getElementById("idDelegado")
 
-        resetButton.addEventListener("click", function(event) {
-            event.preventDefault(); // Prevenir el comportamiento predeterminado del enlace
-            const previewList = document.getElementById("preview");
-            previewList.innerHTML = ""; // Limpiar la lista de vista previa
-        });
-    });
+        form.addEventListener("submit", e=>{
+
+            if (titulosActividad.includes(nombre.value)){
+                showError('El nombre de la actividad ya existe')
+                e.preventDefault() // Evita el envío del formulario si la validación falla
+            }else if (nombre.value.length<4){
+                 showError("El titulo de la actividad es muy corto")
+                 e.preventDefault()
+            }else if (nombre.value.length>8){
+                showError("El titulo de la actividad es muy largo")
+                e.preventDefault()
+            }
+            else if(idsDelegados.includes(idDelegado.value)){
+                showError("El delegado ya fue seleccionado para otra actividad")
+                e.preventDefault()
+            }
+            else{
+                //Envia el form al servlet
+            }
+        })
 </script>
+
+
+
 
 
 <script src="js/upload.js"></script>

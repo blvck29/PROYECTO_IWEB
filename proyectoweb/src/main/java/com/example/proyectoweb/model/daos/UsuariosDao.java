@@ -34,6 +34,7 @@ public class UsuariosDao {
 
                 Usuario usuario = new Usuario();
 
+                usuario.setIdUsuario(rs.getInt(1));
                 usuario.setNombres(rs.getString(4));
                 usuario.setApellidos(rs.getString(5));
                 usuario.setCodigo(rs.getString(6));
@@ -143,6 +144,8 @@ public class UsuariosDao {
                 while(rs.next()){
 
                     usuario = new Usuario();
+
+                    usuario.setIdUsuario(rs.getInt(1));
                     usuario.setNombres(rs.getString(4));
                     usuario.setApellidos(rs.getString(5));
                     usuario.setCodigo(rs.getString(6));

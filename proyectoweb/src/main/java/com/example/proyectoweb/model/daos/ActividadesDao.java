@@ -152,5 +152,112 @@ public class ActividadesDao {
 
 
 
+    public void crearActividad(String idActividad, String tituloAct, Integer idDelegado){
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        String url = "jdbc:mysql://localhost:3306/proyectoweb";
+        String username = "root";
+        String password = "root";
+
+        String sql = "insert into actividad (idActividad,titulo,idEncargado) values (?,?,?)";
+
+        try(Connection connection = DriverManager.getConnection(url,username,password);
+            PreparedStatement pstmt = connection.prepareStatement(sql)){
+
+            pstmt.setString(1, idActividad);
+            pstmt.setString(2, tituloAct);
+            pstmt.setInt(3, idDelegado);
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+
+    public Actividad buscarPorIdActividad(String idActividad){
+
+        Actividad actividad = null;
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        String url = "jdbc:mysql://localhost:3306/proyectoweb";
+        String username = "root";
+        String password = "root";
+
+        String sql = "select * from actividad where idActividad = ?";
+
+        try (Connection conn = DriverManager.getConnection(url,username,password);
+             PreparedStatement pstmt = conn.prepareStatement(sql)){
+
+            pstmt.setString(1, idActividad);
+
+
+            try(ResultSet rs = pstmt.executeQuery()){
+
+                while(rs.next()){
+
+                    actividad = new Actividad(rs.getString(1), rs.getString(2), rs.getBlob(3), rs.getBlob(4), rs.getInt(5));
+                }
+            }
+
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+
+        return actividad;
+    }
+
+
+    public Actividad buscarPorIdDelegado(Integer idDelegado){
+
+        Actividad actividad = null;
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        String url = "jdbc:mysql://localhost:3306/proyectoweb";
+        String username = "root";
+        String password = "root";
+
+        String sql = "select * from actividad where idEncargado = ?";
+
+        try (Connection conn = DriverManager.getConnection(url,username,password);
+             PreparedStatement pstmt = conn.prepareStatement(sql)){
+
+            pstmt.setInt(1, idDelegado);
+
+
+            try(ResultSet rs = pstmt.executeQuery()){
+
+                while(rs.next()){
+
+                    actividad = new Actividad(rs.getString(1), rs.getString(2), rs.getBlob(3), rs.getBlob(4), rs.getInt(5));
+                }
+            }
+
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+
+        return actividad;
+    }
+
+
+
 
 }

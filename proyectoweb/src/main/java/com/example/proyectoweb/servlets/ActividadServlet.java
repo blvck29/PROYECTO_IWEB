@@ -15,6 +15,8 @@ import java.util.ArrayList;
 
 @WebServlet(name = "ActividadServlet", value = "/admin_gen_activities")
 public class ActividadServlet extends HttpServlet {
+
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -23,11 +25,12 @@ public class ActividadServlet extends HttpServlet {
         ActividadesDao actividadesDao = new ActividadesDao();
         UsuariosDao userDao = new UsuariosDao();
 
+
+
         switch(action){
             case "listarAct":
 
                 ArrayList<DelegadoAct> listaDelegadosAct = actividadesDao.listarNombresEncargadosAct();
-                ArrayList<Actividad> listaActividades = actividadesDao.getListaActividades();
 
                 request.setAttribute("listaDelegadosAct", listaDelegadosAct);
                 request.getRequestDispatcher("/pages/super_admin/lista_actividades.jsp").forward(request,response);
@@ -35,8 +38,10 @@ public class ActividadServlet extends HttpServlet {
                 break;
             case "crear":
                 ArrayList<Usuario> listaUsuarios = userDao.listarTodosUsuarios();
-
+                ArrayList<Actividad> listaActividades = actividadesDao.getListaActividades();
+                request.setAttribute("listaActividades",listaActividades);
                 request.setAttribute("listaUsuarios",listaUsuarios);
+
                 request.getRequestDispatcher("/pages/super_admin/new_activity.jsp").forward(request,response);
                 break;
 
@@ -51,6 +56,7 @@ public class ActividadServlet extends HttpServlet {
         String action = request.getParameter("action") == null? "busqueda" : request.getParameter("action");
 
         ActividadesDao actividadesDao = new ActividadesDao();
+        UsuariosDao userDao = new UsuariosDao();
 
         switch (action){
             case "busqueda":
@@ -66,7 +72,10 @@ public class ActividadServlet extends HttpServlet {
             case "crear":
                 String tituloActividad = request.getParameter("nombreActividad");
                 String idActividad = tituloActividad.toUpperCase();
+                String idDelegado = request.getParameter("idDelegado");
 
+                actividadesDao.crearActividad(idActividad,tituloActividad,Integer.parseInt(idDelegado));
+                response.sendRedirect(request.getContextPath() + "/admin_gen_activities");
 
                 break;
 
