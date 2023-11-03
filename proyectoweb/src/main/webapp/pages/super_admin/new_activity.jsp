@@ -145,7 +145,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
         <div class="row">
             <div class="col-lg-6 col-md-12" style="text-align: left; padding-top: 1.5em">
-                <form id="form" method="post" action="<%=request.getContextPath()%>/admin_gen_activities?action=crear">
+                <form id="form" method="post" action="<%=request.getContextPath()%>/admin_gen?action=activities&ac=crear">
                 <div class="card">
                     <div class="card-body" style="padding-left: 35px">
                             <div style="padding-top: 1.5em;"></div>
@@ -172,7 +172,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
                     <div class="uk-flex uk-flex-center uk-margin-top">
                         <div class="uk-flex uk-flex-center">
-                            <a id="redirect-button" class="btn btn-secondary m-2" href="<%=request.getContextPath()%>/admin_gen_activities">Cancelar</a>
+                            <a id="redirect-button" class="btn btn-secondary m-2" href="<%=request.getContextPath()%>/admin_gen?action=activities">Cancelar</a>
                             <button type="submit" class="btn btn-primary m-2">Guardar</button>
                         </div>
                     </div>
