@@ -9,27 +9,16 @@ import com.sun.jdi.ArrayReference;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class ActividadesDao {
+public class ActividadesDao extends DaoBase{
 
 
     public ArrayList<Actividad> getListaActividades(){
 
-        try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        }catch(ClassNotFoundException e){
-            throw new RuntimeException(e);
-        }
-
-        //Parámetros de Conexión
-        String url = "jdbc:mysql://localhost:3306/proyectoweb";
-        String username = "root";
-        String password = "root";
-
         String sql = "select * from actividad";
 
-        ArrayList<Actividad> listaActividades = new ArrayList();
+        ArrayList<Actividad> listaActividades = new ArrayList<>();
 
-        try(Connection conn = DriverManager.getConnection(url,username,password);
+        try (Connection conn = getConnection();
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql)){
 
@@ -38,7 +27,7 @@ public class ActividadesDao {
                 listaActividades.add(actividad);
             }
 
-        }catch(SQLException e){
+        } catch(SQLException e){
             throw new RuntimeException(e);
         }
 
@@ -49,18 +38,6 @@ public class ActividadesDao {
 
     public ArrayList<DelegadoAct> listarNombresEncargadosAct(){
 
-        try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        }catch(ClassNotFoundException e){
-            throw new RuntimeException(e);
-        }
-
-
-        //Parámetros de Conexión
-        String url = "jdbc:mysql://localhost:3306/proyectoweb";
-        String username = "root";
-        String password = "root";
-
 
         //Conexión a la DB
 
@@ -69,9 +46,9 @@ public class ActividadesDao {
                 "\n" +
                 "\tINNER JOIN usuarios u on (u.idUsuario = ac.idEncargado);";
 
-        ArrayList<DelegadoAct> listaEncargados = new ArrayList();
+        ArrayList<DelegadoAct> listaEncargados = new ArrayList<>();
 
-        try(Connection conn = DriverManager.getConnection(url,username,password);
+        try(Connection conn = getConnection();
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql)){
 
@@ -92,27 +69,12 @@ public class ActividadesDao {
         }catch(SQLException e){
             throw new RuntimeException(e);
         }
-
         return listaEncargados;
-
     }
 
     public ArrayList<DelegadoAct> filtrarXTitulo (String tituloActividad){
 
         DelegadoAct actividad = null;
-
-        try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        }catch(ClassNotFoundException e){
-            throw new RuntimeException(e);
-        }
-
-
-        //Parámetros de Conexión
-        String url = "jdbc:mysql://localhost:3306/proyectoweb";
-        String username = "root";
-        String password = "root";
-
         ArrayList<DelegadoAct> listaActividades = new ArrayList<>();
 
         // Conexión a DB
@@ -121,7 +83,7 @@ public class ActividadesDao {
                 "INNER JOIN usuarios u on (u.idUsuario = ac.idEncargado)\n" +
                 "where lower(ac.titulo) like ?";
 
-        try (Connection conn = DriverManager.getConnection(url,username,password);
+        try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)){
 
             pstmt.setString(1, tituloActividad + "%");
@@ -140,35 +102,23 @@ public class ActividadesDao {
 
                     listaActividades.add(actividad);
                 }
-
-
             }
-
-            return listaActividades;
 
         }catch (SQLException e){
             throw new RuntimeException(e);
         }
+
+        return listaActividades;
     }
 
 
 
     public void crearActividad(String idActividad, String tituloAct, Integer idDelegado){
 
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-
-        String url = "jdbc:mysql://localhost:3306/proyectoweb";
-        String username = "root";
-        String password = "root";
-
         String sql = "insert into actividad (idActividad,titulo,idEncargado) values (?,?,?)";
 
-        try(Connection connection = DriverManager.getConnection(url,username,password);
-            PreparedStatement pstmt = connection.prepareStatement(sql)){
+        try(Connection conn = getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)){
 
             pstmt.setString(1, idActividad);
             pstmt.setString(2, tituloAct);
@@ -186,20 +136,9 @@ public class ActividadesDao {
     public Actividad buscarPorIdActividad(String idActividad){
 
         Actividad actividad = null;
-
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-
-        String url = "jdbc:mysql://localhost:3306/proyectoweb";
-        String username = "root";
-        String password = "root";
-
         String sql = "select * from actividad where idActividad = ?";
 
-        try (Connection conn = DriverManager.getConnection(url,username,password);
+        try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)){
 
             pstmt.setString(1, idActividad);
@@ -216,7 +155,6 @@ public class ActividadesDao {
         }catch (SQLException e){
             throw new RuntimeException(e);
         }
-
         return actividad;
     }
 
@@ -224,83 +162,26 @@ public class ActividadesDao {
 
         DelegadoAct actividad = null;
 
-        try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        }catch(ClassNotFoundException e){
-            throw new RuntimeException(e);
-        }
-
-
-        //Parámetros de Conexión
-        String url = "jdbc:mysql://localhost:3306/proyectoweb";
-        String username = "root";
-        String password = "root";
-
-
         // Conexión a DB
         String sql = "SELECT ac.titulo, idEncargado, u.nombres, u.apellidos, u.codigo\n" +
                 "FROM actividad ac\n" +
                 "INNER JOIN usuarios u on (u.idUsuario = ac.idEncargado)\n" +
                 "where titulo = ?";
 
-        try (Connection conn = DriverManager.getConnection(url,username,password);
+        try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)){
 
             pstmt.setString(1, tituloActividad);
 
-
             try(ResultSet rs = pstmt.executeQuery()){
 
-
                 while(rs.next()){
-
                     actividad = new DelegadoAct();
                     actividad.setTituloActividad(rs.getString(1));
                     actividad.setIdEncargado(rs.getInt(2));
                     actividad.setNombre(rs.getString(3));
                     actividad.setApellido(rs.getString(4));
                     actividad.setCodigo(rs.getString(5));
-
-                }
-
-
-            }
-
-            return actividad;
-
-        }catch (SQLException e){
-            throw new RuntimeException(e);
-        }
-    }
-
-
-    public Actividad buscarPorIdDelegado(Integer idDelegado){
-
-        Actividad actividad = null;
-
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-
-        String url = "jdbc:mysql://localhost:3306/proyectoweb";
-        String username = "root";
-        String password = "root";
-
-        String sql = "select * from actividad where idEncargado = ?";
-
-        try (Connection conn = DriverManager.getConnection(url,username,password);
-             PreparedStatement pstmt = conn.prepareStatement(sql)){
-
-            pstmt.setInt(1, idDelegado);
-
-
-            try(ResultSet rs = pstmt.executeQuery()){
-
-                while(rs.next()){
-
-                    actividad = new Actividad(rs.getString(1), rs.getString(2), rs.getBlob(3), rs.getBlob(4), rs.getInt(5));
                 }
             }
 
@@ -312,26 +193,38 @@ public class ActividadesDao {
     }
 
 
-    public void actualizarActividad(String idActividad, Integer idDelegado){
+    public Actividad buscarPorIdDelegado(Integer idDelegado){
 
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
+        Actividad actividad = null;
+
+        String sql = "select * from actividad where idEncargado = ?";
+
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)){
+
+            pstmt.setInt(1, idDelegado);
+
+            try(ResultSet rs = pstmt.executeQuery()){
+                while(rs.next()){
+                    actividad = new Actividad(rs.getString(1), rs.getString(2), rs.getBlob(3), rs.getBlob(4), rs.getInt(5));
+                }
+            }
+        }catch (SQLException e){
             throw new RuntimeException(e);
         }
+        return actividad;
+    }
 
-        String url = "jdbc:mysql://localhost:3306/proyectoweb";
-        String username = "root";
-        String password = "root";
+
+    public void actualizarActividad(String idActividad, Integer idDelegado){
 
         String sql = "update actividad set idEncargado = ? where idActividad = ?";
 
-        try(Connection connection = DriverManager.getConnection(url,username,password);
+        try(Connection connection = getConnection();
             PreparedStatement pstmt = connection.prepareStatement(sql)){
 
             pstmt.setInt(1, idDelegado);
             pstmt.setString(2,idActividad);
-
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
@@ -341,32 +234,16 @@ public class ActividadesDao {
 
     public void eliminarActividad(String idActividad){
 
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-
-        String url = "jdbc:mysql://localhost:3306/proyectoweb";
-        String username = "root";
-        String password = "root";
-
         String sql = "delete from actividad where idActividad = ?";
 
-        try(Connection connection = DriverManager.getConnection(url,username,password);
+        try(Connection connection = getConnection();
             PreparedStatement pstmt = connection.prepareStatement(sql)){
-
             pstmt.setString(1, idActividad);
-
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
-
-
-
-
-
+    
 }

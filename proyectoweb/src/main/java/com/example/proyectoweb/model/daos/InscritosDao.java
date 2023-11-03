@@ -8,24 +8,12 @@ import com.example.proyectoweb.model.beans.UsuarioInscritoXevento;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class InscritosDao {
+public class InscritosDao extends DaoBase{
 
 
     public ArrayList<UsuarioInscritoXevento> listarInscritosXevento(String idEvento){
 
         ArrayList<UsuarioInscritoXevento> listaInscritosXEvento = new ArrayList<>();
-
-        try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        }catch(ClassNotFoundException e){
-            throw new RuntimeException(e);
-        }
-
-        //Parámetros de Conexión
-        String url = "jdbc:mysql://localhost:3306/proyectoweb";
-        String username = "root";
-        String password = "root";
-
 
         String sql = "SELECT u.idUsuario, u.codigo, u.nombres, u.apellidos, ins.idEvento, ev.titulo\n" +
                 "FROM inscripcion ins\n" +
@@ -33,7 +21,7 @@ public class InscritosDao {
                 "    INNER JOIN evento ev on (ins.idEvento = ev.idEvento)\n" +
                 " where ev.idEvento = ? ";
 
-        try (Connection conn = DriverManager.getConnection(url,username,password);
+        try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)){
 
             pstmt.setString(1, idEvento);

@@ -40,13 +40,16 @@ public class UsuarioHomeServlet extends HttpServlet {
 
         switch (action){
             case "load":
-            case "filter":
                 request.setAttribute("listaActividades",listaActividades);
                 request.setAttribute("listaEventos",listaEventos);
 
                 request.getRequestDispatcher("pages/user/home.jsp").forward(request,response);
                 break;
 
+            case "filter":
+
+                request.getRequestDispatcher("pages/user/home.jsp").forward(request,response);
+                break;
         }
 
 

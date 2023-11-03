@@ -1,25 +1,13 @@
 package com.example.proyectoweb.model.daos;
 import com.example.proyectoweb.model.beans.Evento;
-import com.example.proyectoweb.model.beans.Usuario;
 
 import java.sql.*;
 import java.util.ArrayList;
 
-public class EventosDao {
+public class EventosDao extends DaoBase{
 
 
     public ArrayList<Evento> listarEventos (){ //admin
-        try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        }catch(ClassNotFoundException e){
-            throw new RuntimeException(e);
-        }
-
-        //Parámetros de Conexión
-        String url = "jdbc:mysql://localhost:3306/proyectoweb";
-        String username = "root";
-        String password = "root";
-
 
         //Conexión a la DB
 
@@ -27,7 +15,7 @@ public class EventosDao {
 
         ArrayList<Evento> listaEventos = new ArrayList();
 
-        try(Connection conn = DriverManager.getConnection(url,username,password);
+        try(Connection conn = getConnection();
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql)){
 

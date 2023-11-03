@@ -7,24 +7,14 @@ import com.mysql.cj.jdbc.Blob;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class DonacionesDao {
-
+public class DonacionesDao extends DaoBase{
 
     public ArrayList<Donaciones> listar(){
+
         ArrayList<Donaciones> listaDonacionesAlumno = new ArrayList<>();
-
-        try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        }catch (ClassNotFoundException e){
-            throw new RuntimeException(e);
-        }
-
-        String url = "jdbc:mysql://localhost:3306/proyectoweb";
-        String user = "root";
-        String pass = "root";
         String sql = "SELECT don.idUsuario, don.idRegistro_Donaciones, u.nombres, u.apellidos, don.comprobante, don.monto, don.comprobado FROM registro_donaciones don INNER JOIN usuarios u on (u.idUsuario = don.idUsuario)";
 
-        try(Connection conn = DriverManager.getConnection(url,user,pass);
+        try(Connection conn = getConnection();
             Statement stmt = conn.createStatement();){
 
             ResultSet rs = stmt.executeQuery(sql);
@@ -53,18 +43,6 @@ public class DonacionesDao {
 
         ArrayList<Donaciones> listaDonaciones = new ArrayList();
 
-        try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        }catch(ClassNotFoundException e){
-            throw new RuntimeException(e);
-        }
-
-        //Parámetros de Conexión
-        String url = "jdbc:mysql://localhost:3306/proyectoweb";
-        String username = "root";
-        String password = "root";
-
-
         //Conexión a la DB
 
         String sql = "SELECT don.idUsuario, don.idRegistro_Donaciones, u.nombres, u.apellidos, don.comprobante, don.monto, don.comprobado \n" +
@@ -73,7 +51,7 @@ public class DonacionesDao {
                 "where lower(nombres) like ? or lower(apellidos) like ?";
 
 
-        try (Connection conn = DriverManager.getConnection(url,username,password);
+        try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)){
 
             pstmt.setString(1, nombre + "%");
@@ -109,18 +87,6 @@ public class DonacionesDao {
     public ArrayList<Donaciones> listarComprobados(String comprobacion){
         ArrayList<Donaciones> listaDonaciones = new ArrayList();
 
-        try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        }catch(ClassNotFoundException e){
-            throw new RuntimeException(e);
-        }
-
-        //Parámetros de Conexión
-        String url = "jdbc:mysql://localhost:3306/proyectoweb";
-        String username = "root";
-        String password = "root";
-
-
         //Conexión a la DB
 
         String sql = "SELECT don.idUsuario, don.idRegistro_Donaciones, u.nombres, u.apellidos, don.comprobante, don.monto, don.comprobado \n" +
@@ -129,7 +95,7 @@ public class DonacionesDao {
                 "where comprobado = ?";
 
 
-        try (Connection conn = DriverManager.getConnection(url,username,password);
+        try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)){
 
             pstmt.setString(1, comprobacion);

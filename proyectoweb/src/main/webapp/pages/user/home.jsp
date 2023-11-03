@@ -5,6 +5,7 @@
 
 <% ArrayList<Actividad> listaActividades = (ArrayList<Actividad>) request.getAttribute("listaActividades");%>
 <% ArrayList<Evento> listaEventos = (ArrayList<Evento>) request.getAttribute("listaEventos"); %>
+<% ArrayList<Evento> eventosPorActividad = (ArrayList<Evento>) request.getAttribute("listaFiltro1");%>
 
 <!doctype html>
 <html lang="es">
@@ -146,7 +147,7 @@
     <div style="margin-bottom: 40px"></div>
 
 
-    <form action="user_home?action=filter" method="post">
+    <form action="user_home?action=load" method="post">
         <div class="input-group mb-3">
             <div class="input-group-text p-0">
                 <label>
@@ -171,7 +172,6 @@
     <div class="row align-content-center" data-masonry='{"percentPosition": true }'>
 
         <% for (Evento evento : listaEventos) { %>
-            <%if (seleccion_actividad)%>
         <div class="col-sm-6 col-lg-3 mb-4">
 
             <div class="card-list">
