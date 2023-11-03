@@ -58,19 +58,19 @@
     <nav class="nav-bar">
         <ul>
             <li>
-                <a href="<%=request.getContextPath()%>/admin_gen_home" >Usuarios</a>
+                <a href="<%=request.getContextPath()%>/admin_gen?action=home">Usuarios</a>
             </li>
             <li>
-                <a href="<%=request.getContextPath()%>/admin_gen_activities">Actividades</a>
+                <a href="<%=request.getContextPath()%>/admin_gen?action=activities&ac=list">Actividades</a>
             </li>
             <li>
-                <a href="<%=request.getContextPath()%>/admin_gen_statistics">Estadísticas</a>
+                <a href="<%=request.getContextPath()%>/admin_gen?action=statistics">Estadísticas</a>
             </li>
             <li>
-                <a href="<%=request.getContextPath()%>/admin_gen_donaciones" class="active">Donaciones</a>
+                <a href="<%=request.getContextPath()%>/admin_gen?action=donations" class="active">Donaciones</a>
             </li>
             <li>
-                <a href="<%=request.getContextPath()%>"><i class="fa-solid fa-door-open nav-icon2"></i>Cerrar Sesión</a>
+                <a href="<%=request.getContextPath()%>/"><i class="fa-solid fa-door-open nav-icon2"></i>Cerrar Sesión</a>
             </li>
         </ul>
     </nav>
@@ -100,14 +100,14 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
     <div class="row">
 
         <div class="col-md-10" >
-            <form method="post" action="<%=request.getContextPath()%>/admin_gen_donaciones?action=busqueda">
+            <form method="post" action="<%=request.getContextPath()%>/admin_gen?action=donations&ac=busqueda">
 
                 <div class="custom-form-group" style ="margin-right: 80px">
                     <input type="text" class="form-control" name="nombreDonante" placeholder="Buscar por nombre o apellido" style="width: 130%">
                 </div>
                 <button type="submit" class="btn btn-primary">Aplicar filtros</button>
 
-                <a class="btn btn-primary" href="<%=request.getContextPath()%>/admin_gen_donaciones" role="button">Borrar filtros</a>
+                <a class="btn btn-primary" href="<%=request.getContextPath()%>/admin_gen?action=donations" role="button">Borrar filtros</a>
             </form>
         </div>
 
@@ -118,10 +118,10 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                     COMPROBACIÓN
                 </button>
                 <ul class="dropdown-menu dropdown-menu-lg-end">
-                    <form method="post" action="<%=request.getContextPath()%>/admin_gen_donaciones?action=filtrarComprobados&id=1">
+                    <form method="post" action="<%=request.getContextPath()%>/admin_gen?action=donations&ac=filtrarComprobados&id=1">
                         <li><button class="dropdown-item" type="submit">Comprobados</button></li>
                     </form>
-                    <form method="post" action="<%=request.getContextPath()%>/admin_gen_donaciones?action=filtrarComprobados&id=0">
+                    <form method="post" action="<%=request.getContextPath()%>/admin_gen?action=donations&ac=filtrarComprobados&id=0">
                         <li><button class="dropdown-item" type="submit">No comprobados</button></li>
                     </form>
                 </ul>

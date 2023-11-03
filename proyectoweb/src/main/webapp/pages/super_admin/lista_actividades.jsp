@@ -48,19 +48,19 @@
             <nav class="nav-bar">
                 <ul>
                     <li>
-                        <a href="<%=request.getContextPath()%>/admin_gen_home" >Usuarios</a>
+                        <a href="<%=request.getContextPath()%>/admin_gen?action=home">Usuarios</a>
                     </li>
                     <li>
-                        <a href="<%=request.getContextPath()%>/admin_gen_activities" class="active">Actividades</a>
+                        <a href="<%=request.getContextPath()%>/admin_gen?action=activities&ac=list" class="active">Actividades</a>
                     </li>
                     <li>
-                        <a href="<%=request.getContextPath()%>/admin_gen_statistics">Estadísticas</a>
+                        <a href="<%=request.getContextPath()%>/admin_gen?action=statistics">Estadísticas</a>
                     </li>
                     <li>
-                        <a href="<%=request.getContextPath()%>/admin_gen_donaciones">Donaciones</a>
+                        <a href="<%=request.getContextPath()%>/admin_gen?action=donations">Donaciones</a>
                     </li>
                     <li>
-                        <a href="<%=request.getContextPath()%>"><i class="fa-solid fa-door-open nav-icon2"></i>Cerrar Sesión</a>
+                        <a href="<%=request.getContextPath()%>/"><i class="fa-solid fa-door-open nav-icon2"></i>Cerrar Sesión</a>
                     </li>
                 </ul>
             </nav>
@@ -88,14 +88,14 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
                 <div class="col-md-12">
 
-                    <form method="post" action="<%=request.getContextPath()%>/admin_gen_activities?action=busqueda">
+                    <form method="post" action="<%=request.getContextPath()%>/admin_gen?action=activities&ac=busqueda">
 
                         <div class="custom-form-group">
                             <input type="text" class="form-control" name="busquedaTituloActividad" placeholder="Buscar por titulo" style="width: 120%">
                         </div>
                         <button type="submit" class="btn btn-primary">Aplicar filtros</button>
 
-                        <a class="btn btn-primary" href="<%=request.getContextPath()%>/admin_gen_activities" role="button">Borrar filtros</a>
+                        <a class="btn btn-primary" href="<%=request.getContextPath()%>/admin_gen?action=activities" role="button">Borrar filtros</a>
 
                     </form>
                 </div>
@@ -135,8 +135,8 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                         <td class="centeralign cell c0" style=""><a><%= delegadoAct.getTituloActividad()%></a></td>
                         <td class="centeralign cell c1" style=""><%= delegadoAct.getNombre() + " " + delegadoAct.getApellido()%> </td>
                         <td class="centeralign cell c1" style=""><%= delegadoAct.getCodigo()%></td>
-                        <td class="cell c5" ><a href="<%=request.getContextPath() %>/admin_gen_activities?action=edit&id=<%=delegadoAct.getTituloActividad()%>"><img width="24" height="24" src="https://img.icons8.com/sf-regular/48/edit-row.png" alt="edit-row"/></a></td>
-                        <td class="cell c6 "><a id="borrar"  onclick="return confirmacionEliminar(event)" href="<%=request.getContextPath() %>/admin_gen_activities?action=delete&id=<%=delegadoAct.getTituloActividad()%>"><img width="24" height="24" src="https://img.icons8.com/sf-regular/48/filled-trash.png" alt="filled-trash"/></a></td>
+                        <td class="cell c5" ><a href="<%=request.getContextPath() %>/admin_gen?action=activities&ac=edit&id=<%=delegadoAct.getTituloActividad()%>"><img width="24" height="24" src="https://img.icons8.com/sf-regular/48/edit-row.png" alt="edit-row"/></a></td>
+                        <td class="cell c6 "><a id="borrar"  onclick="return confirmacionEliminar(event)" href="<%=request.getContextPath() %>/admin_gen?action=activities&ac=delete&id=<%=delegadoAct.getTituloActividad()%>"><img width="24" height="24" src="https://img.icons8.com/sf-regular/48/filled-trash.png" alt="filled-trash"/></a></td>
                     </tr>
 
                     <%}%>
@@ -146,7 +146,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
             <br>
 
             <div>
-                <a class="btn btn-primary" style="margin-left: 2px;" href="<%=request.getContextPath()%>/admin_gen_activities?action=crear">Crear actividad</a>
+                <a class="btn btn-primary" style="margin-left: 2px;" href="<%=request.getContextPath()%>/admin_gen?action=activities&ac=crear">Crear actividad</a>
             </div>
 
 

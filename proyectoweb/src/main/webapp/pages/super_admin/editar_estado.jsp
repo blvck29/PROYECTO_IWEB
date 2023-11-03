@@ -50,19 +50,19 @@
         <nav class="nav-bar">
             <ul>
                 <li>
-                    <a href="<%=request.getContextPath()%>/admin_gen_home" class="active">Usuarios</a>
+                    <a href="<%=request.getContextPath()%>/admin_gen?action=home">Usuarios</a>
                 </li>
                 <li>
-                    <a href="<%=request.getContextPath()%>/admin_gen_activities">Actividades</a>
+                    <a href="<%=request.getContextPath()%>/admin_gen?action=activities&ac=list">Actividades</a>
                 </li>
                 <li>
-                    <a href="<%=request.getContextPath()%>/admin_gen_statistics">Estadísticas</a>
+                    <a href="<%=request.getContextPath()%>/admin_gen?action=statistics">Estadísticas</a>
                 </li>
                 <li>
-                    <a href="<%=request.getContextPath()%>/admin_gen_donaciones">Donaciones</a>
+                    <a href="<%=request.getContextPath()%>/admin_gen?action=donations">Donaciones</a>
                 </li>
                 <li>
-                    <a href="<%=request.getContextPath()%>"><i class="fa-solid fa-door-open nav-icon2"></i>Cerrar Sesión</a>
+                    <a href="<%=request.getContextPath()%>/"><i class="fa-solid fa-door-open nav-icon2"></i>Cerrar Sesión</a>
                 </li>
             </ul>
         </nav>

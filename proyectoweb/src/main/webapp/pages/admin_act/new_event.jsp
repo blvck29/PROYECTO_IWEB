@@ -50,19 +50,19 @@
     <nav class="nav-bar">
         <ul>
             <li>
-                <a href="home.jsp">Eventos</a>
+                <a href="<%=request.getContextPath()%>/admin_act?action=home">Eventos</a>
             </li>
             <li>
-                <a href="new_event.jsp" class="active">Crear Evento</a>
+                <a href="<%=request.getContextPath()%>/admin_act?action=new_event" class="active">Crear Evento</a>
             </li>
             <li>
-                <a href="<%=request.getContextPath()%>/UsuarioServlet?action=listarApoyos">Gestionar Apoyos</a>
+                <a href="<%=request.getContextPath()%>/admin_act?action=list_apoyos">Gestionar Apoyos</a>
             </li>
             <li>
                 <a href="#"><i class="fa-solid fa-user nav-icon2"></i>Usuario</a>
             </li>
             <li>
-                <a href="<%=request.getContextPath()%>dex.jsp"><i class="fa-solid fa-door-open nav-icon2"></i>Cerrar Sesión</a>
+                <a href="<%=request.getContextPath()%>/"><i class="fa-solid fa-door-open nav-icon2"></i>Cerrar Sesión</a>
             </li>
         </ul>
     </nav>
