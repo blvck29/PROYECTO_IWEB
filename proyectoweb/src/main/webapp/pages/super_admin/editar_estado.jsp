@@ -1,5 +1,6 @@
+<%@ page import="com.example.proyectoweb.model.beans.Usuario" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
+<% Usuario usuario = (Usuario) request.getAttribute("usuario"); %>
 
 <!doctype html>
 <html lang="es">
@@ -25,13 +26,10 @@
     <!-- UIkit JS -->
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.17.4/dist/js/uikit.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.17.4/dist/js/uikit-icons.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/showError.js"></script>
 
     <link rel="icon" type="image/jpg" href="favicon.png" />
-
-    <!-- Add the slick-theme.css if you want default styling -->
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-    <!-- Add the slick-theme.css if you want default styling -->
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 
     <title>Administrar Usuario | Semana de Ingeniería 2023</title>
 </head>
@@ -78,58 +76,155 @@
     <div style="margin-bottom: 30px"></div>
 
 
+
+
     <div class="form-group">
         <label for="name"><strong>Nombre y apellidos:</strong></label>
-        <input class="form-control" id="name" type="text" value="Barack Obama" aria-label="Disabled input example" disabled="" readonly="">
+        <input class="form-control"  type="text" value="<%=usuario.getNombres() + " " + usuario.getApellidos()%>" aria-label="Disabled input example" disabled="" readonly="">
     </div>
     <div style="margin-bottom: 20px"></div>
 
     <div class="form-group">
         <label for="codigoPUCP"><strong>Código PUCP:</strong></label>
-        <input class="form-control" id="codigoPUCP" type="text" value="20200101" aria-label="Disabled input example" disabled="" readonly="">
+        <input class="form-control" name="codigoPUCP" type="text" value="<%=usuario.getCodigo()%>" aria-label="Disabled input example" disabled="" readonly="">
     </div>
     <div style="margin-bottom: 20px"></div>
 
     <div class="form-group">
         <label for="correoPUCP"><strong>Correo PUCP:</strong></label>
-        <input class="form-control" id="correoPUCP" type="text" value="a20200101@pucp.edu.pe" aria-label="Disabled input example" disabled="" readonly="">
+        <input class="form-control" name="correoPUCP" type="text" value="<%=usuario.getCorreo()%>" aria-label="Disabled input example" disabled="" readonly="">
     </div>
     <div style="margin-bottom: 20px"></div>
 
+    <% String rol ="---";
+        switch(usuario.getIdRol()){
+            case "ADMINPRI":
+                rol = "Administrador Principal";
+                break;
+            case "ADMINSEC":
+                rol = "Delegado de Actividad";
+                break;
+            case "STUDENT":
+                rol = "Estudiante";
+                break;
+            case "GRADUAT":
+                rol = "Graduado";
+                break;
+            default:
+                rol = "---";
+        }%>
+
     <div class="form-group">
-        <label for="correoPUCP"><strong>Rol:</strong></label>
-        <input class="form-control" type="text" value="Estudiante" aria-label="Disabled input example" disabled="" readonly="">
+        <label ><strong>Rol:</strong></label>
+        <input class="form-control" type="text" value="<%=rol%>" aria-label="Disabled input example" disabled="" readonly="">
     </div>
     <div style="margin-bottom: 20px"></div>
 
+    <% String estado ="---";
+        switch(usuario.getIdEstado()){
+            case "ACC":
+                estado = "Aceptado";
+                break;
+            case "VER":
+                estado = "Sin Asignar";
+                break;
+            case "BAN":
+                estado = "Baneado";
+                break;
+            default:
+                estado = "---";
+                break;
+        }%>
+
     <div class="form-group">
-        <label for="correoPUCP"><strong>Estado actual:</strong></label>
-        <input class="form-control" type="text" value="Verificado" aria-label="Disabled input example" disabled="" readonly="">
+        <label><strong>Estado actual:</strong></label>
+        <input class="form-control" type="text" value="<%=estado%>" aria-label="Disabled input example" disabled="" readonly="">
     </div>
     <div style="margin-bottom: 20px"></div>
+
+
+
+<form method="post" id="formEdit" action="<%=request.getContextPath()%>/admin_gen?action=home&ac=editarEstadoUsuario">
+
+    <div class="form-group">
+        <input class="form-control" type="hidden" name="idUsuario"   value="<%=usuario.getIdUsuario()%>">
+    </div>
+
 
     <div class="form-group">
         <label><strong>Editar estado:</strong></label>
         <div style="margin-bottom: 20px"></div>
 
-        <div class="radio-buttons">
-            <label style="padding-right: 30px"><input type="radio" name="status" value="aprobado"> Aprobado <br></label>
-            <label><input type="radio" name="status" value="denegado"> Denegado </label>
-        </div>
+
+            <%
+                switch (estado){
+            case ("Sin Asignar"):
+            %>
+
+            <div class="radio-buttons">
+                <label style="padding-right: 30px"><input type="radio" name="estado"  value="ACC" required> Aprobado <br></label>
+                <label>                            <input type="radio" name="estado"  value="eliminarUsuario" required> Rechazado </label>
+            </div>
+                <%
+                        break;
+                case ("Aceptado"):
+                %>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="estado"  value="BAN" required>
+                    <label class="form-check-label" for="exampleRadios2">
+                        Banear
+                    </label>
+                </div>
+
+                <%
+                        break;
+                case ("Baneado"):
+                %>
+                <div class="radio-buttons">
+                    <label style="padding-right: 30px"><input type="radio" name="estado" value="ACC" required> Desbanear <br></label>
+                </div>
+                <%
+                        break;
+            }
+                %>
+
 
         <div style="margin-bottom: 20px"></div>
 
         <div class="button-container">
-            <a class="btn btn-primary" href="/proyectoweb/UsuarioServlet" role="button">Cancelar</a>
-            <a class="btn btn-primary" href="/proyectoweb/UsuarioServlet" role="button">Guardar cambios</a>
+            <a id="redirect-button" class="btn btn-secondary m-2" href="<%=request.getContextPath()%>/admin_gen">Cancelar</a>
+            <button onclick="alert" type="submit" class="btn btn-primary m-2">Guardar</button>
         </div>
         <div style="margin-bottom: 50px"></div>
-
-
     </div>
+</form>
 
 
+    <script>
+        const form = document.getElementById("formEdit");
 
+        form.addEventListener("submit", e => {
+            e.preventDefault(); // Evita que el formulario se envíe de inmediato
+
+            Swal.fire({
+                title: '¿Estás seguro de editar este estado?',
+                text: "No se podrán revertir estos cambios",
+                icon: 'warning',
+                iconColor: '#DC3545',
+                showCancelButton: true,
+                cancelButtonColor: '#0D6EFD',
+                cancelButtonText: 'Cancelar',
+                confirmButtonColor: '#0D6EFD',
+                confirmButtonText: 'Aplicar cambios',
+                footer: '<a href="">Volver a ingresar los datos</a>'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // El usuario ha confirmado, ahora puedes enviar el formulario
+                    form.submit();
+                }
+            });
+        });
+    </script>
 
 
 

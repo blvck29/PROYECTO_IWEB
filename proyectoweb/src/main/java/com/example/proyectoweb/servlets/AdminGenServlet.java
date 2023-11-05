@@ -56,9 +56,11 @@ public class AdminGenServlet extends HttpServlet {
                         break;
 
                     case "crear":
+                        ArrayList<Usuario> listaDelegadosDisponibles = userDao.listarDelegadosActDisponibles();
+
                         ArrayList<Actividad> listaActividades = actividadesDao.getListaActividades();
                         request.setAttribute("listaActividades",listaActividades);
-                        request.setAttribute("listaUsuarios",listaUsuarios);
+                        request.setAttribute("listaUsuarios",listaDelegadosDisponibles);
 
                         request.getRequestDispatcher("/pages/super_admin/new_activity.jsp").forward(request,response);
                         break;
@@ -129,6 +131,38 @@ public class AdminGenServlet extends HttpServlet {
                         request.setAttribute("listaUsuarios",listaBusqueda);
                         request.getRequestDispatcher("pages/super_admin/tabla_inscritos.jsp").forward(request,response);
                         break;
+
+                    case "busquedaPorEstado":
+                        String filtroEstado = request.getParameter("id");
+                        ArrayList<Usuario> listaPorEstado = userDao.listarPorEstado(filtroEstado);
+
+                        request.setAttribute("listaUsuarios", listaPorEstado);
+                        request.getRequestDispatcher("pages/super_admin/tabla_inscritos.jsp").forward(request,response);
+                        break;
+
+                    case "editarEstadoUsuario":
+
+                        String nuevoEstadoUsuario = request.getParameter("estado");
+                        String idUsuario = request.getParameter("idUsuario");
+
+                        System.out.println("nuevo estado: " + nuevoEstadoUsuario);
+                        System.out.println("idusaurio: " + idUsuario);
+
+
+
+
+                        if(nuevoEstadoUsuario.equals("eliminarUsuario")){
+                            userDao.eliminarUsuario(idUsuario);
+                            response.sendRedirect(request.getContextPath() + "/admin_gen");
+
+                        }
+                        else if(nuevoEstadoUsuario != "eliminarUsuario"){
+                            userDao.editarEstadoUsuario(idUsuario, nuevoEstadoUsuario);
+                            response.sendRedirect(request.getContextPath() + "/admin_gen");
+                        }
+
+                        break;
+
                 }
                 break;
 

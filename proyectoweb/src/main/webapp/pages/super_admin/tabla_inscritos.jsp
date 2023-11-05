@@ -85,7 +85,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
   <div class="container">
     <div class="row">
 
-      <div class="col-md-12">
+      <div class="col-md-10">
 
         <form method="post" action="<%=request.getContextPath()%>/admin_gen?action=home&ac=busqueda">
 
@@ -97,7 +97,32 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
           <a class="btn btn-primary" href="<%=request.getContextPath()%>/admin_gen" role="button">Borrar filtros</a>
         </form>
       </div>
+
+      <div class="col-md-2" >
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+            ESTADO
+          </button>
+          <ul class="dropdown-menu dropdown-menu-lg-end">
+            <form method="post" action="<%=request.getContextPath()%>/admin_gen?action=home&ac=busquedaPorEstado&id=ACC">
+              <li><button class="dropdown-item" type="submit">Aceptados</button></li>
+            </form>
+            <form method="post" action="<%=request.getContextPath()%>/admin_gen?action=home&ac=busquedaPorEstado&id=VER">
+              <li><button class="dropdown-item" type="submit">Sin Asignar</button></li>
+            </form>
+            <form method="post" action="<%=request.getContextPath()%>/admin_gen?action=home&ac=busquedaPorEstado&id=BAN">
+              <li><button class="dropdown-item" type="submit">Baneados</button></li>
+            </form>
+          </ul>
+        </div>
+      </div>
+
     </div>
+
+
+
+
+
     <div style="padding-top: 15px;"></div>
     <hr class="hr hr-blurry"/>
   </div>
@@ -135,13 +160,13 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
         <td class="centeralign cell c0" style=""><a><%= usuario.getNombres()+" "+ usuario.getApellidos()%></a></td>
         <td class="centeralign cell c1" style=""><%= usuario.getCodigo() %></td>
 
-        <% String rol ="a";
+        <% String rol ="---";
           switch(usuario.getIdRol()){
             case "ADMINPRI":
               rol = "Administrador Principal";
               break;
             case "ADMINSEC":
-              rol = "Administrador Secundario";
+              rol = "Delegado de Actividad";
               break;
             case "STUDENT":
               rol = "Estudiante";
@@ -150,30 +175,33 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
               rol = "Graduado";
               break;
             default:
-              rol = "No definido";
+              rol = "---";
           }%>
 
 
         <td class="cell c2" style=""><%= rol %></td>
 
-        <% String estado ="a";
+        <% String estado ="---";
           switch(usuario.getIdEstado()){
             case "ACC":
               estado = "Aceptado";
               break;
             case "VER":
-              estado = "Verificado";
-              break;
-            case "PEN":
-              estado = "Pendiente";
+              estado = "Sin Asignar";
               break;
             case "BAN":
               estado = "Baneado";
               break;
             default:
-              estado = "a";
+              estado = "---";
+              break;
           }%>
+
+        <%if (estado.equals("Sin Asignar")){%>
+        <td class="cell c3" style="color: red;"><%= estado %></td>
+        <%}else{%>
         <td class="cell c3" style=""><%= estado %></td>
+        <%}%>
         <td class="cell c4" style=""><%= usuario.getUltimoLogin() %></td>
         <td class="cell c5" style=""><a href="<%=request.getContextPath()%>/admin_gen?action=editar&id=<%=usuario.getCodigo()%>"><img width="24" height="24" src="https://img.icons8.com/sf-regular/48/edit-row.png" alt="edit-row"/></a></td>
 
@@ -232,20 +260,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
     </footer>
   </div>
 
-  <script>
-    function redireccionar() {
-      var seleccion = document.getElementById("estado").value;
-      if (seleccion === "aprobado") {
-        window.location.href = "#";
-      } else if (seleccion === "rechazado") {
-        window.location.href = "#";
-      } else if (seleccion === "ban") {
-        window.location.href = "#";
-      }
-    }
-  </script>
-
-  <script src="js/bootstrap/bootstrap.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
   <script src="js/script.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
   <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
