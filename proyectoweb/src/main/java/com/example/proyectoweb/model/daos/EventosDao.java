@@ -13,24 +13,14 @@ public class EventosDao extends DaoBase{
 
         String sql = "select * from evento";
 
-        ArrayList<Evento> listaEventos = new ArrayList();
+        ArrayList<Evento> listaEventos = new ArrayList<>();
 
         try(Connection conn = getConnection();
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql)){
 
             while (rs.next()){
-                Evento evento = new Evento();
-                evento.setIdEvento(rs.getInt(1));
-                evento.setTitulo(rs.getString(2));
-                evento.setSubTitulo(rs.getString(3));
-                evento.setHora(rs.getTime(4));
-                evento.setFecha(rs.getDate(5));
-                evento.setLugar(rs.getString(6));
-                evento.setImagen(rs.getBlob(7));
-                evento.setDescripcion(rs.getString(8));
-                evento.setIdEstado(rs.getString(9));
-                evento.setIdEvento(rs.getInt(10));
+                Evento evento = new Evento(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getTime(4),rs.getDate(5),rs.getString(6),rs.getBlob(7),rs.getString(8),rs.getString(9),rs.getString(10));
                 listaEventos.add(evento);
             }
 
@@ -64,22 +54,7 @@ public class EventosDao extends DaoBase{
 
                 while(rs.next()){
 
-                    Evento evento = new Evento();
-
-                    evento.setIdEvento(rs.getInt(1));
-                    evento.setTitulo(rs.getString(2));
-                    evento.setSubTitulo(rs.getString(3));
-                    evento.setHora(rs.getTime(4));
-                    evento.setFecha(rs.getDate(5));
-                    evento.setLugar(rs.getString(6));
-                    evento.setImagen(rs.getBlob(7));
-                    evento.setDescripcion(rs.getString(8));
-                    evento.setIdEstado(rs.getString(9));
-                    evento.setIdEvento(rs.getInt(10));
-
-
-
-
+                    Evento evento = new Evento(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getTime(4),rs.getDate(5),rs.getString(6),rs.getBlob(7),rs.getString(8),rs.getString(9),rs.getString(10));
                     listaEventos.add(evento);
 
                 }
