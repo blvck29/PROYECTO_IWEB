@@ -107,4 +107,16 @@ public class Evento {
     public void setIdActividad(String idActividad) {
         this.idActividad = idActividad;
     }
+    public Evento() {
+        this.idEvento = Integer.parseInt(null); // Ahora se puede asignar null con Integer
+        this.titulo = "Sin título";
+        this.subTitulo = "Sin subtítulo";
+        this.hora = null; // Se asignará como null
+        this.fecha = null; // Se asignará como null
+        this.lugar = "Sin lugar";
+        this.imagen = null; // Se asignará como null
+        this.descripcion = "Sin descripción";
+        this.idEstado = "Sin estado";
+        this.idActividad = "Sin actividad";
+    }
 }
