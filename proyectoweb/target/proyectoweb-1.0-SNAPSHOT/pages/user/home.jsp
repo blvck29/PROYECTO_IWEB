@@ -5,7 +5,6 @@
 
 <% ArrayList<Actividad> listaActividades = (ArrayList<Actividad>) request.getAttribute("listaActividades");%>
 <% ArrayList<Evento> listaEventos = (ArrayList<Evento>) request.getAttribute("listaEventos"); %>
-<% ArrayList<Evento> eventosPorActividad = (ArrayList<Evento>) request.getAttribute("listaFiltro1");%>
 
 <!doctype html>
 <html lang="es">
@@ -28,11 +27,6 @@
 
     <link rel="icon" type="image/jpg" href="favicon.png" />
 
-    <!-- Add the slick-theme.css if you want default styling -->
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-    <!-- Add the slick-theme.css if you want default styling -->
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
-
     <title>Home | Semana de Ingeniería 2023</title>
 </head>
 
@@ -49,16 +43,25 @@
     <nav class="nav-bar">
         <ul>
             <li>
-                <a href="home.jsp" class="active">Inicio</a>
+                <a href="<%=request.getContextPath()%>/user_home" class="active" style="margin-bottom: -15px">Inicio</a>
+            </li>
+
+            <li class="nav-item dropdown" style="margin-top: 20px">
+                <form method="get" id="eventForm" action="<%=request.getContextPath()%>/user_home">
+                    <select name="action" class="navbar-dropdwon form-select border-0" style="font-size: 0.9rem" id="eventSelect" onchange="submitForm()">
+                        <option style="font-size: 0.9rem; display:none;">Ver Eventos</option>
+                        <option style="font-size: 0.9rem; color:black" value="events&id=self">Inscrito</option>
+                        <option style="font-size: 0.9rem; color:black" value="events&id=prox">Próximos</option>
+                        <option style="font-size: 0.9rem; color:black" value="events&id=end">Acabados</option>
+                    </select>
+                </form>
+            </li>
+
+            <li>
+                <a href="<%=request.getContextPath()%>/user_home?action=donate">Donaciones</a>
             </li>
             <li>
-                <a href="pages/user/per_events.jsp">Mis Eventos</a>
-            </li>
-            <li>
-                <a href="pages/user/donate.jsp">Donaciones</a>
-            </li>
-            <li>
-                <a href="#"><i class="fa-solid fa-user nav-icon2"></i>Usuario</a>
+                <a href="<%=request.getContextPath()%>/user_home?action=user"><i class="fa-solid fa-user nav-icon2"></i>Usuario</a>
             </li>
             <li>
                 <a href="<%=request.getContextPath()%>/"><i class="fa-solid fa-door-open nav-icon2"></i>Cerrar Sesión</a>
@@ -143,35 +146,30 @@
     <hr>
 
     <div style="margin-bottom: 50px"></div>
-    <h2><i class="fa-solid fa-star" style="color: #8de7ef;"></i><strong style="padding-left: 10px">Eventos Destacados</strong></h2>
-    <div style="margin-bottom: 40px"></div>
 
 
-    <form action="user_home?action=load" method="post">
-        <div class="input-group mb-3">
-            <div class="input-group-text p-0">
-                <label>
-                    <select name="seleccion_actividad" class="form-select form-select-lg shadow-none bg-light border-0" style="font-size: 1rem">
-                        <option style="font-size: 1rem">Todo</option>
-                        <%for (Actividad act : listaActividades){%>
-                        <option style="font-size: 1rem" value="<%=act.getTitulo()%>"><%=act.getTitulo()%></option>
-                        <%}%>
-                    </select>
-                </label>
-            </div>
-            <input type="text" name="buscar_evento" class="form-control" placeholder="Buscar Evento">
-            <button class="input-group-text shadow-none px-4 btn-large" type="submit">
-                <i class="fa-solid fa-magnifying-glass" style="color: #262626;"></i>
+    <div class="d-flex justify-content-between">
+        <div>
+            <h2><i class="fa-solid fa-star" style="color: #8de7ef;"></i><strong style="padding-left: 10px">Eventos Destacados</strong></h2>
+        </div>
+        <div>
+            <button type="button" class="btn btn-info btn-lg px-4">
+                <a href="<%=request.getContextPath()%>/user_home?action=events&id=prox" class="link-info text-light">Ver Más</a>
             </button>
         </div>
-    </form>
+    </div>
+
+
+    <div style="margin-bottom: 40px"></div>
 
 
     <div style="margin-bottom: 50px"></div>
 
     <div class="row align-content-center" data-masonry='{"percentPosition": true }'>
 
+        <%int event_counter = 0;%>
         <% for (Evento evento : listaEventos) { %>
+        <%if (event_counter==8) { break; }%>
         <div class="col-sm-6 col-lg-3 mb-4">
 
             <div class="card-list">
@@ -180,7 +178,7 @@
                         <img class="image-event" src="images/placeholder_events.jpg" alt="event" />
                     </figure>
                     <div class="card-header">
-                        <a href="#"><%=evento.getTitulo()%><p><%=evento.getSubTitulo()%></p></a>
+                        <a href="<%=request.getContextPath()%>/user_home?action=details&id=<%=evento.getIdEvento()%>"><%=evento.getTitulo()%><p><%=evento.getSubTitulo()%></p></a>
 
                     </div>
                     <div class="card-footer">
@@ -204,41 +202,9 @@
                 </article>
             </div>
         </div>
+        <%event_counter = event_counter + 1;%>
         <%}%>
 
-    </div>
-
-
-    <div class="container">
-        <nav class="mt-4">
-            <ul class="pagination justify-content-center">
-                <!---->
-                <li class="page-item active">
-                    <a href="#" class="page-link">1</a>
-                </li>
-                <li class="page-item">
-                    <a href="#" class="page-link">2</a>
-                </li>
-                <li class="page-item">
-                    <a href="#" class="page-link">3</a>
-                </li>
-                <li class="page-item">
-                    <a href="#" class="page-link">4</a>
-                </li>
-                <li class="page-item">
-                    <a href="#" class="page-link">5</a>
-                </li>
-                <li class="page-item">
-                    <a href="#" class="page-link">6</a>
-                </li>
-                <li class="page-item">
-                    <a href="#" aria-label="Next" class="page-link">
-                        <span aria-hidden="true">»</span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
     </div>
 
 
@@ -256,7 +222,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
             <div style="margin-bottom: 20px"></div>
             <div class="justify-content-sm-center">
                 <button type="button" class="btn btn-outline-info btn-lg px-4">
-                    <a href="donate.jsp" class="link-info text-light">Donar</a>
+                    <a href="<%=request.getContextPath()%>/user_home?action=donate" class="link-info text-light">Donar</a>
                 </button>
             </div>
         </div>
@@ -273,6 +239,17 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
         </div></div>
     </footer>
 </div>
+
+<script>
+    function submitForm() {
+        var selectElement = document.getElementById("eventSelect");
+        var selectedValue = selectElement.value;
+        if (selectedValue) {
+            var newURL = "<%=request.getContextPath()%>/user_home?action=" + selectedValue;
+            window.location.href = newURL;
+        }
+    }
+</script>
 
 <script>
     $(document).ready(function(){

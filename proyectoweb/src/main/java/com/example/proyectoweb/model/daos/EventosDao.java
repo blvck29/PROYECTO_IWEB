@@ -1,5 +1,6 @@
 package com.example.proyectoweb.model.daos;
 import com.example.proyectoweb.model.beans.Evento;
+import com.example.proyectoweb.model.beans.Inscripcion;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -31,6 +32,112 @@ public class EventosDao extends DaoBase{
         return listaEventos;
     }
 
+    public ArrayList<Inscripcion> listarEventosPropios (int idUser){ //user
+
+        //Conexión a la DB
+
+        String sql = "SELECT i.idRol, ev.idEvento, ev.titulo, ev.subTitulo, ev.hora, ev.fecha, ev.lugar, ev.imagen, ev.descripcion, ev.idEstado, ev.idActividad\n" +
+                "FROM evento ev\n" +
+                "\tINNER JOIN inscripcion i ON (ev.idEvento = i.idEvento)\n" +
+                "WHERE i.Usuario = ?";
+
+        ArrayList<Inscripcion> listarEventosPropios = new ArrayList<>();
+
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)){
+
+            pstmt.setString(1, idUser + "%");
+
+            try(ResultSet rs = pstmt.executeQuery()){
+
+                while(rs.next()){
+                    Inscripcion ins = new Inscripcion(rs.getString(1),rs.getInt(2), rs.getString(3),rs.getString(4),rs.getTime(5),rs.getDate(6),rs.getString(7),rs.getBlob(8),rs.getString(9),rs.getString(10),rs.getString(11));
+                    listarEventosPropios.add(ins);
+                }
+            }
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+
+        return listarEventosPropios;
+    }
+
+
+    public Evento EventoXid (String idEv){ //user
+
+        //Conexión a la DB
+
+        String sql = "SELECT * FROM evento where idEvento = ?;";
+        
+        Evento evento = null;
+
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)){
+
+            pstmt.setString(1, idEv + "%");
+
+            try(ResultSet rs = pstmt.executeQuery()){
+
+                while(rs.next()){
+                    evento = new Evento(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getTime(4),rs.getDate(5),rs.getString(6),rs.getBlob(7),rs.getString(8),rs.getString(9),rs.getString(10));
+                }
+            }
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+
+        return evento;
+    }
+
+    public ArrayList<Evento> listarEventosProximos (){ //admin
+
+        //Conexión a la DB
+
+        String sql = "SELECT * FROM evento where fecha > current_date() and hora > current_time();";
+
+        ArrayList<Evento> listaEventosProx = new ArrayList<>();
+
+        try(Connection conn = getConnection();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql)){
+
+            while (rs.next()){
+                Evento evento = new Evento(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getTime(4),rs.getDate(5),rs.getString(6),rs.getBlob(7),rs.getString(8),rs.getString(9),rs.getString(10));
+                listaEventosProx.add(evento);
+            }
+
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+
+        return listaEventosProx;
+    }
+
+
+    public ArrayList<Evento> listarEventosFinalizados(){ //admin
+
+        //Conexión a la DB
+
+        String sql = "SELECT * FROM evento where (fecha < current_date() and hora > current_time()) or (fecha < current_date() and hora < current_time());";
+
+        ArrayList<Evento> listaEventosFin = new ArrayList<>();
+
+        try(Connection conn = getConnection();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql)){
+
+            while (rs.next()){
+                Evento evento = new Evento(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getTime(4),rs.getDate(5),rs.getString(6),rs.getBlob(7),rs.getString(8),rs.getString(9),rs.getString(10));
+                listaEventosFin.add(evento);
+            }
+
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+
+        return listaEventosFin;
+    }
+
 
     // PARA BUSCAR CON EL BUSCADOR
     public ArrayList<Evento> buscarXnombreEid(String palabraintroducida){ //para buscar eventos
@@ -38,8 +145,6 @@ public class EventosDao extends DaoBase{
         ArrayList<Evento> listaEventos = new ArrayList();
         //Conexión a la DB
 
-        // ------IMPORTANTE ---- QUIZA SE DEBA MODIFICAR EL FROM PROYECTOWEB.EVENT, SOLO SE HIZO PARA QUE FUNCIONE EN
-        //LOCAL LA BD
         String sql = "select * from proyectoweb.evento where lower(titulo) like ? or idEvento like ?";
 
 

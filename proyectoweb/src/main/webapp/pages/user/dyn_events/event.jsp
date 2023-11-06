@@ -10,8 +10,8 @@
     <meta http-equiv="Content-Type" content=text/html; charset=ISO-8859-1″>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="../../css/style.css">
-    <link rel="stylesheet" href="../../css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 
     <!-- Add the slick-theme.css if you want default styling -->
@@ -22,19 +22,15 @@
     <script src="https://kit.fontawesome.com/a2dd6045c4.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 
-    <link rel="icon" type="image/jpg" href="../../favicon.png" />
-
-    <!-- Add the slick-theme.css if you want default styling -->
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-    <!-- Add the slick-theme.css if you want default styling -->
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <link rel="icon" type="image/jpg" href="favicon.png" />
 
     <title>Home | Semana de Ingeniería 2023</title>
 </head>
 
+
 <body>
 <header>
-    <div class="logo"><a href="home.jsp"><img class="logo-img" src='../../images/logo_topbar.png' alt="logo"></a></div>
+    <div class="logo"><a href="<%=request.getContextPath()%>/user_home"><img class="logo-img" src='images/logo_topbar.png' alt="logo"></a></div>
 
     <div class="bars">
         <div class="line"></div>
@@ -45,27 +41,34 @@
     <nav class="nav-bar">
         <ul>
             <li>
-                <a href="home.jsp">Inicio</a>
+                <a href="<%=request.getContextPath()%>/user_home" style="margin-bottom: -15px">Inicio</a>
+            </li>
+
+            <li class="nav-item dropdown" style="margin-top: 20px">
+                <form method="get" id="eventForm" action="<%=request.getContextPath()%>/user_home">
+                    <select name="action" class="navbar-dropdwon form-select border-0" style="font-size: 0.9rem" id="eventSelect" onchange="submitForm()">
+                        <option style="font-size: 0.9rem; display:none;">Ver Eventos</option>
+                        <option style="font-size: 0.9rem; color:black" value="events&id=self">Inscrito</option>
+                        <option style="font-size: 0.9rem; color:black" value="events&id=prox">Próximos</option>
+                        <option style="font-size: 0.9rem; color:black" value="events&id=end">Acabados</option>
+                    </select>
+                </form>
+            </li>
+
+            <li>
+                <a href="<%=request.getContextPath()%>/user_home?action=donate">Donaciones</a>
             </li>
             <li>
-                <a href="per_events.jsp">Mis Eventos</a>
+                <a href="<%=request.getContextPath()%>/user_home?action=user"><i class="fa-solid fa-user nav-icon2"></i>Usuario</a>
             </li>
             <li>
-                <a href="donate.jsp">Donaciones</a>
-            </li>
-            <li>
-                <a href="#"><i class="fa-solid fa-user nav-icon2"></i>Usuario</a>
-            </li>
-            <li>
-                <a href="../../index.jsp"><i class="fa-solid fa-door-open nav-icon2"></i>Cerrar Sesión</a>
+                <a href="<%=request.getContextPath()%>/"><i class="fa-solid fa-door-open nav-icon2"></i>Cerrar Sesión</a>
             </li>
         </ul>
     </nav>
 
 
 </header>
-
-
 
 <div class="container-fluid" style="padding-left:0 !important; padding-right: 0 !important; background: rgb(45,0,83) !important;
 background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgba(21,0,48,1) 100%) !important;")>
@@ -143,7 +146,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
 
             <div class="col-lg-6 col-md-12" style="padding-left: 2em; padding-right: 2em; padding-top: 1.5em">
-                <img src="../../images/placeholder_acts.jpg" alt="imagen de evento" style="height: auto; width: 100%">
+                <img src="../../../images/placeholder_acts.jpg" alt="imagen de evento" style="height: auto; width: 100%">
 
             </div>
         </div>
@@ -206,8 +209,8 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 </script>
 
 
-<script src="../../js/bootstrap/bootstrap.js"></script>
-<script src="../../js/script.js"></script>
+<script src="js/bootstrap/bootstrap.js"></script>
+<script src="js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
