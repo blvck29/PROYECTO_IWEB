@@ -52,7 +52,7 @@
                         <option style="font-size: 0.9rem; display:none;">Ver Eventos</option>
                         <option style="font-size: 0.9rem; color:black" value="events&id=self">Inscrito</option>
                         <option style="font-size: 0.9rem; color:black" value="events&id=prox">Próximos</option>
-                        <option style="font-size: 0.9rem; color:black" value="events&id=end">Acabados</option>
+                        <option style="font-size: 0.9rem; color:black" value="events&id=end">Finalizados</option>
                     </select>
                 </form>
             </li>

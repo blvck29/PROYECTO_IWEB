@@ -93,7 +93,7 @@ public class EventosDao extends DaoBase{
 
         //Conexión a la DB
 
-        String sql = "SELECT * FROM evento where fecha > current_date() and hora > current_time();";
+        String sql = "SELECT *, concat(fecha,\" \", hora) FROM evento where  concat(fecha,\" \", hora) > now() order by concat(fecha,\" \", hora) asc";
 
         ArrayList<Evento> listaEventosProx = new ArrayList<>();
 
@@ -118,7 +118,7 @@ public class EventosDao extends DaoBase{
 
         //Conexión a la DB
 
-        String sql = "SELECT * FROM evento where (fecha < current_date() and hora > current_time()) or (fecha < current_date() and hora < current_time());";
+        String sql = "SELECT *, concat(fecha,\" \", hora) FROM evento where  concat(fecha,\" \", hora) < now() order by concat(fecha,\" \", hora) asc";
 
         ArrayList<Evento> listaEventosFin = new ArrayList<>();
 
@@ -138,30 +138,73 @@ public class EventosDao extends DaoBase{
         return listaEventosFin;
     }
 
-    public ArrayList<Evento> listarEventosxActividad (String estado, String Act) { //user -> FINALIZADOS / PRÓXIMOS
+    public ArrayList<Evento> listarEventosxActividad (String idActividad) { //user -> FINALIZADOS / PRÓXIMOS
 
-        ArrayList<Evento> listaxAct = new ArrayList<>();
+        ArrayList<Evento> listaEventos = new ArrayList<>();
+        String sql = "SELECT * FROM evento where idActividad = ? ";
 
-        //Conexión a la DB
-        if(estado.equals("prox")){
-            ArrayList<Evento> listaProximos = listarEventosProximos();
+        try(Connection conn = getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)){
 
-            for (Evento ev:listaProximos) {
-                if (ev.getIdActividad().equals(Act)){
-                    listaxAct.add(ev);
+            pstmt.setString(1,idActividad);
+
+            try(ResultSet rs = pstmt.executeQuery()){
+
+                while (rs.next()){
+                    Evento evento = new Evento(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getTime(4),rs.getDate(5),rs.getString(6),rs.getBlob(7),rs.getString(8),rs.getString(9),rs.getString(10));
+                    listaEventos.add(evento);
                 }
             }
-
-        } else {
-            ArrayList<Evento> listaFinalizados = listarEventosFinalizados();
-
-            for (Evento ev:listaFinalizados) {
-                if (ev.getIdActividad().equals(Act)){
-                    listaxAct.add(ev);
-                }
-            }
+        }catch(SQLException e){
+            throw new RuntimeException(e);
         }
-        return listaxAct;
+        return listaEventos;
+    }
+
+    public ArrayList<Evento> listarEventosFinalizadosxActividad (String idActividad) { //user -> FINALIZADOS / PRÓXIMOS
+
+        ArrayList<Evento> listaEventos = new ArrayList<>();
+        String sql = "SELECT *, concat(fecha,\" \", hora) FROM evento where idActividad = ? and concat(fecha,\" \", hora) < now() order by concat(fecha,\" \", hora) asc";
+
+        try(Connection conn = getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)){
+
+            pstmt.setString(1,idActividad);
+
+            try(ResultSet rs = pstmt.executeQuery()){
+
+                while (rs.next()){
+                    Evento evento = new Evento(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getTime(4),rs.getDate(5),rs.getString(6),rs.getBlob(7),rs.getString(8),rs.getString(9),rs.getString(10));
+                    listaEventos.add(evento);
+                }
+            }
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+        return listaEventos;
+    }
+
+    public ArrayList<Evento> listarEventosProximosxActividad (String idActividad) { //user -> FINALIZADOS / PRÓXIMOS
+
+        ArrayList<Evento> listaEventos = new ArrayList<>();
+        String sql = "SELECT *, concat(fecha,\" \", hora) FROM evento where idActividad = ? and concat(fecha,\" \", hora) > now() order by concat(fecha,\" \", hora) asc";
+
+        try(Connection conn = getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)){
+
+            pstmt.setString(1,idActividad);
+
+            try(ResultSet rs = pstmt.executeQuery()){
+
+                while (rs.next()){
+                    Evento evento = new Evento(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getTime(4),rs.getDate(5),rs.getString(6),rs.getBlob(7),rs.getString(8),rs.getString(9),rs.getString(10));
+                    listaEventos.add(evento);
+                }
+            }
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+        return listaEventos;
     }
 
 
