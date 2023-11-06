@@ -1,6 +1,10 @@
-
+<%@ page import="com.example.proyectoweb.model.beans.Inscripcion" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.example.proyectoweb.model.beans.Evento" %>
 
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<% ArrayList<Inscripcion> listaEventosPropia = (ArrayList<Inscripcion>) request.getAttribute("listaEventosPropia"); %>
+<% Evento event = (Evento) request.getAttribute("evento_detailed"); %>
 
 
 <!doctype html>
@@ -70,11 +74,12 @@
 
 </header>
 
+
 <div class="container-fluid" style="padding-left:0 !important; padding-right: 0 !important; background: rgb(45,0,83) !important;
 background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgba(21,0,48,1) 100%) !important;")>
     <div class="text-secondary px-4 py-5 text-center">
         <div class="py-5">
-            <h1 class="display-5 fw-bold text-white">Eventos de eSports</h1>
+            <h1 class="display-5 fw-bold text-white">Eventos de <%=event.getIdActividad().toLowerCase()%></h1>
             <div class="justify-content-sm-center">
             </div>
         </div>
@@ -90,8 +95,8 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
     <div style="margin-bottom: 50px"></div>
 
-    <h2><i class="fa-solid fa-star" style="color: #8de7ef;"></i><strong style="padding-left: 10px">Partido de Valorant</strong></h2>
-    <h4 style="padding-left: 45px"><p>Fibra Tóxica vs. Electroshock</p></h4>
+    <h2><i class="fa-solid fa-star" style="color: #8de7ef;"></i><strong style="padding-left: 10px"><%=event.getTitulo()%></strong></h2>
+    <h4 style="padding-left: 45px"><p><%=event.getSubTitulo()%></p></h4>
 
     <div style="margin-bottom: 20px"></div>
 
@@ -101,10 +106,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
     <div class="container">
 
-        <div><p>
-                Lorem ipsum dolor sit amet. Ea voluptatem possimus ab iure consequuntur ut deleniti cumque ut Quis amet sed facere voluptates sit animi minus aut molestias quas. Quo saepe quasi est nihil atque et minima recusandae.
-                Lorem ipsum dolor sit amet. Ea voluptatem possimus ab iure consequuntur ut deleniti cumque ut Quis amet sed facere voluptates sit animi minus aut molestias quas. Quo saepe quasi est nihil atque et minima recusandae.
-            </p>
+        <div><p><%=event.getDescripcion()%></p>
             <div style="padding-top: 1em;"></div>
         </div>
 
@@ -117,21 +119,22 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                         <div>
                             <div style="padding-top: 1.5em;"></div>
                             <label><strong>Fecha de evento:</strong></label>
-                            Lunes 19 de Octubre de 2023
+                            <%=event.getFecha()%>
                             <div style="padding-top: 1.5em;"></div>
                         </div>
 
                         <div>
-                            <label><strong>Asistentes:</strong></label>
-                            Confirmados: 19  |  Aforo: 30
+                            <label><strong>Hora:</strong></label>
+                            <%=event.getHora()%>
                             <div style="padding-top: 1.5em;"></div>
                         </div>
 
                         <div>
                             <label><strong>Lugar de evento:</strong></label>
-                            Av. La Marina 344 2do piso
+                            <%=event.getLugar()%>
                             <div style="padding-top: 1em;"></div>
                         </div>
+
                         <div class="container" style="padding-top: 1rem; align-items: center; align-content: center; text-align: center;">
                             <button class="btn btn-primary">Inscribirse</button>
                         </div>
@@ -146,7 +149,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
 
             <div class="col-lg-6 col-md-12" style="padding-left: 2em; padding-right: 2em; padding-top: 1.5em">
-                <img src="../../../images/placeholder_acts.jpg" alt="imagen de evento" style="height: auto; width: 100%">
+                <img src="<%=event.getImagen()%>" alt="imagen de evento" style="height: auto; width: 100%">
 
             </div>
         </div>

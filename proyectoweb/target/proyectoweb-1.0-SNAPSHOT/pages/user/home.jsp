@@ -133,7 +133,7 @@
                 <img src="images/placeholder_acts.jpg" class="w-100" alt="event">
                 <div class="mask text-light d-flex justify-content-center flex-column text-center" style="background-color: rgba(0, 0, 0, 0.5)">
                     <h4><%=actividad.getTitulo()%></h4>
-                    <a class="text-light m-0" href="#">Ver Eventos</a>
+                    <a class="text-light m-0" href="<%=request.getContextPath()%>/user_home?action=acts&idAct=<%=actividad.getIdActividad()%>">Ver Eventos</a>
                 </div>
             </div>
             <%}%>

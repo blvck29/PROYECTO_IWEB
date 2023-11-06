@@ -89,7 +89,7 @@ public class EventosDao extends DaoBase{
         return evento;
     }
 
-    public ArrayList<Evento> listarEventosProximos (){ //admin
+    public ArrayList<Evento> listarEventosProximos (){ //user
 
         //Conexión a la DB
 
@@ -114,7 +114,7 @@ public class EventosDao extends DaoBase{
     }
 
 
-    public ArrayList<Evento> listarEventosFinalizados(){ //admin
+    public ArrayList<Evento> listarEventosFinalizados(){ //user
 
         //Conexión a la DB
 
@@ -136,6 +136,32 @@ public class EventosDao extends DaoBase{
         }
 
         return listaEventosFin;
+    }
+
+    public ArrayList<Evento> listarEventosxActividad (String estado, String Act) { //user -> FINALIZADOS / PRÓXIMOS
+
+        ArrayList<Evento> listaxAct = new ArrayList<>();
+
+        //Conexión a la DB
+        if(estado.equals("prox")){
+            ArrayList<Evento> listaProximos = listarEventosProximos();
+
+            for (Evento ev:listaProximos) {
+                if (ev.getIdActividad().equals(Act)){
+                    listaxAct.add(ev);
+                }
+            }
+
+        } else {
+            ArrayList<Evento> listaFinalizados = listarEventosFinalizados();
+
+            for (Evento ev:listaFinalizados) {
+                if (ev.getIdActividad().equals(Act)){
+                    listaxAct.add(ev);
+                }
+            }
+        }
+        return listaxAct;
     }
 
 

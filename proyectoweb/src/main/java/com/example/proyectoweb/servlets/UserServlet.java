@@ -98,6 +98,18 @@ public class UserServlet extends HttpServlet {
                 break;
 
 
+            case "acts":
+
+                String idAct = request.getParameter("idAct") == null? "a" : request.getParameter("idAct");
+
+                ArrayList<Evento> listaFiltroAct = eventoDao.listarEventosxActividad("prox",idAct);
+
+                request.setAttribute("actividad", idAct);
+                request.setAttribute("listaFiltroAct",listaFiltroAct);
+                request.getRequestDispatcher("pages/user/activity.jsp").forward(request,response);
+                break;
+
+
             case "user":
                 request.getRequestDispatcher("pages/user/user.jsp").forward(request,response);
                 break;
@@ -122,6 +134,33 @@ public class UserServlet extends HttpServlet {
                 request.setAttribute("listaEventos", listaEventos);
 
                 request.getRequestDispatcher("pages/user/home.jsp").forward(request, response);
+                break;
+
+            case "filter_act":
+
+                String idAct = request.getParameter("idAct") == null? "a" : request.getParameter("idAct");
+
+                String seleccionActividad = request.getParameter("seleccion_actividad") == null? "all" : request.getParameter("seleccion_actividad");
+                String buscarEvento = request.getParameter("buscar_evento");
+
+                ArrayList<Evento> listaFiltroAct;
+
+                if(seleccionActividad.equals("all")){
+
+                    if (buscarEvento.equals("prox")){
+                        listaFiltroAct = eventoDao.listarEventosxActividad(buscarEvento, idAct);
+                    } else {
+                        listaFiltroAct = eventoDao.listarEventosxActividad(buscarEvento, idAct);
+                    }
+
+                } else {
+                    break;
+                }
+
+                request.setAttribute("actividad", idAct);
+                request.setAttribute("listaFiltroAct",listaFiltroAct);
+                request.getRequestDispatcher("pages/user/activity.jsp").forward(request,response);
+
                 break;
         }
 
