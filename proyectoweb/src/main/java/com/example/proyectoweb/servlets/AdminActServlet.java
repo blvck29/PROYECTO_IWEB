@@ -68,6 +68,14 @@ public class AdminActServlet extends HttpServlet {
 
                 break;
 
+            case "borrarEvento":
+                String idEventoEliminar = request.getParameter("idEvento");
+                System.out.println("idEvento: "+ idEventoEliminar);
+                eventoDao.eliminarEvento(idEventoEliminar);
+
+                response.sendRedirect(request.getContextPath() +"/admin_act");
+                break;
+
 
         }
     }
@@ -125,6 +133,21 @@ public class AdminActServlet extends HttpServlet {
                 response.sendRedirect(request.getContextPath() + "/admin_act?action=home");
 
 
+
+                break;
+
+            case "editEvent":
+                String idEvento2 = request.getParameter("idEvento");
+                String titulo2 = request.getParameter("titulo");
+                String subtitulo2 = request.getParameter("subtitulo");
+                String hora2 = request.getParameter("hora");
+                String fecha2 = request.getParameter("fecha");
+                String lugar2 = request.getParameter("lugar");
+                String descripcion2 = request.getParameter("descripcion");
+                String idActividad2 = request.getParameter("idActividad");
+
+                eventoDao.actualizarEvento(idEvento2,titulo2,subtitulo2,hora2,fecha2,lugar2,descripcion2,idActividad2);
+                response.sendRedirect(request.getContextPath()+"/admin_act?action=home");
 
                 break;
 

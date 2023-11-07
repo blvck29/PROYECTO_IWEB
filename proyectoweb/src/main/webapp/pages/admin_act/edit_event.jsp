@@ -122,88 +122,89 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
         <div class="row">
             <div class="col-lg-6 col-md-12" style="text-align: left; padding-top: 1.5em">
+                <form method="post" action="<%=request.getContextPath()%>/admin_act?action=editEvent&idActividad=<%=evento.getIdActividad()%>">
+                    <div class="card">
+                        <div class="card-body" style="padding-left: 35px">
 
-                <div class="card">
-                    <div class="card-body" style="padding-left: 35px">
+                            <div style="padding-top: 1.5em;"></div>
 
-                        <div style="padding-top: 1.5em;"></div>
+                            <div>
+                                <div class="form-group" style="padding-right: 1rem">
+                                    <label  style="text-align: left;"><strong>Título del evento:</strong></label>
+                                    <input name="titulo" type="text" class="form-control" id="nombre" value="<%=evento.getTitulo()%>">
+                                    <input name="idEvento" type="hidden" class="form-control" id="nombre" value="<%=evento.getIdEvento()%>">
+                                </div>
+                            </div>
 
-                        <div>
+                            <div style="padding-top: 1.5em;"></div>
+
+                            <div>
+                                <div class="form-group" style="padding-right: 1rem">
+                                    <label  style="text-align: left;"><strong>Subtítulo del evento:</strong></label>
+                                    <input name="subtitulo" type="text" class="form-control" id="nombre" value="<%=evento.getSubTitulo()%>">
+                                </div>
+                            </div>
+
+                            <div style="padding-top: 1.5em;"></div>
+
                             <div class="form-group" style="padding-right: 1rem">
-                                <label  style="text-align: left;"><strong>Título del evento:</strong></label>
-                                <input name="titulo" type="text" class="form-control" id="nombre" value="<%=evento.getTitulo()%>">
+                                <label style="text-align: left;"><strong>Hora del evento:</strong></label>
+                                <input name="hora" type="time" class="form-control" id="fecha-evento" value="<%=evento.getHora()%>">
                             </div>
-                        </div>
 
-                        <div style="padding-top: 1.5em;"></div>
+                            <div style="padding-top: 1.5em;"></div>
 
-                        <div>
                             <div class="form-group" style="padding-right: 1rem">
-                                <label  style="text-align: left;"><strong>Subtítulo del evento:</strong></label>
-                                <input name="subtitulo" type="text" class="form-control" id="nombre" value="<%=evento.getSubTitulo()%>">
+                                <label  style="text-align: left;"><strong>Fecha del evento:</strong></label>
+                                <input name="fecha" type="date" class="form-control" id="fecha-evento" value="<%=evento.getFecha()%>">
                             </div>
-                        </div>
 
-                        <div style="padding-top: 1.5em;"></div>
+                            <div style="padding-top: 1.5em;"></div>
 
-                        <div class="form-group" style="padding-right: 1rem">
-                            <label style="text-align: left;"><strong>Hora del evento:</strong></label>
-                            <input name="hora" type="time" class="form-control" id="fecha-evento" value="<%=evento.getHora()%>">
-                        </div>
-
-                        <div style="padding-top: 1.5em;"></div>
-
-                        <div class="form-group" style="padding-right: 1rem">
-                            <label  style="text-align: left;"><strong>Fecha del evento:</strong></label>
-                            <input name="fecha" type="date" class="form-control" id="fecha-evento" value="<%=evento.getFecha()%>">
-                        </div>
-
-                        <div style="padding-top: 1.5em;"></div>
-
-                        <label style="text-align: left;"><strong>Lugar:</strong></label>
-                        <select class="form-select" id="eleccion" aria-label="Default select example">
-                            <option   >Selecciona una opción:</option>
-                            <option value="1" <%=nombreLugar.equals("Cancha de Minas")? "selected": ""%> >Cancha de Minas</option>
-                            <option value="2"<%=nombreLugar.equals("Polideportivo")? "selected": ""%>>Polidepotivo</option>
-                            <option value="3" <%=nombreLugar.equals("Losa de Paleta Frontón")? "selected": ""%>>Losa de Paleta Frontón</option>
-                        </select>
-                        <div id="imagen-container">
-                            <img id="imagen1" src="https://descubre.pucp.edu.pe/imagesv2/dte005/IMG_4565.jpg" alt="Imagen 1">
-                            <img id="imagen2" src="http://descubre.pucp.edu.pe/imagesv2/dte001/POLIDEPORTIVO.jpg" alt="Imagen 2">
-                            <img id="imagen3" src="http://descubre.pucp.edu.pe/imagesv2/dte004/LOSA%20DE%20FRONTON.jpg" alt="Imagen 3">
-                        </div>
-                        <p id="texto-mostrado"></p>
-                        <input type="hidden" name="lugar" id="lugarTexto" value="">
-                        <div id="iframe-container">
-                            <iframe id="iframe1" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d321.6392773860829!2d-77.08220459017669!3d-12.072196035587183!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c96c8bf00001%3A0xc39b8453d7952a96!2sCanchas%20de%20Minas!5e1!3m2!1ses!2spe!4v1699334362532!5m2!1ses!2spe" width="550" height="220" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                            <iframe id="iframe2" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1081.8846268772293!2d-77.08026385223693!3d-12.066408817670428!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c96ab754beb9%3A0xcfd8f8bd1f987eb9!2sColiseo%20Polideportivo%20-%20PUCP!5e1!3m2!1ses!2spe!4v1699332525901!5m2!1ses!2spe" width="550" height="220" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                            <iframe id="iframe3" src="https://www.ejemplo3.com"></iframe>
-                        </div>
-                        <a id="texto-mostrado-url"></a>
-
-
-
-                        <div style="padding-top: 1.5em;"></div>
-
-                        <div>
-                            <div class="form-group">
-                                <label style="text-align: left;"><strong>Descripción del evento:</strong></label>
-                                <textarea class="form-control" name="descripcion" aria-label="With textarea" placeholder="250 palabras máximo." value="<%=evento.getDescripcion()%>"></textarea>
+                            <label style="text-align: left;"><strong>Lugar:</strong></label>
+                            <select class="form-select" id="eleccion" aria-label="Default select example">
+                                <option   >Selecciona una opción:</option>
+                                <option value="1" <%=nombreLugar.equals("Cancha de Minas")? "selected": ""%> >Cancha de Minas</option>
+                                <option value="2"<%=nombreLugar.equals("Polideportivo")? "selected": ""%>>Polidepotivo</option>
+                                <option value="3" <%=nombreLugar.equals("Losa de Paleta Frontón")? "selected": ""%>>Losa de Paleta Frontón</option>
+                            </select>
+                            <div id="imagen-container">
+                                <img id="imagen1" src="https://descubre.pucp.edu.pe/imagesv2/dte005/IMG_4565.jpg" alt="Imagen 1">
+                                <img id="imagen2" src="http://descubre.pucp.edu.pe/imagesv2/dte001/POLIDEPORTIVO.jpg" alt="Imagen 2">
+                                <img id="imagen3" src="http://descubre.pucp.edu.pe/imagesv2/dte004/LOSA%20DE%20FRONTON.jpg" alt="Imagen 3">
                             </div>
-                            <div style="padding-top: 1em;"></div>
+                            <p id="texto-mostrado"></p>
+                            <input type="hidden" name="lugar" id="lugarTexto" value="">
+                            <div id="iframe-container">
+                                <iframe id="iframe1" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d321.6392773860829!2d-77.08220459017669!3d-12.072196035587183!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c96c8bf00001%3A0xc39b8453d7952a96!2sCanchas%20de%20Minas!5e1!3m2!1ses!2spe!4v1699334362532!5m2!1ses!2spe" width="550" height="220" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                <iframe id="iframe2" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1081.8846268772293!2d-77.08026385223693!3d-12.066408817670428!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c96ab754beb9%3A0xcfd8f8bd1f987eb9!2sColiseo%20Polideportivo%20-%20PUCP!5e1!3m2!1ses!2spe!4v1699332525901!5m2!1ses!2spe" width="550" height="220" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                <iframe id="iframe3" src="https://www.ejemplo3.com"></iframe>
+                            </div>
+                            <a id="texto-mostrado-url"></a>
+
+
+
+                            <div style="padding-top: 1.5em;"></div>
+
+                            <div>
+                                <div class="form-group">
+                                    <label style="text-align: left;"><strong>Descripción del evento:</strong></label>
+                                    <textarea class="form-control" name="descripcion" aria-label="With textarea" placeholder="250 palabras máximo." ><%=evento.getDescripcion()%></textarea>
+                                </div>
+                                <div style="padding-top: 1em;"></div>
+                            </div>
+
+
                         </div>
-
-
                     </div>
-                </div>
 
-                <div class="uk-flex uk-flex-center uk-margin-top">
-                    <div class="uk-flex uk-flex-center">
-                        <a id="redirect-button" class="btn btn-secondary m-2" href="<%=request.getContextPath()%>/admin_act?action=home">Cancelar</a>
-                        <button type="submit" class="btn btn-primary m-2">Guardar</button>
+                    <div class="uk-flex uk-flex-center uk-margin-top">
+                        <div class="uk-flex uk-flex-center">
+                            <a id="redirect-button" class="btn btn-secondary m-2" href="<%=request.getContextPath()%>/admin_act?action=home">Cancelar</a>
+                            <button type="submit" class="btn btn-primary m-2">Guardar</button>
+                        </div>
                     </div>
-                </div>
-
+                </form>
             </div>
 
 

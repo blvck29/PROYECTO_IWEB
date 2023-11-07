@@ -124,7 +124,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
         <div class="row">
             <div class="col-lg-6 col-md-12" style="text-align: left; padding-top: 1.5em">
 
-                <form method="post" id="form" action="<%=request.getContextPath()%>/admin_gen_activities?action=editar">
+                <form method="post" id="form" action="<%=request.getContextPath()%>/admin_gen?action=activities&ac=editar">
                     <div class="card">
                         <div class="card-body" style="padding-left: 35px">
 

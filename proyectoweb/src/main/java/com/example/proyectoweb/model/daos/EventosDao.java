@@ -244,21 +244,17 @@ public class EventosDao extends DaoBase{
     // ELIMINAR EVENTO
     public void eliminarEvento(String idEvento){
 
-        String sql ="delete from proyectoweb.evento where idEvento = ?";
+        String sql ="delete from evento where idEvento = ?";
 
         try(Connection conn = getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1,Integer.parseInt(idEvento));
+
+            pstmt.setString(1,idEvento);
             pstmt.executeUpdate();
-
-
-            // esto que le pongo un setint porque ese es el tipo ed casillero que lo requiere si hay error mirar aqui
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
-
     }
 
 
@@ -291,22 +287,20 @@ public class EventosDao extends DaoBase{
 
 
     // EDITAR EVENTO
-    public void editarEvento(int idEvento, String titulo, String subTitulo, Time hora, Date fecha, String lugar, Blob imagen, String descripcion, String idEstado, String idActividad) {
-        String sql = "UPDATE evento SET titulo = ?, SubTitulo = ?, hora = ?, fecha = ?, Lugar = ?, imagen = ?, descripcion = ?, idEstado = ?, idActividad = ? WHERE idevento = ?";
+    public void actualizarEvento(String idEvento, String titulo, String subTitulo, String hora, String fecha, String lugar, String descripcion, String idActividad) {
+        String sql = "UPDATE evento SET titulo = ?, SubTitulo = ?, hora = ?, fecha = ?, Lugar = ?, imagen = NULL, descripcion = ?, idActividad = ? WHERE idevento = ?";
 
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setString(1, titulo);
             pstmt.setString(2, subTitulo);
-            pstmt.setTime(3, hora);
-            pstmt.setDate(4, fecha);
+            pstmt.setString(3, hora);
+            pstmt.setString(4, fecha);
             pstmt.setString(5, lugar);
-            pstmt.setBlob(6, imagen);
-            pstmt.setString(7, descripcion);
-            pstmt.setString(8, idEstado);
-            pstmt.setString(9, idActividad);
-            pstmt.setInt(10, idEvento);
+            pstmt.setString(6, descripcion);
+            pstmt.setString(7, idActividad);
+            pstmt.setString(8, idEvento);
 
             pstmt.executeUpdate();
 
