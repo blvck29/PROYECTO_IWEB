@@ -150,13 +150,13 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                     <div class="card-body" style="padding-left: 35px">
                             <div style="padding-top: 1.5em;"></div>
                             <div class="form-group" style="padding-right: 1rem">
-                                <label for="fecha-evento" style="text-align: left;">
+                                <label style="text-align: left;">
                                     <strong>Nombre de Actividad:</strong></label>
                                 <input type="text" id="nombreAct" class="form-control" name="nombreActividad" required>
                             </div>
                             <div style="padding-top: 1.5em;"></div>
                             <div class="form-group" style="padding-right: 1rem">
-                                <label for="asistentes"><strong>Delegado de Actividad:</strong></label>
+                                <label><strong>Delegado de Actividad:</strong></label>
                                 <select class="form-select" name="idDelegado" id="idDelegado" aria-label="Default select example" required>
                                     <option selected disabled value="">Seleccionar</option>
                                     <%for (Usuario usuario : listaUsuarios){ %>

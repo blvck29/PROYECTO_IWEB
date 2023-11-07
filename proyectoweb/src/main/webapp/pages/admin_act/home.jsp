@@ -3,6 +3,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <% ArrayList<Evento> listaEventos = (ArrayList<Evento>) request.getAttribute("listaEventos"); %>
+<% String idActividad = (String) request.getAttribute("idActividad");%>
 
 
 <!doctype html>
@@ -50,7 +51,7 @@
                 <a href="<%=request.getContextPath()%>/admin_act?action=home" class="active">Eventos</a>
             </li>
             <li>
-                <a href="<%=request.getContextPath()%>/admin_act?action=new_event">Crear Evento</a>
+                <a href="<%=request.getContextPath()%>/admin_act?action=new_event&idActividad=<%=idActividad%>">Crear Evento</a>
             </li>
             <li>
                 <a href="<%=request.getContextPath()%>/admin_act?action=list_apoyos">Gestionar Apoyos</a>
@@ -70,7 +71,7 @@
 
 
 <div class="container-fluid" style="padding-left:0 !important; padding-right: 0 !important; background: rgb(45,0,83) !important;
-background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgba(21,0,48,1) 100%) !important;")>
+background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgba(21,0,48,1) 100%) !important;">
     <div class="text-secondary px-4 py-5 text-center">
         <div class="py-5">
             <h1 class="display-5 fw-bold text-white">Bienvenido, @Admin_act</h1>
@@ -79,7 +80,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
             <div style="margin-bottom: 20px"></div>
             <div class="justify-content-sm-center">
                 <button type="button" class="btn btn-outline-info btn-lg px-4">
-                    <a href="new_event.jsp" class="link-info link-opacity">Crear Evento</a>
+                    <a href="<%=request.getContextPath()%>/admin_act?action=new_event&idActividad=<%=idActividad%>" class="link-info link-opacity">Crear Evento</a>
                 </button>
             </div>
         </div>
@@ -105,10 +106,22 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
         <div class="input-group-text p-0">
             <label>
-                <select class="form-select form-select-lg shadow-none bg-light border-0" style="font-size: 1rem">
-                    <option style="font-size: 1rem">Próximos</option>
-                    <option style="font-size: 1rem">Finalizados</option>
-                </select>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                        Filtrar por fecha
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-lg-end">
+                        <form method="post" action="<%=request.getContextPath()%>/admin_act?action=filtros&ac=eventosXfecha&idAct=<%=idActividad%>&filtro=all">
+                            <li><button class="dropdown-item" type="submit">TODOS</button></li>
+                        </form>
+                        <form method="post" action="<%=request.getContextPath()%>/admin_act?action=filtros&ac=eventosXfecha&idAct=<%=idActividad%>&filtro=prox">
+                            <li><button class="dropdown-item" type="submit">PRÓXIMOS</button></li>
+                        </form>
+                        <form method="post" action="<%=request.getContextPath()%>/admin_act?action=filtros&ac=eventosXfecha&idAct=<%=idActividad%>&filtro=fin">
+                            <li><button class="dropdown-item" type="submit">FINALIZADOS</button></li>
+                        </form>
+                    </ul>
+                </div>
             </label>
         </div>
         <input type="text" class="form-control" placeholder="Buscar Evento">
@@ -125,7 +138,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
 
         <% for (Evento evento : listaEventos) {
-        if (evento.getIdActividad().equals("ESPORTS")) {%>
+        if (evento.getIdActividad().equals(idActividad)) {%>
         <div class="col-sm-6 col-lg-3 mb-4">
 
             <div class="card-list">
@@ -242,7 +255,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 </script>
 
 
-<script src="js/bootstrap/bootstrap.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <script src="js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>

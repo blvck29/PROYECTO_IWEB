@@ -265,24 +265,21 @@ public class EventosDao extends DaoBase{
 
     // CREAR EVENTO
 
-    public void crearEvento(int idEvento, String titulo, String subTitulo,Time hora, Date fecha, String Lugar , Blob imagen, String descripcion, String idEstado,String idActividad){
+    public void crearEvento(String titulo, String subTitulo,String hora, String fecha, String lugar , String descripcion,String idActividad){
 
-        String sql = "INSERT INTO evento (idevento, titulo, SubTitulo, hora, fecha, Lugar, imagen, descripcion, idEstado, idActividad) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO evento (titulo, SubTitulo, hora, fecha, lugar, imagen, descripcion, idEstado, idActividad) \n" +
+                "VALUES (?, ?, ?, ?, ?, NULL, ?, 'PUBLIC', ?);";
 
         try(Connection conn = getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql)){
 
-            pstmt.setInt(1, idEvento);
-            pstmt.setString(2, titulo);
-            pstmt.setString(3, subTitulo);
-            pstmt.setTime(4, hora);
-            pstmt.setDate(5, fecha);
-            pstmt.setString(6, Lugar);
-            pstmt.setBlob(7, imagen);
-            pstmt.setString(8, descripcion);
-            pstmt.setString(9, idEstado);
-            pstmt.setString(10, idActividad);
+            pstmt.setString(1, titulo);
+            pstmt.setString(2, subTitulo);
+            pstmt.setString(3, hora);
+            pstmt.setString(4, fecha);
+            pstmt.setString(5, lugar);
+            pstmt.setString(6, descripcion);
+            pstmt.setString(7, idActividad);
 
             pstmt.executeUpdate();
 
