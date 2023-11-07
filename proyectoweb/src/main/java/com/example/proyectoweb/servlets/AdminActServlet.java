@@ -54,6 +54,20 @@ public class AdminActServlet extends HttpServlet {
                 request.getRequestDispatcher("/pages/admin_act/administrar_apoyos.jsp").forward(request,response);
                 break;
 
+            case "edit_event":
+                String idEvento = request.getParameter("idEvento");
+                Evento eventoBuscado = eventoDao.EventoXid(idEvento);
+
+                if(eventoBuscado != null){
+                    request.setAttribute("evento", eventoBuscado);
+                    request.getRequestDispatcher("/pages/admin_act/edit_event.jsp").forward(request,response);
+                }else{
+                    response.sendRedirect(request.getContextPath()+"/admin_act");
+                }
+
+
+                break;
+
 
         }
     }
@@ -94,9 +108,7 @@ public class AdminActServlet extends HttpServlet {
 
                         break;
                 }
-
                 break;
-
 
 
             case "crearEvento":
@@ -107,14 +119,6 @@ public class AdminActServlet extends HttpServlet {
                 String lugar = request.getParameter("lugar");
                 String descripcion = request.getParameter("descripcion");
                 String idActividad = request.getParameter("idActividad");
-
-                System.out.println("titutlo: " + titulo);
-                System.out.println("subtitutlo: " + subtitulo);
-                System.out.println("hora: " + hora+":00");
-                System.out.println("fecha: " + fecha);
-                System.out.println("Lugar: " + lugar);
-                System.out.println("Descripcion: " + descripcion);
-                System.out.println("idActividad: " + idActividad);
 
                 eventoDao.crearEvento(titulo,subtitulo,hora,fecha,lugar,descripcion,idActividad);
 

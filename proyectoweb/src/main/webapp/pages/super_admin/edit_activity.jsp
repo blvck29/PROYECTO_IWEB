@@ -150,7 +150,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
                     <div class="uk-flex uk-flex-center uk-margin-top">
                         <div class="uk-flex uk-flex-center">
-                            <a id="redirect-button" class="btn btn-secondary m-2" href="<%=request.getContextPath()%>/admin_gen_activities">Cancelar</a>
+                            <a id="redirect-button" class="btn btn-secondary m-2" href="<%=request.getContextPath()%>/admin_gen?action=act">Cancelar</a>
                             <button type="submit" class="btn btn-primary m-2">Guardar</button>
                         </div>
                     </div>
