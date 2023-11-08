@@ -1,10 +1,11 @@
+<%@ page import="com.example.proyectoweb.model.beans.Actividad" %>
 <%@ page import="com.example.proyectoweb.model.beans.Evento" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="com.example.proyectoweb.model.beans.Inscripcion" %>
+
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
-<% ArrayList<Evento> listaFiltroAct = (ArrayList<Evento>) request.getAttribute("listaFiltroAct"); %>
-<% String idActividad = (String) request.getAttribute("idAct"); %>
-
+<% ArrayList<Actividad> listaActividades = (ArrayList<Actividad>) request.getAttribute("listaActividades");%>
+<% ArrayList<Inscripcion> listaEventosPropia = (ArrayList<Inscripcion>) request.getAttribute("listaEventosPropia"); %>
 
 <!doctype html>
 <html lang="es">
@@ -27,9 +28,14 @@
 
     <link rel="icon" type="image/jpg" href="favicon.png" />
 
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 
     <title>Home | Semana de Ingeniería 2023</title>
 </head>
+
 
 <body>
 <header>
@@ -74,67 +80,29 @@
 </header>
 
 
-<div class="container-fluid" style="padding-left:0 !important; padding-right: 0 !important; background: rgb(45,0,83) !important;
-background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgba(21,0,48,1) 100%) !important;")>
-    <div class="text-secondary px-4 py-5 text-center">
-        <div class="py-5">
-            <h1 class="display-5 fw-bold text-white">Bienvenido a la sección de <%=idActividad%></h1>
-            <div style="margin-bottom: 20px"></div>
-            <h3 class="fw-bold text-white">Inscríbete a los eventos que desees...</h3>
-            <div style="margin-bottom: 20px"></div>
-        </div>
-    </div>
-</div>
-
-
-
-
-
-
 <div class="container">
 
     <div style="margin-bottom: 50px"></div>
 
-    <h2><i class="fa-solid fa-star" style="color: #8de7ef;"></i><strong style="padding-left: 10px">Eventos de Actividad</strong></h2>
+    <h2><i class="fa-solid fa-star" style="color: #8de7ef;"></i><strong style="padding-left: 10px">Eventos de @Usuario</strong></h2>
 
     <div style="margin-bottom: 40px"></div>
 
 
-        <div class="input-group mb-3">
-            <div class="input-group-text p-0">
-                <label>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                            Filtrar por fecha
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-lg-end">
-                            <form method="post" action="<%=request.getContextPath()%>/user_home?action=filter_act&idAct=<%=idActividad%>&filtro=all">
-                                <li><button class="dropdown-item" type="submit">TODOS</button></li>
-                            </form>
-                            <form method="post" action="<%=request.getContextPath()%>/user_home?action=filter_act&idAct=<%=idActividad%>&filtro=prox">
-                                <li><button class="dropdown-item" type="submit">PRÓXIMOS</button></li>
-                            </form>
-                            <form method="post" action="<%=request.getContextPath()%>/user_home?action=filter_act&idAct=<%=idActividad%>&filtro=fin">
-                                <li><button class="dropdown-item" type="submit">FINALIZADOS</button></li>
-                            </form>
-                        </ul>
-                    </div>
-                </label>
-            </div>
-            <input type="text" name="buscar_evento" class="form-control" placeholder="Buscar Evento">
-            <button class="input-group-text shadow-none px-4 btn-large" type="submit">
-                <i class="fa-solid fa-magnifying-glass" style="color: #262626;"></i>
-            </button>
-        </div>
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Buscar Evento">
+        <button class="input-group-text shadow-none px-4 btn-large">
+            <i class="fa-solid fa-magnifying-glass" style="color: #262626;"></i>
+        </button>
 
+    </div>
 
     <div style="margin-bottom: 50px"></div>
 
     <div class="row align-content-center" data-masonry='{"percentPosition": true }'>
 
         <%int event_counter = 0;%>
-
-        <% for (Evento ev : listaFiltroAct) { %>
+        <% for (Inscripcion ins : listaEventosPropia) { %>
         <%if (event_counter==8) { break; }%>
         <div class="col-sm-6 col-lg-3 mb-4">
 
@@ -144,7 +112,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                         <img class="image-event" src="images/placeholder_events.jpg" alt="event" />
                     </figure>
                     <div class="card-header">
-                        <a href="<%=request.getContextPath()%>/user_home?action=details&id=<%=ev.getIdEvento()%>"><%=ev.getTitulo()%><p><%=ev.getSubTitulo()%></p></a>
+                        <a href="<%=request.getContextPath()%>/user_home?action=details&id=<%=ins.getIdEvento()%>"><%=ins.getTitulo()%><p><%=ins.getSubTitulo()%></p></a>
 
                     </div>
                     <div class="card-footer">
@@ -162,7 +130,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                                 <path d="M16 2v4"></path>
                                 <path d="M2 10h20"></path>
                             </svg>
-                            <%=ev.getFecha()%>
+                            <%=ins.getFecha()%>
                         </div>
                     </div>
                 </article>
@@ -207,17 +175,14 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
     <%} else if (event_counter==0){%>
 
-    <div class="container align-content-center"><h2>No hay eventos creados</h2></div>
-
-    <div style="margin-bottom: 560px"></div>
+    <div class="container align-content-center"><h2>No hay eventos Próximos</h2></div>
+    <div style="margin-bottom: 180px"></div>
 
     <%} else if (event_counter<5){%>
 
     <div style="margin-bottom: 200px"></div>
 
     <%}%>
-
-
 
 </div>
 
@@ -235,8 +200,6 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
     </footer>
 </div>
 
-
-
 <script>
     function submitForm() {
         var selectElement = document.getElementById("eventSelect");
@@ -249,38 +212,13 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 </script>
 
 
-<script>
-    $(document).ready(function(){
-        $('.carousel-act').slick({
-            slidesToShow: 3,
-            centerMode: true,
-            responsive: [
-                {
-                    breakpoint: 1400, // Cuando el ancho de la pantalla sea 768px o menos
-                    settings: {
-                        slidesToShow: 2, // Cambia a mostrar solo 1 diapositiva
-                    }
-                },
-                {
-                    breakpoint: 1000, // Cuando el ancho de la pantalla sea 992px o menos
-                    settings: {
-                        slidesToShow: 1, // Cambia a mostrar 2 diapositivas
-                    }
-                }
-            ]
-        });
-    });
-</script>
-
-
 <script src="js/slider.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-<script src="js/script.js"></script>
+<script src="js/bootstrap/bootstrap.js"></script>
+<script src="/js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
-
-
 </body>
+
 
 </html>
