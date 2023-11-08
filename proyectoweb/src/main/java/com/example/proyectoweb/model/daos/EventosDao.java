@@ -241,6 +241,8 @@ public class EventosDao extends DaoBase{
         return listaEventos;
 
     }
+
+
     // ELIMINAR EVENTO
     public void eliminarEvento(String idEvento){
 
@@ -257,6 +259,40 @@ public class EventosDao extends DaoBase{
         }
     }
 
+
+    public void eliminarAlbumFotosDeEvento(String idEvento){
+
+        String sql ="delete from fotos_album where idEvento = ?";
+
+        try(Connection conn = getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1,idEvento);
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public void eliminarInscripcionDeEvento(String idEvento){
+
+        String sql ="delete from inscripcion where idEvento=?";
+
+        try(Connection conn = getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1,idEvento);
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
+
+    }
 
 
     // CREAR EVENTO

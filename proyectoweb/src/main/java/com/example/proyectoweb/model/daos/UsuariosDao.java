@@ -259,6 +259,7 @@ public ArrayList<Usuario> listarDelegadosActDisponibles(){
 
         try(Connection conn = getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
             pstmt.setString(1,idUsuario);
             pstmt.executeUpdate();
 

@@ -178,7 +178,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                             <div id="iframe-container">
                                 <iframe id="iframe1" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d321.6392773860829!2d-77.08220459017669!3d-12.072196035587183!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c96c8bf00001%3A0xc39b8453d7952a96!2sCanchas%20de%20Minas!5e1!3m2!1ses!2spe!4v1699334362532!5m2!1ses!2spe" width="550" height="220" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                                 <iframe id="iframe2" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1081.8846268772293!2d-77.08026385223693!3d-12.066408817670428!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c96ab754beb9%3A0xcfd8f8bd1f987eb9!2sColiseo%20Polideportivo%20-%20PUCP!5e1!3m2!1ses!2spe!4v1699332525901!5m2!1ses!2spe" width="550" height="220" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                                <iframe id="iframe3" src="https://www.ejemplo3.com"></iframe>
+                                <iframe id="iframe3" src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d454.8776701053476!2d-77.08033520327926!3d-12.065691185950032!3m2!1i1024!2i768!4f13.1!5e1!3m2!1ses-419!2spe!4v1699419977900!5m2!1ses-419!2spe" width="550" height="220" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                             </div>
                             <a id="texto-mostrado-url"></a>
 
@@ -296,8 +296,8 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
         } else if (selectedValue === "3") {
             document.getElementById("imagen3").style.display = "block";
             document.getElementById("iframe3").style.display = "block";
-            textoMostrado.textContent = "Losa de Paleta Frontón: Un lugar de entretenimiento.";
-            urlDireccion.textContent = "URL: ";
+            textoMostrado.textContent = "Losa de Paleta Frontón: Campus PUCP, San Miguel 15088.";
+            urlDireccion.textContent = "URL: https://maps.app.goo.gl/S18WQkJgkMCpZTPy7";
             lugarTextoInput.value = textoMostrado.textContent;
         } else {
             textoMostrado.textContent = ""; // Limpia el texto si no se selecciona una opción válida

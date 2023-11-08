@@ -1,5 +1,6 @@
+<%@ page import="com.example.proyectoweb.model.beans.Evento" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<% String idActividad = (String) request.getAttribute("idActividad"); %>
+<% Evento evento = (Evento) request.getAttribute("evento");%>
 
 
 <!doctype html>
@@ -28,7 +29,7 @@
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.17.4/dist/js/uikit.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.17.4/dist/js/uikit-icons.min.js"></script>
 
-    <link rel="icon" type="image/jpg" href="favicon.png" />
+    <link rel="icon" type="image/jpg" href="../../favicon.png" />
 
     <!-- Add the slick-theme.css if you want default styling -->
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
@@ -40,7 +41,6 @@
             display: none;
         }
     </style>
-
 
     <style>
         #iframe-container iframe {
@@ -73,7 +73,7 @@
                 <a href="<%=request.getContextPath()%>/admin_act?action=home">Eventos</a>
             </li>
             <li>
-                <a href="<%=request.getContextPath()%>/admin_act?action=new_event" class="active">Crear Evento</a>
+                <a href="<%=request.getContextPath()%>/admin_act?action=new_event">Crear Evento</a>
             </li>
             <li>
                 <a href="<%=request.getContextPath()%>/admin_act?action=list_apoyos">Gestionar Apoyos</a>
@@ -90,13 +90,16 @@
 
 </header>
 
-
+<%
+    String[] direccionLugar = evento.getLugar().split(":");
+    String nombreLugar = direccionLugar[0];
+%>
 
 <div class="container-fluid" style="padding-left:0 !important; padding-right: 0 !important; background: rgb(45,0,83) !important;
 background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgba(21,0,48,1) 100%) !important;">
     <div class="text-secondary px-4 py-5 text-center">
         <div class="py-5">
-            <h1 class="display-5 fw-bold text-white" style="font-family: 'Poppins', sans-serif">Eventos de <%=idActividad%></h1>
+            <h1 class="display-5 fw-bold text-white" style="font-family: 'Poppins', sans-serif">Eventos de <%=evento.getIdActividad()%></h1>
             <div class="justify-content-sm-center">
             </div>
         </div>
@@ -108,7 +111,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 <div class="container">
 
     <div style="margin-bottom: 50px"></div>
-    <h2><i class="fa-solid fa-star" style="color: #8de7ef;"></i><strong style="padding-left: 10px">Interfaz de Creación de Evento</strong></h2>
+    <h2><i class="fa-solid fa-star" style="color: #8de7ef;"></i><strong style="padding-left: 10px">Interfaz de Visualización de Detalles del Evento</strong></h2>
     <div style="margin-bottom: 20px"></div>
 
     <hr style="border-top: 1px solid #262626;">
@@ -117,12 +120,8 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
     <div class="container">
 
-
-
         <div class="row">
             <div class="col-lg-6 col-md-12" style="text-align: left; padding-top: 1.5em">
-
-                <form method="post" action="<%=request.getContextPath()%>/admin_act?action=crearEvento&idActividad=<%=idActividad%>">
                     <div class="card">
                         <div class="card-body" style="padding-left: 35px">
 
@@ -131,7 +130,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                             <div>
                                 <div class="form-group" style="padding-right: 1rem">
                                     <label  style="text-align: left;"><strong>Título del evento:</strong></label>
-                                    <input name="titulo" type="text" class="form-control"  required>
+                                    <input name="titulo" type="text" class="form-control" id="nombre" value="<%=evento.getTitulo()%>" disabled readonly>
                                 </div>
                             </div>
 
@@ -140,7 +139,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                             <div>
                                 <div class="form-group" style="padding-right: 1rem">
                                     <label  style="text-align: left;"><strong>Subtítulo del evento:</strong></label>
-                                    <input name="subtitulo" type="text" class="form-control" required>
+                                    <input name="subtitulo" type="text" class="form-control" id="nombre" value="<%=evento.getSubTitulo()%>" disabled readonly>
                                 </div>
                             </div>
 
@@ -148,24 +147,24 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
                             <div class="form-group" style="padding-right: 1rem">
                                 <label style="text-align: left;"><strong>Hora del evento:</strong></label>
-                                <input name="hora" type="time" class="form-control"  required>
+                                <input name="hora" type="time" class="form-control" id="fecha-evento" value="<%=evento.getHora()%>" disabled readonly>
                             </div>
 
                             <div style="padding-top: 1.5em;"></div>
 
                             <div class="form-group" style="padding-right: 1rem">
                                 <label  style="text-align: left;"><strong>Fecha del evento:</strong></label>
-                                <input name="fecha" type="date" class="form-control"  required>
+                                <input name="fecha" type="date" class="form-control" id="fecha-evento" value="<%=evento.getFecha()%>" disabled readonly>
                             </div>
 
                             <div style="padding-top: 1.5em;"></div>
 
                             <label style="text-align: left;"><strong>Lugar:</strong></label>
-                            <select class="form-select" id="eleccion" aria-label="Default select example" required>
-                                <option selected disabled value>Selecciona una opción</option>
-                                <option value="1">Cancha de Minas</option>
-                                <option value="2">Polidepotivo</option>
-                                <option value="3">Losa de Paleta Frontón</option>
+                            <select class="form-select" id="eleccion" aria-label="Default select example" disabled>
+                                <option>Selecciona una opción:</option>
+                                <option value="1" <%=nombreLugar.equals("Cancha de Minas")? "selected": ""%> >Cancha de Minas</option>
+                                <option value="2"<%=nombreLugar.equals("Polideportivo")? "selected": ""%>>Polidepotivo</option>
+                                <option value="3" <%=nombreLugar.equals("Losa de Paleta Frontón")? "selected": ""%>>Losa de Paleta Frontón</option>
                             </select>
                             <div id="imagen-container">
                                 <img id="imagen1" src="https://descubre.pucp.edu.pe/imagesv2/dte005/IMG_4565.jpg" alt="Imagen 1">
@@ -188,7 +187,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                             <div>
                                 <div class="form-group">
                                     <label style="text-align: left;"><strong>Descripción del evento:</strong></label>
-                                    <textarea class="form-control" name="descripcion" aria-label="With textarea" placeholder="250 palabras máximo." required></textarea>
+                                    <input name="titulo" type="text" class="form-control" id="nombre" value="<%=evento.getDescripcion()%>" disabled readonly>
                                 </div>
                                 <div style="padding-top: 1em;"></div>
                             </div>
@@ -199,49 +198,22 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
                     <div class="uk-flex uk-flex-center uk-margin-top">
                         <div class="uk-flex uk-flex-center">
-                            <a id="redirect-button" class="btn btn-secondary m-2" href="<%=request.getContextPath()%>/admin_act?action=home">Cancelar</a>
-                            <button type="submit" class="btn btn-primary m-2">Guardar</button>
+                            <a id="redirect-button" class="btn btn-primary m-2" href="<%=request.getContextPath()%>/admin_act?action=home">Regresar</a>
                         </div>
                     </div>
-
-
-                </form>
             </div>
 
 
 
             <div class="col-lg-6 col-md-12" style="padding-left: 2em; padding-right: 2em; padding-top: 1.5em">
-                <div class="container" style="padding-left: 6rem; padding-right: 6rem">
-                    <div class="uk-upload-box">
-                        <div id="error-alert" class="uk-alert-danger uk-margin-top uk-hidden" uk-alert>
-                            <p id="error-messages"></p>
-                        </div>
 
-                        <form id="upload-form">
-                            <div class="drop__zone uk-placeholder uk-text-center">
-                                <span uk-icon="icon: cloud-upload"></span>
-                                <span class="uk-text-middle uk-margin-small-left">Adjunte arrastrando el archivo o</span>
-                                <div uk-form-custom>
-                                    <input name="document" accept="image/png, image/jpeg, application/pdf, application/vnd.openxmlformats-officedocument.wordprocessingml.document" type="file">
-                                    <span class="uk-link">seleccione la captura</span>
-                                </div>
-                                <ul id="preview" class="uk-list uk-grid-match uk-child-width-1-2 uk-child-width-1-4@l uk-child-width-1-5@xl uk-text-center" uk-grid uk-scrollspy="cls: uk-animation-scale-up; target: .list-item; delay: 80"></ul>
-                            </div>
-                        </form>
-                    </div>
+                <img src="images/placeholder_events.jpg" alt="imagen de evento" style="height: auto; width: 100%">
 
-                    <div class="uk-flex uk-flex-center uk-margin-top">
-                        <div class="uk-flex uk-flex-center">
-                            <button type="button" id="reset-button" class="btn btn-secondary m-2">Borrar</button>
-                            <button type="submit" form="upload-form" class="btn btn-primary m-2">Subir</button>
-                        </div>
-                    </div>
-                </div>
+                <div style="margin-bottom: 20px"></div>
+
+
             </div>
         </div>
-
-        <div style="padding-top: 10px;"></div>
-
     </div>
 
 </div>
@@ -261,7 +233,6 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 </div>
 
 
-
 <script>
     const selectElement = document.getElementById("eleccion");
     const imagenContainer = document.getElementById("imagen-container");
@@ -270,12 +241,8 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
     const iframeContainer = document.getElementById("iframe-container");
     const lugarTextoInput = document.getElementById("lugarTexto");
 
-
-    // Escucha el evento de cambio en el select
-    selectElement.addEventListener("change", function () {
-
-        const selectedValue = selectElement.value;
-
+    // Función para actualizar la información basada en la selección actual
+    function actualizarInfoSeleccionada(selectedValue) {
         // Oculta todas las imágenes
         imagenContainer.querySelectorAll("img").forEach(img => {
             img.style.display = "none";
@@ -289,27 +256,42 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
             document.getElementById("imagen1").style.display = "block";
             document.getElementById("iframe1").style.display = "block";
             textoMostrado.textContent = "Cancha de Minas: WWH9+458, San Miguel 15088.";
-            urlDireccion.textContent = "URL: https://maps.app.goo.gl/JKT12SnpqXDjEjuY9"
+            urlDireccion.textContent = "URL: https://maps.app.goo.gl/JKT12SnpqXDjEjuY9";
             lugarTextoInput.value = textoMostrado.textContent;
         } else if (selectedValue === "2") {
             document.getElementById("imagen2").style.display = "block";
             document.getElementById("iframe2").style.display = "block";
             textoMostrado.textContent = "Polideportivo: Campus PUCP, Coliseo Polideportivo, Campus PUCP, Av. Universitaria 1801, San Miguel 15088.";
-            urlDireccion.textContent = "URL: https://maps.app.goo.gl/yB5AjtFs7J5vx8Un7"
+            urlDireccion.textContent = "URL: https://maps.app.goo.gl/yB5AjtFs7J5vx8Un7";
             lugarTextoInput.value = textoMostrado.textContent;
         } else if (selectedValue === "3") {
             document.getElementById("imagen3").style.display = "block";
             document.getElementById("iframe3").style.display = "block";
             textoMostrado.textContent = "Losa de Paleta Frontón: Campus PUCP, San Miguel 15088.";
-            urlDireccion.textContent = "URL: https://maps.app.goo.gl/S18WQkJgkMCpZTPy7"
+            urlDireccion.textContent = "URL: https://maps.app.goo.gl/S18WQkJgkMCpZTPy7";
             lugarTextoInput.value = textoMostrado.textContent;
         } else {
             textoMostrado.textContent = ""; // Limpia el texto si no se selecciona una opción válida
             urlDireccion.textContent = "";
             lugarTextoInput.value = "";
         }
+    }
+
+    // Escucha el evento de cambio en el select
+    selectElement.addEventListener("change", function () {
+        const selectedValue = selectElement.value;
+        actualizarInfoSeleccionada(selectedValue);
     });
+
+    // Al cargar la página, obtén la opción seleccionada y muestra la información correspondiente
+    window.addEventListener("load", function () {
+        const selectedValue = selectElement.value;
+        actualizarInfoSeleccionada(selectedValue);
+    });
+
 </script>
+
+
 
 
 

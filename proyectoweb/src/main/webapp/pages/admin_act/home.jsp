@@ -148,7 +148,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                         <img class="image-event" src="images/placeholder_events.jpg" alt="An orange painted blue, cut in half laying on a blue background" />
                     </figure>
                     <div class="card-header">
-                        <a href="#"><%=evento.getTitulo()%><p><%=evento.getSubTitulo()%></p><p>Fecha: <%=evento.getFecha()%></p></a>
+                        <a href="<%=request.getContextPath()%>/admin_act?action=verEvento&idEvento=<%=evento.getIdEvento()%>"><%=evento.getTitulo()%><p><%=evento.getSubTitulo()%></p><p>Fecha: <%=evento.getFecha()%></p></a>
 
                     </div>
                     <div class="card-footer">
@@ -160,7 +160,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                                         <circle cx="12" cy="8" r="4"></circle>
                                         <path d="M18 21v-2a4 4 0 0 0-4-4H10a4 4 0 0 0-4 4v2"></path>
                                     </svg>
-                                    <a href="<%=request.getContextPath()%>/InscritoServlet?action=listarInscritos&id=<%=evento.getIdEvento()%>&id2=<%=evento.getTitulo()%>">Apoyos</a>
+                                    <a href="<%=request.getContextPath()%>/admin_act?action=verInscritos&idEvento=<%=evento.getIdEvento()%>">Apoyos</a>
                                 </div>
 
                             </div>
@@ -178,7 +178,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                                     <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 6 50 50" style="fill: #0d6efd">
                                         <path d="M 28 11 C 26.895 11 26 11.895 26 13 L 26 14 L 13 14 C 11.896 14 11 14.896 11 16 C 11 17.104 11.896 18 13 18 L 14.160156 18 L 16.701172 48.498047 C 16.957172 51.583047 19.585641 54 22.681641 54 L 41.318359 54 C 44.414359 54 47.041828 51.583047 47.298828 48.498047 L 49.839844 18 L 51 18 C 52.104 18 53 17.104 53 16 C 53 14.896 52.104 14 51 14 L 38 14 L 38 13 C 38 11.895 37.105 11 36 11 L 28 11 z M 18.173828 18 L 45.828125 18 L 43.3125 48.166016 C 43.2265 49.194016 42.352313 50 41.320312 50 L 22.681641 50 C 21.648641 50 20.7725 49.194016 20.6875 48.166016 L 18.173828 18 z"></path>
                                     </svg>
-                                    <a id="borrar" onclick="return confirmacionEliminar(event)" href="<%=request.getContextPath()%>/admin_act?action=borrarEvento&idEvento=<%=evento.getIdEvento()%>">Borrar</a>
+                                    <a style="cursor: pointer;color: #0d6efd" onclick="return confirmacionEliminar('<%=request.getContextPath()%>/admin_act?action=borrarEvento&idEventoEliminar=<%=evento.getIdEvento()%>')">Borrar</a>
                                 </div>
 
                             </div>
@@ -245,12 +245,12 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
 
 <script>
-    function confirmacionEliminar(event) {
+    function confirmacionEliminar(href) {
         event.preventDefault(); // Previene ir al href(el cual va al servlet) hasta que se de en borrar
 
         Swal.fire({
-            title: '¿Estas seguro de eliminar esta evento?',
-            text: "No se podrán revertir estos cambios",
+            title: '¿Estás seguro de eliminar este evento?',
+            text: 'No se podrán revertir estos cambios',
             icon: 'warning',
             iconColor: '#DC3545',
             showCancelButton: true,
@@ -260,7 +260,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
             confirmButtonText: 'Borrar'
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = document.getElementById('borrar').getAttribute('href');
+                window.location.href = href; // Utiliza el enlace pasado como parámetro
             }
         });
     }

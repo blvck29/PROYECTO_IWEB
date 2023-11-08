@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class AdminActServlet extends HttpServlet {
 
     EventosDao eventoDao = new EventosDao();
+    InscritosDao inscritosDao = new InscritosDao();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -25,7 +26,6 @@ public class AdminActServlet extends HttpServlet {
             case "home":
                 ArrayList<Evento> listaEventos = eventoDao.listarEventos();
                 String ActividadDelDelegado = "FUTBOL";
-                System.out.println(ActividadDelDelegado);
 
                 request.setAttribute("idActividad", ActividadDelDelegado);
                 request.setAttribute("listaEventos", listaEventos);
@@ -38,20 +38,6 @@ public class AdminActServlet extends HttpServlet {
                 request.setAttribute("idActividad", idActividad);
                 request.getRequestDispatcher("/pages/admin_act/new_event.jsp").forward(request,response);
 
-                break;
-
-            case "list_apoyos":
-
-                InscritosDao insDao = new InscritosDao();
-
-                String id = request.getParameter("id");
-                ArrayList<UsuarioInscritoXevento> listaUsuariosXevento = insDao.listarInscritosXevento(id);
-
-                String nombreEvento = request.getParameter("id2");
-
-                request.setAttribute("nombreEvento",nombreEvento);
-                request.setAttribute("listaInscritosXevento",listaUsuariosXevento);
-                request.getRequestDispatcher("/pages/admin_act/administrar_apoyos.jsp").forward(request,response);
                 break;
 
             case "edit_event":
@@ -69,11 +55,39 @@ public class AdminActServlet extends HttpServlet {
                 break;
 
             case "borrarEvento":
-                String idEventoEliminar = request.getParameter("idEvento");
-                System.out.println("idEvento: "+ idEventoEliminar);
+                String idEventoEliminar = request.getParameter("idEventoEliminar");
+
+                eventoDao.eliminarAlbumFotosDeEvento(idEventoEliminar);
+                eventoDao.eliminarInscripcionDeEvento(idEventoEliminar);
                 eventoDao.eliminarEvento(idEventoEliminar);
 
                 response.sendRedirect(request.getContextPath() +"/admin_act");
+                break;
+
+            case "verEvento":
+                String idEvento2 = request.getParameter("idEvento");
+                Evento eventoBuscado2 = eventoDao.EventoXid(idEvento2);
+
+                if(eventoBuscado2 != null){
+                    request.setAttribute("evento", eventoBuscado2);
+                    request.getRequestDispatcher("/pages/admin_act/ver_evento.jsp").forward(request,response);
+                }else{
+                    response.sendRedirect(request.getContextPath()+"/admin_act");
+                }
+
+                break;
+
+            case "verInscritos":
+                String idEvento3 = request.getParameter("idEvento");
+                ArrayList<Inscrito> listaInscritosxEvento = inscritosDao.listarInscritosXevento(idEvento3);
+
+                request.setAttribute("listaIncritosxEvento", listaInscritosxEvento);
+                request.getRequestDispatcher("/pages/admin_act/ver_inscritos.jsp").forward(request,response);
+                break;
+
+            case "editarRolInscrito":
+
+                request.getRequestDispatcher("/pages/admin_act/editar_inscrito.jsp").forward(request,response);
                 break;
 
 

@@ -3,9 +3,8 @@
 
 public class Inscrito {
     private int idEvento;
-    private int idUsuario;
-    private String idRol;
-    private boolean aceptado;
+    private String rolEnEvento;
+    private Usuario usuario;
 
     public int getIdEvento() {
         return idEvento;
@@ -15,30 +14,19 @@ public class Inscrito {
         this.idEvento = idEvento;
     }
 
-    public int getIdUsuario() {
-        return idUsuario;
+    public String getRolEnEvento() {
+        return rolEnEvento;
     }
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setRolEnEvento(String rolEnEvento) {
+        this.rolEnEvento = rolEnEvento;
     }
 
-    public String getIdRol() {
-        return idRol;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setIdRol(String idRol) {
-        this.idRol = idRol;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
-
-    public boolean isAceptado() {
-        return aceptado;
-    }
-
-    public void setAceptado(boolean aceptado) {
-        this.aceptado = aceptado;
-    }
-
-
-
 }
