@@ -141,7 +141,10 @@ public class UserServlet extends HttpServlet {
                 String Actividad = request.getParameter("idAct");
                 String title = request.getParameter("title_search");
 
-
+                ArrayList<Evento> eventosSearched = eventoDao.buscarXtitulo(Actividad, title);
+                request.setAttribute("idAct", Actividad);
+                request.setAttribute("listaFiltroAct",eventosSearched);
+                request.getRequestDispatcher("pages/user/activity.jsp").forward(request,response);
                 break;
 
             case "filter_act":

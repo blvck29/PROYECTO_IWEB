@@ -11,10 +11,8 @@
   <component name="ChangeListManager">
     <list default="true" id="250e9528-0acf-42db-be38-0516405aa721" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/proyectoweb/model/daos/EventosDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/proyectoweb/model/daos/EventosDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/proyectoweb/servlets/UserServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/proyectoweb/servlets/UserServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/user/activity.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/user/activity.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/user/dyn_events/prox.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/user/dyn_events/prox.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/proyectoweb-1.0-SNAPSHOT/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/target/proyectoweb-1.0-SNAPSHOT/META-INF/MANIFEST.MF" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -329,6 +327,7 @@
       <workItem from="1698279743217" duration="792000" />
       <workItem from="1698297274952" duration="2894000" />
       <workItem from="1698527257504" duration="10192000" />
+      <workItem from="1699482283591" duration="2452000" />
     </task>
     <servers />
   </component>

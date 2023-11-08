@@ -213,12 +213,14 @@ public class EventosDao extends DaoBase{
 
         ArrayList<Evento> listaEventos = new ArrayList();
         //Conexión a la DB
-        String sql = "select * from proyectoweb.evento where lower(titulo) like ? and idActividad";
+        String sql = "select * from proyectoweb.evento where lower(titulo) like ? and idActividad = ?";
 
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)){
 
             pstmt.setString(1, palabraintroducida + "%");
+            pstmt.setString(2, Act + "%");
+
             try(ResultSet rs = pstmt.executeQuery()){
 
                 while(rs.next()){
