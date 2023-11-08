@@ -86,7 +86,10 @@ public class AdminActServlet extends HttpServlet {
                 break;
 
             case "editarRolInscrito":
+                String idInscrito = request.getParameter("idInscrito");
+                Inscrito inscrito = inscritosDao.buscarInscritoXid(idInscrito);
 
+                request.setAttribute("inscrito", inscrito);
                 request.getRequestDispatcher("/pages/admin_act/editar_inscrito.jsp").forward(request,response);
                 break;
 
@@ -162,6 +165,19 @@ public class AdminActServlet extends HttpServlet {
 
                 eventoDao.actualizarEvento(idEvento2,titulo2,subtitulo2,hora2,fecha2,lugar2,descripcion2,idActividad2);
                 response.sendRedirect(request.getContextPath()+"/admin_act?action=home");
+
+                break;
+
+            case "editarRolInscrito":
+                String idUsuario = request.getParameter("idUsuario");
+                String rolNuevo = request.getParameter("rolNuevo");
+                String idEvento = request.getParameter("idEvento");
+
+                System.out.println("El nuevo rol es: " + rolNuevo);
+
+                inscritosDao.actualizarRolInscrito(rolNuevo, idUsuario);
+                response.sendRedirect(request.getContextPath() +"/admin_act?action=verInscritos&idEvento="+idEvento);
+
 
                 break;
 
