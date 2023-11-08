@@ -209,28 +209,23 @@ public class EventosDao extends DaoBase{
 
 
     // PARA BUSCAR CON EL BUSCADOR
-    public ArrayList<Evento> buscarXnombreEid(String palabraintroducida){ //para buscar eventos
+    public ArrayList<Evento> buscarXtitulo(String Act, String palabraintroducida){ //para buscar eventos
 
         ArrayList<Evento> listaEventos = new ArrayList();
         //Conexión a la DB
-
-        String sql = "select * from proyectoweb.evento where lower(titulo) like ? or idEvento like ?";
-
+        String sql = "select * from proyectoweb.evento where lower(titulo) like ? and idActividad = ?";
 
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)){
 
             pstmt.setString(1, palabraintroducida + "%");
-            pstmt.setString(2,palabraintroducida + "%");
-
+            pstmt.setString(2, Act + "%");
 
             try(ResultSet rs = pstmt.executeQuery()){
 
                 while(rs.next()){
-
                     Evento evento = new Evento(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getTime(4),rs.getDate(5),rs.getString(6),rs.getBlob(7),rs.getString(8),rs.getString(9),rs.getString(10));
                     listaEventos.add(evento);
-
                 }
 
             }
@@ -241,6 +236,7 @@ public class EventosDao extends DaoBase{
         return listaEventos;
 
     }
+
 
 
     // ELIMINAR EVENTO
