@@ -103,7 +103,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
         <div class="d-flex">
             <form method="post" action="<%=request.getContextPath()%>/user_home?action=search_title&idAct=<%=idActividad%>" class="flex-grow-1">
                 <div class="custom-form-group">
-                    <input type="text" class="form-control" name="busquedaTituloActividad" placeholder="Buscar por titulo" style="width: 100%">
+                    <input type="text" class="form-control" name="title_search" placeholder="Buscar por titulo" style="width: 100%">
                 </div>
                 <button type="submit" class="btn btn-primary">Buscar</button>
             </form>

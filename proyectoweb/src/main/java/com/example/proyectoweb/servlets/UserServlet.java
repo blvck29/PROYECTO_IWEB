@@ -141,7 +141,7 @@ public class UserServlet extends HttpServlet {
                 String Actividad = request.getParameter("idAct");
                 String title = request.getParameter("title_search");
 
-                
+
                 break;
 
             case "filter_act":

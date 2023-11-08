@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none !important;
+    list-style: none !important;
+}
+
+body{
+    background: url(../images/background.jpg) no-repeat center !important;
+    background-size: cover;
+}
+
+
+/* Footer Styles */
+.footer-container {
+    position: relative;
+    height: 10vh;
+    backdrop-filter: blur(25px);
+    background-color: rgba(0, 0, 0, 0.4);
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    text-align: center;
+}
+
+.footer-container p {
+    text-align: inherit;
+    color: #fff;
+    font-weight: lighter;
+    font-size: .9rem;
+}
+/* Footer Styles END */
+
+
+/*Card Styles*/
+
+.card {
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid rgba(255,255,255, .0);
+    backdrop-filter: blur(25px);
+    background-color: rgba(0, 0, 0, 0.4);
+    text-align: initial;
+    color: #fff;
+}
+
+.card-2 {
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid rgba(255,255,255, .0);
+    backdrop-filter: blur(25px);
+    background-color: rgba(0, 0, 0, 0.2);
+    text-align: initial;
+    color: #fff;
+}
+
+.card-title {
+    font-weight: bolder;
+    text-decoration: none;
+    font-size: 1.5rem;
+    margin: 10px 0 !important;
+}
+
+.card-normalt {
+    font-weight: normal;
+    text-decoration: none;
+    font-size: 1.5rem;
+    margin: 5px 0 !important;
+}
+
+.card-subtitle {
+    font-weight: lighter;
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin: 5px 0 !important;
+}
+
+.card a {
+    color: #bfbfbf;
+    font-size: 0.9rem;
+    margin: 5px 0 !important;
+    transition-delay: 0.2ms;
+}
+
+.card a:hover {
+    color: #fff;
+}
+
+.card-2 a {
+    color: #bfbfbf;
+    font-size: 0.9rem;
+    margin: 5px 0 !important;
+    transition-delay: 0.2ms;
+}
+
+.card-2 a:hover {
+    color: #fff;
+}
+
+/*Card Styles END*/
