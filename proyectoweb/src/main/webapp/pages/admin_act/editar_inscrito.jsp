@@ -54,11 +54,7 @@
                 <a href="<%=request.getContextPath()%>/admin_act?action=home">Eventos</a>
             </li>
             <li>
-                <a href="<%=request.getContextPath()%>/admin_act?action=new_event">Crear Evento</a>
-            </li>
-            <li>
-                <a href="<%=request.getContextPath()%>/admin_act?action=list_apoyos">Gestionar Apoyos</a>
-            </li>
+                <a href="<%=request.getContextPath()%>/admin_act?action=new_event&idActividad=">Crear Evento</a>            </li>
             <li>
                 <a href="#"><i class="fa-solid fa-user nav-icon2"></i>Usuario</a>
             </li>
@@ -164,7 +160,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                             case ("Participante"):
                         %>
                         <div class="radio-buttons">
-                            <label style="padding-right: 30px"><input type="radio" name="rolNuevo"  value="BARRA" required> BARRA <br></label>
+                            <label style="padding-right: 30px"><input type="radio" name="rolNuevo"  value="BARRA" required> Barra <br></label>
                             <label>                            <input type="radio" name="rolNuevo"  value="UNSET" required> Sin asignar</label>
                         </div>
                         <%
@@ -176,7 +172,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                         <div style="margin-bottom: 20px"></div>
 
                         <div class="button-container">
-                            <a id="redirect-button" class="btn btn-secondary m-2" href="<%=request.getContextPath()%>/admin_act">Cancelar</a>
+                            <a id="redirect-button" class="btn btn-secondary m-2" href="<%=request.getContextPath()%>/admin_act?action=verInscritos&idEvento=<%=inscrito.getIdEvento()%>">Cancelar</a>
                             <button onclick="alert" type="submit" class="btn btn-primary m-2">Guardar</button>
                         </div>
                         <div style="margin-bottom: 20px"></div>
