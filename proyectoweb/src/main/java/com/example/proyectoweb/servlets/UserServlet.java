@@ -102,7 +102,7 @@ public class UserServlet extends HttpServlet {
 
                 String idAct = request.getParameter("idAct");
 
-                ArrayList<Evento> listaFiltroAct = eventoDao.listarEventosxActividad(idAct);
+                ArrayList<Evento> listaFiltroAct = eventoDao.listarEventosProximosxActividad(idAct);
 
                 request.setAttribute("idAct", idAct);
                 request.setAttribute("listaFiltroAct",listaFiltroAct);
