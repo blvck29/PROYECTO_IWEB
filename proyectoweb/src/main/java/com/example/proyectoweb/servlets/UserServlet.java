@@ -137,8 +137,14 @@ public class UserServlet extends HttpServlet {
                 break;
 
 
-            case "filter_act":
+            case "search_title":
+                String Actividad = request.getParameter("idAct");
+                String title = request.getParameter("title_search");
 
+                
+                break;
+
+            case "filter_act":
                 String idActividad = request.getParameter("idAct");
                 String filtro = request.getParameter("filtro");
                 ArrayList<Evento> listaFiltroAct = new ArrayList<>();

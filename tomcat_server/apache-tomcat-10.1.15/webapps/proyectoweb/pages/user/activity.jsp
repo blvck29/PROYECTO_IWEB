@@ -99,36 +99,38 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
     <div style="margin-bottom: 40px"></div>
 
-
-        <div class="input-group mb-3">
-            <div class="input-group-text p-0">
-                <label>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                            Filtrar por fecha
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-lg-end">
-                            <form method="post" action="<%=request.getContextPath()%>/user_home?action=filter_act&idAct=<%=idActividad%>&filtro=all">
-                                <li><button class="dropdown-item" type="submit">TODOS</button></li>
-                            </form>
-                            <form method="post" action="<%=request.getContextPath()%>/user_home?action=filter_act&idAct=<%=idActividad%>&filtro=prox">
-                                <li><button class="dropdown-item" type="submit">PRÓXIMOS</button></li>
-                            </form>
-                            <form method="post" action="<%=request.getContextPath()%>/user_home?action=filter_act&idAct=<%=idActividad%>&filtro=fin">
-                                <li><button class="dropdown-item" type="submit">FINALIZADOS</button></li>
-                            </form>
-                        </ul>
-                    </div>
-                </label>
-            </div>
-            <input type="text" name="buscar_evento" class="form-control" placeholder="Buscar Evento">
-            <button class="input-group-text shadow-none px-4 btn-large" type="submit">
-                <i class="fa-solid fa-magnifying-glass" style="color: #262626;"></i>
-            </button>
+    <div class="col-md-12">
+        <div class="d-flex">
+            <form method="post" action="<%=request.getContextPath()%>/user_home?action=search_title&idAct=<%=idActividad%>" class="flex-grow-1">
+                <div class="custom-form-group">
+                    <input type="text" class="form-control" name="busquedaTituloActividad" placeholder="Buscar por titulo" style="width: 100%">
+                </div>
+                <button type="submit" class="btn btn-primary">Buscar</button>
+            </form>
+            <label>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                        Fecha
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-lg-end">
+                        <form method="post" action="<%=request.getContextPath()%>/user_home?action=filter_act&idAct=<%=idActividad%>&filtro=all">
+                            <li><button class="dropdown-item" type="submit">Todos</button></li>
+                        </form>
+                        <form method="post" action="<%=request.getContextPath()%>/user_home?action=filter_act&idAct=<%=idActividad%>&filtro=prox">
+                            <li><button class="dropdown-item" type="submit">Próximos</button></li>
+                        </form>
+                        <form method="post" action="<%=request.getContextPath()%>/user_home?action=filter_act&idAct=<%=idActividad%>&filtro=fin">
+                            <li><button class="dropdown-item" type="submit">Finalizados</button></li>
+                        </form>
+                    </ul>
+                </div>
+            </label>
         </div>
+    </div>
 
-
-    <div style="margin-bottom: 50px"></div>
+    <div style="margin-bottom: 20px"></div>
+    <hr class="hr hr-blurry"/>
+    <div style="margin-bottom: 25px"></div>
 
     <div class="row align-content-center" data-masonry='{"percentPosition": true }'>
 
