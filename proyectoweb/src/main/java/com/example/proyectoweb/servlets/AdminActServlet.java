@@ -42,9 +42,11 @@ public class AdminActServlet extends HttpServlet {
 
             case "edit_event":
                 String idEvento = request.getParameter("idEvento");
+                String idActividad4 = request.getParameter("idActividad");
                 Evento eventoBuscado = eventoDao.EventoXid(idEvento);
 
                 if(eventoBuscado != null){
+                    request.setAttribute("idActividad",idActividad4);
                     request.setAttribute("evento", eventoBuscado);
                     request.getRequestDispatcher("/pages/admin_act/edit_event.jsp").forward(request,response);
                 }else{
@@ -66,9 +68,11 @@ public class AdminActServlet extends HttpServlet {
 
             case "verEvento":
                 String idEvento2 = request.getParameter("idEvento");
+                String idActividad1 = request.getParameter("idActividad");
                 Evento eventoBuscado2 = eventoDao.EventoXid(idEvento2);
 
                 if(eventoBuscado2 != null){
+                    request.setAttribute("idActividad", idActividad1);
                     request.setAttribute("evento", eventoBuscado2);
                     request.getRequestDispatcher("/pages/admin_act/ver_evento.jsp").forward(request,response);
                 }else{
@@ -79,8 +83,11 @@ public class AdminActServlet extends HttpServlet {
 
             case "verInscritos":
                 String idEvento3 = request.getParameter("idEvento");
+                String idActividad3 = request.getParameter("idActividad");
+                System.out.println("el id de actividad es: " +idActividad3);
                 ArrayList<Inscrito> listaInscritosxEvento = inscritosDao.listarInscritosXevento(idEvento3);
 
+                request.setAttribute("idActividad",idActividad3);
                 request.setAttribute("listaIncritosxEvento", listaInscritosxEvento);
                 request.getRequestDispatcher("/pages/admin_act/ver_inscritos.jsp").forward(request,response);
                 break;
@@ -177,8 +184,6 @@ public class AdminActServlet extends HttpServlet {
 
                 inscritosDao.actualizarRolInscrito(rolNuevo, idUsuario);
                 response.sendRedirect(request.getContextPath() +"/admin_act?action=verInscritos&idEvento="+idEvento);
-
-
                 break;
 
 

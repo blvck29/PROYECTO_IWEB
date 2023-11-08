@@ -4,6 +4,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <% ArrayList<Inscrito> listaInscritos = (ArrayList<Inscrito>) request.getAttribute("listaIncritosxEvento");%>
+<% String idActividad = (String) request.getAttribute("idActividad"); %>
 
 <!doctype html>
 <html lang="es">
@@ -51,10 +52,7 @@
                 <a href="<%=request.getContextPath()%>/admin_act?action=home">Eventos</a>
             </li>
             <li>
-                <a href="<%=request.getContextPath()%>/admin_act?action=new_event">Crear Evento</a>
-            </li>
-            <li>
-                <a href="<%=request.getContextPath()%>/admin_act?action=list_apoyos">Gestionar Apoyos</a>
+                <a href="<%=request.getContextPath()%>/admin_act?action=new_event&idActividad=<%=idActividad%>">Crear Evento</a>
             </li>
             <li>
                 <a href="#"><i class="fa-solid fa-user nav-icon2"></i>Usuario</a>

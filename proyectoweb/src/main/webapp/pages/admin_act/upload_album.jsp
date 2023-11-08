@@ -59,9 +59,6 @@
                 <a href="<%=request.getContextPath()%>/admin_act?action=new_event">Crear Evento</a>
             </li>
             <li>
-                <a href="<%=request.getContextPath()%>/admin_act?action=list_apoyos">Gestionar Apoyos</a>
-            </li>
-            <li>
                 <a href="#"><i class="fa-solid fa-user nav-icon2"></i>Usuario</a>
             </li>
             <li>

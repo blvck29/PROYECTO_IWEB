@@ -11,7 +11,7 @@ public class UsuariosDao extends DaoBase{
     public ArrayList<Usuario> listarTodosUsuarios (){ //admin
 
         //Conexión a la DB
-        String sql = "select * from usuarios where idEstado != 'PEN'";
+        String sql = "select * from usuarios where idEstado != 'PEN' ";
 
         ArrayList<Usuario> listaUsuarios = new ArrayList<>();
 

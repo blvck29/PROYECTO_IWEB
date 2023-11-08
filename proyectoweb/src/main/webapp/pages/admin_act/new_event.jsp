@@ -73,10 +73,7 @@
                 <a href="<%=request.getContextPath()%>/admin_act?action=home">Eventos</a>
             </li>
             <li>
-                <a href="<%=request.getContextPath()%>/admin_act?action=new_event" class="active">Crear Evento</a>
-            </li>
-            <li>
-                <a href="<%=request.getContextPath()%>/admin_act?action=list_apoyos">Gestionar Apoyos</a>
+                <a href="<%=request.getContextPath()%>/admin_act?action=new_event&idActividad=<%=idActividad%>" class="active">Crear Evento</a>
             </li>
             <li>
                 <a href="#"><i class="fa-solid fa-user nav-icon2"></i>Usuario</a>
