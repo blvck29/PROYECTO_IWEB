@@ -12,7 +12,7 @@ public class DonacionesDao extends DaoBase{
     public ArrayList<Donaciones> listar(){
 
         ArrayList<Donaciones> listaDonacionesAlumno = new ArrayList<>();
-        String sql = "SELECT don.idUsuario, don.idRegistro_Donaciones, u.nombres, u.apellidos, don.comprobante, don.monto, don.comprobado FROM registro_donaciones don INNER JOIN usuarios u on (u.idUsuario = don.idUsuario)";
+        String sql = "SELECT don.idUsuario, don.idRegistro_Donaciones, u.nombres, u.apellidos, don.comprobante, don.monto, don.comprobado, don.fecha, u.idRolAcademico FROM registro_donaciones don INNER JOIN usuarios u on (u.idUsuario = don.idUsuario)";
 
         try(Connection conn = getConnection();
             Statement stmt = conn.createStatement();){
@@ -28,6 +28,8 @@ public class DonacionesDao extends DaoBase{
                 donacionAlumno.setComprobante((Blob) rs.getBlob(5));
                 donacionAlumno.setMonto(rs.getDouble(6));
                 donacionAlumno.setComprobado(rs.getBoolean(7));
+                donacionAlumno.setFechaDonacion(rs.getString(8));
+                donacionAlumno.setIdRolAcademico(rs.getString(9));
 
                 listaDonacionesAlumno.add(donacionAlumno);
             }

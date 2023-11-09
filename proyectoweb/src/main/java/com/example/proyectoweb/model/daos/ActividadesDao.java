@@ -57,6 +57,7 @@ public class ActividadesDao extends DaoBase{
                 DelegadoAct delegadoAct = new DelegadoAct();
 
                 delegadoAct.setTituloActividad(rs.getString(1));
+                delegadoAct.setIdEncargado(rs.getInt(2));
                 delegadoAct.setNombre(rs.getString(3));
                 delegadoAct.setApellido(rs.getString(4));
                 delegadoAct.setCodigo(rs.getString(5));

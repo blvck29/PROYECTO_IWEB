@@ -136,7 +136,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                         <td class="centeralign cell c1" style=""><%= delegadoAct.getNombre() + " " + delegadoAct.getApellido()%> </td>
                         <td class="centeralign cell c1" style=""><%= delegadoAct.getCodigo()%></td>
                         <td class="cell c5" ><a href="<%=request.getContextPath() %>/admin_gen?action=activities&ac=edit&id=<%=delegadoAct.getTituloActividad()%>"><img width="24" height="24" src="https://img.icons8.com/sf-regular/48/edit-row.png" alt="edit-row"/></a></td>
-                        <td class="cell c6 "><a id="borrar"  onclick="return confirmacionEliminar(event)" href="<%=request.getContextPath() %>/admin_gen?action=activities&ac=delete&id=<%=delegadoAct.getTituloActividad()%>"><img width="24" height="24" src="https://img.icons8.com/sf-regular/48/filled-trash.png" alt="filled-trash"/></a></td>
+                        <td class="cell c6 "><a id="borrar"  onclick="return confirmacionEliminar(event)" href="<%=request.getContextPath() %>/admin_gen?action=activities&ac=delete&id=<%=delegadoAct.getTituloActividad()%>&idDelegado=<%=delegadoAct.getIdEncargado()%>"><img width="24" height="24" src="https://img.icons8.com/sf-regular/48/filled-trash.png" alt="filled-trash"/></a></td>
                     </tr>
 
                     <%}%>

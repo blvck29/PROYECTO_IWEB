@@ -10,6 +10,9 @@ public class Donaciones {
     private Blob comprobante;
     private double monto;
     private boolean comprobado;
+    private String idRolAcademico;
+
+    private String fechaDonacion;
 
     public int getIdUsuario() {
         return idUsuario;
@@ -65,5 +68,21 @@ public class Donaciones {
 
     public void setComprobado(boolean comprobado) {
         this.comprobado = comprobado;
+    }
+
+    public String getFechaDonacion() {
+        return fechaDonacion;
+    }
+
+    public void setFechaDonacion(String fechaDonacion) {
+        this.fechaDonacion = fechaDonacion;
+    }
+
+    public String getIdRolAcademico() {
+        return idRolAcademico;
+    }
+
+    public void setIdRolAcademico(String idRolAcademico) {
+        this.idRolAcademico = idRolAcademico;
     }
 }

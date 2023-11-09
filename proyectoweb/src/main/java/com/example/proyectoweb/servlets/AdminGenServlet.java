@@ -84,8 +84,12 @@ public class AdminGenServlet extends HttpServlet {
 
                     case "delete":
                         String tituloActividad = request.getParameter("id");
+                        String idDelegado = request.getParameter("idDelegado");
+                        String nuevoRol = "USER";
                         String idActividad = tituloActividad.toUpperCase();
 
+
+                        userDao.actualizarRolSistema(idDelegado, nuevoRol);
                         actividadesDao.eliminarActividad(idActividad);
                         response.sendRedirect(request.getContextPath()+ "/admin_gen?action=activities");
 
@@ -183,7 +187,9 @@ public class AdminGenServlet extends HttpServlet {
                         String tituloActividad = request.getParameter("nombreActividad");
                         String idActividad = tituloActividad.toUpperCase();
                         String idDelegado = request.getParameter("idDelegado");
+                        String nuevoRol = "DELACT";
 
+                        userDao.actualizarRolSistema(idDelegado, nuevoRol);
                         actividadesDao.crearActividad(idActividad,tituloActividad,Integer.parseInt(idDelegado));
                         response.sendRedirect(request.getContextPath() + "/admin_gen?action=activities");
 

@@ -30,6 +30,7 @@ public class UsuariosDao extends DaoBase{
                 usuario.setIdRolSistema(rs.getString(2));
                 usuario.setIdEstado(rs.getString(3));
                 usuario.setUltimoLogin(rs.getString(9));
+                usuario.setIdRolAcademico(rs.getString(13));
 
                 listaUsuarios.add(usuario);
 
@@ -71,6 +72,8 @@ public class UsuariosDao extends DaoBase{
                     usuario.setIdRolSistema(rs.getString(2));
                     usuario.setIdEstado(rs.getString(3));
                     usuario.setUltimoLogin(rs.getString(9));
+                    usuario.setIdRolAcademico(rs.getString(13));
+
 
                     listaUsuarios.add(usuario);
 
@@ -115,6 +118,8 @@ public class UsuariosDao extends DaoBase{
                     usuario.setIdEstado(rs.getString(3));
                     usuario.setUltimoLogin(rs.getString(9));
                     usuario.setCorreo(rs.getString(7));
+                    usuario.setIdRolAcademico(rs.getString(13));
+
 
 
                 }
@@ -157,6 +162,8 @@ public class UsuariosDao extends DaoBase{
                     usuario.setIdEstado(rs.getString(3));
                     usuario.setUltimoLogin(rs.getString(9));
                     usuario.setCorreo(rs.getString(7));
+                    usuario.setIdRolAcademico(rs.getString(13));
+
 
 
                 }
@@ -174,7 +181,7 @@ public class UsuariosDao extends DaoBase{
 public ArrayList<Usuario> listarDelegadosActDisponibles(){
         ArrayList<Usuario> listaUsuarios = new ArrayList<>();
 
-        String sql = "select * from usuarios where idEstado ='ACC' and idRol != 'ADMINPRI' and idROL != 'ADMINSEC' ";
+        String sql = "select * from usuarios where idEstado ='ACC' and idRolSistema != 'DELGEN' and idRolSistema != 'DELACT' ";
 
         try(Connection conn = getConnection();
         Statement stmt = conn.createStatement();
@@ -189,6 +196,7 @@ public ArrayList<Usuario> listarDelegadosActDisponibles(){
                 u.setApellidos(rs.getString(5));
                 u.setCodigo(rs.getString(6));
                 u.setCorreo(rs.getString(7));
+
 
                 listaUsuarios.add(u);
             }
@@ -266,6 +274,27 @@ public ArrayList<Usuario> listarDelegadosActDisponibles(){
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
+
+    }
+
+    public void actualizarRolSistema(String idUsuario, String nuevoRol){
+
+
+        String sql ="update usuarios set idRolSistema= ? where idUsuario = ? ";
+
+        try(Connection conn = getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1,nuevoRol);
+            pstmt.setString(2,idUsuario);
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
 
 
     }

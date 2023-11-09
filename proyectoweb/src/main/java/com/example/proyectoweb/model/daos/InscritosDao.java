@@ -78,7 +78,7 @@ public class InscritosDao extends DaoBase{
 
                     Usuario u = new Usuario();
                     u.setIdUsuario(rs.getInt(3));
-                    u.setIdRol(rs.getString(4));
+                    u.setIdRolSistema(rs.getString(4));
                     u.setIdEstado(rs.getString(5));
                     u.setNombres(rs.getString(6));
                     u.setApellidos(rs.getString(7));

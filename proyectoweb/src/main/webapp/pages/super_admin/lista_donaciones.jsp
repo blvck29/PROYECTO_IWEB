@@ -149,10 +149,11 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
         <tr>
             <th class="header c1 centeralign" style="" scope="col"><a><strong>ID REGISTRO DONACION</strong></a></th>
             <th class="header c1 centeralign" style="" scope="col"><a><strong>NOMBRE/APELLIDO</strong></a></th>
-            <th class="header c1 centeralign" style="" scope="col"><a><strong>COMPROBANTE</strong></a></th>
+            <th class="header c1 centeralign" style="" scope="col"><a><strong>ROL ACADÉMICO</strong></a></th>
             <th class="header c1 centeralign" style="" scope="col"><a><strong>MONTO</strong></a></th>
-            <th class="header c5" style="" scope="col">COMPROBADO</th>
-            <th class="header c5" style="" scope="col">EDITAR</th>
+            <th class="header c1 centeralign" style="" scope="col"><a><strong>FECHA DE DONACIÓN</strong></a></th>
+            <th class="header c5" style="" scope="col">ESTADO DE DONACIÓN</th>
+            <th class="header c5" style="" scope="col">VER Y EDITAR</th>
             <td class="header c6 lastcol" style=""></td>
         </tr>
         </thead>
@@ -165,14 +166,34 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
         <tr class="">
             <td class="centeralign cell c0" style=""><a><%=donaciones.getIdDonaciones() %></a></td>
             <td class="centeralign cell c1" style=""><%= donaciones.getNombres() +" "+ donaciones.getApellidos()%></td>
-            <td class="centeralign cell c1" style=""><%= donaciones.getComprobante() %></td>
-            <td class="centeralign cell c1" style=""><%= donaciones.getMonto() %></td>
 
-            <% String comprobacion = donaciones.isComprobado() == true? "Si" : "No"; %>
+            <% String rolAcademico ="---";
+                switch(donaciones.getIdRolAcademico()){
+                    case "STUDENT":
+                        rolAcademico = "Estudiante";
+                        break;
+                    case "GRADUAT":
+                        rolAcademico = "Egresado";
+                        break;
+                    default:
+                        rolAcademico = "---";
+                }%>
+            <td class="cell c2" style=""><%= rolAcademico %></td>
 
+            <td class="centeralign cell c1" style=""><%="S/."+ donaciones.getMonto() %></td>
+            <td class="centeralign cell c1" style=""><%= donaciones.getFechaDonacion() %></td>
+
+            <% String comprobacion = donaciones.isComprobado() == true? "Comprobado" : "Pendiente de Comprobación"; %>
+
+            <%if (comprobacion.equals("Pendiente de Comprobación")){%>
+            <td class="cell c5" style="color: red"><%= comprobacion %></td>
+            <%}else{%>
             <td class="cell c5" style=""><%= comprobacion %></td>
+            <%}%>
 
-            <td class="cell c6 lastcol" style=""><a href="#"><img width="24" height="24" src="https://img.icons8.com/sf-regular/48/edit-row.png" alt="edit-row"/></a></td>
+
+
+            <td class="cell c6 lastcol" style=""><a href="#"><img width="24" height="24" src="https://img.icons8.com/pulsar-line/48/view-delivery.png" alt="edit-row"/></a></td>
         </tr>
         <%}%>
         </tbody>
