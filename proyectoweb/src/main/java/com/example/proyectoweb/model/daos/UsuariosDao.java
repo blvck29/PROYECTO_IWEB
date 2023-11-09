@@ -11,7 +11,7 @@ public class UsuariosDao extends DaoBase{
     public ArrayList<Usuario> listarTodosUsuarios (){ //admin
 
         //Conexión a la DB
-        String sql = "select * from usuarios where idEstado != 'PEN'";
+        String sql = "select * from usuarios where idEstado != 'PEN' ";
 
         ArrayList<Usuario> listaUsuarios = new ArrayList<>();
 
@@ -49,7 +49,7 @@ public class UsuariosDao extends DaoBase{
         ArrayList<Usuario> listaUsuarios = new ArrayList();
         //Conexión a la DB
 
-        String sql = "select * from usuarios where lower(nombres) like ? or codigo like ?";
+        String sql = "select * from usuarios where idEstado != 'PEN' and (lower(nombres) like ? or codigo like ?) ";
 
 
         try (Connection conn = getConnection();
@@ -92,7 +92,7 @@ public class UsuariosDao extends DaoBase{
 
         //Conexión a la DB
 
-        String sql = "select * from usuarios where codigo =?";
+        String sql = "select * from usuarios where codigo =? and idEstado != 'PEN'";
 
 
         try (Connection conn = getConnection();
@@ -136,7 +136,7 @@ public class UsuariosDao extends DaoBase{
         Usuario usuario = null;
 
         //Conexión a la DB
-        String sql = "select * from usuarios where idUsuario =?";
+        String sql = "select * from usuarios where idUsuario =? and idEstado != 'PEN'";
 
 
         try (Connection conn = getConnection();

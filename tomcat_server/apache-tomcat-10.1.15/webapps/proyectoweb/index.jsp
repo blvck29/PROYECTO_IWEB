@@ -20,11 +20,11 @@
     <div class="login-container">
 
         <div class="login-form">
-            <form action="pages/user/home.jsp" method="POST" id="login-formulario">
+            <form method="POST" action="user_home">
                 <h2>Iniciar Sesión</h2>
                 <div class="login-input">
                     <i class="fa-solid fa-envelope"></i>
-                    <input type="text email" id="email" name="email" required>
+                    <input type="text" id="email" name="email" required>
                     <label for="email">Email</label>
                 </div>
 
@@ -38,7 +38,7 @@
                     <label><a href="pages/system/password_recovery/email.jsp">Olvidé la contraseña</a></label>
                 </div>
 
-                <a href="pages/user/home.jsp"><input type="submit" value="Acceder" class="login-button"></a>
+                <a href="#"><input type="submit" value="Acceder" class="login-button"></a>
 
             </form>
 

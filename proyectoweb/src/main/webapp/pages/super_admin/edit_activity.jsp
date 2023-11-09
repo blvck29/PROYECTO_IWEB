@@ -140,7 +140,13 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                                 <label for="asistentes"><strong>Encargado de Actividad:</strong></label>
                                 <select class="form-select" name="idDelegado" id="idDelegado" aria-label="Default select example" required>
                                     <%for (Usuario usuario : listaUsuarios){ %>
-                                    <option value="<%=usuario.getIdUsuario()%>"  <%=usuario.getIdUsuario()==actividad.getIdEncargado()? "selected": ""%> ><%=usuario.getNombres() + " " + usuario.getApellidos()%></option>
+
+                                        <% if(usuario.getIdUsuario()==actividad.getIdEncargado() || (!usuario.getIdRol().equals("ADMINPRI") && !usuario.getIdRol().equals("ADMINSEC")))  { %>
+
+                                        <option value="<%=usuario.getIdUsuario()%>"  <%=usuario.getIdUsuario()==actividad.getIdEncargado()? "selected": ""%> ><%=usuario.getNombres() + " " + usuario.getApellidos()%></option>
+
+                                        <%}%>
+
                                     <%}%>
                                 </select>
                             </div>
@@ -150,7 +156,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
                     <div class="uk-flex uk-flex-center uk-margin-top">
                         <div class="uk-flex uk-flex-center">
-                            <a id="redirect-button" class="btn btn-secondary m-2" href="<%=request.getContextPath()%>/admin_gen?action=act">Cancelar</a>
+                            <a id="redirect-button" class="btn btn-secondary m-2" href="<%=request.getContextPath()%>/admin_gen?action=activities&ac=list">Cancelar</a>
                             <button type="submit" class="btn btn-primary m-2">Guardar</button>
                         </div>
                     </div>

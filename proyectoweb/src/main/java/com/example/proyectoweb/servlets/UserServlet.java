@@ -102,7 +102,7 @@ public class UserServlet extends HttpServlet {
 
                 String idAct = request.getParameter("idAct");
 
-                ArrayList<Evento> listaFiltroAct = eventoDao.listarEventosxActividad(idAct);
+                ArrayList<Evento> listaFiltroAct = eventoDao.listarEventosProximosxActividad(idAct);
 
                 request.setAttribute("idAct", idAct);
                 request.setAttribute("listaFiltroAct",listaFiltroAct);
@@ -137,8 +137,17 @@ public class UserServlet extends HttpServlet {
                 break;
 
 
-            case "filter_act":
+            case "search_title":
+                String Actividad = request.getParameter("idAct");
+                String title = request.getParameter("title_search");
 
+                ArrayList<Evento> eventosSearched = eventoDao.buscarXtitulo(Actividad, title);
+                request.setAttribute("idAct", Actividad);
+                request.setAttribute("listaFiltroAct",eventosSearched);
+                request.getRequestDispatcher("pages/user/activity.jsp").forward(request,response);
+                break;
+
+            case "filter_act":
                 String idActividad = request.getParameter("idAct");
                 String filtro = request.getParameter("filtro");
                 ArrayList<Evento> listaFiltroAct = new ArrayList<>();
