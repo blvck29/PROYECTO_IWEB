@@ -97,18 +97,15 @@
     <div style="margin-bottom: 20px"></div>
 
     <% String rol ="---";
-        switch(usuario.getIdRol()){
-            case "ADMINPRI":
-                rol = "Administrador Principal";
+        switch(usuario.getIdRolSistema()){
+            case "DELGEN":
+                rol = "Delegado General";
                 break;
-            case "ADMINSEC":
+            case "DELACT":
                 rol = "Delegado de Actividad";
                 break;
-            case "STUDENT":
-                rol = "Estudiante";
-                break;
-            case "GRADUAT":
-                rol = "Graduado";
+            case "USER":
+                rol = "Usuario";
                 break;
             default:
                 rol = "---";

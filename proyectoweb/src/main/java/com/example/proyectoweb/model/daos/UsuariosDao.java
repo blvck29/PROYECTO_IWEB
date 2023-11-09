@@ -27,7 +27,7 @@ public class UsuariosDao extends DaoBase{
                 usuario.setNombres(rs.getString(4));
                 usuario.setApellidos(rs.getString(5));
                 usuario.setCodigo(rs.getString(6));
-                usuario.setIdRol(rs.getString(2));
+                usuario.setIdRolSistema(rs.getString(2));
                 usuario.setIdEstado(rs.getString(3));
                 usuario.setUltimoLogin(rs.getString(9));
 
@@ -68,7 +68,7 @@ public class UsuariosDao extends DaoBase{
                     usuario.setNombres(rs.getString(4));
                     usuario.setApellidos(rs.getString(5));
                     usuario.setCodigo(rs.getString(6));
-                    usuario.setIdRol(rs.getString(2));
+                    usuario.setIdRolSistema(rs.getString(2));
                     usuario.setIdEstado(rs.getString(3));
                     usuario.setUltimoLogin(rs.getString(9));
 
@@ -111,7 +111,7 @@ public class UsuariosDao extends DaoBase{
                     usuario.setNombres(rs.getString(4));
                     usuario.setApellidos(rs.getString(5));
                     usuario.setCodigo(rs.getString(6));
-                    usuario.setIdRol(rs.getString(2));
+                    usuario.setIdRolSistema(rs.getString(2));
                     usuario.setIdEstado(rs.getString(3));
                     usuario.setUltimoLogin(rs.getString(9));
                     usuario.setCorreo(rs.getString(7));
@@ -153,7 +153,7 @@ public class UsuariosDao extends DaoBase{
                     usuario.setNombres(rs.getString(4));
                     usuario.setApellidos(rs.getString(5));
                     usuario.setCodigo(rs.getString(6));
-                    usuario.setIdRol(rs.getString(2));
+                    usuario.setIdRolSistema(rs.getString(2));
                     usuario.setIdEstado(rs.getString(3));
                     usuario.setUltimoLogin(rs.getString(9));
                     usuario.setCorreo(rs.getString(7));
@@ -183,7 +183,7 @@ public ArrayList<Usuario> listarDelegadosActDisponibles(){
             while(rs.next()){
                 Usuario u = new Usuario();
                 u.setIdUsuario(rs.getInt(1));
-                u.setIdRol(rs.getString(2));
+                u.setIdRolSistema(rs.getString(2));
                 u.setIdEstado(rs.getString(3));
                 u.setNombres(rs.getString(4));
                 u.setApellidos(rs.getString(5));
@@ -218,7 +218,7 @@ public ArrayList<Usuario> listarDelegadosActDisponibles(){
                     while (rs.next()){
                         Usuario u = new Usuario();
                         u.setIdUsuario(rs.getInt(1));
-                        u.setIdRol(rs.getString(2));
+                        u.setIdRolSistema(rs.getString(2));
                         u.setIdEstado(rs.getString(3));
                         u.setNombres(rs.getString(4));
                         u.setApellidos(rs.getString(5));

@@ -5,7 +5,8 @@ import java.text.DateFormat;
 public class Usuario {
 
     private int idUsuario;
-    private String idRol;
+    private String idRolSistema;
+    private String idRolAcademico;
     private String idEstado;
     private String nombres;
     private String apellidos;
@@ -25,12 +26,20 @@ public class Usuario {
         this.idUsuario = idUsuario;
     }
 
-    public String getIdRol() {
-        return idRol;
+    public String getIdRolSistema() {
+        return idRolSistema;
     }
 
-    public void setIdRol(String idRol) {
-        this.idRol = idRol;
+    public void setIdRolSistema(String idRolSistema) {
+        this.idRolSistema = idRolSistema;
+    }
+
+    public String getIdRolAcademico() {
+        return idRolAcademico;
+    }
+
+    public void setIdRolAcademico(String idRolAcademico) {
+        this.idRolAcademico = idRolAcademico;
     }
 
     public String getIdEstado() {
