@@ -198,6 +198,7 @@ public ArrayList<Usuario> listarDelegadosActDisponibles(){
                 u.setCorreo(rs.getString(7));
 
 
+
                 listaUsuarios.add(u);
             }
 
@@ -233,6 +234,8 @@ public ArrayList<Usuario> listarDelegadosActDisponibles(){
                         u.setCodigo(rs.getString(6));
                         u.setCorreo(rs.getString(7));
                         u.setUltimoLogin(rs.getString(9));
+                        u.setIdRolAcademico(rs.getString(13));
+
 
                         listaUsuarios.add(u);
                     }

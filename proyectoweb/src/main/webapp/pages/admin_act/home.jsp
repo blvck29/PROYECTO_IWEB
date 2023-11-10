@@ -96,7 +96,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
     <div style="margin-bottom: 50px"></div>
 
-    <h2><i class="fa-solid fa-star" style="color: #8de7ef;"></i><strong style="padding-left: 10px">Eventos de Actividad</strong></h2>
+    <h2><i class="fa-solid fa-star" style="color: #8de7ef;"></i><strong style="padding-left: 10px">Eventos de la Actividad: <%=idActividad%></strong></h2>
 
     <div style="margin-bottom: 40px"></div>
 
@@ -193,7 +193,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
     </div>
 
-
+    <br>
     <nav class="mt-4">
         <ul class="pagination justify-content-center">
             <!---->
@@ -231,11 +231,14 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 <div class="container-fluid" style="background-color: #fff; padding-right: 0; padding-left: 0">
     <div class="my-4"></div>
     <footer id="sticky-footer" class="flex-shrink-0 py-4 text-white-50" style="background-color: #04011E">
+        <br>
+        <br>
         <div class="container"><div class="nav justify-content-center border-bottom pb-3 mb-3">
             <p style="text-align: center">
                 <small class="text-center">&copy; Pontificia Universidad Católica del Perú - Todos los derechos reservados</small>
             </p>
         </div></div>
+        <br>
     </footer>
 </div>
 

@@ -47,7 +47,7 @@ public class DonacionesDao extends DaoBase{
 
         //Conexión a la DB
 
-        String sql = "SELECT don.idUsuario, don.idRegistro_Donaciones, u.nombres, u.apellidos, don.comprobante, don.monto, don.comprobado \n" +
+        String sql = "SELECT don.idUsuario, don.idRegistro_Donaciones, u.nombres, u.apellidos, don.comprobante, don.monto, don.comprobado, don.fecha, u.idRolAcademico \n" +
                 "FROM registro_donaciones don \n" +
                 "INNER JOIN usuarios u on (u.idUsuario = don.idUsuario) \n" +
                 "where lower(nombres) like ? or lower(apellidos) like ?";
@@ -72,6 +72,8 @@ public class DonacionesDao extends DaoBase{
                     donacion.setComprobante((Blob) rs.getBlob(5));
                     donacion.setMonto(rs.getDouble(6));
                     donacion.setComprobado(rs.getBoolean(7));
+                    donacion.setFechaDonacion(rs.getString(8));
+                    donacion.setIdRolAcademico(rs.getString(9));
 
                     listaDonaciones.add(donacion);
 
@@ -91,7 +93,7 @@ public class DonacionesDao extends DaoBase{
 
         //Conexión a la DB
 
-        String sql = "SELECT don.idUsuario, don.idRegistro_Donaciones, u.nombres, u.apellidos, don.comprobante, don.monto, don.comprobado \n" +
+        String sql = "SELECT don.idUsuario, don.idRegistro_Donaciones, u.nombres, u.apellidos, don.comprobante, don.monto, don.comprobado, don.fecha, u.idRolAcademico  \n" +
                 "FROM registro_donaciones don \n" +
                 "INNER JOIN usuarios u on (u.idUsuario = don.idUsuario) \n" +
                 "where comprobado = ?";
@@ -114,6 +116,8 @@ public class DonacionesDao extends DaoBase{
                     donacion.setComprobante((Blob) rs.getBlob(5));
                     donacion.setMonto(rs.getDouble(6));
                     donacion.setComprobado(rs.getBoolean(7));
+                    donacion.setFechaDonacion(rs.getString(8));
+                    donacion.setIdRolAcademico(rs.getString(9));
 
                     listaDonaciones.add(donacion);
 

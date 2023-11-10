@@ -47,7 +47,7 @@ CREATE TABLE `evento` (
 
 LOCK TABLES `evento` WRITE;
 /*!40000 ALTER TABLE `evento` DISABLE KEYS */;
-INSERT INTO `evento` VALUES (1,'VALORANT - Jornada 1','Fibra Tóxica vs. Electroshock','17:30:00','2023-10-18','Av. La Marina 223 2do piso',NULL,'Partido de clasificación de Valorant','PUBLIC','ESPORTS'),(3,'VOLEY - Jornada 1','Fibra Tóxica vs. Hormigón Armado','21:00:00','2023-10-18','PUCP, Cancha de Minas',NULL,'Partidos de clasificación Futbol','PUBLIC','VOLEY'),(4,'LOL - Jornada 1','Fibra Tóxica vs. Naranja Mecánica','11:00:00','2023-10-17','Av. Universitaria 561 3er piso',NULL,'Partido de clasificación de LOL','PUBLIC','ESPORTS'),(5,'VALORANT - Jornada 2','PXO vs. Hormigón Armado','15:00:00','2023-10-19','Av. La Marina 223 2do piso',NULL,'Partido de clasificación de Valorant','PUBLIC','ESPORTS'),(6,'BASQUET - Jornada 1','Fibra Tóxica vs. Electroshock','10:00:00','2023-10-19','PUCP, Polideportivo',NULL,'Partidos de clasificación Basquet','PUBLIC','BASQUET'),(9,'FUTBOL - Jornada 2','asdasdasd','15:00:00','2023-11-20','Av. La Marina 223 2do piso',NULL,'Partido de clasificación de Valorant','PUBLIC','FUTBOL'),(12,'asd','aaa','03:30:00','2023-11-08','Losa de Paleta Frontón',NULL,'asdasd','PUBLIC','FUTBOL'),(15,'nueva prueba ','nueva prueba ','03:40:00','2023-10-27','Polideportivo: Campus PUCP, Coliseo Polideportivo, Campus PUCP, Av. Universitaria 1801, San Miguel 15088.',NULL,'asdasdasdasd','PUBLIC','FUTBOL');
+INSERT INTO `evento` VALUES (1,'VALORANT - Jornada 1','Fibra Tóxica vs. Electroshock','17:30:00','2023-10-18','Av. La Marina 223 2do piso',NULL,'Partido de clasificación de Valorant','PUBLIC','ESPORTS'),(3,'VOLEY - Jornada 1','Fibra Tóxica vs. Hormigón Armado','21:00:00','2023-10-18','PUCP, Cancha de Minas',NULL,'Partidos de clasificación Futbol','PUBLIC','VOLEY'),(4,'LOL - Jornada 1','Fibra Tóxica vs. Naranja Mecánica','11:00:00','2023-10-17','Av. Universitaria 561 3er piso',NULL,'Partido de clasificación de LOL','PUBLIC','ESPORTS'),(5,'VALORANT - Jornada 2','PXO vs. Hormigón Armado','15:00:00','2023-10-19','Av. La Marina 223 2do piso',NULL,'Partido de clasificación de Valorant','PUBLIC','ESPORTS'),(6,'BASQUET - Jornada 1','Fibra Tóxica vs. Electroshock','10:00:00','2023-10-19','PUCP, Polideportivo',NULL,'Partidos de clasificación Basquet','PUBLIC','BASQUET'),(9,'FUTBOL - Jornada 2','asdasdasd','15:00:00','2023-11-20','Av. La Marina 223 2do piso',NULL,'Partido de clasificación de Valorant','PUBLIC','FUTBOL'),(12,'asd','aaa','03:30:00','2023-11-08','Losa de Paleta Frontón',NULL,'asdasd','PUBLIC','FUTBOL');
 /*!40000 ALTER TABLE `evento` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -60,4 +60,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-09 18:19:32
+-- Dump completed on 2023-11-09 20:05:35
