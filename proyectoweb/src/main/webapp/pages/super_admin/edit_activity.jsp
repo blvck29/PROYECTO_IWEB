@@ -141,7 +141,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                                 <select class="form-select" name="idDelegado" id="idDelegado" aria-label="Default select example" required>
                                     <%for (Usuario usuario : listaUsuarios){ %>
 
-                                        <% if(usuario.getIdUsuario()==actividad.getIdEncargado() || (!usuario.getIdRol().equals("ADMINPRI") && !usuario.getIdRol().equals("ADMINSEC")))  { %>
+                                        <% if(usuario.getIdUsuario()==actividad.getIdEncargado() || (!usuario.getIdRolSistema().equals("DELGEN") && !usuario.getIdRolSistema().equals("DELACT")))  { %>
 
                                         <option value="<%=usuario.getIdUsuario()%>"  <%=usuario.getIdUsuario()==actividad.getIdEncargado()? "selected": ""%> ><%=usuario.getNombres() + " " + usuario.getApellidos()%></option>
 
