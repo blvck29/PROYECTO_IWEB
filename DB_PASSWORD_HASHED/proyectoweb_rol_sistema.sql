@@ -16,27 +16,27 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `rol_inscrito`
+-- Table structure for table `rol_sistema`
 --
 
-DROP TABLE IF EXISTS `rol_inscrito`;
+DROP TABLE IF EXISTS `rol_sistema`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `rol_inscrito` (
-  `idRol_Inscrito` varchar(8) NOT NULL,
-  `nombre` varchar(16) NOT NULL,
-  PRIMARY KEY (`idRol_Inscrito`)
+CREATE TABLE `rol_sistema` (
+  `idRol` varchar(8) NOT NULL,
+  `nombre` varchar(30) NOT NULL,
+  PRIMARY KEY (`idRol`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `rol_inscrito`
+-- Dumping data for table `rol_sistema`
 --
 
-LOCK TABLES `rol_inscrito` WRITE;
-/*!40000 ALTER TABLE `rol_inscrito` DISABLE KEYS */;
-INSERT INTO `rol_inscrito` VALUES ('BARRA','Barra'),('MEMBER','Participante'),('UNSET','Undefined');
-/*!40000 ALTER TABLE `rol_inscrito` ENABLE KEYS */;
+LOCK TABLES `rol_sistema` WRITE;
+/*!40000 ALTER TABLE `rol_sistema` DISABLE KEYS */;
+INSERT INTO `rol_sistema` VALUES ('DELACT','Delegado de Actividad'),('DELGEN','Delegado General'),('USER','Usuario');
+/*!40000 ALTER TABLE `rol_sistema` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -48,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-09 20:05:34
+-- Dump completed on 2023-11-10 19:05:26
