@@ -1,5 +1,7 @@
 <%@ page import="com.example.proyectoweb.model.beans.Evento" %>
+<%@ page import="com.example.proyectoweb.model.beans.Donaciones" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<% Donaciones donante = (Donaciones) request.getAttribute("Donante"); %>
 
 
 <!doctype html>
@@ -90,7 +92,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 <div class="container">
 
     <div style="margin-bottom: 50px"></div>
-    <h2><i class="fa-solid fa-star" style="color: #8de7ef;"></i><strong style="padding-left: 10px">Interfaz de Visualización de Detalles del Evento</strong></h2>
+    <h2><i class="fa-solid fa-star" style="color: #8de7ef;"></i><strong style="padding-left: 10px">Interfaz de Detalles del Donación</strong></h2>
     <div style="margin-bottom: 20px"></div>
 
     <hr style="border-top: 1px solid #262626;">
@@ -108,46 +110,61 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
                         <div>
                             <div class="form-group" style="padding-right: 1rem">
-                                <label  style="text-align: left;"><strong>Título del evento:</strong></label>
-                                <input name="titulo" type="text" class="form-control" id="nombre" value="" disabled readonly>
+                                <label  style="text-align: left;"><strong>Nombre/Apellido del donante:</strong></label>
+                                <input name="titulo" type="text" class="form-control" id="nombre" value="<%=donante.getNombres() + " "+donante.getApellidos()%>" disabled readonly>
                             </div>
                         </div>
 
                         <div style="padding-top: 1.5em;"></div>
+
+                        <% String rolAcademico ="---";
+                            switch(donante.getIdRolAcademico()){
+                                case "STUDENT":
+                                    rolAcademico = "Estudiante";
+                                    break;
+                                case "GRADUAT":
+                                    rolAcademico = "Egresado";
+                                    break;
+                                default:
+                                    rolAcademico = "---";
+                            }%>
 
                         <div>
                             <div class="form-group" style="padding-right: 1rem">
-                                <label  style="text-align: left;"><strong>Subtítulo del evento:</strong></label>
-                                <input name="subtitulo" type="text" class="form-control" id="nombre" value="" disabled readonly>
+                                <label  style="text-align: left;"><strong>Rol Académico:</strong></label>
+                                <input name="subtitulo" type="text" class="form-control" id="nombre" value="<%=rolAcademico%>" disabled readonly>
                             </div>
                         </div>
 
                         <div style="padding-top: 1.5em;"></div>
 
                         <div class="form-group" style="padding-right: 1rem">
-                            <label style="text-align: left;"><strong>Hora del evento:</strong></label>
-                            <input name="hora" type="time" class="form-control" id="fecha-evento" value="" disabled readonly>
+                            <label style="text-align: left;"><strong>Monto Donado:</strong></label>
+                            <input name="hora" type="text" class="form-control" id="fecha-evento" value="<%="S/." + donante.getMonto()%>" disabled readonly>
+                        </div>
+
+                        <div style="padding-top: 1.5em;"></div>
+
+                        <%  String[] fechaHora = donante.getFechaDonacion().split(" ");
+                            String fecha = fechaHora[0];
+                            String hora = fechaHora[1];
+                            String[] horaHMS = hora.split(":");
+                            String horaMostrar = horaHMS[0] + ":" + horaHMS[1];
+                        %>
+
+                        <div class="form-group" style="padding-right: 1rem">
+                            <label  style="text-align: left;"><strong>Fecha de Donacion:</strong></label>
+                            <input name="fecha" type="text" class="form-control" id="fecha-evento" value="<%=fecha%>" disabled readonly>
                         </div>
 
                         <div style="padding-top: 1.5em;"></div>
 
                         <div class="form-group" style="padding-right: 1rem">
-                            <label  style="text-align: left;"><strong>Fecha del evento:</strong></label>
-                            <input name="fecha" type="date" class="form-control" id="fecha-evento" value="" disabled readonly>
+                            <label  style="text-align: left;"><strong>Hora de Donacion:</strong></label>
+                            <input name="fecha" type="text" class="form-control" id="fecha-evento" value="<%=horaMostrar%>" disabled readonly>
                         </div>
 
                         <div style="padding-top: 1.5em;"></div>
-
-                        <div style="padding-top: 1.5em;"></div>
-
-                        <div>
-                            <div class="form-group">
-                                <label style="text-align: left;"><strong>Descripción del evento:</strong></label>
-                                <input name="titulo" type="text" class="form-control" id="nombre" value="" disabled readonly>
-                            </div>
-                            <div style="padding-top: 1em;"></div>
-                        </div>
-
 
                     </div>
                 </div>

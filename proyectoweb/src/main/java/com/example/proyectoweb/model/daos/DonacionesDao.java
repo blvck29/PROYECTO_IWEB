@@ -88,6 +88,49 @@ public class DonacionesDao extends DaoBase{
     }
 
 
+    public Donaciones buscarPorIdDonante(String id){
+
+        Donaciones donacion = null;
+
+        //Conexión a la DB
+
+        String sql = "SELECT don.idUsuario, don.idRegistro_Donaciones, u.nombres, u.apellidos, don.comprobante, don.monto, don.comprobado, don.fecha, u.idRolAcademico \n" +
+                "FROM registro_donaciones don \n" +
+                "INNER JOIN usuarios u on (u.idUsuario = don.idUsuario) \n" +
+                "where don.idUsuario = ?";
+
+
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)){
+
+            pstmt.setString(1, id );
+
+
+            try(ResultSet rs = pstmt.executeQuery()){
+
+                while(rs.next()){
+
+                    donacion = new Donaciones();
+                    donacion.setIdUsuario(rs.getInt(1));
+                    donacion.setIdDonaciones(rs.getInt(2));
+                    donacion.setNombres(rs.getString(3));
+                    donacion.setApellidos(rs.getString(4));
+                    donacion.setComprobante((Blob) rs.getBlob(5));
+                    donacion.setMonto(rs.getDouble(6));
+                    donacion.setComprobado(rs.getBoolean(7));
+                    donacion.setFechaDonacion(rs.getString(8));
+                    donacion.setIdRolAcademico(rs.getString(9));
+                }
+
+            }
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+
+        return donacion;
+    }
+
+
     public ArrayList<Donaciones> listarComprobados(String comprobacion){
         ArrayList<Donaciones> listaDonaciones = new ArrayList();
 

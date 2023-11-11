@@ -119,7 +119,10 @@ public class AdminGenServlet extends HttpServlet {
 
 
                     case "ver":
+                        String idDonante = request.getParameter("idDonante");
+                        Donaciones donanteBuscado = donacionesDao.buscarPorIdDonante(idDonante);
 
+                        request.setAttribute("Donante", donanteBuscado);
                         request.getRequestDispatcher("/pages/super_admin/ver_donacion.jsp").forward(request,response);
 
 
