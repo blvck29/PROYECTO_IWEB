@@ -105,10 +105,30 @@ public class AdminGenServlet extends HttpServlet {
 
             case "donations":
                 DonacionesDao donacionesDao = new DonacionesDao();
-                ArrayList<Donaciones> listaDonaciones = donacionesDao.listar();
 
-                request.setAttribute("listaDonaciones", listaDonaciones);
-                request.getRequestDispatcher("pages/super_admin/lista_donaciones.jsp").forward(request,response);
+                String ac2 = request.getParameter("ac") == null? "list" : request.getParameter("ac");
+
+                switch (ac2){
+                    case "list":
+                        ArrayList<Donaciones> listaDonaciones = donacionesDao.listar();
+
+                        request.setAttribute("listaDonaciones", listaDonaciones);
+                        request.getRequestDispatcher("pages/super_admin/lista_donaciones.jsp").forward(request,response);
+
+                        break;
+
+
+                    case "ver":
+
+                        request.getRequestDispatcher("/pages/super_admin/ver_donacion.jsp").forward(request,response);
+
+
+
+
+                }
+
+
+
                 break;
 
         }
@@ -157,14 +177,12 @@ public class AdminGenServlet extends HttpServlet {
 
                         if(nuevoEstadoUsuario.equals("eliminarUsuario")){
                             userDao.eliminarUsuario(idUsuario);
-                            response.sendRedirect(request.getContextPath() + "/admin_gen");
-
                         }
-                        else if(nuevoEstadoUsuario != "eliminarUsuario"){
+                        else {
                             userDao.editarEstadoUsuario(idUsuario, nuevoEstadoUsuario);
-                            response.sendRedirect(request.getContextPath() + "/admin_gen");
                         }
 
+                        response.sendRedirect(request.getContextPath() + "/admin_gen");
                         break;
 
                 }
