@@ -35,7 +35,7 @@
                 </div>
 
                 <div class="login-forgot">
-                    <label><a href="pages/system/password_recovery/email.jsp">Olvidé la contraseña</a></label>
+                    <label><a href="<%=request.getContextPath()%>/login?action=forgot_passwd">Olvidé la contraseña</a></label>
                 </div>
 
                 <a href="#"><input type="submit" value="Acceder" class="login-button"></a>
@@ -44,7 +44,7 @@
 
             <div>
                 <div class="login-register">
-                    <p>¿No tiene cuenta? <a href="pages/system/register.jsp"> Registrarse</a></p>
+                    <p>¿No tiene cuenta? <a href="<%=request.getContextPath()%>/login?action=register"> Registrarse</a></p>
                 </div>
             </div>
         </div>

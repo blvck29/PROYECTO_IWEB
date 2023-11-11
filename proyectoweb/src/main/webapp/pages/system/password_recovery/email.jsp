@@ -34,7 +34,7 @@
                 <a href="token.jsp"><input type="submit" value="Enviar Correo" class="forgot-button"></a>
 
                 <div class="forgot-back">
-                    <label><a href="../../../index.jsp">Regresar</a></label>
+                    <label><a href="<%=request.getContextPath()%>/login">Regresar</a></label>
                 </div>
 
             </form>
