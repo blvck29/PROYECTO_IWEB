@@ -16,34 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `inscripcion`
+-- Table structure for table `fotos_album`
 --
 
-DROP TABLE IF EXISTS `inscripcion`;
+DROP TABLE IF EXISTS `fotos_album`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `inscripcion` (
+CREATE TABLE `fotos_album` (
+  `IdFoto` int NOT NULL AUTO_INCREMENT,
   `idEvento` int NOT NULL,
-  `Usuario` int NOT NULL,
-  `idRol` varchar(8) NOT NULL DEFAULT 'UNSET',
-  PRIMARY KEY (`idEvento`,`Usuario`),
-  KEY `fk_Lista_Eventos_has_Usuarios_Usuarios1_idx` (`Usuario`),
-  KEY `fk_Lista_Eventos_has_Usuarios_Lista_Eventos1_idx` (`idEvento`),
-  KEY `fk_Inscripciones_Rol_Inscrito1_idx` (`idRol`),
-  CONSTRAINT `fk_Inscripciones_Rol_Inscrito1` FOREIGN KEY (`idRol`) REFERENCES `rol_inscrito` (`idRol_Inscrito`),
-  CONSTRAINT `fk_Lista_Eventos_has_Usuarios_Lista_Eventos1` FOREIGN KEY (`idEvento`) REFERENCES `evento` (`idEvento`),
-  CONSTRAINT `fk_Lista_Eventos_has_Usuarios_Usuarios1` FOREIGN KEY (`Usuario`) REFERENCES `usuarios` (`idUsuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+  `Foto` longblob,
+  `Descricipcion` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`IdFoto`,`idEvento`),
+  KEY `fk_Foto_Album_Evento1_idx` (`idEvento`),
+  CONSTRAINT `fk_Foto_Album_Evento1` FOREIGN KEY (`idEvento`) REFERENCES `evento` (`idEvento`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `inscripcion`
+-- Dumping data for table `fotos_album`
 --
 
-LOCK TABLES `inscripcion` WRITE;
-/*!40000 ALTER TABLE `inscripcion` DISABLE KEYS */;
-INSERT INTO `inscripcion` VALUES (1,105,'BARRA'),(1,103,'MEMBER'),(3,107,'UNSET'),(9,116,'UNSET');
-/*!40000 ALTER TABLE `inscripcion` ENABLE KEYS */;
+LOCK TABLES `fotos_album` WRITE;
+/*!40000 ALTER TABLE `fotos_album` DISABLE KEYS */;
+INSERT INTO `fotos_album` VALUES (1,1,NULL,NULL),(3,3,NULL,NULL),(4,3,NULL,NULL),(5,1,NULL,NULL),(6,4,NULL,NULL),(7,1,NULL,NULL),(8,4,NULL,NULL);
+/*!40000 ALTER TABLE `fotos_album` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -55,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-09 20:05:35
+-- Dump completed on 2023-11-10 19:05:25

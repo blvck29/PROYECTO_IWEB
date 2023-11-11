@@ -16,32 +16,33 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `actividad`
+-- Table structure for table `registro_donaciones`
 --
 
-DROP TABLE IF EXISTS `actividad`;
+DROP TABLE IF EXISTS `registro_donaciones`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `actividad` (
-  `idActividad` varchar(8) NOT NULL,
-  `titulo` varchar(45) NOT NULL,
-  `banner` longblob,
-  `miniatura` longblob,
-  `idEncargado` int NOT NULL,
-  PRIMARY KEY (`idActividad`),
-  KEY `fk_Lista_Actividades_Usuarios1_idx` (`idEncargado`),
-  CONSTRAINT `fk_Lista_Actividades_Usuarios1` FOREIGN KEY (`idEncargado`) REFERENCES `usuarios` (`idUsuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+CREATE TABLE `registro_donaciones` (
+  `idRegistro_Donaciones` int NOT NULL AUTO_INCREMENT,
+  `idUsuario` int NOT NULL,
+  `comprobante` longblob,
+  `monto` double NOT NULL DEFAULT '0',
+  `comprobado` tinyint NOT NULL DEFAULT '0',
+  `fecha` datetime NOT NULL,
+  PRIMARY KEY (`idRegistro_Donaciones`),
+  KEY `fk_Registro_Donaciones_Usuarios1_idx` (`idUsuario`),
+  CONSTRAINT `fk_Registro_Donaciones_Usuarios1` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `actividad`
+-- Dumping data for table `registro_donaciones`
 --
 
-LOCK TABLES `actividad` WRITE;
-/*!40000 ALTER TABLE `actividad` DISABLE KEYS */;
-INSERT INTO `actividad` VALUES ('BASQUET','Basquet',NULL,NULL,14),('DDDD','dddd',NULL,NULL,103),('ESPORTS','eSports',NULL,NULL,106),('FUTBOL','Futbol',NULL,NULL,10),('KARATE','Karate',NULL,NULL,12),('TENIS','Tenis',NULL,NULL,15),('VOLEY','Voley',NULL,NULL,13);
-/*!40000 ALTER TABLE `actividad` ENABLE KEYS */;
+LOCK TABLES `registro_donaciones` WRITE;
+/*!40000 ALTER TABLE `registro_donaciones` DISABLE KEYS */;
+INSERT INTO `registro_donaciones` VALUES (1,106,NULL,20.5,1,'2023-10-19 16:03:34'),(2,102,NULL,54,0,'2023-10-19 16:20:46'),(3,105,NULL,155,1,'2023-10-19 16:31:52');
+/*!40000 ALTER TABLE `registro_donaciones` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -53,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-09 20:05:34
+-- Dump completed on 2023-11-10 19:05:26

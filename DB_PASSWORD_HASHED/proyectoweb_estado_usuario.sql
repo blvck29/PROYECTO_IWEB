@@ -16,27 +16,27 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `estado_evento`
+-- Table structure for table `estado_usuario`
 --
 
-DROP TABLE IF EXISTS `estado_evento`;
+DROP TABLE IF EXISTS `estado_usuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `estado_evento` (
-  `Id_Estado` varchar(8) NOT NULL,
+CREATE TABLE `estado_usuario` (
+  `idEstado_Usuario` varchar(8) NOT NULL,
   `nombre` varchar(16) NOT NULL,
-  PRIMARY KEY (`Id_Estado`)
+  PRIMARY KEY (`idEstado_Usuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `estado_evento`
+-- Dumping data for table `estado_usuario`
 --
 
-LOCK TABLES `estado_evento` WRITE;
-/*!40000 ALTER TABLE `estado_evento` DISABLE KEYS */;
-INSERT INTO `estado_evento` VALUES ('DRAFT','Borrador'),('FINISH','Finalizado'),('PUBLIC','Publico');
-/*!40000 ALTER TABLE `estado_evento` ENABLE KEYS */;
+LOCK TABLES `estado_usuario` WRITE;
+/*!40000 ALTER TABLE `estado_usuario` DISABLE KEYS */;
+INSERT INTO `estado_usuario` VALUES ('ACC','Accepted'),('BAN','Ban'),('PEN','Pending'),('VER','Verified');
+/*!40000 ALTER TABLE `estado_usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -48,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-09 20:05:35
+-- Dump completed on 2023-11-10 19:05:25

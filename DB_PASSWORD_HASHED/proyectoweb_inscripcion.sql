@@ -16,27 +16,34 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `estado_usuario`
+-- Table structure for table `inscripcion`
 --
 
-DROP TABLE IF EXISTS `estado_usuario`;
+DROP TABLE IF EXISTS `inscripcion`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `estado_usuario` (
-  `idEstado_Usuario` varchar(8) NOT NULL,
-  `nombre` varchar(16) NOT NULL,
-  PRIMARY KEY (`idEstado_Usuario`)
+CREATE TABLE `inscripcion` (
+  `idEvento` int NOT NULL,
+  `Usuario` int NOT NULL,
+  `idRol` varchar(8) NOT NULL DEFAULT 'UNSET',
+  PRIMARY KEY (`idEvento`,`Usuario`),
+  KEY `fk_Lista_Eventos_has_Usuarios_Usuarios1_idx` (`Usuario`),
+  KEY `fk_Lista_Eventos_has_Usuarios_Lista_Eventos1_idx` (`idEvento`),
+  KEY `fk_Inscripciones_Rol_Inscrito1_idx` (`idRol`),
+  CONSTRAINT `fk_Inscripciones_Rol_Inscrito1` FOREIGN KEY (`idRol`) REFERENCES `rol_inscrito` (`idRol_Inscrito`),
+  CONSTRAINT `fk_Lista_Eventos_has_Usuarios_Lista_Eventos1` FOREIGN KEY (`idEvento`) REFERENCES `evento` (`idEvento`),
+  CONSTRAINT `fk_Lista_Eventos_has_Usuarios_Usuarios1` FOREIGN KEY (`Usuario`) REFERENCES `usuarios` (`idUsuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `estado_usuario`
+-- Dumping data for table `inscripcion`
 --
 
-LOCK TABLES `estado_usuario` WRITE;
-/*!40000 ALTER TABLE `estado_usuario` DISABLE KEYS */;
-INSERT INTO `estado_usuario` VALUES ('ACC','Accepted'),('BAN','Ban'),('PEN','Pending'),('VER','Verified');
-/*!40000 ALTER TABLE `estado_usuario` ENABLE KEYS */;
+LOCK TABLES `inscripcion` WRITE;
+/*!40000 ALTER TABLE `inscripcion` DISABLE KEYS */;
+INSERT INTO `inscripcion` VALUES (1,105,'BARRA'),(1,103,'MEMBER'),(3,107,'UNSET'),(9,116,'UNSET');
+/*!40000 ALTER TABLE `inscripcion` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -48,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-09 20:05:35
+-- Dump completed on 2023-11-10 19:05:26
