@@ -1,9 +1,11 @@
 <%@ page import="com.example.proyectoweb.model.beans.Evento" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <% ArrayList<Evento> listaEventos = (ArrayList<Evento>) request.getAttribute("listaEventos"); %>
 <% String idActividad = (String) request.getAttribute("idActividad");%>
+
 
 
 <!doctype html>
@@ -136,7 +138,16 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
 
         <% for (Evento evento : listaEventos) {
-        if (evento.getIdActividad().equals(idActividad)) {%>
+        if (evento.getIdActividad().equals(idActividad)) {
+
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaFormateada = formato.format(evento.getFecha());
+        %>
+
+
+        
+
+
         <div class="col-sm-6 col-lg-3 mb-4">
 
             <div class="card-list">
@@ -145,7 +156,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                         <img class="image-event" src="images/placeholder_events.jpg" alt="An orange painted blue, cut in half laying on a blue background" />
                     </figure>
                     <div class="card-header">
-                        <a href="<%=request.getContextPath()%>/admin_act?action=verEvento&idEvento=<%=evento.getIdEvento()%>&idActividad=<%=evento.getIdActividad()%>"><%=evento.getTitulo()%><p><%=evento.getSubTitulo()%></p><p>Fecha: <%=evento.getFecha()%></p></a>
+                        <a href="<%=request.getContextPath()%>/admin_act?action=verEvento&idEvento=<%=evento.getIdEvento()%>&idActividad=<%=evento.getIdActividad()%>"><%=evento.getTitulo()%><p><%=evento.getSubTitulo()%></p><p>Fecha: <%=fechaFormateada%></p></a>
 
                     </div>
                     <div class="card-footer">

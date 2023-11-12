@@ -87,6 +87,7 @@ public class AdminActServlet extends HttpServlet {
                 System.out.println("el id de actividad es: " +idActividad3);
                 ArrayList<Inscrito> listaInscritosxEvento = inscritosDao.listarInscritosXevento(idEvento3);
 
+                request.setAttribute("idEvento",idEvento3);
                 request.setAttribute("idActividad",idActividad3);
                 request.setAttribute("listaIncritosxEvento", listaInscritosxEvento);
                 request.getRequestDispatcher("/pages/admin_act/ver_inscritos.jsp").forward(request,response);
@@ -109,6 +110,7 @@ public class AdminActServlet extends HttpServlet {
 
         String action = request.getParameter("action") == null? "filtros" : request.getParameter("action");
         String ac = request.getParameter("ac") == null? "eventosXfecha" : request.getParameter("ac");
+        String idEvento = request.getParameter("idEvento");
 
         switch (action){
 
@@ -145,7 +147,9 @@ public class AdminActServlet extends HttpServlet {
 
             case "crearEvento":
                 String titulo = request.getParameter("titulo");
-                String subtitulo = request.getParameter("subtitulo");
+                String subtituloP1 = request.getParameter("subtituloP1");
+                String subtituloP2 = request.getParameter("subtituloP2");
+                String subtitulo = subtituloP1 + subtituloP2;
                 String hora = request.getParameter("hora");
                 String fecha = request.getParameter("fecha");
                 String lugar = request.getParameter("lugar");
@@ -161,7 +165,6 @@ public class AdminActServlet extends HttpServlet {
                 break;
 
             case "editEvent":
-                String idEvento2 = request.getParameter("idEvento");
                 String titulo2 = request.getParameter("titulo");
                 String subtitulo2 = request.getParameter("subtitulo");
                 String hora2 = request.getParameter("hora");
@@ -170,7 +173,7 @@ public class AdminActServlet extends HttpServlet {
                 String descripcion2 = request.getParameter("descripcion");
                 String idActividad2 = request.getParameter("idActividad");
 
-                eventoDao.actualizarEvento(idEvento2,titulo2,subtitulo2,hora2,fecha2,lugar2,descripcion2,idActividad2);
+                eventoDao.actualizarEvento(idEvento,titulo2,subtitulo2,hora2,fecha2,lugar2,descripcion2,idActividad2);
                 response.sendRedirect(request.getContextPath()+"/admin_act?action=home");
 
                 break;
@@ -178,12 +181,34 @@ public class AdminActServlet extends HttpServlet {
             case "editarRolInscrito":
                 String idUsuario = request.getParameter("idUsuario");
                 String rolNuevo = request.getParameter("rolNuevo");
-                String idEvento = request.getParameter("idEvento");
-
                 System.out.println("El nuevo rol es: " + rolNuevo);
 
                 inscritosDao.actualizarRolInscrito(rolNuevo, idUsuario);
                 response.sendRedirect(request.getContextPath() +"/admin_act?action=verInscritos&idEvento="+idEvento);
+                break;
+
+            case "filtroInscritosRol":
+
+                String rol = request.getParameter("rol");
+                ArrayList<Inscrito> listaFiltrada = inscritosDao.filtrarXrolInscritoEnEvento(idEvento, rol);
+                String msg = "Aún no hay inscritos con este rol";
+
+                request.setAttribute("msg", msg);
+                request.setAttribute("listaIncritosxEvento", listaFiltrada);
+                request.setAttribute("idEvento", idEvento);
+                request.getRequestDispatcher("/pages/admin_act/ver_inscritos.jsp").forward(request,response);
+
+                break;
+
+            case "filtroInsNombreCodigo":
+                String busqueda = request.getParameter("busquedaNombreCodigo");
+                String idActividad3 = request.getParameter("idActividad");
+                ArrayList<Inscrito> listaInscritosBuscados = inscritosDao.buscarInscritosXnombreCodigo(idEvento, busqueda);
+
+                request.setAttribute("idEvento",idEvento);
+                request.setAttribute("idActividad",idActividad3);
+                request.setAttribute("listaIncritosxEvento", listaInscritosBuscados);
+                request.getRequestDispatcher("/pages/admin_act/ver_inscritos.jsp").forward(request,response);
                 break;
 
 

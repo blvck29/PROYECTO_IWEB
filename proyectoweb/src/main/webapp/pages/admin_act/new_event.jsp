@@ -119,7 +119,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
         <div class="row">
             <div class="col-lg-6 col-md-12" style="text-align: left; padding-top: 1.5em">
 
-                <form method="post" action="<%=request.getContextPath()%>/admin_act?action=crearEvento&idActividad=<%=idActividad%>">
+                <form method="post" action="<%=request.getContextPath()%>/admin_act?action=crearEvento&idActividad=<%=idActividad%>&subtituloP1=Fibra Tóxica">
                     <div class="card">
                         <div class="card-body" style="padding-left: 35px">
 
@@ -137,7 +137,37 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                             <div>
                                 <div class="form-group" style="padding-right: 1rem">
                                     <label  style="text-align: left;"><strong>Subtítulo del evento:</strong></label>
-                                    <input name="subtitulo" type="text" class="form-control" required>
+
+                                    <div class="row">
+
+                                        <div class="col-md-4">
+                                            <input  type="text" class="form-control" value="Fibra Tóxica" disabled readonly>
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <h1 style="font-size:26px; text-align: center">vs</h1>
+                                        </div>
+
+
+                                        <div class="col-md-6">
+                                            <select class="form-select" name="subtituloP2" aria-label="Default select example">
+                                                <option selected>Seleccionar equipo</option>
+                                                <option value=" vs Hormigón Armado">Hormigón Armado</option>
+                                                <option value=" vs Naranja Mecánica">Naranja Mecánica</option>
+                                                <option value=" vs Electroshock">Electroshock</option>
+                                                <option value=" vs Memoria Cache">Memoria Cache</option>
+                                                <option value=" vs Descontrol">Descontrol</option>
+                                                <option value=" vs PXO">PXO</option>
+                                                <option value=" vs Mafia Cuántica">Mafia Cuántica</option>
+                                            </select>
+                                        </div>
+
+
+
+                                    </div>
+
+
+
                                 </div>
                             </div>
 
