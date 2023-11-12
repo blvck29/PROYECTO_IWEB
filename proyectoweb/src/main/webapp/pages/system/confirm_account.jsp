@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<% String token = (String) request.getAttribute("token"); %>
 
 <!doctype html>
 <html lang="es">
@@ -7,11 +8,11 @@
     <meta http-equiv="Content-Type" content=text/html; charset=ISO-8859-1″>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="../../../css/style.css">
-    <link rel="stylesheet" href="../../../css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
 
     <script src="https://kit.fontawesome.com/a2dd6045c4.js" crossorigin="anonymous"></script>
-    <link rel="icon" type="image/jpg" href="../../../favicon.png" />
+    <link rel="icon" type="image/jpg" href="favicon.png"/>
     <title>Semana de Ingeniería 2023</title>
 </head>
 
@@ -25,6 +26,10 @@
         <div class="forgot-form">
             <form action="newpass.jsp" method="POST" id="token-formulario">
                 <h2>Ingrese su Token</h2>
+                <div class="forgot-back" style="padding-top: 10px">
+                    <label>Ingrese el token que recibió en su correo PUCP.</label>
+                </div>
+
                 <div class="otp-bx">
                     <input type="text" maxlength="1" class="space" required>
                     <input type="text" maxlength="1" class="space" required>
@@ -84,9 +89,6 @@
 
                 <a href="newpass.jsp"><input type="submit" value="Confirmar Token" class="forgot-button"></a>
 
-                <div class="forgot-back">
-                    <label><a href="../../../index.jsp">Cancelar</a></label>
-                </div>
 
             </form>
 

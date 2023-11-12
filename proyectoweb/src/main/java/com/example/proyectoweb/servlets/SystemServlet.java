@@ -1,14 +1,18 @@
 package com.example.proyectoweb.servlets;
 
 import com.example.proyectoweb.model.RandomTokenGenerator;
+import com.example.proyectoweb.model.daos.UsuariosDao;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 
+
 @WebServlet(name = "SystemServlet", value = "/login")
 public class SystemServlet extends HttpServlet {
+
+    UsuariosDao userDao = new UsuariosDao();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -19,6 +23,12 @@ public class SystemServlet extends HttpServlet {
             case "register":
                 request.getRequestDispatcher("pages/system/register.jsp").forward(request,response);
                 break;
+
+            case "confirm_account":
+                String token = RandomTokenGenerator.generator();
+                userDao.token(token,email);
+                request.setAttribute("token",token);
+                request.getRequestDispatcher("pages/system/confirm_account.jsp").forward(request,response);
 
             case "forgot_passwd":
                 request.getRequestDispatcher("pages/system/password_recovery/email.jsp").forward(request,response);
@@ -44,21 +54,21 @@ public class SystemServlet extends HttpServlet {
             case "confirm_register":
                 String names = request.getParameter("names");
                 String lastnames = request.getParameter("lastnames");
-                int code = Integer.parseInt(request.getParameter("code"));
+                int codigo = Integer.parseInt(request.getParameter("code"));
                 String email = request.getParameter("email");
                 boolean isEgresado = "condit".equals(request.getParameter("condition"));
                 String password = request.getParameter("password");
-                String passwordconf = request.getParameter("passwordconf");
 
-                String token = RandomTokenGenerator.generator();
+                if (userDao.verificarCorreo(email)){
+                    userDao.crearUsuario(names, lastnames, codigo, email, isEgresado, password);
 
-                // FUNCION PARA CREAR EL USUARIO CON ESTADO "PEN" + PASSWD HASHED-> PENDIENTE Y NO PODRÁ LOGUEARSE
-                // FUNCION PARA MANDAR EL CORREO CON EL TOKEN
+                    response.sendRedirect("login?action=confirm_account");
+                } else {
+                    //Falta el popup de "El correo ingresado ya está registrado"
+                    response.sendRedirect("login?action=register&error=bad_email");
+                }
 
 
-                // En esta vista se le solicita llenar el token generado
-                // Implementar logica para borrar los tokens cada cierto tiempo...
-                response.sendRedirect("confirm_account.jsp");
                 break;
 
             case "validate":

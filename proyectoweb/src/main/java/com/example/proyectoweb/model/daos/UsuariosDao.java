@@ -1,5 +1,6 @@
 package com.example.proyectoweb.model.daos;
 
+import com.example.proyectoweb.model.SHA256;
 import com.example.proyectoweb.model.beans.Usuario;
 
 import java.net.ConnectException;
@@ -246,6 +247,67 @@ public ArrayList<Usuario> listarDelegadosActDisponibles(){
 
         return listaUsuarios;
     }
+
+    public boolean verificarCorreo(String email){
+
+        ArrayList<String> listaCorreos = new ArrayList<>();
+
+        String sql = "SELECT correo_pucp FROM proyectoweb.usuarios where correo_pucp = ?;";
+
+        try(Connection conn = getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1,email);
+
+            try(ResultSet rs = pstmt.executeQuery()){
+
+                while (rs.next()){
+                    listaCorreos.add(rs.getString(1));
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return listaCorreos.isEmpty();
+    }
+
+    public void token(String token, String email){
+
+    }
+
+
+    public void crearUsuario(String names, String lastnames, int codigo, String email, boolean isEgresado, String passwordStr){
+
+        String sql = "INSERT INTO `proyectoweb`.`usuarios` (`idRolSistema`, `idEstado`, `nombres`, `apellidos`, `codigo`, `correo_pucp`, `contrasena`, `idRolAcademico`) VALUES ('USER', 'PEN', ?, ?, ?, ?, ?, ?);";
+
+        String passworHash = SHA256.cipherPassword(passwordStr);
+
+        String cond = "UNSET";
+
+        if(isEgresado){
+            cond = "GRADUAT";
+        } else {
+            cond = "STUDENT";
+        }
+
+        try(Connection conn = getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1,names);
+            pstmt.setString(2, lastnames);
+            pstmt.setString(3, String.valueOf(codigo));
+            pstmt.setString(4, email);
+            pstmt.setString(5,passworHash);
+            pstmt.setString(6, cond);
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     public void editarEstadoUsuario(String idUsuario, String nuevoEstado){
 
