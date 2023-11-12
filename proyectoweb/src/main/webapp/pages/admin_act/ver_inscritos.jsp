@@ -5,6 +5,8 @@
 
 <% ArrayList<Inscrito> listaInscritos = (ArrayList<Inscrito>) request.getAttribute("listaIncritosxEvento");%>
 <% String idActividad = (String) request.getAttribute("idActividad"); %>
+<% String idEvento = (String) request.getAttribute("idEvento"); %>
+<% String msg = (String) request.getAttribute("msg"); %>
 
 <!doctype html>
 <html lang="es">
@@ -85,32 +87,34 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 <div class="container">
     <div class="row">
 
-        <div class="col-md-11">
+        <div class="col-md-10">
 
-            <form method="post" action="<%=request.getContextPath()%>">
+            <form method="post" action="<%=request.getContextPath()%>/admin_act?action=filtroInsNombreCodigo&idEvento=<%=idEvento%>&idActividad=<%=idActividad%>">
 
                 <div class="custom-form-group">
                     <input type="text" class="form-control" name="busquedaNombreCodigo" placeholder="Buscar por nombre o código" style="width: 120%">
                 </div>
                 <button type="submit" class="btn btn-primary">Aplicar filtros</button>
+                <a class="btn btn-primary" href="<%=request.getContextPath()%>/admin_act?action=verInscritos&idEvento=<%=idEvento%>" role="button">Borrar filtros</a>
 
-                <a class="btn btn-primary" href="<%=request.getContextPath()%>/admin_act?action=verInscritos" role="button">Borrar filtros</a>
             </form>
+
+
         </div>
 
-        <div class="col-md-1" >
+        <div class="col-md-2" >
             <div class="btn-group">
                 <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                    ROL
+                    ROL EN EL EVENTO
                 </button>
                 <ul class="dropdown-menu dropdown-menu-lg-end">
-                    <form method="post" action="<%=request.getContextPath()%>">
+                    <form method="post" action="<%=request.getContextPath()%>/admin_act?action=filtroInscritosRol&idEvento=<%=idEvento%>&rol=MEMBER">
                         <li><button class="dropdown-item" type="submit">Participantes</button></li>
                     </form>
-                    <form method="post" action="<%=request.getContextPath()%>">
+                    <form method="post" action="<%=request.getContextPath()%>/admin_act?action=filtroInscritosRol&idEvento=<%=idEvento%>&rol=BARRA">
                         <li><button class="dropdown-item" type="submit">Barra</button></li>
                     </form>
-                    <form method="post" action="<%=request.getContextPath()%>/admin_gen?action=home&ac=busquedaPorEstado&id=BAN">
+                    <form method="post" action="<%=request.getContextPath()%>/admin_act?action=filtroInscritosRol&idEvento=<%=idEvento%>&rol=UNSET">
                         <li><button class="dropdown-item" type="submit">Sin Asignar</button></li>
                     </form>
                 </ul>
@@ -182,7 +186,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
     </table>
 
     <%
-        if(listaInscritos.size() == 0){
+        if(listaInscritos.isEmpty() && msg == null){
     %>
     <br>
     <br>
@@ -190,9 +194,14 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
     <h2 style="text-align: center;">Aún no hay inscritos en este evento</h2>
     <br>
     <br>
-    <%
-        }else{};
-    %>
+    <%}else if (listaInscritos.isEmpty() && msg!= null){%>
+    <br>
+    <br>
+    <br>
+    <h2 style="text-align: center;"><%=msg%></h2>
+    <br>
+    <br>
+    <%}; %>
     <br>
 
     <div>
