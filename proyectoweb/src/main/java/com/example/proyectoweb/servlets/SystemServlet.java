@@ -27,7 +27,6 @@ public class SystemServlet extends HttpServlet {
                 break;
 
             case "confirm_account":
-
                 request.getRequestDispatcher("pages/system/confirm_account.jsp").forward(request,response);
 
             case "forgot_passwd":
@@ -62,17 +61,11 @@ public class SystemServlet extends HttpServlet {
                 if (userDao.verificarCorreo(email)){
                     userDao.crearUsuario(names, lastnames, codigo, email, isEgresado, password);
                     tokenDao.generateToken(email);
-
-                    String token = tokenDao.getToken(email);
-
-                    request.setAttribute("token",a);
                     response.sendRedirect("login?action=confirm_account");
                 } else {
                     //Falta el popup de "El correo ingresado ya está registrado"
                     response.sendRedirect("login?action=register&error=bad_email");
                 }
-
-
                 break;
 
             case "validate":
