@@ -19,14 +19,11 @@ public class TokenDao extends DaoBase{
 
             pstmt.setString(1, idUsuario);
             pstmt.setString(2, token);
-
-
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
     }
 
 
