@@ -61,8 +61,9 @@ public class SystemServlet extends HttpServlet {
 
                 if (userDao.verificarCorreo(email)){
                     userDao.crearUsuario(names, lastnames, codigo, email, isEgresado, password);
-
                     tokenDao.generateToken(email);
+
+                    String token = tokenDao.getToken(email);
 
                     request.setAttribute("token",a);
                     response.sendRedirect("login?action=confirm_account");
