@@ -268,9 +268,9 @@ public ArrayList<Usuario> listarDelegadosActDisponibles(){
         return listaUsuarios;
     }
 
-    public boolean verificarCorreo(String email){
+    public String verificarCorreo(String email){
 
-        ArrayList<String> listaCorreos = new ArrayList<>();
+        String correo = null;
 
         String sql = "SELECT correo_pucp FROM proyectoweb.usuarios where correo_pucp = ?;";
 
@@ -282,7 +282,7 @@ public ArrayList<Usuario> listarDelegadosActDisponibles(){
             try(ResultSet rs = pstmt.executeQuery()){
 
                 while (rs.next()){
-                    listaCorreos.add(rs.getString(1));
+                    correo = rs.getString(1);
                 }
             }
 
@@ -290,11 +290,33 @@ public ArrayList<Usuario> listarDelegadosActDisponibles(){
             throw new RuntimeException(e);
         }
 
-        return listaCorreos.isEmpty();
+        return correo;
     }
 
-    public void token(String token, String email){
 
+    public String verificarCodigo(String codigo){
+
+        String code = null;
+
+        String sql = "SELECT codigo FROM proyectoweb.usuarios where codigo = ?;";
+
+        try(Connection conn = getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1,codigo);
+
+            try(ResultSet rs = pstmt.executeQuery()){
+
+                while (rs.next()){
+                    code = rs.getString(1);
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return code;
     }
 
 

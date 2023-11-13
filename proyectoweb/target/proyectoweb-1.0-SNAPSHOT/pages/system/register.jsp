@@ -1,11 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<% String token = (String) request.getAttribute("token"); %>
-
-<!doctype html>
 <html lang="es">
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Type" content=text/html; charset=ISO-8859-1″>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="css/style.css">
@@ -16,92 +13,86 @@
     <title>Semana de Ingeniería 2023</title>
 </head>
 
+
 <body>
 
 <section class="index">
 
-    <div class="forgot-container">
+    <div class="register-container">
 
-        <div class="forgot-form">
-            <form action="newpass.jsp" method="POST" id="token-formulario">
-                <h2>Ingrese su Token</h2>
-                <div class="forgot-back" style="padding-top: 10px">
-                    <label>Ingrese el token que recibió en su correo PUCP.</label>
+        <div class="register-form">
+            <form action="<%=request.getContextPath()%>/login?action=confirm_register" method="POST" id="register-formulario" onsubmit="return validateForm()">
+                <h2>Registrarse</h2>
+                <div class="register-input">
+                    <input type="text" id="names" name="names" required>
+                    <label for="names">Nombres</label>
+                </div>
+                <div class="register-input">
+                    <input type="text" id="lastnames" name="lastnames" required>
+                    <label for="lastnames">Apellidos</label>
+                </div>
+                <div class="register-input">
+                    <input type="number" id="code" name="code" required>
+                    <label for="code">Código PUCP</label>
+                </div>
+                <div class="register-input">
+                    <input type="text email" id="email" name="email" required>
+                    <label for="email">Correo PUCP <t class="t-light">(codigo@pucp.edu.pe)</t></label>
+                </div>
+                <div class="register-checkbox">
+                    <input type="checkbox" id="condition" name="condition" value="condit">
+                    <label for="condition">Soy egresado PUCP</label>
+                </div>
+                <div class="register-input">
+                    <input type="password" id="password" name="password" required>
+                    <label for="password">Contraseña <t class="t-light">(mínimo 8 caracteres)</t></label>
+                </div>
+                <div class="register-input">
+                    <input type="password" id="passwordconf" name="passwordconf" required>
+                    <label for="passwordconf">Confirmar contraseña</label>
                 </div>
 
-                <div class="otp-bx">
-                    <input type="text" maxlength="1" class="space" required name="digit1">
-                    <input type="text" maxlength="1" class="space" required name="digit2">
-                    <input type="text" maxlength="1" class="space" required name="digit3">
-                    <input type="text" maxlength="1" class="space" required name="digit4">
-                    <input type="text" maxlength="1" class="space" required name="digit5">
-                    <input type="text" maxlength="1" class="space" required name="digit6">
+                <input type="submit" value="Registrarse" class="register-button">
+
+                <div class="register-back">
+                    <label><a href="<%=request.getContextPath()%>/login">Regresar</a></label>
+
                 </div>
-
-                <script>
-                    const inputs = document.querySelectorAll(".otp-bx input");
-                    const submitButton = document.querySelector("input[type=submit]");
-
-                    inputs.forEach((input, index) => {
-                        input.dataset.index = index;
-                        input.addEventListener("paste", handleOtpPaste);
-                        input.addEventListener("keyup", handleOtp);
-                    });
-
-                    function handleOtpPaste(e) {
-                        const data = e.clipboardData.getData("text");
-                        const value = data.split("");
-
-                        if (value.length === inputs.length) {
-                            inputs.forEach((input, index) => (input.value = value[index]));
-                        }
-                    }
-
-                    function handleOtp(e) {
-                        const input = e.target;
-                        let value = input.value;
-                        input.value = "";
-                        input.value = value ? value[0] : "";
-
-                        let fieldIndex = parseInt(input.dataset.index);
-                        if (value.length > 0 && fieldIndex < inputs.length - 1) {
-                            input.nextElementSibling.focus();
-                        }
-
-                        if (e.key === "Backspace" && fieldIndex > 0) {
-                            input.previousElementSibling.focus();
-                        }
-
-                        if (fieldIndex === inputs.length - 1) {
-                            let enteredToken = "";
-                            inputs.forEach((input) => {
-                                enteredToken += input.value;
-                            });
-
-                            // Comparar el token introducido con el token recibido desde el servlet
-                            if (enteredToken === "<%= token %>") {
-                                console.log("Tokens coinciden. Puedes enviar el formulario.");
-                                submitButton.removeAttribute("disabled");
-                            } else {
-                                console.log("Tokens no coinciden. No puedes enviar el formulario.");
-                                submitButton.setAttribute("disabled", "disabled");
-                            }
-                        }
-                    }
-                </script>
-
-                <input type="submit" value="Confirmar Token" class="forgot-button" disabled>
 
             </form>
+
         </div>
     </div>
 
-    <div class="container-fluid footer-container">
-        <p>© Pontificia Universidad Católica del Perú - Todos los derechos reservados</p>
-    </div>
+    <div class="container-fluid footer-container"><p>© Pontificia Universidad Católica del Perú - Todos los derechos reservados</p></div>
 
 </section>
 
-</body>
+<script>
+    function validateForm() {
+        var password = document.getElementById("password").value;
+        var passwordconf = document.getElementById("passwordconf").value;
+        var email = document.getElementById("email").value;
+        var code = document.getElementById("code").value;
+        // Validar formato de correo electrónico
+        var emailRegex = /^[A-Za-z0-9._%+-]+@pucp\.edu\.pe$/;
+        if (!emailRegex.test(email)) {
+            alert("Ingrese un correo electrónico válido de PUCP (ejemplo@pucp.edu.pe).");
+            return false;
+        }
+        // Validar que el código PUCP tenga como máximo 8 números
+        if (!(/^\d{1,8}$/.test(code))) {
+            alert("Ingrese un código PUCP válido de hasta 8 números.");
+            return false;
+        }
+        // Validar coincidencia de contraseñas
+        if (password !== passwordconf) {
+            alert("Las contraseñas no coinciden. Por favor, inténtalo de nuevo.");
+            return false;
+        }
+        return true;
+    }
+</script>
 
+</body>
 </html>

@@ -5,7 +5,7 @@
 <html lang="es">
 
 <head>
-    <meta http-equiv="Content-Type" content=text/html; charset=ISO-8859-1″>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="css/style.css">
@@ -15,7 +15,6 @@
     <link rel="icon" type="image/jpg" href="favicon.png"/>
     <title>Semana de Ingeniería 2023</title>
 </head>
-
 
 <body>
 
@@ -31,18 +30,17 @@
                 </div>
 
                 <div class="otp-bx">
-                    <input type="text" maxlength="1" class="space" required>
-                    <input type="text" maxlength="1" class="space" required>
-                    <input type="text" maxlength="1" class="space" required>
-                    <input type="text" maxlength="1" class="space" required>
-                    <input type="text" maxlength="1" class="space" required>
-                    <input type="text" maxlength="1" class="space" required>
+                    <input type="text" maxlength="1" class="space" required name="digit1">
+                    <input type="text" maxlength="1" class="space" required name="digit2">
+                    <input type="text" maxlength="1" class="space" required name="digit3">
+                    <input type="text" maxlength="1" class="space" required name="digit4">
+                    <input type="text" maxlength="1" class="space" required name="digit5">
+                    <input type="text" maxlength="1" class="space" required name="digit6">
                 </div>
 
-
                 <script>
-
                     const inputs = document.querySelectorAll(".otp-bx input");
+                    const submitButton = document.querySelector("input[type=submit]");
 
                     inputs.forEach((input, index) => {
                         input.dataset.index = index;
@@ -75,23 +73,26 @@
                         }
 
                         if (fieldIndex === inputs.length - 1) {
-                            console.log("Comprobando Token...!");
-                            let otp = "";
+                            let enteredToken = "";
                             inputs.forEach((input) => {
-                                otp += input.value;
+                                enteredToken += input.value;
                             });
-                            console.log(otp);
+
+                            // Comparar el token introducido con el token recibido desde el servlet
+                            if (enteredToken === "<%= token %>") {
+                                console.log("Tokens coinciden. Puedes enviar el formulario.");
+                                submitButton.removeAttribute("disabled");
+                            } else {
+                                console.log("Tokens no coinciden. No puedes enviar el formulario.");
+                                submitButton.setAttribute("disabled", "disabled");
+                            }
                         }
                     }
-
                 </script>
 
-
-                <a href="newpass.jsp"><input type="submit" value="Confirmar Token" class="forgot-button"></a>
-
+                <input type="submit" value="Confirmar Token" class="forgot-button" disabled>
 
             </form>
-
         </div>
     </div>
 
@@ -100,7 +101,6 @@
     </div>
 
 </section>
-
 
 </body>
 

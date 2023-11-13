@@ -8,6 +8,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 @WebServlet(name = "SystemServlet", value = "/login")
@@ -58,13 +59,16 @@ public class SystemServlet extends HttpServlet {
                 boolean isEgresado = "condit".equals(request.getParameter("condition"));
                 String password = request.getParameter("password");
 
-                if (userDao.verificarCorreo(email)){
+                String correoDB =  userDao.verificarCorreo(email);
+                String codigoDB = userDao.verificarCodigo(String.valueOf(codigo));
+
+                if (correoDB != null && codigoDB != null){
+                    //Falta el popup de "El correo o el codigo ingresado ya está registrado"
+                    response.sendRedirect("login?action=register&error=no_valid");
+                } else {
                     userDao.crearUsuario(names, lastnames, codigo, email, isEgresado, password);
                     tokenDao.generateToken(email);
                     response.sendRedirect("login?action=confirm_account");
-                } else {
-                    //Falta el popup de "El correo ingresado ya está registrado"
-                    response.sendRedirect("login?action=register&error=bad_email");
                 }
                 break;
 
