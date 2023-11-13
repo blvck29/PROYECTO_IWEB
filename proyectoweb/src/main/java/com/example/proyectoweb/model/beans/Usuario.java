@@ -6,7 +6,6 @@ public class Usuario {
 
     private int idUsuario;
     private String idRolSistema;
-    private String idRolAcademico;
     private String idEstado;
     private String nombres;
     private String apellidos;
@@ -14,9 +13,9 @@ public class Usuario {
     private String correo;
     private String contrasena;
     private String fechaCreacion;
-    private String ultimoLogin;
     private String cantEventsInscrito;
-    private String motivoRechazo;
+    private String idRolAcademico;
+    private int kitTeleco;
 
     public int getIdUsuario() {
         return idUsuario;
@@ -98,14 +97,6 @@ public class Usuario {
         this.fechaCreacion = fechaCreacion;
     }
 
-    public String getUltimoLogin() {
-        return ultimoLogin;
-    }
-
-    public void setUltimoLogin(String ultimoLogin) {
-        this.ultimoLogin = ultimoLogin;
-    }
-
     public String getCantEventsInscrito() {
         return cantEventsInscrito;
     }
@@ -114,11 +105,11 @@ public class Usuario {
         this.cantEventsInscrito = cantEventsInscrito;
     }
 
-    public String getMotivoRechazo() {
-        return motivoRechazo;
+    public int getKitTeleco() {
+        return kitTeleco;
     }
 
-    public void setMotivoRechazo(String motivoRechazo) {
-        this.motivoRechazo = motivoRechazo;
+    public void setKitTeleco(int kitTeleco) {
+        this.kitTeleco = kitTeleco;
     }
 }
