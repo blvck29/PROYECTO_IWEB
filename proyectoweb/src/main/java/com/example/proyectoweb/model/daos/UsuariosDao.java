@@ -33,11 +33,9 @@ public class UsuariosDao extends DaoBase{
                 usuario.setCorreo(rs.getString(7));
                 // Sin contraseña por seguridad.
                 usuario.setFechaCreacion(rs.getString(9));
-                usuario.setUltimoLogin(rs.getString(10));
-                usuario.setCantEventsInscrito(rs.getString(11));
-                usuario.setMotivoRechazo(rs.getString(12));
-                usuario.setIdRolAcademico(rs.getString(13));
-                usuario.setKitTeleco(rs.getInt(14));
+                usuario.setCantEventsInscrito(rs.getString(10));
+                usuario.setIdRolAcademico(rs.getString(11));
+                usuario.setKitTeleco(rs.getInt(12));
 
                 listaUsuarios.add(usuario);
 
@@ -82,11 +80,9 @@ public class UsuariosDao extends DaoBase{
                     usuario.setCorreo(rs.getString(7));
                     // Sin contraseña por seguridad.
                     usuario.setFechaCreacion(rs.getString(9));
-                    usuario.setUltimoLogin(rs.getString(10));
-                    usuario.setCantEventsInscrito(rs.getString(11));
-                    usuario.setMotivoRechazo(rs.getString(12));
-                    usuario.setIdRolAcademico(rs.getString(13));
-                    usuario.setKitTeleco(rs.getInt(14));
+                    usuario.setCantEventsInscrito(rs.getString(10));
+                    usuario.setIdRolAcademico(rs.getString(11));
+                    usuario.setKitTeleco(rs.getInt(12));
 
 
                     listaUsuarios.add(usuario);
@@ -133,11 +129,9 @@ public class UsuariosDao extends DaoBase{
                     usuario.setCorreo(rs.getString(7));
                     // Sin contraseña por seguridad.
                     usuario.setFechaCreacion(rs.getString(9));
-                    usuario.setUltimoLogin(rs.getString(10));
-                    usuario.setCantEventsInscrito(rs.getString(11));
-                    usuario.setMotivoRechazo(rs.getString(12));
-                    usuario.setIdRolAcademico(rs.getString(13));
-                    usuario.setKitTeleco(rs.getInt(14));
+                    usuario.setCantEventsInscrito(rs.getString(10));
+                    usuario.setIdRolAcademico(rs.getString(11));
+                    usuario.setKitTeleco(rs.getInt(12));
 
                 }
 
@@ -181,11 +175,9 @@ public class UsuariosDao extends DaoBase{
                     usuario.setCorreo(rs.getString(7));
                     // Sin contraseña por seguridad.
                     usuario.setFechaCreacion(rs.getString(9));
-                    usuario.setUltimoLogin(rs.getString(10));
-                    usuario.setCantEventsInscrito(rs.getString(11));
-                    usuario.setMotivoRechazo(rs.getString(12));
-                    usuario.setIdRolAcademico(rs.getString(13));
-                    usuario.setKitTeleco(rs.getInt(14));
+                    usuario.setCantEventsInscrito(rs.getString(10));
+                    usuario.setIdRolAcademico(rs.getString(11));
+                    usuario.setKitTeleco(rs.getInt(12));
 
                 }
 
@@ -209,6 +201,7 @@ public ArrayList<Usuario> listarDelegadosActDisponibles(){
         ResultSet rs = stmt.executeQuery(sql)) {
 
             while(rs.next()){
+
                 Usuario usuario = new Usuario();
                 usuario.setIdUsuario(rs.getInt(1));
                 usuario.setIdRolSistema(rs.getString(2));
@@ -219,11 +212,9 @@ public ArrayList<Usuario> listarDelegadosActDisponibles(){
                 usuario.setCorreo(rs.getString(7));
                 // Sin contraseña por seguridad.
                 usuario.setFechaCreacion(rs.getString(9));
-                usuario.setUltimoLogin(rs.getString(10));
-                usuario.setCantEventsInscrito(rs.getString(11));
-                usuario.setMotivoRechazo(rs.getString(12));
-                usuario.setIdRolAcademico(rs.getString(13));
-                usuario.setKitTeleco(rs.getInt(14));
+                usuario.setCantEventsInscrito(rs.getString(10));
+                usuario.setIdRolAcademico(rs.getString(11));
+                usuario.setKitTeleco(rs.getInt(12));
 
                 listaUsuarios.add(usuario);
             }
@@ -262,11 +253,9 @@ public ArrayList<Usuario> listarDelegadosActDisponibles(){
                         usuario.setCorreo(rs.getString(7));
                         // Sin contraseña por seguridad.
                         usuario.setFechaCreacion(rs.getString(9));
-                        usuario.setUltimoLogin(rs.getString(10));
-                        usuario.setCantEventsInscrito(rs.getString(11));
-                        usuario.setMotivoRechazo(rs.getString(12));
-                        usuario.setIdRolAcademico(rs.getString(13));
-                        usuario.setKitTeleco(rs.getInt(14));
+                        usuario.setCantEventsInscrito(rs.getString(10));
+                        usuario.setIdRolAcademico(rs.getString(11));
+                        usuario.setKitTeleco(rs.getInt(12));
 
 
                         listaUsuarios.add(usuario);

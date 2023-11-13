@@ -64,7 +64,7 @@ public class SystemServlet extends HttpServlet {
 
                     tokenDao.generateToken(email);
 
-                    request.setAttribute("token",token);
+                    request.setAttribute("token",a);
                     response.sendRedirect("login?action=confirm_account");
                 } else {
                     //Falta el popup de "El correo ingresado ya está registrado"
