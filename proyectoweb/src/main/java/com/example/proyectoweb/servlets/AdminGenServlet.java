@@ -118,7 +118,7 @@ public class AdminGenServlet extends HttpServlet {
                         break;
 
 
-                    case "ver":
+                    case "ver": //Editar
                         String idDonante = request.getParameter("idDonante");
                         Donaciones donanteBuscado = donacionesDao.buscarPorIdDonante(idDonante);
 
@@ -243,11 +243,29 @@ public class AdminGenServlet extends HttpServlet {
                         break;
 
                     case "filtrarComprobados":
-                        String comprobacion = request.getParameter("id");
-                        ArrayList<Donaciones> listaDonacionesPorComprobacion = donacionesDao.listarComprobados(comprobacion);
+                        String comprobacionId = request.getParameter("id");
+                        ArrayList<Donaciones> listaDonacionesPorComprobacion = donacionesDao.listarComprobados(comprobacionId);
 
                         request.setAttribute("listaDonaciones",listaDonacionesPorComprobacion);
                         request.getRequestDispatcher("pages/super_admin/lista_donaciones.jsp").forward(request,response);
+
+                        break;
+                    case "editarDonacion":
+
+                        String donacionId = request.getParameter("idDonacion");
+                        String montoStr = request.getParameter("monto");
+                        String fechaDonacion = request.getParameter("fecha-donacion");
+                        String horaDonacion = request.getParameter("hora-donacion");
+                        String estadoDonacion = request.getParameter("estado");
+
+                        String montoStr1 = montoStr.substring(3);
+
+                        double montoInt = Double.parseDouble(montoStr1);
+
+                        int estadoDonacionInt = Integer.parseInt(estadoDonacion);
+
+                        donacionesDao.actualizarDonacion(Integer.parseInt(donacionId), montoInt, fechaDonacion, horaDonacion, estadoDonacionInt);
+                        response.sendRedirect(request.getContextPath() + "/admin_gen?action=donations");
 
                         break;
                 }

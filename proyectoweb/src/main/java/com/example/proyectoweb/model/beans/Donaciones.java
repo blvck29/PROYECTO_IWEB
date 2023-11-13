@@ -9,10 +9,18 @@ public class Donaciones {
     private String apellidos;
     private Blob comprobante;
     private double monto;
-    private boolean comprobado;
+    private int comprobado;
     private String idRolAcademico;
 
     private String fechaDonacion;
+
+    public int getComprobado() {
+        return comprobado;
+    }
+
+    public void setComprobado(int comprobado) {
+        this.comprobado = comprobado;
+    }
 
     public int getIdUsuario() {
         return idUsuario;
@@ -60,14 +68,6 @@ public class Donaciones {
 
     public void setMonto(double monto) {
         this.monto = monto;
-    }
-
-    public boolean isComprobado() {
-        return comprobado;
-    }
-
-    public void setComprobado(boolean comprobado) {
-        this.comprobado = comprobado;
     }
 
     public String getFechaDonacion() {

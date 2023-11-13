@@ -1,3 +1,4 @@
+
 package com.example.proyectoweb.model.daos;
 
 import com.example.proyectoweb.model.beans.Donaciones;
@@ -27,7 +28,7 @@ public class DonacionesDao extends DaoBase{
                 donacionAlumno.setApellidos(rs.getString(4));
                 donacionAlumno.setComprobante((Blob) rs.getBlob(5));
                 donacionAlumno.setMonto(rs.getDouble(6));
-                donacionAlumno.setComprobado(rs.getBoolean(7));
+                donacionAlumno.setComprobado(rs.getInt(7)); // Ahora devuelve un INT
                 donacionAlumno.setFechaDonacion(rs.getString(8));
                 donacionAlumno.setIdRolAcademico(rs.getString(9));
 
@@ -71,7 +72,7 @@ public class DonacionesDao extends DaoBase{
                     donacion.setApellidos(rs.getString(4));
                     donacion.setComprobante((Blob) rs.getBlob(5));
                     donacion.setMonto(rs.getDouble(6));
-                    donacion.setComprobado(rs.getBoolean(7));
+                    donacion.setComprobado(rs.getInt(7)); // Devuelve int
                     donacion.setFechaDonacion(rs.getString(8));
                     donacion.setIdRolAcademico(rs.getString(9));
 
@@ -117,7 +118,7 @@ public class DonacionesDao extends DaoBase{
                     donacion.setApellidos(rs.getString(4));
                     donacion.setComprobante((Blob) rs.getBlob(5));
                     donacion.setMonto(rs.getDouble(6));
-                    donacion.setComprobado(rs.getBoolean(7));
+                    donacion.setComprobado(rs.getInt(7)); // Devuelve int
                     donacion.setFechaDonacion(rs.getString(8));
                     donacion.setIdRolAcademico(rs.getString(9));
                 }
@@ -131,7 +132,7 @@ public class DonacionesDao extends DaoBase{
     }
 
 
-    public ArrayList<Donaciones> listarComprobados(String comprobacion){
+    public ArrayList<Donaciones> listarComprobados(String comprobacionId){
         ArrayList<Donaciones> listaDonaciones = new ArrayList();
 
         //Conexión a la DB
@@ -145,7 +146,7 @@ public class DonacionesDao extends DaoBase{
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)){
 
-            pstmt.setString(1, comprobacion);
+            pstmt.setString(1, comprobacionId);
 
             try(ResultSet rs = pstmt.executeQuery()){
 
@@ -158,7 +159,7 @@ public class DonacionesDao extends DaoBase{
                     donacion.setApellidos(rs.getString(4));
                     donacion.setComprobante((Blob) rs.getBlob(5));
                     donacion.setMonto(rs.getDouble(6));
-                    donacion.setComprobado(rs.getBoolean(7));
+                    donacion.setComprobado(rs.getInt(7)); // devuelve int
                     donacion.setFechaDonacion(rs.getString(8));
                     donacion.setIdRolAcademico(rs.getString(9));
 
@@ -174,5 +175,32 @@ public class DonacionesDao extends DaoBase{
         return listaDonaciones;
 
     }
+
+    public void actualizarDonacion(int donacionId, double monto, String fecha, String hora, int estadoDonacion){
+
+        String sql ="update registro_donaciones set monto= ? , fecha = ? , comprobado = ? where idRegistro_Donaciones = ? ";
+
+        try(Connection conn = getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setDouble(1,monto);
+
+            String fechaHora = fecha + " " + hora; //Se coloca asi para poder tener compatibilidad con la db
+            pstmt.setString(2,fechaHora);
+            pstmt.setInt(3,estadoDonacion);
+            pstmt.setInt(4,donacionId);
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
+
+
+
+
+
 }
 
