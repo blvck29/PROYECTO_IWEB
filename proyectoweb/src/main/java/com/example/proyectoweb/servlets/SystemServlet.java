@@ -25,9 +25,7 @@ public class SystemServlet extends HttpServlet {
                 break;
 
             case "confirm_account":
-                String token = RandomTokenGenerator.generator();
-                userDao.token(token,email);
-                request.setAttribute("token",token);
+
                 request.getRequestDispatcher("pages/system/confirm_account.jsp").forward(request,response);
 
             case "forgot_passwd":
@@ -61,7 +59,9 @@ public class SystemServlet extends HttpServlet {
 
                 if (userDao.verificarCorreo(email)){
                     userDao.crearUsuario(names, lastnames, codigo, email, isEgresado, password);
-
+                    String token = RandomTokenGenerator.generator();
+                    userDao.token(token,email);
+                    request.setAttribute("token",token);
                     response.sendRedirect("login?action=confirm_account");
                 } else {
                     //Falta el popup de "El correo ingresado ya está registrado"
