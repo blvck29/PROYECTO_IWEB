@@ -100,93 +100,129 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
     <div style="margin-bottom: 40px"></div>
 
     <div class="container">
+        <form method="POST" action="<%=request.getContextPath()%>/admin_gen?action=donations&ac=editarDonacion" class="col-md-6 col-lg-6">
 
-        <div class="row">
-            <div class="col-lg-6 col-md-12" style="text-align: left; padding-top: 1.5em">
-                <div class="card">
-                    <div class="card-body" style="padding-left: 35px">
 
-                        <div style="padding-top: 1.5em;"></div>
+            <div class="row">
+                <div class="col-lg-6 col-md-12" style="text-align: left; padding-top: 1.5em">
+                    <div class="card">
+                        <div class="card-body" style="padding-left: 35px">
 
-                        <div>
-                            <div class="form-group" style="padding-right: 1rem">
-                                <label  style="text-align: left;"><strong>Nombre/Apellido del donante:</strong></label>
-                                <input name="titulo" type="text" class="form-control" id="nombre" value="<%=donante.getNombres() + " "+donante.getApellidos()%>" disabled readonly>
+                            <input name="idDonacion" type="hidden" class="form-control" id="idDonacion" value="<%=donante.getIdDonaciones()%>">
+
+                            <div style="padding-top: 1.5em;"></div>
+
+                            <div>
+                                <div class="form-group" style="padding-right: 1rem">
+                                    <label  style="text-align: left;"><strong>Nombre/Apellido del donante:</strong></label>
+                                    <input name="titulo" type="text" class="form-control" id="nombre" value="<%=donante.getNombres() + " "+donante.getApellidos()%>" disabled readonly>
+                                </div>
                             </div>
-                        </div>
 
-                        <div style="padding-top: 1.5em;"></div>
+                            <div style="padding-top: 1.5em;"></div>
 
-                        <% String rolAcademico ="---";
-                            switch(donante.getIdRolAcademico()){
-                                case "STUDENT":
-                                    rolAcademico = "Estudiante";
-                                    break;
-                                case "GRADUAT":
-                                    rolAcademico = "Egresado";
-                                    break;
-                                default:
-                                    rolAcademico = "---";
-                            }%>
+                            <% String rolAcademico ="---";
+                                switch(donante.getIdRolAcademico()){
+                                    case "STUDENT":
+                                        rolAcademico = "Estudiante";
+                                        break;
+                                    case "GRADUAT":
+                                        rolAcademico = "Egresado";
+                                        break;
+                                    default:
+                                        rolAcademico = "---";
+                                }%>
 
-                        <div>
-                            <div class="form-group" style="padding-right: 1rem">
-                                <label  style="text-align: left;"><strong>Rol Académico:</strong></label>
-                                <input name="subtitulo" type="text" class="form-control" id="nombre" value="<%=rolAcademico%>" disabled readonly>
+                            <div>
+                                <div class="form-group" style="padding-right: 1rem">
+                                    <label  style="text-align: left;"><strong>Rol Académico:</strong></label>
+                                    <input name="subtitulo" type="text" class="form-control" id="nombre" value="<%=rolAcademico%>" disabled readonly>
+                                </div>
                             </div>
+
+                            <div style="padding-top: 1.5em;"></div>
+
+                            <div class="form-group" style="padding-right: 1rem">
+                                <label style="text-align: left;"><strong>Monto Donado:</strong></label>
+                                <input name="monto" type="text" class="form-control" id="monto" value="<%="S/." + donante.getMonto()%>">
+                            </div>
+
+                            <div style="padding-top: 1.5em;"></div>
+
+                            <%  String[] fechaHora = donante.getFechaDonacion().split(" ");
+                                String fecha = fechaHora[0];
+                                String hora = fechaHora[1];
+                                String[] horaHMS = hora.split(":");
+                                String horaMostrar = horaHMS[0] + ":" + horaHMS[1];
+                            %>
+
+                            <div class="form-group" style="padding-right: 1rem">
+                                <label  style="text-align: left;"><strong>Fecha de Donacion:</strong></label>
+                                <input name="fecha-donacion" type="text" class="form-control" id="fecha-donacion" value="<%=fecha%>" >
+                            </div>
+
+                            <div style="padding-top: 1.5em;"></div>
+
+                            <div class="form-group" style="padding-right: 1rem">
+                                <label  style="text-align: left;"><strong>Hora de Donacion:</strong></label>
+                                <input name="hora-donacion" type="text" class="form-control" id="hora-donacion" value="<%=horaMostrar%>" >
+                            </div>
+
+                            <div style="padding-top: 1.5em;"></div>
+
+                            <%
+                                switch (donante.getComprobado()){
+                                    case (0):
+                            %>
+
+                            <div class="radio-buttons">
+                                <label style="padding-right: 30px"><input type="radio" name="estado"  value="1" required> Comprobar <br></label>
+                                <label><input type="radio" name="estado"  value="2" required> Rechazar </label>
+                            </div>
+                            <%
+                                    break;
+                                case (1):
+                            %>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="estado"  value="2" required>
+                                <label class="form-check-label" for="exampleRadios2">
+                                    Rechazar
+                                </label>
+                            </div>
+
+                            <%
+                                    break;
+                                case (2):
+                            %>
+                            <div class="radio-buttons">
+                                <label style="padding-right: 30px"><input type="radio" name="estado" value="1" required> Comprobar <br></label>
+                            </div>
+                            <%
+                                        break;
+                                }
+                            %>
+
                         </div>
+                    </div>
 
-                        <div style="padding-top: 1.5em;"></div>
-
-                        <div class="form-group" style="padding-right: 1rem">
-                            <label style="text-align: left;"><strong>Monto Donado:</strong></label>
-                            <input name="hora" type="text" class="form-control" id="fecha-evento" value="<%="S/." + donante.getMonto()%>" disabled readonly>
+                    <div class="uk-flex uk-flex-center uk-margin-top">
+                        <div class="uk-flex uk-flex-center">
+                            <a id="redirect-button" class="btn btn-primary m-2" href="<%=request.getContextPath()%>/admin_gen?action=donations">Regresar</a>
+                            <button type="submit" class="btn btn-primary">Actualizar</button>
                         </div>
-
-                        <div style="padding-top: 1.5em;"></div>
-
-                        <%  String[] fechaHora = donante.getFechaDonacion().split(" ");
-                            String fecha = fechaHora[0];
-                            String hora = fechaHora[1];
-                            String[] horaHMS = hora.split(":");
-                            String horaMostrar = horaHMS[0] + ":" + horaHMS[1];
-                        %>
-
-                        <div class="form-group" style="padding-right: 1rem">
-                            <label  style="text-align: left;"><strong>Fecha de Donacion:</strong></label>
-                            <input name="fecha" type="text" class="form-control" id="fecha-evento" value="<%=fecha%>" disabled readonly>
-                        </div>
-
-                        <div style="padding-top: 1.5em;"></div>
-
-                        <div class="form-group" style="padding-right: 1rem">
-                            <label  style="text-align: left;"><strong>Hora de Donacion:</strong></label>
-                            <input name="fecha" type="text" class="form-control" id="fecha-evento" value="<%=horaMostrar%>" disabled readonly>
-                        </div>
-
-                        <div style="padding-top: 1.5em;"></div>
-
                     </div>
                 </div>
 
-                <div class="uk-flex uk-flex-center uk-margin-top">
-                    <div class="uk-flex uk-flex-center">
-                        <a id="redirect-button" class="btn btn-primary m-2" href="<%=request.getContextPath()%>/admin_gen?action=donations">Regresar</a>
-                    </div>
+                <div class="col-lg-6 col-md-12" style="padding-left: 2em; padding-right: 2em; padding-top: 1.5em">
+
+                    <img src="images/placeholder_events.jpg" alt="imagen de evento" style="height: auto; width: 100%">
+
+                    <div style="margin-bottom: 20px"></div>
+
                 </div>
-            </div>
-
-
-
-            <div class="col-lg-6 col-md-12" style="padding-left: 2em; padding-right: 2em; padding-top: 1.5em">
-
-                <img src="images/placeholder_events.jpg" alt="imagen de evento" style="height: auto; width: 100%">
-
-                <div style="margin-bottom: 20px"></div>
-
 
             </div>
-        </div>
+        </form>
     </div>
 
 </div>
@@ -212,8 +248,6 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 <script src="js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-
-
 
 </body>
 

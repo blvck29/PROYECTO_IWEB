@@ -124,6 +124,10 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                     <form method="post" action="<%=request.getContextPath()%>/admin_gen?action=donations&ac=filtrarComprobados&id=0">
                         <li><button class="dropdown-item" type="submit">No comprobados</button></li>
                     </form>
+                    <form method="post" action="<%=request.getContextPath()%>/admin_gen?action=donations&ac=filtrarComprobados&id=2">
+                        <li><button class="dropdown-item" type="submit">Rechazados</button></li>
+                    </form>
+
                 </ul>
             </div>
         </div>
@@ -163,6 +167,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
         <tbody>
 
+
         <% for (Donaciones donaciones: listaDonaciones){ %>
         <tr class="">
             <td class="centeralign cell c0" style=""><a><%=donaciones.getIdDonaciones() %></a></td>
@@ -194,13 +199,17 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
             <td class="centeralign cell c1" style=""><%= fecha %></td>
             <td class="centeralign cell c1" style=""><%= horaMostrar %></td>
 
-            <% String comprobacion = donaciones.isComprobado() == true? "Comprobado" : "Pendiente de Comprobación"; %>
 
-            <%if (comprobacion.equals("Pendiente de Comprobación")){%>
-            <td class="cell c5" style="color: red"><%= comprobacion %></td>
-            <%}else{%>
-            <td class="cell c5" style=""><%= comprobacion %></td>
-            <%}%>
+
+            <%if (donaciones.getComprobado() == 0){%>
+            <td class="cell c5" style="color: black">Pendiente de Comprobacion</td>
+            <%}else if(donaciones.getComprobado() == 1){%>
+            <td class="cell c5" style="color: #0d6efd">Comprobado</td>
+            <%} else if (donaciones.getComprobado() == 2) {%>
+            <td class="cell c5" style="color: red">Rechazado</td>
+            <%} %>
+
+
 
 
 
