@@ -1,6 +1,7 @@
 package com.example.proyectoweb.servlets;
 
 import com.example.proyectoweb.model.RandomTokenGenerator;
+import com.example.proyectoweb.model.daos.TokenDao;
 import com.example.proyectoweb.model.daos.UsuariosDao;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -13,6 +14,7 @@ import java.io.IOException;
 public class SystemServlet extends HttpServlet {
 
     UsuariosDao userDao = new UsuariosDao();
+    TokenDao tokenDao = new TokenDao();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -60,7 +62,7 @@ public class SystemServlet extends HttpServlet {
                 if (userDao.verificarCorreo(email)){
                     userDao.crearUsuario(names, lastnames, codigo, email, isEgresado, password);
 
-                    String token = RandomTokenGenerator.generator();
+                    tokenDao.generateToken(email);
 
                     request.setAttribute("token",token);
                     response.sendRedirect("login?action=confirm_account");

@@ -6,7 +6,6 @@ public class Usuario {
 
     private int idUsuario;
     private String idRolSistema;
-    private String idRolAcademico;
     private String idEstado;
     private String nombres;
     private String apellidos;
@@ -17,6 +16,8 @@ public class Usuario {
     private String ultimoLogin;
     private String cantEventsInscrito;
     private String motivoRechazo;
+    private String idRolAcademico;
+    private int kitTeleco;
 
     public int getIdUsuario() {
         return idUsuario;
@@ -120,5 +121,13 @@ public class Usuario {
 
     public void setMotivoRechazo(String motivoRechazo) {
         this.motivoRechazo = motivoRechazo;
+    }
+
+    public int getKitTeleco() {
+        return kitTeleco;
+    }
+
+    public void setKitTeleco(int kitTeleco) {
+        this.kitTeleco = kitTeleco;
     }
 }
