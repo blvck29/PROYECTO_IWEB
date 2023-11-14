@@ -320,7 +320,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
         <div class="forgot-form">
             <form action="<%=request.getContextPath()%>/login" method="POST" id="complete">
                 <h2>Se ha cerrado la Sesión!</h2>
-                <div class="forgot-back" style="padding-top: 10px; max-width: 480px">
+                <div class="forgot-back" style="padding-top: 10px; max-width: 450px; margin-bottom: 25px">
                     <label>Debe iniciar sesión para acceder al contenido de la página, regrese al login.</label>
                 </div>
 

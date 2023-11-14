@@ -77,6 +77,7 @@ public class SystemServlet extends HttpServlet {
 
 
                     session.setMaxInactiveInterval(1800); // 1800 segundos = 30 minutos
+
                     response.sendRedirect("login?action=home");
 
                 } else {
