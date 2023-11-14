@@ -1,6 +1,7 @@
 package com.example.proyectoweb.servlets;
 
 import com.example.proyectoweb.model.RandomTokenGenerator;
+import com.example.proyectoweb.model.beans.Token;
 import com.example.proyectoweb.model.daos.TokenDao;
 import com.example.proyectoweb.model.daos.UsuariosDao;
 import jakarta.servlet.*;
@@ -28,7 +29,10 @@ public class SystemServlet extends HttpServlet {
                 break;
 
             case "confirm_account":
-                request.getRequestDispatcher("pages/system/confirm_account.jsp").forward(request,response);
+                request.getRequestDispatcher("/pages/system/confirm_account.jsp").forward(request,response);
+
+            case "validation_complete":
+                request.getRequestDispatcher("/pages/system/validation_complete.jsp").forward(request,response);
 
             case "forgot_passwd":
                 request.getRequestDispatcher("pages/system/password_recovery/email.jsp").forward(request,response);
@@ -73,6 +77,18 @@ public class SystemServlet extends HttpServlet {
                 break;
 
             case "validate":
+                StringBuilder enteredToken = new StringBuilder();
+                for (int i = 1; i <= 6; i++) {
+                    String digit = request.getParameter("digit" + i);
+                    enteredToken.append(digit);
+                }
+
+                if(tokenDao.findToken(String.valueOf(enteredToken))){
+                    response.sendRedirect("login?action=validation_complete");
+                } else {
+                    response.sendRedirect("login?action=confirm_account?action=bad_token");
+                }
+
                 break;
 
 

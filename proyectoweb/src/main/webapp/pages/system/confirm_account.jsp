@@ -1,16 +1,13 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<% String token = (String) request.getAttribute("token"); %>
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
-
     <script src="https://kit.fontawesome.com/a2dd6045c4.js" crossorigin="anonymous"></script>
     <link rel="icon" type="image/jpg" href="favicon.png"/>
     <title>Semana de Ingeniería 2023</title>
@@ -23,7 +20,7 @@
     <div class="forgot-container">
 
         <div class="forgot-form">
-            <form action="newpass.jsp" method="POST" id="token-formulario">
+            <form action="<%=request.getContextPath()%>/login?action=validate" method="POST" id="token-formulario">
                 <h2>Ingrese su Token</h2>
                 <div class="forgot-back" style="padding-top: 10px">
                     <label>Ingrese el token que recibió en su correo PUCP.</label>
@@ -37,10 +34,9 @@
                     <input type="text" maxlength="1" class="space" required name="digit5">
                     <input type="text" maxlength="1" class="space" required name="digit6">
                 </div>
-
                 <script>
                     const inputs = document.querySelectorAll(".otp-bx input");
-                    const submitButton = document.querySelector("input[type=submit]");
+                    const submitButton = document.querySelector(".forgot-button");
 
                     inputs.forEach((input, index) => {
                         input.dataset.index = index;
@@ -78,19 +74,12 @@
                                 enteredToken += input.value;
                             });
 
-                            // Comparar el token introducido con el token recibido desde el servlet
-                            if (enteredToken === "<%= token %>") {
-                                console.log("Tokens coinciden. Puedes enviar el formulario.");
-                                submitButton.removeAttribute("disabled");
-                            } else {
-                                console.log("Tokens no coinciden. No puedes enviar el formulario.");
-                                submitButton.setAttribute("disabled", "disabled");
-                            }
                         }
                     }
                 </script>
 
-                <input type="submit" value="Confirmar Token" class="forgot-button" disabled>
+
+                <input type="submit" value="Confirmar Token" class="forgot-button">
 
             </form>
         </div>

@@ -81,8 +81,8 @@
             return false;
         }
         // Validar que el código PUCP tenga como máximo 8 números
-        if (!(/^\d{1,8}$/.test(code))) {
-            alert("Ingrese un código PUCP válido de hasta 8 números.");
+        if (!(/^\d{8}$/.test(code))) {
+            alert("Ingrese un código PUCP válido de 8 dígitos.");
             return false;
         }
         // Validar coincidencia de contraseñas
