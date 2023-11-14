@@ -1,10 +1,8 @@
 package com.example.proyectoweb.servlets;
 
-import com.example.proyectoweb.model.SHA256;
 import com.example.proyectoweb.model.beans.Usuario;
 import com.example.proyectoweb.model.daos.TokenDao;
 import com.example.proyectoweb.model.daos.UsuariosDao;
-import com.mysql.cj.Session;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -21,26 +19,21 @@ public class SystemServlet extends HttpServlet {
 
         String action = request.getParameter("action") == null? "login" : request.getParameter("action");
 
-        switch (action){
-
+        switch (action) {
             case "register":
-                request.getRequestDispatcher("pages/system/register.jsp").forward(request,response);
+                request.getRequestDispatcher("pages/system/register.jsp").forward(request, response);
                 break;
             case "confirm_account":
-                request.getRequestDispatcher("/pages/system/confirm_account.jsp").forward(request,response);
-
-            case "validation_complete":
-                request.getRequestDispatcher("/pages/system/validation_complete.jsp").forward(request,response);
-
-            case "forgot_passwd":
-                request.getRequestDispatcher("pages/system/password_recovery/email.jsp").forward(request,response);
+                request.getRequestDispatcher("/pages/system/confirm_account.jsp").forward(request, response);
                 break;
-
-            case "home":
-                request.getRequestDispatcher("/user_home").forward(request,response);
+            case "validation_complete":
+                request.getRequestDispatcher("/pages/system/validation_complete.jsp").forward(request, response);
+                break;
+            case "forgot_passwd":
+                request.getRequestDispatcher("pages/system/password_recovery/email.jsp").forward(request, response);
                 break;
             case "login":
-                request.getRequestDispatcher("index.jsp").forward(request,response);
+                request.getRequestDispatcher("index.jsp").forward(request, response);
                 break;
         }
     }
@@ -74,11 +67,24 @@ public class SystemServlet extends HttpServlet {
                     session.setAttribute("idRolAcademico", user.getIdRolAcademico());
                     session.setAttribute("nombres", user.getNombres());
                     session.setAttribute("apellidos", user.getApellidos());
-
+                    session.setAttribute("usuario", user);
 
                     session.setMaxInactiveInterval(1800); // 1800 segundos = 30 minutos
 
-                    response.sendRedirect("login?action=home");
+                    switch (user.getIdRolSistema()){
+                        case "USER":
+                            response.sendRedirect("user_home");
+                            break;
+
+                        case "DELACT":
+                            response.sendRedirect("admin_act");
+                            break;
+
+                        case "DELGEN":
+                            response.sendRedirect("admin_gen");
+                            break;
+
+                    }
 
                 } else {
                     response.sendRedirect("login");
@@ -122,6 +128,10 @@ public class SystemServlet extends HttpServlet {
                     response.sendRedirect("login?action=confirm_account&error=bad_token");
                 }
 
+                break;
+
+            default:
+                response.sendRedirect("login"); // o redirige a una página de error
                 break;
 
 

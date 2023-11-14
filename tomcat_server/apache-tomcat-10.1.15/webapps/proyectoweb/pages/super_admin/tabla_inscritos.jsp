@@ -146,7 +146,6 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
         <th class="header c2" style="" scope="col"><a><strong>ROL EN EL SISTEMA</strong></a></th>
         <th class="header c2" style="" scope="col"><a><strong>ROL ACADÉMICO</strong></a></th>
         <th class="header c3" style="" scope="col"><a><strong>ESTADO</strong></a></th>
-        <th class="header c4" style="" scope="col"><a><strong>ULTIMO ACCESO</strong></a></th>
         <th class="header c5" style="" scope="col">EDITAR</th>
         <td class="header c6 lastcol" style=""></td>
       </tr>
@@ -215,7 +214,6 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
         <%}else{%>
         <td class="cell c3" style=""><%= estado %></td>
         <%}%>
-        <td class="cell c4" style=""><%= usuario.getUltimoLogin() %></td>
         <td class="cell c5" style=""><a href="<%=request.getContextPath()%>/admin_gen?action=editar&id=<%=usuario.getCodigo()%>"><img width="24" height="24" src="https://img.icons8.com/sf-regular/48/edit-row.png" alt="edit-row"/></a></td>
 
         <td class="cell c6 lastcol" style=""></td>
