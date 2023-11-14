@@ -186,7 +186,7 @@ section.index{
     justify-items: center; 
     width: 100%;
     min-height: 100vh;
-    background: url(../images/fondoF.jpg) no-repeat center;
+    background: url(https://firebasestorage.googleapis.com/v0/b/proyectowebsdi.appspot.com/o/fondoF.jpg?alt=media&token=d81772b5-2430-4448-8efc-4e0fa3ebaa56) no-repeat center;
     background-size: cover;
     display: grid; 
     grid-template-columns: 1fr; 
