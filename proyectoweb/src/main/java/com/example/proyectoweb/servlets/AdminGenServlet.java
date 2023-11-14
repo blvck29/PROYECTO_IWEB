@@ -25,6 +25,9 @@ public class AdminGenServlet extends HttpServlet {
 
         switch (action){
             case "home":
+
+                String page = request.getParameter("page") == null? "1" : request.getParameter("page");
+
                 request.setAttribute("listaUsuarios",listaUsuarios);
                 request.getRequestDispatcher("pages/super_admin/tabla_inscritos.jsp").forward(request,response);
                 break;
