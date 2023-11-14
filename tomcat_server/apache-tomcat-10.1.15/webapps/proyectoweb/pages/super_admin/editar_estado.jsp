@@ -36,7 +36,7 @@
 
 <body>
 <header>
-    <div class="logo"><a href="tabla_inscritos.jsp"><img class="logo-img" src="images/logo_topbar.png" alt="logo"></a></div>
+    <div class="logo"><a href="<%=request.getContextPath()%>/admin_gen"><img class="logo-img" src='images/logo_topbar.png' alt="logo"></a></div>
 
     <div class="bars">
         <div class="line"></div>
@@ -97,18 +97,15 @@
     <div style="margin-bottom: 20px"></div>
 
     <% String rol ="---";
-        switch(usuario.getIdRol()){
-            case "ADMINPRI":
-                rol = "Administrador Principal";
+        switch(usuario.getIdRolSistema()){
+            case "DELGEN":
+                rol = "Delegado General";
                 break;
-            case "ADMINSEC":
+            case "DELACT":
                 rol = "Delegado de Actividad";
                 break;
-            case "STUDENT":
-                rol = "Estudiante";
-                break;
-            case "GRADUAT":
-                rol = "Graduado";
+            case "USER":
+                rol = "Usuario";
                 break;
             default:
                 rol = "---";

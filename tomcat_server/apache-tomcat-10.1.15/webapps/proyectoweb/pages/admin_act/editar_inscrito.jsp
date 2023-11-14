@@ -214,7 +214,6 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
         Swal.fire({
             title: '¿Estás seguro de editar este estado?',
-            text: "No se podrán revertir estos cambios",
             icon: 'warning',
             iconColor: '#DC3545',
             showCancelButton: true,

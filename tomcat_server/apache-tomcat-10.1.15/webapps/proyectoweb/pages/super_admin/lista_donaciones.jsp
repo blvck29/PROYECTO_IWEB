@@ -47,7 +47,7 @@
 
 <body>
 <header>
-    <div class="logo"><a href="tabla_inscritos.jsp"><img class="logo-img" src='images/logo_topbar.png' alt="logo"></a></div>
+    <div class="logo"><a href="<%=request.getContextPath()%>/admin_gen"><img class="logo-img" src='images/logo_topbar.png' alt="logo"></a></div>
 
     <div class="bars">
         <div class="line"></div>
@@ -124,6 +124,10 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                     <form method="post" action="<%=request.getContextPath()%>/admin_gen?action=donations&ac=filtrarComprobados&id=0">
                         <li><button class="dropdown-item" type="submit">No comprobados</button></li>
                     </form>
+                    <form method="post" action="<%=request.getContextPath()%>/admin_gen?action=donations&ac=filtrarComprobados&id=2">
+                        <li><button class="dropdown-item" type="submit">Rechazados</button></li>
+                    </form>
+
                 </ul>
             </div>
         </div>
@@ -149,10 +153,12 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
         <tr>
             <th class="header c1 centeralign" style="" scope="col"><a><strong>ID REGISTRO DONACION</strong></a></th>
             <th class="header c1 centeralign" style="" scope="col"><a><strong>NOMBRE/APELLIDO</strong></a></th>
-            <th class="header c1 centeralign" style="" scope="col"><a><strong>COMPROBANTE</strong></a></th>
+            <th class="header c1 centeralign" style="" scope="col"><a><strong>ROL ACADÉMICO</strong></a></th>
             <th class="header c1 centeralign" style="" scope="col"><a><strong>MONTO</strong></a></th>
-            <th class="header c5" style="" scope="col">COMPROBADO</th>
-            <th class="header c5" style="" scope="col">EDITAR</th>
+            <th class="header c1 centeralign" style="" scope="col"><a><strong>FECHA DE DONACIÓN</strong></a></th>
+            <th class="header c1 centeralign" style="" scope="col"><a><strong>HORA DE DONACIÓN</strong></a></th>
+            <th class="header c5" style="" scope="col">ESTADO DE DONACIÓN</th>
+            <th class="header c5" style="" scope="col">VER Y EDITAR</th>
             <td class="header c6 lastcol" style=""></td>
         </tr>
         </thead>
@@ -161,18 +167,53 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
         <tbody>
 
+
         <% for (Donaciones donaciones: listaDonaciones){ %>
         <tr class="">
             <td class="centeralign cell c0" style=""><a><%=donaciones.getIdDonaciones() %></a></td>
             <td class="centeralign cell c1" style=""><%= donaciones.getNombres() +" "+ donaciones.getApellidos()%></td>
-            <td class="centeralign cell c1" style=""><%= donaciones.getComprobante() %></td>
-            <td class="centeralign cell c1" style=""><%= donaciones.getMonto() %></td>
 
-            <% String comprobacion = donaciones.isComprobado() == true? "Si" : "No"; %>
+            <% String rolAcademico ="---";
+                switch(donaciones.getIdRolAcademico()){
+                    case "STUDENT":
+                        rolAcademico = "Estudiante";
+                        break;
+                    case "GRADUAT":
+                        rolAcademico = "Egresado";
+                        break;
+                    default:
+                        rolAcademico = "---";
+                }%>
+            <td class="cell c2" style=""><%= rolAcademico %></td>
 
-            <td class="cell c5" style=""><%= comprobacion %></td>
+            <td class="centeralign cell c1" style=""><%="S/. "+ donaciones.getMonto() %></td>
 
-            <td class="cell c6 lastcol" style=""><a href="#"><img width="24" height="24" src="https://img.icons8.com/sf-regular/48/edit-row.png" alt="edit-row"/></a></td>
+            <%  String[] fechaHora = donaciones.getFechaDonacion().split(" ");
+                String fecha = fechaHora[0];
+                String hora = fechaHora[1];
+                String[] horaHMS = hora.split(":");
+                String horaMostrar = horaHMS[0] + ":" + horaHMS[1];
+            %>
+
+
+            <td class="centeralign cell c1" style=""><%= fecha %></td>
+            <td class="centeralign cell c1" style=""><%= horaMostrar %></td>
+
+
+
+            <%if (donaciones.getComprobado() == 0){%>
+            <td class="cell c5" style="color: black">Pendiente de Comprobacion</td>
+            <%}else if(donaciones.getComprobado() == 1){%>
+            <td class="cell c5" style="color: #0d6efd">Comprobado</td>
+            <%} else if (donaciones.getComprobado() == 2) {%>
+            <td class="cell c5" style="color: red">Rechazado</td>
+            <%} %>
+
+
+
+
+
+            <td class="cell c6 lastcol" style=""><a href="<%=request.getContextPath()%>/admin_gen?action=donations&ac=ver&idDonante=<%=donaciones.getIdUsuario()%>"><img width="24" height="24" src="https://img.icons8.com/pulsar-line/48/view-delivery.png" alt="edit-row"/></a></td>
         </tr>
         <%}%>
         </tbody>

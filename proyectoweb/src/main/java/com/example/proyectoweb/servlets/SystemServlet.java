@@ -38,6 +38,8 @@ public class SystemServlet extends HttpServlet {
                 request.getRequestDispatcher("pages/system/password_recovery/email.jsp").forward(request,response);
                 break;
 
+
+
             case "login":
                 request.getRequestDispatcher("index.jsp").forward(request,response);
                 break;
@@ -48,11 +50,12 @@ public class SystemServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String action = request.getParameter("action") == null? "auth" : request.getParameter("action");
+        String action = request.getParameter("action") == null? "login" : request.getParameter("action");
 
         switch (action){
 
-            case "auth":
+            case "login":
+                response.sendRedirect("login");
                 break;
 
             case "confirm_register":
@@ -84,10 +87,10 @@ public class SystemServlet extends HttpServlet {
                 }
 
                 if(tokenDao.findToken(String.valueOf(enteredToken))){
-                    tokenDao.verificarUsuario(String.valueOf(enteredToken));
+                    tokenDao.verificarUsuario(String.valueOf(enteredToken)); // Cambia el estado de usuario a "VER"
                     response.sendRedirect("login?action=validation_complete");
                 } else {
-                    response.sendRedirect("login?action=confirm_account?action=bad_token");
+                    response.sendRedirect("login?action=confirm_account&error=bad_token");
                 }
 
                 break;

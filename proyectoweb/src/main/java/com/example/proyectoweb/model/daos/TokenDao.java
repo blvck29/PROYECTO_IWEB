@@ -159,14 +159,38 @@ public class TokenDao extends DaoBase{
         return tokenList;
     }
 
-    public boolean verificarUsuario(String token){
+    public String getUserByToken(String token){
 
-        String sql = "UPDATE";
+        String idUsuario = null;
+
+        String sql = "SELECT idUsuario FROM proyectoweb.token_generado WHERE token = ?;";
 
         try(Connection conn = getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql)){
 
             pstmt.setString(1, token);
+            try(ResultSet rs = pstmt.executeQuery()) {
+
+                while (rs.next()) {
+                    idUsuario = rs.getString(1);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return idUsuario;
+    }
+
+    public boolean verificarUsuario(String token){
+
+        String idUsuario = getUserByToken(token);
+
+        String sql = "UPDATE `proyectoweb`.`usuarios` SET `idEstado` = 'VER' WHERE (`idUsuario` = ?);";
+
+        try(Connection conn = getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)){
+
+            pstmt.setString(1, idUsuario);
             pstmt.executeUpdate();
 
         } catch (SQLException e) {

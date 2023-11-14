@@ -36,7 +36,7 @@
 
 <body>
   <header>
-    <div class="logo"><a href="tabla_inscritos.jsp"><img class="logo-img" src='images/logo_topbar.png' alt="logo"></a></div>
+    <div class="logo"><a href="<%=request.getContextPath()%>/admin_gen"><img class="logo-img" src='images/logo_topbar.png' alt="logo"></a></div>
 
     <div class="bars">
       <div class="line"></div>
@@ -143,7 +143,8 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
       <tr>
         <th class="header c0 centeralign" style="" scope="col"><a><strong>NOMBRE</strong></a> / <a><strong>APELLIDO</strong></a></th>
         <th class="header c1 centeralign" style="" scope="col"><a><strong>CÓDIGO</strong></a></th>
-        <th class="header c2" style="" scope="col"><a><strong>ROL</strong></a></th>
+        <th class="header c2" style="" scope="col"><a><strong>ROL EN EL SISTEMA</strong></a></th>
+        <th class="header c2" style="" scope="col"><a><strong>ROL ACADÉMICO</strong></a></th>
         <th class="header c3" style="" scope="col"><a><strong>ESTADO</strong></a></th>
         <th class="header c4" style="" scope="col"><a><strong>ULTIMO ACCESO</strong></a></th>
         <th class="header c5" style="" scope="col">EDITAR</th>
@@ -161,25 +162,37 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
         <td class="centeralign cell c1" style=""><%= usuario.getCodigo() %></td>
 
         <% String rol ="---";
-          switch(usuario.getIdRol()){
-            case "ADMINPRI":
-              rol = "Administrador Principal";
+          switch(usuario.getIdRolSistema()){
+            case "DELGEN":
+              rol = "Delegado General";
               break;
-            case "ADMINSEC":
+            case "DELACT":
               rol = "Delegado de Actividad";
               break;
-            case "STUDENT":
-              rol = "Estudiante";
-              break;
-            case "GRADUAT":
-              rol = "Graduado";
+            case "USER":
+              rol = "Usuario";
               break;
             default:
               rol = "---";
           }%>
-
-
         <td class="cell c2" style=""><%= rol %></td>
+
+
+
+        <% String rolAcademico ="---";
+          switch(usuario.getIdRolAcademico()){
+            case "STUDENT":
+              rolAcademico = "Estudiante";
+              break;
+            case "GRADUAT":
+              rolAcademico = "Egresado";
+              break;
+            default:
+              rolAcademico = "---";
+          }%>
+        <td class="cell c2" style=""><%= rolAcademico %></td>
+
+
 
         <% String estado ="---";
           switch(usuario.getIdEstado()){
