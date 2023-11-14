@@ -34,7 +34,7 @@ public class AdminGenServlet extends HttpServlet {
 
                 ArrayList<Usuario> listaConPaginacion = userDao.listarUsuariosConPaginacion(Integer.parseInt(pagina));
 
-                request.setAttribute("cantBotonesPaginacion", Double.valueOf(cantPaginas).intValue());
+                request.setAttribute("cantBotonesPaginacion", Double.valueOf(cantPaginas).intValue()); // casteooooooooooooo
                 request.setAttribute("listaUsuarios",listaConPaginacion);
                 request.getRequestDispatcher("pages/super_admin/tabla_inscritos.jsp").forward(request,response);
                 break;
