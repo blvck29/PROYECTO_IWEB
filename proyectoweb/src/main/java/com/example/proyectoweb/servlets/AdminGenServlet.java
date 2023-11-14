@@ -22,10 +22,20 @@ public class AdminGenServlet extends HttpServlet {
         UsuariosDao userDao = new UsuariosDao();
         String action = request.getParameter("action") == null? "home" : request.getParameter("action");
         ArrayList<Usuario> listaUsuarios = userDao.listarTodosUsuarios();
+        Integer cantUsuarios = listaUsuarios.size();
+        System.out.println("cant alumnos: " + cantUsuarios);
+        Double cantPaginas =  Math.ceil(cantUsuarios/5.0);
+        System.out.println("cant paginas: " + cantPaginas);
 
         switch (action){
             case "home":
-                request.setAttribute("listaUsuarios",listaUsuarios);
+                String pagina = request.getParameter("pagina") == null? "1" : request.getParameter("pagina");
+                System.out.println(pagina);
+
+                ArrayList<Usuario> listaConPaginacion = userDao.listarUsuariosConPaginacion(Integer.parseInt(pagina));
+
+                request.setAttribute("cantBotonesPaginacion", Double.valueOf(cantPaginas).intValue());
+                request.setAttribute("listaUsuarios",listaConPaginacion);
                 request.getRequestDispatcher("pages/super_admin/tabla_inscritos.jsp").forward(request,response);
                 break;
 

@@ -3,6 +3,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <% ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) request.getAttribute("listaUsuarios");%>
+<% Integer cantBotones = (Integer) request.getAttribute("cantBotonesPaginacion"); %>
 
 <!doctype html>
 <html lang="es">
@@ -67,7 +68,7 @@
 
 
   <div class="container-fluid" style="padding-left:0 !important; padding-right: 0 !important; background: rgb(45,0,83) !important;
-background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgba(21,0,48,1) 100%) !important;")>
+background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgba(21,0,48,1) 100%) !important;">
     <div class="text-secondary px-4 py-5 text-center">
       <div class="py-5">
         <h1 class="display-5 fw-bold text-white">Bienvenido, @Admin_general</h1>
@@ -228,24 +229,17 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
     <nav class="mt-4">
       <ul class="pagination justify-content-center">
         <!---->
-        <li class="page-item active">
-          <a href="#" class="page-link">1</a>
-        </li>
+
+
+        <%  for(Integer i= 1; i<=cantBotones; i++){ %>
+
         <li class="page-item">
-          <a href="#" class="page-link">2</a>
+          <a href="<%=request.getContextPath()%>/admin_gen?action=home&pagina=<%=i+1%>" class="page-link"><%=i%></a>
         </li>
-        <li class="page-item">
-          <a href="#" class="page-link">3</a>
-        </li>
-        <li class="page-item">
-          <a href="#" class="page-link">4</a>
-        </li>
-        <li class="page-item">
-          <a href="#" class="page-link">5</a>
-        </li>
-        <li class="page-item">
-          <a href="#" class="page-link">6</a>
-        </li>
+
+        <%  } %>
+
+
         <li class="page-item">
           <a href="#" aria-label="Next" class="page-link">
             <span aria-hidden="true">»</span>
