@@ -9,6 +9,82 @@ import java.util.ArrayList;
 
 public class UsuariosDao extends DaoBase{
 
+
+    public boolean login(String mail, String passwd){
+
+        boolean valido = false;
+        passwd = SHA256.cipherPassword(passwd);
+
+        String sql = "SELECT u.correo_pucp, u.contrasena FROM usuarios u WHERE u.correo_pucp = ? AND u.contrasena = ? AND u.idEstado = 'ACC';";
+
+
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)){
+
+            pstmt.setString(1, mail);
+            pstmt.setString(2, passwd);
+
+            try(ResultSet rs = pstmt.executeQuery()){
+
+                while(rs.next()){
+                    String mailDB = rs.getString(1);
+                    String passwdDB = rs.getString(2);
+
+                    if (mailDB == null || passwdDB == null){
+                        valido = false;
+                    } else if (mailDB.equals(mail) && passwdDB.equals(passwd)){
+                        valido = true;
+                    }
+                }
+
+            }
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+        return valido;
+    }
+
+
+    public Usuario usuarioByEmail(String correoPucp){
+
+        Usuario usuario = new Usuario();
+        //Conexión a la DB
+        String sql = "select * from usuarios where correo_pucp = ? and idEstado = 'ACC';";
+
+
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)){
+
+            pstmt.setString(1, correoPucp);
+
+
+            try(ResultSet rs = pstmt.executeQuery()){
+
+                while(rs.next()){
+
+                    usuario.setIdUsuario(rs.getInt(1));
+                    usuario.setIdRolSistema(rs.getString(2));
+                    usuario.setIdEstado(rs.getString(3));
+                    usuario.setNombres(rs.getString(4));
+                    usuario.setApellidos(rs.getString(5));
+                    usuario.setCodigo(rs.getString(6));
+                    usuario.setCorreo(rs.getString(7));
+                    // Sin contraseña por seguridad.
+                    usuario.setFechaCreacion(rs.getString(9));
+                    usuario.setCantEventsInscrito(rs.getString(10));
+                    usuario.setIdRolAcademico(rs.getString(11));
+                    usuario.setKitTeleco(rs.getInt(12));
+                }
+
+            }
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+
+        return usuario;
+    }
+
+
     public ArrayList<Usuario> listarTodosUsuarios (){ //admin
 
         //Conexión a la DB

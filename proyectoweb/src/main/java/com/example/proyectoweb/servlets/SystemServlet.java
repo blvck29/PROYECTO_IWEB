@@ -1,16 +1,15 @@
 package com.example.proyectoweb.servlets;
 
-import com.example.proyectoweb.model.RandomTokenGenerator;
-import com.example.proyectoweb.model.beans.Token;
+import com.example.proyectoweb.model.SHA256;
+import com.example.proyectoweb.model.beans.Usuario;
 import com.example.proyectoweb.model.daos.TokenDao;
 import com.example.proyectoweb.model.daos.UsuariosDao;
+import com.mysql.cj.Session;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 
 @WebServlet(name = "SystemServlet", value = "/login")
 public class SystemServlet extends HttpServlet {
@@ -27,7 +26,6 @@ public class SystemServlet extends HttpServlet {
             case "register":
                 request.getRequestDispatcher("pages/system/register.jsp").forward(request,response);
                 break;
-
             case "confirm_account":
                 request.getRequestDispatcher("/pages/system/confirm_account.jsp").forward(request,response);
 
@@ -38,12 +36,12 @@ public class SystemServlet extends HttpServlet {
                 request.getRequestDispatcher("pages/system/password_recovery/email.jsp").forward(request,response);
                 break;
 
-
-
+            case "home":
+                request.getRequestDispatcher("/user_home").forward(request,response);
+                break;
             case "login":
                 request.getRequestDispatcher("index.jsp").forward(request,response);
                 break;
-
         }
     }
 
@@ -55,7 +53,32 @@ public class SystemServlet extends HttpServlet {
         switch (action){
 
             case "login":
-                response.sendRedirect("login");
+
+                String mailStr = request.getParameter("email");
+                String passwdStr = request.getParameter("passwd");
+
+                if (userDao.login(mailStr,passwdStr)){
+
+                    Usuario user = userDao.usuarioByEmail(mailStr);
+
+                    // Iniciar sesión exitosa, redireccionar al servlet de inicio.
+                    HttpSession session = request.getSession();
+                    // Almacena la información del usuario en la sesión
+
+                    session.setAttribute("id", user.getIdUsuario());
+                    session.setAttribute("idRolSistema", user.getIdRolSistema());
+                    session.setAttribute("idRolAcademico", user.getIdRolAcademico());
+                    session.setAttribute("nombres", user.getNombres());
+                    session.setAttribute("apellidos", user.getApellidos());
+
+
+                    session.setMaxInactiveInterval(1800); // 1800 segundos = 30 minutos
+                    response.sendRedirect("login?action=home");
+
+                } else {
+                    response.sendRedirect("login");
+                }
+
                 break;
 
             case "confirm_register":
@@ -75,6 +98,7 @@ public class SystemServlet extends HttpServlet {
                 } else {
                     userDao.crearUsuario(names, lastnames, codigo, email, isEgresado, password);
                     tokenDao.generateToken(email);
+                    // falta funcion para enviar correo !importante
                     response.sendRedirect("login?action=confirm_account");
                 }
                 break;

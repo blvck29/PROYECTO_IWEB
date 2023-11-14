@@ -20,7 +20,7 @@
     <div class="login-container">
 
         <div class="login-form">
-            <form method="POST" action="user_home">
+            <form method="POST" action="<%=request.getContextPath()%>/login?action=login">
                 <h2>Iniciar Sesión</h2>
                 <div class="login-input">
                     <i class="fa-solid fa-envelope"></i>
@@ -30,8 +30,8 @@
 
                 <div class="login-input">
                     <i class="fa-solid fa-lock"></i>
-                    <input type="password" id="password" name="password" required>
-                    <label for="password">Contraseña</label>
+                    <input type="password" id="passwd" name="passwd" required>
+                    <label for="passwd">Contraseña</label>
                 </div>
 
                 <div class="login-forgot">
