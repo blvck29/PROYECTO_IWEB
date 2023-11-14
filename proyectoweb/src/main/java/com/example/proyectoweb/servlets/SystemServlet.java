@@ -48,9 +48,13 @@ public class SystemServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String action = request.getParameter("action") == null? "login" : request.getParameter("action");
+        String action = request.getParameter("action") == null? "auth" : request.getParameter("action");
 
         switch (action){
+
+            case "auth":
+                response.sendRedirect("login");
+                break;
 
             case "login":
 
