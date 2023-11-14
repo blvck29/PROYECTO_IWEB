@@ -159,5 +159,21 @@ public class TokenDao extends DaoBase{
         return tokenList;
     }
 
+    public boolean verificarUsuario(String token){
+
+        String sql = "UPDATE";
+
+        try(Connection conn = getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)){
+
+            pstmt.setString(1, token);
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return (token!=null);
+    }
+
 
 }

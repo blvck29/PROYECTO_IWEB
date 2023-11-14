@@ -84,6 +84,7 @@ public class SystemServlet extends HttpServlet {
                 }
 
                 if(tokenDao.findToken(String.valueOf(enteredToken))){
+                    tokenDao.verificarUsuario(String.valueOf(enteredToken));
                     response.sendRedirect("login?action=validation_complete");
                 } else {
                     response.sendRedirect("login?action=confirm_account?action=bad_token");
