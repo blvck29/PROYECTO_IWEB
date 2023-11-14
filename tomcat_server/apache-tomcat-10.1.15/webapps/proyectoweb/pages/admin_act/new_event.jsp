@@ -150,8 +150,8 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
 
                                         <div class="col-md-6">
-                                            <select class="form-select" name="subtituloP2" aria-label="Default select example">
-                                                <option selected>Seleccionar equipo</option>
+                                            <select class="form-select" name="subtituloP2" aria-label="Default select example" required>
+                                                <option selected disabled value="">Seleccionar equipo</option>
                                                 <option value=" vs Hormigón Armado">Hormigón Armado</option>
                                                 <option value=" vs Naranja Mecánica">Naranja Mecánica</option>
                                                 <option value=" vs Electroshock">Electroshock</option>
@@ -193,11 +193,14 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                                 <option value="1">Cancha de Minas</option>
                                 <option value="2">Polidepotivo</option>
                                 <option value="3">Losa de Paleta Frontón</option>
+                                <option value="4">Cancha Césped Fútbol 11</option>
+
                             </select>
                             <div id="imagen-container">
                                 <img id="imagen1" src="https://descubre.pucp.edu.pe/imagesv2/dte005/IMG_4565.jpg" alt="Imagen 1">
                                 <img id="imagen2" src="http://descubre.pucp.edu.pe/imagesv2/dte001/POLIDEPORTIVO.jpg" alt="Imagen 2">
                                 <img id="imagen3" src="http://descubre.pucp.edu.pe/imagesv2/dte004/LOSA%20DE%20FRONTON.jpg" alt="Imagen 3">
+                                <img id="imagen4" src="https://github.com/Pierohc/images/blob/main/WhatsApp%20Image%202023-11-13%20at%206.08.43%20PM.jpeg?raw=true" alt="Imagen 4">
                             </div>
                             <p id="texto-mostrado"></p>
                             <input type="hidden" name="lugar" id="lugarTexto" value="">
@@ -205,6 +208,8 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                                 <iframe id="iframe1" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d321.6392773860829!2d-77.08220459017669!3d-12.072196035587183!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c96c8bf00001%3A0xc39b8453d7952a96!2sCanchas%20de%20Minas!5e1!3m2!1ses!2spe!4v1699334362532!5m2!1ses!2spe" width="550" height="220" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                                 <iframe id="iframe2" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1081.8846268772293!2d-77.08026385223693!3d-12.066408817670428!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c96ab754beb9%3A0xcfd8f8bd1f987eb9!2sColiseo%20Polideportivo%20-%20PUCP!5e1!3m2!1ses!2spe!4v1699332525901!5m2!1ses!2spe" width="550" height="220" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                                 <iframe id="iframe3" src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d454.8776701053476!2d-77.08033520327926!3d-12.065691185950032!3m2!1i1024!2i768!4f13.1!5e1!3m2!1ses-419!2spe!4v1699419977900!5m2!1ses-419!2spe" width="550" height="220" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                <iframe id="iframe4" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.664912954281!2d-77.07984850386802!3d-12.066560948409279!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c93ffeffffff%3A0x8fe0179c02c7a0ef!2sCancha%20De%20Futbol%20De%20La%20PUCP!5e0!3m2!1ses-419!2spe!4v1699994334042!5m2!1ses-419!2spe" width="550" height="220" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
                             </div>
                             <a id="texto-mostrado-url"></a>
 
@@ -329,6 +334,12 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
             document.getElementById("iframe3").style.display = "block";
             textoMostrado.textContent = "Losa de Paleta Frontón: Campus PUCP, San Miguel 15088.";
             urlDireccion.textContent = "URL: https://maps.app.goo.gl/S18WQkJgkMCpZTPy7"
+            lugarTextoInput.value = textoMostrado.textContent;
+        }else if (selectedValue === "4") {
+            document.getElementById("imagen4").style.display = "block";
+            document.getElementById("iframe4").style.display = "block";
+            textoMostrado.textContent = "Cancha Césped Fútbol 11: WWMC+W74, San Miguel 15088.";
+            urlDireccion.textContent = "URL: https://maps.app.goo.gl/ydhF8JCpVnCGYku66"
             lugarTextoInput.value = textoMostrado.textContent;
         } else {
             textoMostrado.textContent = ""; // Limpia el texto si no se selecciona una opción válida
