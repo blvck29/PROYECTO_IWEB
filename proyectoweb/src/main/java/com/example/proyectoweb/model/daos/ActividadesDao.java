@@ -23,7 +23,12 @@ public class ActividadesDao extends DaoBase{
             ResultSet rs = stmt.executeQuery(sql)){
 
             while (rs.next()){
-                Actividad actividad = new Actividad(rs.getString(1), rs.getString(2), rs.getBlob(3), rs.getBlob(4), rs.getInt(5));
+                Actividad actividad = new Actividad();
+                actividad.setIdActividad(rs.getString(1));
+                actividad.setTitulo(rs.getString(2));
+                actividad.setBanner(rs.getBlob(3));
+                actividad.setMiniatura(rs.getBlob(4));
+                actividad.setIdEncargado(rs.getInt(5));
                 listaActividades.add(actividad);
             }
 
@@ -36,17 +41,16 @@ public class ActividadesDao extends DaoBase{
 
 
 
-    public ArrayList<DelegadoAct> listarNombresEncargadosAct(){
-
+    public ArrayList<Actividad> listarActividadesConDelegado(){
+        ArrayList<Actividad> lista = new ArrayList<>();
 
         //Conexión a la DB
 
-        String sql = "SELECT ac.titulo, idEncargado, u.nombres, u.apellidos, u.codigo\n" +
+        String sql = "SELECT ac.*, u.*\n" +
                 "FROM actividad ac\n" +
-                "\n" +
-                "\tINNER JOIN usuarios u on (u.idUsuario = ac.idEncargado);";
+                " INNER JOIN usuarios u on (u.idUsuario = ac.idEncargado);";
 
-        ArrayList<DelegadoAct> listaEncargados = new ArrayList<>();
+
 
         try(Connection conn = getConnection();
             Statement stmt = conn.createStatement();
@@ -54,15 +58,31 @@ public class ActividadesDao extends DaoBase{
 
             while(rs.next()){
 
-                DelegadoAct delegadoAct = new DelegadoAct();
+                Actividad actividad= new Actividad();
 
-                delegadoAct.setTituloActividad(rs.getString(1));
-                delegadoAct.setIdEncargado(rs.getInt(2));
-                delegadoAct.setNombre(rs.getString(3));
-                delegadoAct.setApellido(rs.getString(4));
-                delegadoAct.setCodigo(rs.getString(5));
+                actividad.setIdActividad(rs.getString(1));
+                actividad.setTitulo(rs.getString(2));
+                actividad.setBanner(rs.getBlob(3));
+                actividad.setMiniatura(rs.getBlob(4));
+                actividad.setIdEncargado(rs.getInt(5));
 
-                listaEncargados.add(delegadoAct);
+                Usuario delegado = new Usuario();
+                delegado.setIdUsuario(rs.getInt(6));
+                delegado.setIdRolSistema(rs.getString(7));
+                delegado.setIdEstado(rs.getString(8));
+                delegado.setNombres(rs.getString(9));
+                delegado.setApellidos(rs.getString(10));
+                delegado.setCodigo(rs.getString(11));
+                delegado.setCorreo(rs.getString(12));
+                // Sin contraseña por seguridad.
+                delegado.setFechaCreacion(rs.getString(14));
+                delegado.setCantEventsInscrito(rs.getString(15));
+                delegado.setIdRolAcademico(rs.getString(16));
+                delegado.setKitTeleco(rs.getInt(17));
+
+                actividad.setDelegado(delegado);
+
+                lista.add(actividad);
 
 
             }
@@ -70,19 +90,18 @@ public class ActividadesDao extends DaoBase{
         }catch(SQLException e){
             throw new RuntimeException(e);
         }
-        return listaEncargados;
+        return lista;
     }
 
-    public ArrayList<DelegadoAct> filtrarXTitulo (String tituloActividad){
+    public ArrayList<Actividad> filtrarXTitulo (String tituloActividad){
 
-        DelegadoAct actividad = null;
-        ArrayList<DelegadoAct> listaActividades = new ArrayList<>();
+        ArrayList<Actividad> lista = new ArrayList<>();
 
         // Conexión a DB
-        String sql = "SELECT ac.titulo, idEncargado, u.nombres, u.apellidos, u.codigo\n" +
+        String sql = "SELECT ac.*, u.*\n" +
                 "FROM actividad ac\n" +
-                "INNER JOIN usuarios u on (u.idUsuario = ac.idEncargado)\n" +
-                "where lower(ac.titulo) like ?";
+                " INNER JOIN usuarios u on (u.idUsuario = ac.idEncargado)\n" +
+                " where lower(ac.titulo) like ?";
 
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)){
@@ -95,13 +114,31 @@ public class ActividadesDao extends DaoBase{
 
                 while(rs.next()){
 
-                    actividad = new DelegadoAct();
-                    actividad.setTituloActividad(rs.getString(1));
-                    actividad.setNombre(rs.getString(3));
-                    actividad.setApellido(rs.getString(4));
-                    actividad.setCodigo(rs.getString(5));
+                    Actividad actividad= new Actividad();
 
-                    listaActividades.add(actividad);
+                    actividad.setIdActividad(rs.getString(1));
+                    actividad.setTitulo(rs.getString(2));
+                    actividad.setBanner(rs.getBlob(3));
+                    actividad.setMiniatura(rs.getBlob(4));
+                    actividad.setIdEncargado(rs.getInt(5));
+
+                    Usuario delegado = new Usuario();
+                    delegado.setIdUsuario(rs.getInt(6));
+                    delegado.setIdRolSistema(rs.getString(7));
+                    delegado.setIdEstado(rs.getString(8));
+                    delegado.setNombres(rs.getString(9));
+                    delegado.setApellidos(rs.getString(10));
+                    delegado.setCodigo(rs.getString(11));
+                    delegado.setCorreo(rs.getString(12));
+                    // Sin contraseña por seguridad.
+                    delegado.setFechaCreacion(rs.getString(14));
+                    delegado.setCantEventsInscrito(rs.getString(15));
+                    delegado.setIdRolAcademico(rs.getString(16));
+                    delegado.setKitTeleco(rs.getInt(17));
+
+                    actividad.setDelegado(delegado);
+
+                    lista.add(actividad);
                 }
             }
 
@@ -109,9 +146,61 @@ public class ActividadesDao extends DaoBase{
             throw new RuntimeException(e);
         }
 
-        return listaActividades;
+        return lista;
     }
 
+
+    public Actividad buscarPorTitulo(String idActividad){
+
+        Actividad actividad = null;
+
+        // Conexión a DB
+        String sql = "SELECT ac.*, u.*\n" +
+                "FROM actividad ac\n" +
+                "INNER JOIN usuarios u on (u.idUsuario = ac.idEncargado)\n" +
+                "where idActividad = ? ";
+
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)){
+
+            pstmt.setString(1, idActividad);
+
+            try(ResultSet rs = pstmt.executeQuery()){
+
+                while(rs.next()){
+                    actividad= new Actividad();
+
+                    actividad.setIdActividad(rs.getString(1));
+                    actividad.setTitulo(rs.getString(2));
+                    actividad.setBanner(rs.getBlob(3));
+                    actividad.setMiniatura(rs.getBlob(4));
+                    actividad.setIdEncargado(rs.getInt(5));
+
+                    Usuario delegado = new Usuario();
+                    delegado.setIdUsuario(rs.getInt(6));
+                    delegado.setIdRolSistema(rs.getString(7));
+                    delegado.setIdEstado(rs.getString(8));
+                    delegado.setNombres(rs.getString(9));
+                    delegado.setApellidos(rs.getString(10));
+                    delegado.setCodigo(rs.getString(11));
+                    delegado.setCorreo(rs.getString(12));
+                    // Sin contraseña por seguridad.
+                    delegado.setFechaCreacion(rs.getString(14));
+                    delegado.setCantEventsInscrito(rs.getString(15));
+                    delegado.setIdRolAcademico(rs.getString(16));
+                    delegado.setKitTeleco(rs.getInt(17));
+
+                    actividad.setDelegado(delegado);
+
+                }
+            }
+
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+
+        return actividad;
+    }
 
 
     public void crearActividad(String idActividad, String tituloAct, Integer idDelegado){
@@ -134,88 +223,6 @@ public class ActividadesDao extends DaoBase{
     }
 
 
-    public Actividad buscarPorIdActividad(String idActividad){
-
-        Actividad actividad = null;
-        String sql = "select * from actividad where idActividad = ?";
-
-        try (Connection conn = getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)){
-
-            pstmt.setString(1, idActividad);
-
-
-            try(ResultSet rs = pstmt.executeQuery()){
-
-                while(rs.next()){
-
-                    actividad = new Actividad(rs.getString(1), rs.getString(2), rs.getBlob(3), rs.getBlob(4), rs.getInt(5));
-                }
-            }
-
-        }catch (SQLException e){
-            throw new RuntimeException(e);
-        }
-        return actividad;
-    }
-
-    public DelegadoAct buscarPorTitulo(String tituloActividad){
-
-        DelegadoAct actividad = null;
-
-        // Conexión a DB
-        String sql = "SELECT ac.titulo, idEncargado, u.nombres, u.apellidos, u.codigo\n" +
-                "FROM actividad ac\n" +
-                "INNER JOIN usuarios u on (u.idUsuario = ac.idEncargado)\n" +
-                "where titulo = ?";
-
-        try (Connection conn = getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)){
-
-            pstmt.setString(1, tituloActividad);
-
-            try(ResultSet rs = pstmt.executeQuery()){
-
-                while(rs.next()){
-                    actividad = new DelegadoAct();
-                    actividad.setTituloActividad(rs.getString(1));
-                    actividad.setIdEncargado(rs.getInt(2));
-                    actividad.setNombre(rs.getString(3));
-                    actividad.setApellido(rs.getString(4));
-                    actividad.setCodigo(rs.getString(5));
-                }
-            }
-
-        }catch (SQLException e){
-            throw new RuntimeException(e);
-        }
-
-        return actividad;
-    }
-
-
-    public Actividad buscarPorIdDelegado(Integer idDelegado){
-
-        Actividad actividad = null;
-
-        String sql = "select * from actividad where idEncargado = ?";
-
-        try (Connection conn = getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)){
-
-            pstmt.setInt(1, idDelegado);
-
-            try(ResultSet rs = pstmt.executeQuery()){
-                while(rs.next()){
-                    actividad = new Actividad(rs.getString(1), rs.getString(2), rs.getBlob(3), rs.getBlob(4), rs.getInt(5));
-                }
-            }
-        }catch (SQLException e){
-            throw new RuntimeException(e);
-        }
-        return actividad;
-    }
-
 
     public void actualizarActividad(String idActividad, Integer idDelegado){
 
@@ -233,7 +240,7 @@ public class ActividadesDao extends DaoBase{
         }
     }
 
-    public void eliminarActividad(String idActividad){
+    public void eliminarActividad(String idActividad) throws SQLIntegrityConstraintViolationException{
 
         String sql = "delete from actividad where idActividad = ?";
 
@@ -243,7 +250,7 @@ public class ActividadesDao extends DaoBase{
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new SQLIntegrityConstraintViolationException(e);
         }
     }
     

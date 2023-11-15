@@ -12,29 +12,29 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 
 @WebServlet(name = "AdminGenServlet", value = "/admin_gen")
 public class AdminGenServlet extends HttpServlet {
+    Integer limit = 8;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         UsuariosDao userDao = new UsuariosDao();
         String action = request.getParameter("action") == null? "home" : request.getParameter("action");
         ArrayList<Usuario> listaUsuarios = userDao.listarTodosUsuarios();
-        Integer cantUsuarios = listaUsuarios.size();
-        System.out.println("cant alumnos: " + cantUsuarios);
-        Double cantPaginas =  Math.ceil(cantUsuarios/5.0);
-        System.out.println("cant paginas: " + cantPaginas);
+        Double cantUsuarios = (double) listaUsuarios.size();
+        Double cantPaginas =  Math.ceil(cantUsuarios/limit);
 
         switch (action){
             case "home":
                 String pagina = request.getParameter("pagina") == null? "1" : request.getParameter("pagina");
                 System.out.println(pagina);
 
-                ArrayList<Usuario> listaConPaginacion = userDao.listarUsuariosConPaginacion(Integer.parseInt(pagina));
+                ArrayList<Usuario> listaConPaginacion = userDao.listarUsuariosConPaginacion(limit*(Integer.parseInt(pagina)-1));
 
-                request.setAttribute("cantBotonesPaginacion", Double.valueOf(cantPaginas).intValue()); // casteooooooooooooo
+                request.setAttribute("cantPaginas", Double.valueOf(cantPaginas).intValue()); // casteooooooooooooo
                 request.setAttribute("listaUsuarios",listaConPaginacion);
                 request.getRequestDispatcher("pages/super_admin/tabla_inscritos.jsp").forward(request,response);
                 break;
@@ -57,11 +57,11 @@ public class AdminGenServlet extends HttpServlet {
                 String ac = request.getParameter("ac") == null? "list" : request.getParameter("ac");
 
                 ActividadesDao actividadesDao = new ActividadesDao();
-                ArrayList<DelegadoAct> listaDelegadosAct = actividadesDao.listarNombresEncargadosAct();
+                ArrayList<Actividad> listarActividadesConDelegado = actividadesDao.listarActividadesConDelegado();
 
                 switch (ac){
                     case "list":
-                        request.setAttribute("listaDelegadosAct", listaDelegadosAct);
+                        request.setAttribute("listarActividadesConDelegado", listarActividadesConDelegado);
                         request.getRequestDispatcher("/pages/super_admin/lista_actividades.jsp").forward(request,response);
                         break;
 
@@ -76,12 +76,13 @@ public class AdminGenServlet extends HttpServlet {
                         break;
 
                     case "edit":
-                        DelegadoAct actividad = actividadesDao.buscarPorTitulo(request.getParameter("id"));
+                        Actividad actividad = actividadesDao.buscarPorTitulo(request.getParameter("id"));
+                        String idDelActual = request.getParameter("idDelActual");
                         ArrayList<Usuario> listaUsuarios2 = userDao.listarTodosUsuarios();
                         ArrayList<Actividad> listaActividades2 = actividadesDao.getListaActividades();
 
-
                         if (actividad != null){
+                            request.setAttribute("idDelActual", idDelActual);
                             request.setAttribute("listaActividades",listaActividades2);
                             request.setAttribute("actividad",actividad);
                             request.setAttribute("listaUsuarios",listaUsuarios2);
@@ -93,15 +94,22 @@ public class AdminGenServlet extends HttpServlet {
                         break;
 
                     case "delete":
-                        String tituloActividad = request.getParameter("id");
-                        String idDelegado = request.getParameter("idDelegado");
-                        String nuevoRol = "USER";
-                        String idActividad = tituloActividad.toUpperCase();
+                        try {
+                            String idActividad = request.getParameter("id");
+                            String idDelegado = request.getParameter("idDelegado");
+                            String nuevoRol = "USER";
+                            System.out.println("id a eliminar: "+ idActividad);
+                            System.out.println("idDelegado a eliminar: " + idDelegado);
 
-
-                        userDao.actualizarRolSistema(idDelegado, nuevoRol);
-                        actividadesDao.eliminarActividad(idActividad);
-                        response.sendRedirect(request.getContextPath()+ "/admin_gen?action=activities");
+                            userDao.actualizarRolSistema(idDelegado, nuevoRol);
+                            actividadesDao.eliminarActividad(idActividad);
+                            response.sendRedirect(request.getContextPath() + "/admin_gen?action=activities");
+                        } catch (SQLIntegrityConstraintViolationException e) {
+                            e.printStackTrace();  // o loguea el error
+                            HttpSession httpSession = request.getSession();
+                            httpSession.setAttribute("msgError", "No se pudo eliminar, ya que existen eventos relacionados a esta actividad");
+                            response.sendRedirect(request.getContextPath() + "/admin_gen?action=activities");
+                        }
 
                         break;
                 }
@@ -207,9 +215,9 @@ public class AdminGenServlet extends HttpServlet {
                     case "busqueda":
 
                         String actividadBuscada = request.getParameter("busquedaTituloActividad");
-                        ArrayList<DelegadoAct> listaActividadFiltrada = actividadesDao.filtrarXTitulo(actividadBuscada);
+                        ArrayList<Actividad> listaActividadFiltrada = actividadesDao.filtrarXTitulo(actividadBuscada);
 
-                        request.setAttribute("listaDelegadosAct",listaActividadFiltrada);
+                        request.setAttribute("listarActividadesConDelegado",listaActividadFiltrada);
                         request.getRequestDispatcher("/pages/super_admin/lista_actividades.jsp").forward(request,response);
                         break;
 
@@ -227,10 +235,13 @@ public class AdminGenServlet extends HttpServlet {
                         break;
 
                     case "editar":
+                        String idDelActual = request.getParameter("idDelActual");
                         String tituloActividad2 = request.getParameter("tituloActividad");
                         String idActividad2 = tituloActividad2.toUpperCase();
                         String idDelegado2 = request.getParameter("idDelegado");
 
+                        userDao.actualizarRolSistema(idDelActual, "USER");
+                        userDao.actualizarRolSistema(idDelegado2, "DELACT");
                         actividadesDao.actualizarActividad(idActividad2, Integer.parseInt(idDelegado2));
                         response.sendRedirect(request.getContextPath() + "/admin_gen?action=activities");
 

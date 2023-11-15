@@ -3,7 +3,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <% ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) request.getAttribute("listaUsuarios");%>
-<% Integer cantBotones = (Integer) request.getAttribute("cantBotonesPaginacion"); %>
+<% Integer cantPaginas = (Integer) request.getAttribute("cantPaginas"); %>
 
 <!doctype html>
 <html lang="es">
@@ -231,10 +231,10 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
         <!---->
 
 
-        <%  for(Integer i= 1; i<=cantBotones; i++){ %>
+        <%  for(Integer i= 1; i<=cantPaginas; i++){ %>
 
         <li class="page-item">
-          <a href="<%=request.getContextPath()%>/admin_gen?action=home&pagina=<%=i+1%>" class="page-link"><%=i%></a>
+          <a href="<%=request.getContextPath()%>/admin_gen?action=home&pagina=<%=i%>" class="page-link"><%=i%></a>
         </li>
 
         <%  } %>

@@ -11,14 +11,15 @@ public class Actividad {
     private Blob miniatura;
     private int idEncargado;
 
+    private Usuario delegado;
 
-    public Actividad(String idActividad, String titulo, Blob banner, Blob miniatura, int idEncargado) {
-        this.idActividad = idActividad;
-        this.titulo = titulo;
-        this.banner = banner;
-        this.miniatura = miniatura;
-        this.idEncargado = idEncargado;
 
+    public Usuario getDelegado() {
+        return delegado;
+    }
+
+    public void setDelegado(Usuario delegado) {
+        this.delegado = delegado;
     }
 
     public String getIdActividad() {

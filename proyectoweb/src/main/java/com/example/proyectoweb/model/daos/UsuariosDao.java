@@ -129,7 +129,7 @@ public class UsuariosDao extends DaoBase{
         ArrayList<Usuario> listaUsuarios = new ArrayList<>();
 
         //Conexión a la DB
-        String sql = "SELECT * FROM usuarios where idEstado != 'PEN' limit 5 offset ?";
+        String sql = "SELECT * FROM usuarios where idEstado != 'PEN' limit 8 offset ?";
 
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)){

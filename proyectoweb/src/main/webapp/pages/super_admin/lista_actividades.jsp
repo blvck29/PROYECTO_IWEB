@@ -4,10 +4,8 @@
 <%@ page import="com.example.proyectoweb.model.beans.DelegadoAct" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<% ArrayList<DelegadoAct> listaDelegadosAct = (ArrayList<DelegadoAct>) request.getAttribute("listaDelegadosAct");%>
-
-
-
+<% ArrayList<Actividad> listaActividadesConDelegado = (ArrayList<Actividad>) request.getAttribute("listarActividadesConDelegado");%>
+<% String msgError = (String) session.getAttribute("msgError"); %>
 
 <html lang="es">
 
@@ -18,24 +16,37 @@
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
         <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-
         <!-- Add the slick-theme.css if you want default styling -->
         <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
         <!-- Add the slick-theme.css if you want default styling -->
         <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
-
         <script src="https://kit.fontawesome.com/a2dd6045c4.js" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-
         <link rel="icon" type="image/jpg" href="favicon.png" />
-
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script src="js/showError.js"></script>
+        <script>
+            function showError(){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'ERROR:',
+                    iconColor: '#DC3545',
+                    confirmButtonColor: '#DC3545',
+                    confirmButtonText: "Regresar",
+                    text: '<%=msgError%>',
+                });
+            }
+        </script>
 
         <title>Administración de Usuarios | Semana de Ingeniería 2023</title>
     </head>
 
-    <body>
+    <body
+            <% if (msgError != null) {%>
+            onload="showError()"
+            <% }
+            session.removeAttribute("msgError");
+            %>
+     >
         <header>
             <div class="logo"><a href="<%=request.getContextPath()%>/admin_gen"><img class="logo-img" src='images/logo_topbar.png' alt="logo"></a></div>
 
@@ -130,13 +141,16 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
                 <tbody>
 
-                    <% for (DelegadoAct delegadoAct: listaDelegadosAct){ %>
+                    <% for (Actividad act: listaActividadesConDelegado){
+                        String deleteId = "borrar_" + act.getIdEncargado(); // ID único para cada enlace de eliminación
+                    %>
+
                     <tr class="">
-                        <td class="centeralign cell c0" style=""><a><%= delegadoAct.getTituloActividad()%></a></td>
-                        <td class="centeralign cell c1" style=""><%= delegadoAct.getNombre() + " " + delegadoAct.getApellido()%> </td>
-                        <td class="centeralign cell c1" style=""><%= delegadoAct.getCodigo()%></td>
-                        <td class="cell c5" ><a href="<%=request.getContextPath() %>/admin_gen?action=activities&ac=edit&id=<%=delegadoAct.getTituloActividad()%>"><img width="24" height="24" src="https://img.icons8.com/sf-regular/48/edit-row.png" alt="edit-row"/></a></td>
-                        <td class="cell c6 "><a id="borrar"  onclick="return confirmacionEliminar(event)" href="<%=request.getContextPath() %>/admin_gen?action=activities&ac=delete&id=<%=delegadoAct.getTituloActividad()%>&idDelegado=<%=delegadoAct.getIdEncargado()%>"><img width="24" height="24" src="https://img.icons8.com/sf-regular/48/filled-trash.png" alt="filled-trash"/></a></td>
+                        <td class="centeralign cell c0" style=""><a><%= act.getTitulo()%></a></td>
+                        <td class="centeralign cell c1" style=""><%= act.getDelegado().getNombres() + " " + act.getDelegado().getApellidos()%> </td>
+                        <td class="centeralign cell c1" style=""><%= act.getDelegado().getCodigo()%></td>
+                        <td class="cell c5" ><a href="<%=request.getContextPath() %>/admin_gen?action=activities&ac=edit&id=<%=act.getIdActividad()%>&idDelActual=<%=act.getIdEncargado()%>"><img width="24" height="24" src="https://img.icons8.com/sf-regular/48/edit-row.png" alt="edit-row"/></a></td>
+                        <td class="cell c6 "><a id="<%=deleteId%>"  onclick="return confirmacionEliminar(event)" href="<%=request.getContextPath() %>/admin_gen?action=activities&ac=delete&id=<%=act.getIdActividad()%>&idDelegado=<%=act.getIdEncargado()%>"><img width="24" height="24" src="https://img.icons8.com/sf-regular/48/filled-trash.png" alt="filled-trash"/></a></td>
                     </tr>
 
                     <%}%>
@@ -203,6 +217,8 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
             function confirmacionEliminar(event) {
                 event.preventDefault(); // Previene ir al href(el cual va al servlet) hasta que se de en borrar
 
+                var idEventoBorrar = event.currentTarget.id //asociado directamente al id del boton borrar
+
                 Swal.fire({
                     title: '¿Estas seguro de eliminar esta actividad?',
                     text: "No se podrán revertir estos cambios",
@@ -215,7 +231,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                     confirmButtonText: 'Borrar'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location.href = document.getElementById('borrar').getAttribute('href');
+                        window.location.href = document.getElementById(idEventoBorrar).getAttribute('href');
                     }
                 });
             }
