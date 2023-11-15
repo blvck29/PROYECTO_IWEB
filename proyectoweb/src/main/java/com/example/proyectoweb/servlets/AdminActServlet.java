@@ -9,8 +9,10 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
+@MultipartConfig
 @WebServlet(name = "admin_act", value = "/admin_act")
 public class AdminActServlet extends HttpServlet {
 
@@ -31,6 +33,7 @@ public class AdminActServlet extends HttpServlet {
                 if (session != null) {
                     int idUsr = (int) session.getAttribute("id");
                     Actividad actividad = actividadesDao.getActividadByIdUsuario(idUsr);
+                    System.out.println(actividad.getTitulo());
                     ArrayList<Evento> listaEventos = eventoDao.listarEventosxActividad(actividad.getIdActividad());
 
                     request.setAttribute("actividad", actividad);
@@ -109,6 +112,9 @@ public class AdminActServlet extends HttpServlet {
                 request.getRequestDispatcher("/pages/admin_act/editar_inscrito.jsp").forward(request,response);
                 break;
 
+            case "imagenPorEvento":
+                eventoDao.listarImagenPorEvento(response, request.getParameter("idEvento"));
+                break;
 
         }
     }
@@ -164,13 +170,19 @@ public class AdminActServlet extends HttpServlet {
                 String descripcion = request.getParameter("descripcion");
                 String idActividad = request.getParameter("idActividad");
 
-                eventoDao.crearEvento(titulo,subtitulo,hora,fecha,lugar,descripcion,idActividad);
+                Part part = request.getPart("fileFoto");
+                InputStream inputStream = part.getInputStream();
+                Imagen imagen = new Imagen();
+                imagen.setImagen(inputStream);
+                eventoDao.crearEvento(titulo,subtitulo,hora,fecha,lugar,imagen, descripcion,idActividad);
 
                 response.sendRedirect(request.getContextPath() + "/admin_act?action=home");
 
 
 
                 break;
+
+
 
             case "editEvent":
                 String titulo2 = request.getParameter("titulo");
@@ -181,7 +193,12 @@ public class AdminActServlet extends HttpServlet {
                 String descripcion2 = request.getParameter("descripcion");
                 String idActividad2 = request.getParameter("idActividad");
 
-                eventoDao.actualizarEvento(idEvento,titulo2,subtitulo2,hora2,fecha2,lugar2,descripcion2,idActividad2);
+                Part part2 = request.getPart("fileFoto");
+                InputStream inputStream2 = part2.getInputStream();
+                Imagen imagen2 = new Imagen();
+                imagen2.setImagen(inputStream2);
+
+                eventoDao.actualizarEvento(idEvento,titulo2,subtitulo2,hora2,fecha2,lugar2, imagen2, descripcion2,idActividad2);
                 response.sendRedirect(request.getContextPath()+"/admin_act?action=home");
 
                 break;

@@ -1,7 +1,7 @@
 package com.example.proyectoweb.model.beans;
 
+import java.io.InputStream;
 import java.sql.*;
-import java.text.SimpleDateFormat;
 
 public class Evento {
     private int idEvento;
@@ -10,13 +10,13 @@ public class Evento {
     private Time hora;
     private Date fecha;
     private String lugar;
-    private Blob imagen;
+    private InputStream imagen;
     private String descripcion;
     private String idEstado;
     private String idActividad;
 
 
-    public Evento(int idEvento, String titulo, String subTitulo, Time hora, Date fecha, String lugar, Blob imagen, String descripcion, String idEstado, String idActividad) {
+    public Evento(int idEvento, String titulo, String subTitulo, Time hora, Date fecha, String lugar, InputStream imagen, String descripcion, String idEstado, String idActividad) {
         this.idEvento = idEvento;
         this.titulo = titulo;
         this.subTitulo = subTitulo;
@@ -77,11 +77,11 @@ public class Evento {
         this.lugar = lugar;
     }
 
-    public Blob getImagen() {
+    public InputStream getImagen() {
         return imagen;
     }
 
-    public void setImagen(Blob imagen) {
+    public void setImagen(InputStream imagen) {
         this.imagen = imagen;
     }
 

@@ -5,8 +5,9 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <% ArrayList<Evento> listaEventos = (ArrayList<Evento>) request.getAttribute("listaEventos"); %>
-<% Actividad actividad = (Actividad) request.getAttribute("actividad");%>
-<% String idActividad = actividad.getIdActividad();%>
+<% String idActividad = (String) request.getAttribute("idActividad");%>
+<% Actividad actividad = (Actividad) request.getAttribute("actividad"); %>
+
 
 
 <!doctype html>
@@ -55,7 +56,7 @@
                 <a href="<%=request.getContextPath()%>/admin_act?action=home" class="active">Eventos</a>
             </li>
             <li>
-                <a href="<%=request.getContextPath()%>/admin_act?action=new_event&idActividad=<%=idActividad%>">Crear Evento</a>
+                <a href="<%=request.getContextPath()%>/admin_act?action=new_event&idActividad=<%=actividad.getIdActividad()%>">Crear Evento</a>
             </li>
             <li>
                 <a href="#"><i class="fa-solid fa-user nav-icon2"></i>Usuario</a>
@@ -81,7 +82,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
             <div style="margin-bottom: 20px"></div>
             <div class="justify-content-sm-center">
                 <button type="button" class="btn btn-outline-info btn-lg px-4">
-                    <a href="<%=request.getContextPath()%>/admin_act?action=new_event&idActividad=<%=idActividad%>" class="link-info text-light">Crear Evento</a>
+                    <a href="<%=request.getContextPath()%>/admin_act?action=new_event&idActividad=<%=actividad.getIdActividad()%>" class="link-info text-light">Crear Evento</a>
                 </button>
             </div>
         </div>
@@ -99,7 +100,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
     <div style="margin-bottom: 50px"></div>
 
-    <h2><i class="fa-solid fa-star" style="color: #8de7ef;"></i><strong style="padding-left: 10px">Eventos de la Actividad: <%=idActividad%></strong></h2>
+    <h2><i class="fa-solid fa-star" style="color: #8de7ef;"></i><strong style="padding-left: 10px">Eventos de la Actividad: <%=actividad.getIdActividad()%></strong></h2>
 
     <div style="margin-bottom: 40px"></div>
 
@@ -112,13 +113,13 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                         Filtrar por fecha
                     </button>
                     <ul class="dropdown-menu dropdown-menu-lg-end">
-                        <form method="post" action="<%=request.getContextPath()%>/admin_act?action=filtros&ac=eventosXfecha&idAct=<%=idActividad%>&filtro=all">
+                        <form method="post" action="<%=request.getContextPath()%>/admin_act?action=filtros&ac=eventosXfecha&idAct=<%=actividad.getIdActividad()%>&filtro=all">
                             <li><button class="dropdown-item" type="submit">TODOS</button></li>
                         </form>
-                        <form method="post" action="<%=request.getContextPath()%>/admin_act?action=filtros&ac=eventosXfecha&idAct=<%=idActividad%>&filtro=prox">
+                        <form method="post" action="<%=request.getContextPath()%>/admin_act?action=filtros&ac=eventosXfecha&idAct=<%=actividad.getIdActividad()%>&filtro=prox">
                             <li><button class="dropdown-item" type="submit">PRÓXIMOS</button></li>
                         </form>
-                        <form method="post" action="<%=request.getContextPath()%>/admin_act?action=filtros&ac=eventosXfecha&idAct=<%=idActividad%>&filtro=fin">
+                        <form method="post" action="<%=request.getContextPath()%>/admin_act?action=filtros&ac=eventosXfecha&idAct=<%=actividad.getIdActividad()%>&filtro=fin">
                             <li><button class="dropdown-item" type="submit">FINALIZADOS</button></li>
                         </form>
                     </ul>
@@ -139,14 +140,14 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
 
         <% for (Evento evento : listaEventos) {
-        if (evento.getIdActividad().equals(idActividad)) {
 
-            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-            String fechaFormateada = formato.format(evento.getFecha());
+
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaFormateada = formato.format(evento.getFecha());
         %>
 
 
-        
+
 
 
         <div class="col-sm-6 col-lg-3 mb-4">
@@ -154,7 +155,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
             <div class="card-list">
                 <article class="card">
                     <figure class="card-image">
-                        <img class="image-event" src="images/placeholder_events.jpg" alt="image" />
+                        <img class="image-event" src="<%=request.getContextPath()%>/admin_act?action=imagenPorEvento&idEvento=<%=evento.getIdEvento()%>" />
                     </figure>
                     <div class="card-header">
                         <a href="<%=request.getContextPath()%>/admin_act?action=verEvento&idEvento=<%=evento.getIdEvento()%>&idActividad=<%=evento.getIdActividad()%>"><%=evento.getTitulo()%><p><%=evento.getSubTitulo()%></p><p>Fecha: <%=fechaFormateada%></p></a>
@@ -199,7 +200,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
             </div>
 
         </div>
-        <%}%>
+
         <%}%>
 
 
