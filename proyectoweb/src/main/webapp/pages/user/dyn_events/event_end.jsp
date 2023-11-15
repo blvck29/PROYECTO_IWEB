@@ -2,8 +2,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.example.proyectoweb.model.beans.Evento" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<% ArrayList<Inscripcion> listaEventosPropia = (ArrayList<Inscripcion>) request.getAttribute("listaEventosPropia"); %>
-<% Evento event = (Evento) request.getAttribute("evento_detailed"); %>
+
 
 
 <%
@@ -22,6 +21,9 @@
 <%
     if (session.getAttribute("id")!=null){
 %>
+
+<% ArrayList<Inscripcion> listaEventosPropia = (ArrayList<Inscripcion>) request.getAttribute("listaEventosPropia"); %>
+<% Evento event = (Evento) request.getAttribute("evento_detailed"); %>
 
 <head>
     <meta http-equiv="Content-Type" content=text/html; charset=ISO-8859-1″>

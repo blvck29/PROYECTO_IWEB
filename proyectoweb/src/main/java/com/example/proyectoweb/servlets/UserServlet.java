@@ -11,9 +11,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
-import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Date;
 
 @WebServlet(name = "UserHome", value = "/user_home")
 public class UserServlet extends HttpServlet {
@@ -49,7 +47,7 @@ public class UserServlet extends HttpServlet {
 
                         HttpSession session = request.getSession(false);
 
-                        if (session != null) {
+                        if (session.getAttribute("id") != null) {
                             int idUsr = (int) session.getAttribute("id");
                             ArrayList<Inscripcion> listaEventosPropia = eventoDao.listarEventosPropios(String.valueOf(idUsr));
 
@@ -57,7 +55,7 @@ public class UserServlet extends HttpServlet {
                             request.setAttribute("listaEventosPropia",listaEventosPropia);
                             request.getRequestDispatcher("pages/user/dyn_events/self.jsp").forward(request,response);
                         } else {
-                            request.getRequestDispatcher("pages/user/dyn_events/self.jsp").forward(request,response);
+                            request.getRequestDispatcher("login?action=unvalid_session").forward(request,response);
                         }
 
 
@@ -88,7 +86,8 @@ public class UserServlet extends HttpServlet {
 
                 HttpSession session = request.getSession(false);
 
-                if (session != null) {
+                if (session.getAttribute("id") != null) {
+
                     int idUsr = (int) session.getAttribute("id");
                     ArrayList<Inscripcion> listaEventosPropia = eventoDao.listarEventosPropios(String.valueOf(idUsr));
                     Evento ev = eventoDao.EventoXid(idEv);
@@ -103,7 +102,7 @@ public class UserServlet extends HttpServlet {
                     }
 
                 } else {
-                    request.getRequestDispatcher("pages/user/dyn_events/event.jsp").forward(request,response);
+                    request.getRequestDispatcher("login?action=unvalid_session").forward(request,response);
                 }
 
                 break;
