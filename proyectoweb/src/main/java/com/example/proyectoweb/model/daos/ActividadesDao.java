@@ -277,5 +277,43 @@ public class ActividadesDao extends DaoBase{
             throw new SQLIntegrityConstraintViolationException(e);
         }
     }
+
+    public ArrayList<Actividad> listarActividadesConPaginacion(Integer offset){ //admin: Actividades
+        ArrayList<Actividad> listaActividades = new ArrayList<>();
+
+        String sql = "SELECT ac.*, u.*\n" +
+                "FROM actividad ac\n" +
+                " INNER JOIN usuarios u on (u.idUsuario = ac.idEncargado) limit 8 offset ?";
+
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)){
+
+            pstmt.setInt(1,  offset);
+
+            try(ResultSet rs = pstmt.executeQuery()){
+
+                while(rs.next()){
+
+                    Actividad actividad = new Actividad();
+
+                    actividad.setTitulo(rs.getString("titulo"));
+
+                    Usuario delegadoAct = new Usuario();
+
+                    delegadoAct.setCodigo(rs.getString(11));
+                    delegadoAct.setNombres(rs.getString(9));
+                    delegadoAct.setApellidos(rs.getString(10));
+                    actividad.setDelegado(delegadoAct);
+                    listaActividades.add(actividad);
+
+                }
+
+            }
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+
+        return listaActividades;
+    }
     
 }

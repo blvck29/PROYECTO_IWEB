@@ -2,10 +2,13 @@
 <%@ page import="com.example.proyectoweb.model.beans.Usuario" %>
 <%@ page import="com.example.proyectoweb.model.beans.Actividad" %>
 <%@ page import="com.example.proyectoweb.model.beans.DelegadoAct" %>
+<%@ page import="com.example.proyectoweb.servlets.AdminGenServlet" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<% ArrayList<Actividad> listaActividadesConDelegado = (ArrayList<Actividad>) request.getAttribute("listarActividadesConDelegado");%>
+<% ArrayList<Actividad> listaActividadesConDelegado = (ArrayList<Actividad>) request.getAttribute("listaActividades");%>
 <% String msgError = (String) session.getAttribute("msgError"); %>
+
+<%Integer cantPaginas = (Integer)request.getAttribute("cantPaginasAc"); %>
 
 <html lang="es">
 
@@ -169,25 +172,14 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
         <div class="container">
             <nav class="mt-4">
                 <ul class="pagination justify-content-center">
-                    <!---->
-                    <li class="page-item active">
-                        <a href="#" class="page-link">1</a>
-                    </li>
+                    <!--->
+
+                    <%for (Integer n = 1; n <= cantPaginas; n++){ %>
                     <li class="page-item">
-                        <a href="#" class="page-link">2</a>
+                        <a href="<%=request.getContextPath()%>/admin_gen?action=activities&paginaAc=<%=n%>" class="page-link"><%=n%></a>
                     </li>
-                    <li class="page-item">
-                        <a href="#" class="page-link">3</a>
-                    </li>
-                    <li class="page-item">
-                        <a href="#" class="page-link">4</a>
-                    </li>
-                    <li class="page-item">
-                        <a href="#" class="page-link">5</a>
-                    </li>
-                    <li class="page-item">
-                        <a href="#" class="page-link">6</a>
-                    </li>
+                    <%}%>
+
                     <li class="page-item">
                         <a href="#" aria-label="Next" class="page-link">
                             <span aria-hidden="true">»</span>
