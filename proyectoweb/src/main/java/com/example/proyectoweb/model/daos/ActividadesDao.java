@@ -39,7 +39,31 @@ public class ActividadesDao extends DaoBase{
         return listaActividades;
     }
 
+    public Actividad getActividadByIdUsuario(int idUsuario){
 
+        Actividad actividad = new Actividad();
+        String sql = "SELECT * FROM proyectoweb.actividad WHERE idEncargado = ?;";
+
+        try(Connection conn = getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)){
+
+            pstmt.setString(1, String.valueOf(idUsuario));
+
+            try(ResultSet rs = pstmt.executeQuery()){
+
+                while (rs.next()){
+                    actividad.setIdActividad(rs.getString(1));
+                    actividad.setTitulo(rs.getString(2));
+                    actividad.setBanner(rs.getBlob(3));
+                    actividad.setMiniatura(rs.getBlob(4));
+                    actividad.setIdEncargado(rs.getInt(5));
+                }
+            }
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+        return actividad;
+    }
 
     public ArrayList<Actividad> listarActividadesConDelegado(){
         ArrayList<Actividad> lista = new ArrayList<>();

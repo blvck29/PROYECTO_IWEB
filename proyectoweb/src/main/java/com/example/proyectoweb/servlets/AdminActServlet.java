@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class AdminActServlet extends HttpServlet {
 
     EventosDao eventoDao = new EventosDao();
+    ActividadesDao actividadesDao = new ActividadesDao();
     InscritosDao inscritosDao = new InscritosDao();
 
     @Override
@@ -24,13 +25,20 @@ public class AdminActServlet extends HttpServlet {
 
         switch (action){
             case "home":
-                ArrayList<Evento> listaEventos = eventoDao.listarEventos();
-                String ActividadDelDelegado = "FUTBOL";
 
-                request.setAttribute("idActividad", ActividadDelDelegado);
-                request.setAttribute("listaEventos", listaEventos);
-                request.getRequestDispatcher("/pages/admin_act/home.jsp").forward(request,response);
+                HttpSession session = request.getSession(false);
 
+                if (session != null) {
+                    int idUsr = (int) session.getAttribute("id");
+                    Actividad actividad = actividadesDao.getActividadByIdUsuario(idUsr);
+                    ArrayList<Evento> listaEventos = eventoDao.listarEventosxActividad(actividad.getIdActividad());
+
+                    request.setAttribute("actividad", actividad);
+                    request.setAttribute("listaEventos", listaEventos);
+                    request.getRequestDispatcher("/pages/admin_act/home.jsp").forward(request,response);
+                } else {
+                    request.getRequestDispatcher("login?action=unvalid_session").forward(request,response);
+                }
                 break;
 
             case "new_event":
