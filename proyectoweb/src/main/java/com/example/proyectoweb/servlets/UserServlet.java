@@ -186,6 +186,34 @@ public class UserServlet extends HttpServlet {
                 request.getRequestDispatcher("pages/user/activity.jsp").forward(request,response);
 
 
+            case "filter":
+                String of = request.getParameter("of") == null? "prox" : request.getParameter("of");
+
+                request.setAttribute("listaInscritos", listaInscritos);
+
+                String actSelected = request.getParameter("seleccion_actividad");
+                String eventTitle = request.getParameter("buscar_evento");
+                ArrayList<Evento> listaEventosProx;
+
+                switch (of){
+                    case "prox":
+                        if(eventTitle!=null){
+                            listaEventosProx = eventoDao.buscarXtitulo(actSelected, eventTitle);
+                            request.setAttribute("listaEventosProx", listaEventosProx);
+                        } else {
+                            listaEventosProx = eventoDao.listarEventosProximosxActividad(actSelected);
+                            request.setAttribute("listaEventosProx", listaEventosProx);
+                        }
+
+                        break;
+
+                    case "end":
+
+                        break;
+                }
+
+
+
 
         }
 
