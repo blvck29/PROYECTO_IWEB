@@ -47,11 +47,20 @@ public class UserServlet extends HttpServlet {
                 switch (id){
                     case "self":
 
-                        ArrayList<Inscripcion> listaEventosPropia = eventoDao.listarEventosPropios(100);
+                        HttpSession session = request.getSession(false);
 
-                        request.setAttribute("listaEventos",listaEventos);
-                        request.setAttribute("listaEventosPropia",listaEventosPropia);
-                        request.getRequestDispatcher("pages/user/dyn_events/self.jsp").forward(request,response);
+                        if (session != null) {
+                            int idUsr = (int) session.getAttribute("id");
+                            ArrayList<Inscripcion> listaEventosPropia = eventoDao.listarEventosPropios(String.valueOf(idUsr));
+
+                            request.setAttribute("listaEventos",listaEventos);
+                            request.setAttribute("listaEventosPropia",listaEventosPropia);
+                            request.getRequestDispatcher("pages/user/dyn_events/self.jsp").forward(request,response);
+                        } else {
+                            request.getRequestDispatcher("pages/user/dyn_events/self.jsp").forward(request,response);
+                        }
+
+
                         break;
 
                     case "prox":
@@ -77,20 +86,22 @@ public class UserServlet extends HttpServlet {
             case "details":
                 String idEv = request.getParameter("id") == null? "self" : request.getParameter("id");
 
-                ArrayList<Inscripcion> listaEventosPropia = eventoDao.listarEventosPropios(100);
-                Evento ev = eventoDao.EventoXid(idEv);
+                HttpSession session = request.getSession(false);
 
+                if (session != null) {
+                    int idUsr = (int) session.getAttribute("id");
+                    ArrayList<Inscripcion> listaEventosPropia = eventoDao.listarEventosPropios(String.valueOf(idUsr));
+                    Evento ev = eventoDao.EventoXid(idEv);
 
-                request.setAttribute("listaEventosPropia",listaEventosPropia);
-                request.setAttribute("evento_detailed", ev);
+                    request.setAttribute("listaEventosPropia",listaEventosPropia);
+                    request.setAttribute("evento_detailed", ev);
 
-                java.sql.Date currentDate = CurrentDate.getCurrentDate();
-                java.util.Date utilDate = ev.getFecha();
-                java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
-                java.sql.Date eventDate = new java.sql.Date(sqlDate.getTime() + ev.getHora().getTime());
+                    if(CurrentDate.isCurrent(ev) > 0){
+                        request.getRequestDispatcher("pages/user/dyn_events/event_end.jsp").forward(request,response);
+                    } else {
+                        request.getRequestDispatcher("pages/user/dyn_events/event.jsp").forward(request,response);
+                    }
 
-                if(currentDate.compareTo(eventDate) > 0){
-                    request.getRequestDispatcher("pages/user/dyn_events/event_end.jsp").forward(request,response);
                 } else {
                     request.getRequestDispatcher("pages/user/dyn_events/event.jsp").forward(request,response);
                 }
