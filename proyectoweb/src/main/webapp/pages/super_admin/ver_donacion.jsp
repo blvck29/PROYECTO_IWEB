@@ -52,7 +52,7 @@
     <!-- Add the slick-theme.css if you want default styling -->
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
     <link rel="icon" type="image/jpg" href="favicon.png"/>
-    
+
     <title>Home | Semana de Ingeniería 2023</title>
 </head>
 
