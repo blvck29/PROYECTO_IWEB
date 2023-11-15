@@ -2,8 +2,24 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <% Usuario usuario = (Usuario) request.getAttribute("usuario"); %>
 
+<%
+    if (session.getAttribute("id") != null){
+        int id = (int) session.getAttribute("id");
+        String idRolSistema = (String) session.getAttribute("idRolSistema");
+        String idRolAcademico = (String) session.getAttribute("idRolAcademico");
+        String nombres = (String) session.getAttribute("nombres");
+        String apellidos = (String) session.getAttribute("apellidos");
+    }
+%>
+
+
 <!doctype html>
 <html lang="es">
+
+<%
+   if (session.getAttribute("id")!=null){
+%>
+
 <head>
     <meta http-equiv="Content-Type" content=text/html; charset=ISO-8859-1″>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -60,10 +76,11 @@
                     <a href="<%=request.getContextPath()%>/admin_gen?action=donations">Donaciones</a>
                 </li>
                 <li>
-                    <a href="<%=request.getContextPath()%>/"><i class="fa-solid fa-door-open nav-icon2"></i>Cerrar Sesión</a>
+                    <a href="<%=request.getContextPath()%>/logout"><i class="fa-solid fa-door-open nav-icon2"></i>Cerrar Sesión</a>
                 </li>
             </ul>
         </nav>
+    </nav>
 </header>
 
 <div class="container">
@@ -80,19 +97,19 @@
 
     <div class="form-group">
         <label for="name"><strong>Nombre y apellidos:</strong></label>
-        <input class="form-control"  type="text" value="<%=usuario.getNombres() + " " + usuario.getApellidos()%>" aria-label="Disabled input example" disabled="" readonly="">
+        <input class="form-control"  type="text" value="<%=usuario.getNombres() + " " + usuario.getApellidos()%>" id="name"  aria-label="Disabled input example" disabled="" readonly="">
     </div>
     <div style="margin-bottom: 20px"></div>
 
     <div class="form-group">
         <label for="codigoPUCP"><strong>Código PUCP:</strong></label>
-        <input class="form-control" name="codigoPUCP" type="text" value="<%=usuario.getCodigo()%>" aria-label="Disabled input example" disabled="" readonly="">
+        <input class="form-control" name="codigoPUCP" type="text" value="<%=usuario.getCodigo()%>" id="codigoPUCP" aria-label="Disabled input example" disabled="" readonly="">
     </div>
     <div style="margin-bottom: 20px"></div>
 
     <div class="form-group">
         <label for="correoPUCP"><strong>Correo PUCP:</strong></label>
-        <input class="form-control" name="correoPUCP" type="text" value="<%=usuario.getCorreo()%>" aria-label="Disabled input example" disabled="" readonly="">
+        <input class="form-control" name="correoPUCP" type="text" value="<%=usuario.getCorreo()%>" id="correoPUCP" aria-label="Disabled input example" disabled="" readonly="">
     </div>
     <div style="margin-bottom: 20px"></div>
 
@@ -167,7 +184,7 @@
                 case ("Aceptado"):
                 %>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="estado"  value="BAN" required>
+                    <input class="form-check-input" type="radio" name="estado" id="exampleRadios2" value="BAN" required>
                     <label class="form-check-label" for="exampleRadios2">
                         Banear
                     </label>
@@ -248,4 +265,44 @@
 </div>
 </body>
 
-</html>
+
+    <% } else { %>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
+    <script src="https://kit.fontawesome.com/a2dd6045c4.js" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/jpg" href="favicon.png"/>
+    <title>Semana de Ingeniería 2023</title>
+</head>
+
+<body>
+
+<section class="index">
+
+    <div class="forgot-container">
+
+        <div class="forgot-form">
+            <form action="<%=request.getContextPath()%>/login" method="POST" id="complete">
+                <h2>Se ha cerrado la Sesión!</h2>
+                <div class="forgot-back" style="padding-top: 10px; max-width: 450px; margin-bottom: 25px">
+                    <label>Debe iniciar sesión para acceder al contenido de la página, regrese al login.</label>
+                </div>
+
+                <input type="submit" value="Regresar" class="forgot-button">
+
+            </form>
+        </div>
+    </div>
+
+    <div class="container-fluid footer-container">
+        <p>© Pontificia Universidad Católica del Perú - Todos los derechos reservados</p>
+    </div>
+
+</section>
+
+</body>
+
+<%}%>
