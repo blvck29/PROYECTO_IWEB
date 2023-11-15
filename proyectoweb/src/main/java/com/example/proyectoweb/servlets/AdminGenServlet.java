@@ -58,11 +58,18 @@ public class AdminGenServlet extends HttpServlet {
 
                 ActividadesDao actividadesDao = new ActividadesDao();
                 ArrayList<Actividad> listarActividadesConDelegado = actividadesDao.listarActividadesConDelegado();
+                double longitudLista = listarActividadesConDelegado.size();
+                double cantidadPaginasNecesarias = Math.ceil(longitudLista/limit);
+
 
                 switch (ac){
                     case "list":
-                        request.setAttribute("listarActividadesConDelegado", listarActividadesConDelegado);
-                        request.getRequestDispatcher("/pages/super_admin/lista_actividades.jsp").forward(request,response);
+
+                        String paginaAc = request.getParameter("paginaAc") == null? "1" : request.getParameter("paginaAc");
+                        ArrayList<Actividad> listarActividadesConPaginacion = actividadesDao.listarActividadesConPaginacion(limit*(Integer.parseInt(paginaAc)-1));
+                        request.setAttribute("cantPaginasAc", Double.valueOf(cantidadPaginasNecesarias).intValue());
+                        request.setAttribute("listaActividades",listarActividadesConPaginacion);
+                        request.getRequestDispatcher("pages/super_admin/lista_actividades.jsp").forward(request,response);
                         break;
 
                     case "crear":
