@@ -2,15 +2,31 @@
 <%@ page import="com.example.proyectoweb.model.beans.Usuario" %>
 <%@ page import="com.example.proyectoweb.model.beans.Actividad" %>
 <%@ page import="com.example.proyectoweb.model.beans.DelegadoAct" %>
+<%@ page import="com.example.proyectoweb.servlets.AdminGenServlet" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<% ArrayList<DelegadoAct> listaDelegadosAct = (ArrayList<DelegadoAct>) request.getAttribute("listaDelegadosAct");%>
+<% ArrayList<Actividad> listaActividadesConDelegado = (ArrayList<Actividad>) request.getAttribute("listaActividades");%>
+<% String msgError = (String) session.getAttribute("msgError"); %>
+
+<%Integer cantPaginas = (Integer)request.getAttribute("cantPaginasAc"); %>
+
+<%
+    if (session.getAttribute("id") != null){
+        int id = (int) session.getAttribute("id");
+        String idRolSistema = (String) session.getAttribute("idRolSistema");
+        String idRolAcademico = (String) session.getAttribute("idRolAcademico");
+        String nombres = (String) session.getAttribute("nombres");
+        String apellidos = (String) session.getAttribute("apellidos");
+    }
+%>
 
 
-
-
+<!doctype html>
 <html lang="es">
 
+<%
+    if (session.getAttribute("id")!=null){
+%>
     <head>
         <meta http-equiv="Content-Type" content=text/html; charset=ISO-8859-1″>
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,24 +34,37 @@
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
         <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-
         <!-- Add the slick-theme.css if you want default styling -->
         <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
         <!-- Add the slick-theme.css if you want default styling -->
         <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
-
         <script src="https://kit.fontawesome.com/a2dd6045c4.js" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-
         <link rel="icon" type="image/jpg" href="favicon.png" />
-
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script src="js/showError.js"></script>
+        <script>
+            function showError(){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'ERROR:',
+                    iconColor: '#DC3545',
+                    confirmButtonColor: '#DC3545',
+                    confirmButtonText: "Regresar",
+                    text: '<%=msgError%>',
+                });
+            }
+        </script>
 
         <title>Administración de Usuarios | Semana de Ingeniería 2023</title>
     </head>
 
-    <body>
+    <body
+            <% if (msgError != null) {%>
+            onload="showError()"
+            <% }
+            session.removeAttribute("msgError");
+            %>
+     >
         <header>
             <div class="logo"><a href="<%=request.getContextPath()%>/admin_gen"><img class="logo-img" src='images/logo_topbar.png' alt="logo"></a></div>
 
@@ -60,7 +89,7 @@
                         <a href="<%=request.getContextPath()%>/admin_gen?action=donations">Donaciones</a>
                     </li>
                     <li>
-                        <a href="<%=request.getContextPath()%>/"><i class="fa-solid fa-door-open nav-icon2"></i>Cerrar Sesión</a>
+                        <a href="<%=request.getContextPath()%>/logout"><i class="fa-solid fa-door-open nav-icon2"></i>Cerrar Sesión</a>
                     </li>
                 </ul>
             </nav>
@@ -130,13 +159,16 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
                 <tbody>
 
-                    <% for (DelegadoAct delegadoAct: listaDelegadosAct){ %>
+                    <% for (Actividad act: listaActividadesConDelegado){
+                        String deleteId = "borrar_" + act.getIdEncargado(); // ID único para cada enlace de eliminación
+                    %>
+
                     <tr class="">
-                        <td class="centeralign cell c0" style=""><a><%= delegadoAct.getTituloActividad()%></a></td>
-                        <td class="centeralign cell c1" style=""><%= delegadoAct.getNombre() + " " + delegadoAct.getApellido()%> </td>
-                        <td class="centeralign cell c1" style=""><%= delegadoAct.getCodigo()%></td>
-                        <td class="cell c5" ><a href="<%=request.getContextPath() %>/admin_gen?action=activities&ac=edit&id=<%=delegadoAct.getTituloActividad()%>"><img width="24" height="24" src="https://img.icons8.com/sf-regular/48/edit-row.png" alt="edit-row"/></a></td>
-                        <td class="cell c6 "><a id="borrar"  onclick="return confirmacionEliminar(event)" href="<%=request.getContextPath() %>/admin_gen?action=activities&ac=delete&id=<%=delegadoAct.getTituloActividad()%>&idDelegado=<%=delegadoAct.getIdEncargado()%>"><img width="24" height="24" src="https://img.icons8.com/sf-regular/48/filled-trash.png" alt="filled-trash"/></a></td>
+                        <td class="centeralign cell c0" style=""><a><%= act.getTitulo()%></a></td>
+                        <td class="centeralign cell c1" style=""><%= act.getDelegado().getNombres() + " " + act.getDelegado().getApellidos()%> </td>
+                        <td class="centeralign cell c1" style=""><%= act.getDelegado().getCodigo()%></td>
+                        <td class="cell c5" ><a href="<%=request.getContextPath() %>/admin_gen?action=activities&ac=edit&id=<%=act.getIdActividad()%>&idDelActual=<%=act.getIdEncargado()%>"><img width="24" height="24" src="https://img.icons8.com/sf-regular/48/edit-row.png" alt="edit-row"/></a></td>
+                        <td class="cell c6 "><a id="<%=deleteId%>"  onclick="return confirmacionEliminar(event)" href="<%=request.getContextPath() %>/admin_gen?action=activities&ac=delete&id=<%=act.getIdActividad()%>&idDelegado=<%=act.getIdEncargado()%>"><img width="24" height="24" src="https://img.icons8.com/sf-regular/48/filled-trash.png" alt="filled-trash"/></a></td>
                     </tr>
 
                     <%}%>
@@ -155,25 +187,14 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
         <div class="container">
             <nav class="mt-4">
                 <ul class="pagination justify-content-center">
-                    <!---->
-                    <li class="page-item active">
-                        <a href="#" class="page-link">1</a>
-                    </li>
+                    <!--->
+
+                    <%for (Integer n = 1; n <= cantPaginas; n++){ %>
                     <li class="page-item">
-                        <a href="#" class="page-link">2</a>
+                        <a href="<%=request.getContextPath()%>/admin_gen?action=activities&paginaAc=<%=n%>" class="page-link"><%=n%></a>
                     </li>
-                    <li class="page-item">
-                        <a href="#" class="page-link">3</a>
-                    </li>
-                    <li class="page-item">
-                        <a href="#" class="page-link">4</a>
-                    </li>
-                    <li class="page-item">
-                        <a href="#" class="page-link">5</a>
-                    </li>
-                    <li class="page-item">
-                        <a href="#" class="page-link">6</a>
-                    </li>
+                    <%}%>
+
                     <li class="page-item">
                         <a href="#" aria-label="Next" class="page-link">
                             <span aria-hidden="true">»</span>
@@ -203,6 +224,8 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
             function confirmacionEliminar(event) {
                 event.preventDefault(); // Previene ir al href(el cual va al servlet) hasta que se de en borrar
 
+                var idEventoBorrar = event.currentTarget.id //asociado directamente al id del boton borrar
+
                 Swal.fire({
                     title: '¿Estas seguro de eliminar esta actividad?',
                     text: "No se podrán revertir estos cambios",
@@ -215,7 +238,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                     confirmButtonText: 'Borrar'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location.href = document.getElementById('borrar').getAttribute('href');
+                        window.location.href = document.getElementById(idEventoBorrar).getAttribute('href');
                     }
                 });
             }
@@ -230,4 +253,43 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
     </body>
 
-</html>
+    <% } else { %>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
+    <script src="https://kit.fontawesome.com/a2dd6045c4.js" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/jpg" href="favicon.png"/>
+    <title>Semana de Ingeniería 2023</title>
+</head>
+
+<body>
+
+<section class="index">
+
+    <div class="forgot-container">
+
+        <div class="forgot-form">
+            <form action="<%=request.getContextPath()%>/login" method="POST" id="complete">
+                <h2>Se ha cerrado la Sesión!</h2>
+                <div class="forgot-back" style="padding-top: 10px; max-width: 450px; margin-bottom: 25px">
+                    <label>Debe iniciar sesión para acceder al contenido de la página, regrese al login.</label>
+                </div>
+
+                <input type="submit" value="Regresar" class="forgot-button">
+
+            </form>
+        </div>
+    </div>
+
+    <div class="container-fluid footer-container">
+        <p>© Pontificia Universidad Católica del Perú - Todos los derechos reservados</p>
+    </div>
+
+</section>
+
+</body>
+
+<%}%>

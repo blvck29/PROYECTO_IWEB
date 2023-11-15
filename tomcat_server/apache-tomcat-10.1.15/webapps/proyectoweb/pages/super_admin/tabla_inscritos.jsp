@@ -3,9 +3,25 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <% ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) request.getAttribute("listaUsuarios");%>
+<% Integer cantPaginas = (Integer) request.getAttribute("cantPaginas"); %>
+
+
+<%
+  if (session.getAttribute("id") != null){
+    int id = (int) session.getAttribute("id");
+    String idRolSistema = (String) session.getAttribute("idRolSistema");
+    String idRolAcademico = (String) session.getAttribute("idRolAcademico");
+    String nombres = (String) session.getAttribute("nombres");
+    String apellidos = (String) session.getAttribute("apellidos");
+  }
+%>
 
 <!doctype html>
 <html lang="es">
+
+<%
+  if (session.getAttribute("id")!=null){
+%>
 
 <head>
 
@@ -59,7 +75,7 @@
           <a href="<%=request.getContextPath()%>/admin_gen?action=donations">Donaciones</a>
         </li>
         <li>
-          <a href="<%=request.getContextPath()%>/"><i class="fa-solid fa-door-open nav-icon2"></i>Cerrar Sesión</a>
+          <a href="<%=request.getContextPath()%>/logout"><i class="fa-solid fa-door-open nav-icon2"></i>Cerrar Sesión</a>
         </li>
       </ul>
     </nav>
@@ -67,7 +83,7 @@
 
 
   <div class="container-fluid" style="padding-left:0 !important; padding-right: 0 !important; background: rgb(45,0,83) !important;
-background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgba(21,0,48,1) 100%) !important;")>
+background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgba(21,0,48,1) 100%) !important;">
     <div class="text-secondary px-4 py-5 text-center">
       <div class="py-5">
         <h1 class="display-5 fw-bold text-white">Bienvenido, @Admin_general</h1>
@@ -228,24 +244,17 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
     <nav class="mt-4">
       <ul class="pagination justify-content-center">
         <!---->
-        <li class="page-item active">
-          <a href="#" class="page-link">1</a>
-        </li>
+
+
+        <%  for(Integer i= 1; i<=cantPaginas; i++){ %>
+
         <li class="page-item">
-          <a href="#" class="page-link">2</a>
+          <a href="<%=request.getContextPath()%>/admin_gen?action=home&pagina=<%=i%>" class="page-link"><%=i%></a>
         </li>
-        <li class="page-item">
-          <a href="#" class="page-link">3</a>
-        </li>
-        <li class="page-item">
-          <a href="#" class="page-link">4</a>
-        </li>
-        <li class="page-item">
-          <a href="#" class="page-link">5</a>
-        </li>
-        <li class="page-item">
-          <a href="#" class="page-link">6</a>
-        </li>
+
+        <%  } %>
+
+
         <li class="page-item">
           <a href="#" aria-label="Next" class="page-link">
             <span aria-hidden="true">»</span>
@@ -279,5 +288,44 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
 </body>
 
-</html>
+<% } else { %>
 
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
+  <script src="https://kit.fontawesome.com/a2dd6045c4.js" crossorigin="anonymous"></script>
+  <link rel="icon" type="image/jpg" href="favicon.png"/>
+  <title>Semana de Ingeniería 2023</title>
+</head>
+
+<body>
+
+<section class="index">
+
+  <div class="forgot-container">
+
+    <div class="forgot-form">
+      <form action="<%=request.getContextPath()%>/login" method="POST" id="complete">
+        <h2>Se ha cerrado la Sesión!</h2>
+        <div class="forgot-back" style="padding-top: 10px; max-width: 450px; margin-bottom: 25px">
+          <label>Debe iniciar sesión para acceder al contenido de la página, regrese al login.</label>
+        </div>
+
+        <input type="submit" value="Regresar" class="forgot-button">
+
+      </form>
+    </div>
+  </div>
+
+  <div class="container-fluid footer-container">
+    <p>© Pontificia Universidad Católica del Perú - Todos los derechos reservados</p>
+  </div>
+
+</section>
+
+</body>
+
+<%}%>
+</html>

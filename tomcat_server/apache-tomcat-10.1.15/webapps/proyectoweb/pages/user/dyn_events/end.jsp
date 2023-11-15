@@ -1,14 +1,31 @@
 <%@ page import="com.example.proyectoweb.model.beans.Evento" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.example.proyectoweb.model.beans.Actividad" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="com.example.proyectoweb.model.beans.Inscrito" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <% ArrayList<Evento> listaEventosFin = (ArrayList<Evento>) request.getAttribute("listaEventosFin"); %>
 <% ArrayList<Actividad> listaActividades = (ArrayList<Actividad>) request.getAttribute("listaActividades");%>
+<% ArrayList<Inscrito> listaInscritos = (ArrayList<Inscrito>) request.getAttribute("listaInscritos"); %>
 
+
+<%
+    if (session.getAttribute("id") != null){
+        int id = (int) session.getAttribute("id");
+        String idRolSistema = (String) session.getAttribute("idRolSistema");
+        String idRolAcademico = (String) session.getAttribute("idRolAcademico");
+        String nombres = (String) session.getAttribute("nombres");
+        String apellidos = (String) session.getAttribute("apellidos");
+    }
+%>
 
 <!doctype html>
 <html lang="es">
+
+<%
+    if (session.getAttribute("id")!=null){
+%>
 
 <head>
     <meta http-equiv="Content-Type" content=text/html; charset=ISO-8859-1″>
@@ -71,7 +88,7 @@
                 <a href="<%=request.getContextPath()%>/user_home?action=user"><i class="fa-solid fa-user nav-icon2"></i>Usuario</a>
             </li>
             <li>
-                <a href="<%=request.getContextPath()%>/"><i class="fa-solid fa-door-open nav-icon2"></i>Cerrar Sesión</a>
+                <a href="<%=request.getContextPath()%>/logout"><i class="fa-solid fa-door-open nav-icon2"></i>Cerrar Sesión</a>
             </li>
         </ul>
     </nav>
@@ -88,7 +105,7 @@
 
     <div style="margin-bottom: 40px"></div>
 
-    <form action="user_home?action=load" method="post">
+    <form action="#" method="post">
         <div class="input-group mb-3">
             <div class="input-group-text p-0">
                 <label>
@@ -131,7 +148,14 @@
                                 <circle cx="12" cy="8" r="4"></circle>
                                 <path d="M18 21v-2a4 4 0 0 0-4-4H10a4 4 0 0 0-4 4v2"></path>
                             </svg>
-                            5
+                            <%
+                                int cant = 0;
+                                for (Inscrito ins: listaInscritos) {
+                                    if(ins.getIdEvento() == event.getIdEvento()){
+                                        cant = ins.getCantidad();
+                                    }
+                                }%>
+                            <%=cant%>
                         </div>
                         <div class="card-meta card-meta--date">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="Calendar">
@@ -140,7 +164,8 @@
                                 <path d="M16 2v4"></path>
                                 <path d="M2 10h20"></path>
                             </svg>
-                            <%=event.getFecha()%>
+                            <%SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); String fechaFormateada = formato.format(event.getFecha());%>
+                            <%=fechaFormateada%>
                         </div>
                     </div>
                 </article>
@@ -230,6 +255,47 @@
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
 </body>
+
+<% } else { %>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
+    <script src="https://kit.fontawesome.com/a2dd6045c4.js" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/jpg" href="favicon.png"/>
+    <title>Semana de Ingeniería 2023</title>
+</head>
+
+<body>
+
+<section class="index">
+
+    <div class="forgot-container">
+
+        <div class="forgot-form">
+            <form action="<%=request.getContextPath()%>/login" method="POST" id="complete">
+                <h2>Se ha cerrado la Sesión!</h2>
+                <div class="forgot-back" style="padding-top: 10px; max-width: 450px; margin-bottom: 25px">
+                    <label>Debe iniciar sesión para acceder al contenido de la página, regrese al login.</label>
+                </div>
+
+                <input type="submit" value="Regresar" class="forgot-button">
+
+            </form>
+        </div>
+    </div>
+
+    <div class="container-fluid footer-container">
+        <p>© Pontificia Universidad Católica del Perú - Todos los derechos reservados</p>
+    </div>
+
+</section>
+
+</body>
+
+<%}%>
 
 
 </html>

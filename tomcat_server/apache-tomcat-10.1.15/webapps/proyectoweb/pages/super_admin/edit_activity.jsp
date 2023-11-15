@@ -3,9 +3,10 @@
 <%@ page import="com.example.proyectoweb.model.beans.Usuario" %>
 <%@ page import="com.example.proyectoweb.model.beans.Actividad" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<% DelegadoAct actividad = (DelegadoAct) request.getAttribute("actividad"); %>
+<% Actividad actividad = (Actividad) request.getAttribute("actividad"); %>
 <% ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) request.getAttribute("listaUsuarios"); %>
 <%ArrayList<Actividad> listaActividades = (ArrayList<Actividad>) request.getAttribute("listaActividades");%>
+<% String idDelActual = (String) request.getAttribute("idDelActual");%>
 
 <%
     ArrayList<Integer> listaIdsDelegados = new ArrayList<Integer>();
@@ -27,8 +28,24 @@
 </script>
 
 
+<%
+    if (session.getAttribute("id") != null){
+        int id = (int) session.getAttribute("id");
+        String idRolSistema = (String) session.getAttribute("idRolSistema");
+        String idRolAcademico = (String) session.getAttribute("idRolAcademico");
+        String nombres = (String) session.getAttribute("nombres");
+        String apellidos = (String) session.getAttribute("apellidos");
+    }
+%>
+
+
 <!doctype html>
 <html lang="es">
+
+<%
+    if (session.getAttribute("id")!=null){
+%>
+
 
 <head>
     <meta http-equiv="Content-Type" content=text/html; charset=ISO-8859-1″>
@@ -86,7 +103,7 @@
                 <a href="<%=request.getContextPath()%>/admin_gen?action=donations">Donaciones</a>
             </li>
             <li>
-                <a href="<%=request.getContextPath()%>/"><i class="fa-solid fa-door-open nav-icon2"></i>Cerrar Sesión</a>
+                <a href="<%=request.getContextPath()%>/logout"><i class="fa-solid fa-door-open nav-icon2"></i>Cerrar Sesión</a>
             </li>
         </ul>
     </nav>
@@ -100,7 +117,7 @@
 background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgba(21,0,48,1) 100%) !important;">
     <div class="text-secondary px-4 py-5 text-center">
         <div class="py-5">
-            <h1 class="display-5 fw-bold text-white" style="font-family: 'Poppins', sans-serif">Modificando Actividad: <%=actividad.getTituloActividad()%></h1>
+            <h1 class="display-5 fw-bold text-white" style="font-family: 'Poppins', sans-serif">Modificando Actividad: <%=actividad.getTitulo()%></h1>
             <div class="justify-content-sm-center">
             </div>
         </div>
@@ -124,20 +141,20 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
         <div class="row">
             <div class="col-lg-6 col-md-12" style="text-align: left; padding-top: 1.5em">
 
-                <form method="post" id="form" action="<%=request.getContextPath()%>/admin_gen?action=activities&ac=editar">
+                <form method="post" id="form" action="<%=request.getContextPath()%>/admin_gen?action=activities&ac=editar&idDelActual=<%=idDelActual%>">
                     <div class="card">
                         <div class="card-body" style="padding-left: 35px">
 
                             <div style="padding-top: 1.5em;"></div>
                             <div class="form-group" style="padding-right: 1rem">
-                                <label for="fecha-evento" style="text-align: left;">
+                                <label id="fecha-evento" style="text-align: left;">
                                     <strong>Nombre de Actividad:</strong></label>
-                                     <input class="form-control" type="text"   disabled readonly value="<%=actividad.getTituloActividad()%>">
-                                    <input class="form-control" type="hidden"  name="tituloActividad"   value="<%=actividad.getTituloActividad()%>">
+                                     <input class="form-control" type="text"   disabled readonly value="<%=actividad.getTitulo()%>">
+                                    <input class="form-control" type="hidden"  name="tituloActividad"   value="<%=actividad.getTitulo()%>">
                             </div>
                             <div style="padding-top: 1.5em;"></div>
                             <div class="form-group" style="padding-right: 1rem">
-                                <label for="asistentes"><strong>Encargado de Actividad:</strong></label>
+                                <label id="asistentes"><strong>Encargado de Actividad:</strong></label>
                                 <select class="form-select" name="idDelegado" id="idDelegado" aria-label="Default select example" required>
                                     <%for (Usuario usuario : listaUsuarios){ %>
 
@@ -185,7 +202,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                     <div class="uk-flex uk-flex-center uk-margin-top">
                         <div class="uk-flex uk-flex-center">
                             <button type="button" id="reset-button" class="btn btn-secondary m-2">Borrar</button>
-                            <button type="submit" form="upload-form" class="btn btn-primary m-2">Subir</button>
+                            <button type="submit" id="upload-form" class="btn btn-primary m-2">Subir</button>
                         </div>
                     </div>
                 </div>
@@ -241,4 +258,43 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
 </body>
 
-</html>
+    <% } else { %>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
+    <script src="https://kit.fontawesome.com/a2dd6045c4.js" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/jpg" href="favicon.png"/>
+    <title>Semana de Ingeniería 2023</title>
+</head>
+
+<body>
+
+<section class="index">
+
+    <div class="forgot-container">
+
+        <div class="forgot-form">
+            <form action="<%=request.getContextPath()%>/login" method="POST" id="complete">
+                <h2>Se ha cerrado la Sesión!</h2>
+                <div class="forgot-back" style="padding-top: 10px; max-width: 450px; margin-bottom: 25px">
+                    <label>Debe iniciar sesión para acceder al contenido de la página, regrese al login.</label>
+                </div>
+
+                <input type="submit" value="Regresar" class="forgot-button">
+
+            </form>
+        </div>
+    </div>
+
+    <div class="container-fluid footer-container">
+        <p>© Pontificia Universidad Católica del Perú - Todos los derechos reservados</p>
+    </div>
+
+</section>
+
+</body>
+
+<%}%>
