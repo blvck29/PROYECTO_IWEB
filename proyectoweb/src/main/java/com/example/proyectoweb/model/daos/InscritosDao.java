@@ -1,11 +1,11 @@
 
 package com.example.proyectoweb.model.daos;
-import com.example.proyectoweb.model.beans.Evento;
 import com.example.proyectoweb.model.beans.Inscrito;
 import com.example.proyectoweb.model.beans.Usuario;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class InscritosDao extends DaoBase{
 
@@ -53,6 +53,26 @@ public class InscritosDao extends DaoBase{
         return listaInscritos;
     }
 
+
+    public ArrayList<Inscrito>  inscritosPorEvento() {
+        ArrayList<Inscrito> listaInscritos = new ArrayList<>();
+
+        String sql = "SELECT idEvento, COUNT(*) as cantidad FROM inscripcion GROUP BY idEvento;";
+
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
+
+            while (rs.next()) {
+                List<Integer> tupla = List.of(rs.getInt(1), rs.getInt(2));
+                listaInscritos.add(tupla);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return listaInscritos;
+    }
 
     public Inscrito buscarInscritoXid(String idUsuario){
 

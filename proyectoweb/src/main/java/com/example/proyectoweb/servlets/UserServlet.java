@@ -6,17 +6,20 @@ import com.example.proyectoweb.model.beans.Evento;
 import com.example.proyectoweb.model.beans.Inscripcion;
 import com.example.proyectoweb.model.daos.ActividadesDao;
 import com.example.proyectoweb.model.daos.EventosDao;
+import com.example.proyectoweb.model.daos.InscritosDao;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(name = "UserHome", value = "/user_home")
 public class UserServlet extends HttpServlet {
 
     EventosDao eventoDao = new EventosDao();
+    InscritosDao inscritosDao = new InscritosDao();
     ActividadesDao actDao = new ActividadesDao();
 
     @Override

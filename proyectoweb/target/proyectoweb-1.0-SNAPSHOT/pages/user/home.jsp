@@ -1,6 +1,7 @@
 <%@ page import="com.example.proyectoweb.model.beans.Evento" %>
 <%@ page import="com.example.proyectoweb.model.beans.Actividad" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <% ArrayList<Actividad> listaActividades = (ArrayList<Actividad>) request.getAttribute("listaActividades");%>
@@ -210,7 +211,8 @@
                                 <path d="M16 2v4"></path>
                                 <path d="M2 10h20"></path>
                             </svg>
-                            <%=evento.getFecha()%>
+                            <%SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); String fechaFormateada = formato.format(evento.getFecha());%>
+                            <%=fechaFormateada%>
                         </div>
                     </div>
                 </article>
