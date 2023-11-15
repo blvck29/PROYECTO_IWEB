@@ -64,13 +64,14 @@ public class InscritosDao extends DaoBase{
              ResultSet rs = pstmt.executeQuery()) {
 
             while (rs.next()) {
-                List<Integer> tupla = List.of(rs.getInt(1), rs.getInt(2));
-                listaInscritos.add(tupla);
+                Inscrito ins = new Inscrito();
+                ins.setIdEvento(rs.getInt(1));
+                ins.setCantidad(rs.getInt(2));
+                listaInscritos.add(ins);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
         return listaInscritos;
     }
 

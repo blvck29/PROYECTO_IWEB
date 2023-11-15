@@ -1,9 +1,13 @@
 <%@ page import="com.example.proyectoweb.model.beans.Evento" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="com.example.proyectoweb.model.beans.Inscrito" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <% ArrayList<Evento> listaFiltroAct = (ArrayList<Evento>) request.getAttribute("listaFiltroAct"); %>
 <% String idActividad = (String) request.getAttribute("idAct"); %>
+<% ArrayList<Inscrito> listaInscritos = (ArrayList<Inscrito>) request.getAttribute("listaInscritos"); %>
+
 
 <%
     if (session.getAttribute("id") != null){
@@ -150,7 +154,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
         <%int event_counter = 0;%>
 
-        <% for (Evento ev : listaFiltroAct) { %>
+        <% for (Evento evento : listaFiltroAct) { %>
         <%if (event_counter==8) { break; }%>
         <div class="col-sm-6 col-lg-3 mb-4">
 
@@ -160,7 +164,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                         <img class="image-event" src="images/placeholder_events.jpg" alt="event" />
                     </figure>
                     <div class="card-header">
-                        <a href="<%=request.getContextPath()%>/user_home?action=details&id=<%=ev.getIdEvento()%>"><%=ev.getTitulo()%><p><%=ev.getSubTitulo()%></p></a>
+                        <a href="<%=request.getContextPath()%>/user_home?action=details&id=<%=evento.getIdEvento()%>"><%=evento.getTitulo()%><p><%=evento.getSubTitulo()%></p></a>
 
                     </div>
                     <div class="card-footer">
@@ -169,7 +173,14 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                                 <circle cx="12" cy="8" r="4"></circle>
                                 <path d="M18 21v-2a4 4 0 0 0-4-4H10a4 4 0 0 0-4 4v2"></path>
                             </svg>
-                            5
+                            <%
+                                int cant = 0;
+                                for (Inscrito ins: listaInscritos) {
+                                    if(ins.getIdEvento() == evento.getIdEvento()){
+                                        cant = ins.getCantidad();
+                                    }
+                                }%>
+                            <%=cant%>
                         </div>
                         <div class="card-meta card-meta--date">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="Calendar">
@@ -178,7 +189,8 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                                 <path d="M16 2v4"></path>
                                 <path d="M2 10h20"></path>
                             </svg>
-                            <%=ev.getFecha()%>
+                            <%SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); String fechaFormateada = formato.format(evento.getFecha());%>
+                            <%=fechaFormateada%>
                         </div>
                     </div>
                 </article>

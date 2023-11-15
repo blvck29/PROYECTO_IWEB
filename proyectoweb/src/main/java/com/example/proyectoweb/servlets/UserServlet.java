@@ -4,6 +4,7 @@ import com.example.proyectoweb.model.CurrentDate;
 import com.example.proyectoweb.model.beans.Actividad;
 import com.example.proyectoweb.model.beans.Evento;
 import com.example.proyectoweb.model.beans.Inscripcion;
+import com.example.proyectoweb.model.beans.Inscrito;
 import com.example.proyectoweb.model.daos.ActividadesDao;
 import com.example.proyectoweb.model.daos.EventosDao;
 import com.example.proyectoweb.model.daos.InscritosDao;
@@ -28,9 +29,11 @@ public class UserServlet extends HttpServlet {
         String action = request.getParameter("action") == null? "home" : request.getParameter("action");
         ArrayList<Evento> listaEventos = eventoDao.listarEventos();
         ArrayList<Actividad> listaActividades = actDao.getListaActividades();
+        ArrayList<Inscrito> listaInscritos = inscritosDao.inscritosPorEvento();
 
         switch (action){
             case "home":
+                request.setAttribute("listaInscritos", listaInscritos);
                 request.setAttribute("listaActividades",listaActividades);
                 request.setAttribute("listaEventos",listaEventos);
 
@@ -119,6 +122,7 @@ public class UserServlet extends HttpServlet {
 
                 request.setAttribute("idAct", idAct);
                 request.setAttribute("listaFiltroAct",listaFiltroAct);
+                request.setAttribute("listaInscritos", listaInscritos);
                 request.getRequestDispatcher("pages/user/activity.jsp").forward(request,response);
                 break;
 
