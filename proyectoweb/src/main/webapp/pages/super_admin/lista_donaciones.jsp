@@ -4,6 +4,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <% ArrayList<Donaciones> listaDonaciones = (ArrayList<Donaciones>) request.getAttribute("listaDonaciones");%>
+<%Integer cantidadPaginasDonaciones = (Integer) request.getAttribute("cantPaginasDonations");%>
 
 <%
     if (session.getAttribute("id") != null){
@@ -239,24 +240,17 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
     <nav class="mt-4">
         <ul class="pagination justify-content-center">
             <!---->
-            <li class="page-item active">
-                <a href="#" class="page-link">1</a>
-            </li>
+
+
+            <%  for(Integer i= 1; i<=cantidadPaginasDonaciones; i++){ %>
+
             <li class="page-item">
-                <a href="#" class="page-link">2</a>
+                <a href="<%=request.getContextPath()%>/admin_gen?action=donations&paginaDonations=<%=i%>" class="page-link"><%=i%></a>
             </li>
-            <li class="page-item">
-                <a href="#" class="page-link">3</a>
-            </li>
-            <li class="page-item">
-                <a href="#" class="page-link">4</a>
-            </li>
-            <li class="page-item">
-                <a href="#" class="page-link">5</a>
-            </li>
-            <li class="page-item">
-                <a href="#" class="page-link">6</a>
-            </li>
+
+            <%  } %>
+
+
             <li class="page-item">
                 <a href="#" aria-label="Next" class="page-link">
                     <span aria-hidden="true">»</span>

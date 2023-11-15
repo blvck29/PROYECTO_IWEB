@@ -132,14 +132,18 @@ public class AdminGenServlet extends HttpServlet {
                 DonacionesDao donacionesDao = new DonacionesDao();
 
                 String ac2 = request.getParameter("ac") == null? "list" : request.getParameter("ac");
+                ArrayList<Donaciones> listaDonaciones = donacionesDao.listar();
+                double listaDonacionesLenght = listaDonaciones.size();
+                int limitDonations = 10;
+                double cantidadPaginasNecesariasDonaciones = Math.ceil(listaDonacionesLenght/limitDonations);
 
                 switch (ac2){
                     case "list":
-                        ArrayList<Donaciones> listaDonaciones = donacionesDao.listar();
-
-                        request.setAttribute("listaDonaciones", listaDonaciones);
+                        String paginaDonations = request.getParameter("paginaDonations") == null? "1" : request.getParameter("paginaDonations");
+                        ArrayList<Donaciones> listaDonacionesPaginada = donacionesDao.listarDonacionesPaginacion(limitDonations*(Integer.parseInt(paginaDonations)-1));
+                        request.setAttribute("cantPaginasDonations", Double.valueOf(cantidadPaginasNecesariasDonaciones).intValue());
+                        request.setAttribute("listaDonaciones", listaDonacionesPaginada);
                         request.getRequestDispatcher("pages/super_admin/lista_donaciones.jsp").forward(request,response);
-
                         break;
 
 
