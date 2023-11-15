@@ -59,6 +59,7 @@ public class UserServlet extends HttpServlet {
 
                             request.setAttribute("listaEventos",listaEventos);
                             request.setAttribute("listaEventosPropia",listaEventosPropia);
+                            request.setAttribute("listaInscritos", listaInscritos);
                             request.getRequestDispatcher("pages/user/dyn_events/self.jsp").forward(request,response);
                         } else {
                             request.getRequestDispatcher("login?action=unvalid_session").forward(request,response);
@@ -73,6 +74,7 @@ public class UserServlet extends HttpServlet {
 
                         request.setAttribute("listaActividades",listaActividades);
                         request.setAttribute("listaEventosProx",listaEventosProx);
+                        request.setAttribute("listaInscritos", listaInscritos);
                         request.getRequestDispatcher("pages/user/dyn_events/prox.jsp").forward(request,response);
                         break;
 
@@ -82,6 +84,7 @@ public class UserServlet extends HttpServlet {
 
                         request.setAttribute("listaActividades",listaActividades);
                         request.setAttribute("listaEventosFin",listaEventosFin);
+                        request.setAttribute("listaInscritos", listaInscritos);
                         request.getRequestDispatcher("pages/user/dyn_events/end.jsp").forward(request,response);
                         break;
                 }
@@ -143,16 +146,12 @@ public class UserServlet extends HttpServlet {
 
         ArrayList<Evento> listaEventos = eventoDao.listarEventos();
         ArrayList<Actividad> listaActividades = actDao.getListaActividades();
-
+        ArrayList<Inscrito> listaInscritos = inscritosDao.inscritosPorEvento();
 
         switch (action) {
             case "load":
-                request.setAttribute("listaActividades", listaActividades);
-                request.setAttribute("listaEventos", listaEventos);
-
-                request.getRequestDispatcher("pages/user/home.jsp").forward(request, response);
+                request.getRequestDispatcher("user_home").forward(request, response);
                 break;
-
 
             case "search_title":
                 String Actividad = request.getParameter("idAct");
@@ -161,6 +160,7 @@ public class UserServlet extends HttpServlet {
                 ArrayList<Evento> eventosSearched = eventoDao.buscarXtitulo(Actividad, title);
                 request.setAttribute("idAct", Actividad);
                 request.setAttribute("listaFiltroAct",eventosSearched);
+                request.setAttribute("listaInscritos", listaInscritos);
                 request.getRequestDispatcher("pages/user/activity.jsp").forward(request,response);
                 break;
 
@@ -182,6 +182,7 @@ public class UserServlet extends HttpServlet {
                 }
                 request.setAttribute("idAct", idActividad);
                 request.setAttribute("listaFiltroAct",listaFiltroAct);
+                request.setAttribute("listaInscritos", listaInscritos);
                 request.getRequestDispatcher("pages/user/activity.jsp").forward(request,response);
 
 

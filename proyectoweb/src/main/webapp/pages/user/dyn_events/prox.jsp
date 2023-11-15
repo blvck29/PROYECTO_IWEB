@@ -1,10 +1,13 @@
 <%@ page import="com.example.proyectoweb.model.beans.Evento" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.example.proyectoweb.model.beans.Actividad" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="com.example.proyectoweb.model.beans.Inscrito" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <% ArrayList<Evento> listaEventosProx = (ArrayList<Evento>) request.getAttribute("listaEventosProx"); %>
 <% ArrayList<Actividad> listaActividades = (ArrayList<Actividad>) request.getAttribute("listaActividades");%>
+<% ArrayList<Inscrito> listaInscritos = (ArrayList<Inscrito>) request.getAttribute("listaInscritos"); %>
 
 
 <%
@@ -107,7 +110,7 @@
 
 
 
-    <form action="user_home?action=load" method="post">
+    <form action="#" method="post">
         <div class="input-group mb-3">
             <div class="input-group-text p-0">
                 <label>
@@ -150,7 +153,14 @@
                                 <circle cx="12" cy="8" r="4"></circle>
                                 <path d="M18 21v-2a4 4 0 0 0-4-4H10a4 4 0 0 0-4 4v2"></path>
                             </svg>
-                            5
+                            <%
+                                int cant = 0;
+                                for (Inscrito ins: listaInscritos) {
+                                    if(ins.getIdEvento() == event.getIdEvento()){
+                                        cant = ins.getCantidad();
+                                    }
+                                }%>
+                            <%=cant%>
                         </div>
                         <div class="card-meta card-meta--date">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="Calendar">
@@ -159,7 +169,8 @@
                                 <path d="M16 2v4"></path>
                                 <path d="M2 10h20"></path>
                             </svg>
-                            <%=event.getFecha()%>
+                            <%SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); String fechaFormateada = formato.format(event.getFecha());%>
+                            <%=fechaFormateada%>
                         </div>
                     </div>
                 </article>
