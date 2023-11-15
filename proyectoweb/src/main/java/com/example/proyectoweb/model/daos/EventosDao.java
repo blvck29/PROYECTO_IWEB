@@ -32,7 +32,7 @@ public class EventosDao extends DaoBase{
         return listaEventos;
     }
 
-    public ArrayList<Inscripcion> listarEventosPropios (int idUser){ //user
+    public ArrayList<Inscripcion> listarEventosPropios (String idUser){ //user
 
         //Conexión a la DB
 

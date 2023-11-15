@@ -32,6 +32,9 @@ public class SystemServlet extends HttpServlet {
             case "forgot_passwd":
                 request.getRequestDispatcher("pages/system/password_recovery/email.jsp").forward(request, response);
                 break;
+            case "unvalid_session":
+                request.getRequestDispatcher("pages/system/unvalid_session.jsp").forward(request, response);
+                break;
             case "login":
                 request.getRequestDispatcher("index.jsp").forward(request, response);
                 break;

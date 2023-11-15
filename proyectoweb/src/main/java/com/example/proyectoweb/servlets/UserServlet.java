@@ -11,9 +11,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
-import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Date;
 
 @WebServlet(name = "UserHome", value = "/user_home")
 public class UserServlet extends HttpServlet {
@@ -47,11 +45,20 @@ public class UserServlet extends HttpServlet {
                 switch (id){
                     case "self":
 
-                        ArrayList<Inscripcion> listaEventosPropia = eventoDao.listarEventosPropios(100);
+                        HttpSession session = request.getSession(false);
 
-                        request.setAttribute("listaEventos",listaEventos);
-                        request.setAttribute("listaEventosPropia",listaEventosPropia);
-                        request.getRequestDispatcher("pages/user/dyn_events/self.jsp").forward(request,response);
+                        if (session.getAttribute("id") != null) {
+                            int idUsr = (int) session.getAttribute("id");
+                            ArrayList<Inscripcion> listaEventosPropia = eventoDao.listarEventosPropios(String.valueOf(idUsr));
+
+                            request.setAttribute("listaEventos",listaEventos);
+                            request.setAttribute("listaEventosPropia",listaEventosPropia);
+                            request.getRequestDispatcher("pages/user/dyn_events/self.jsp").forward(request,response);
+                        } else {
+                            request.getRequestDispatcher("login?action=unvalid_session").forward(request,response);
+                        }
+
+
                         break;
 
                     case "prox":
@@ -77,22 +84,25 @@ public class UserServlet extends HttpServlet {
             case "details":
                 String idEv = request.getParameter("id") == null? "self" : request.getParameter("id");
 
-                ArrayList<Inscripcion> listaEventosPropia = eventoDao.listarEventosPropios(100);
-                Evento ev = eventoDao.EventoXid(idEv);
+                HttpSession session = request.getSession(false);
 
+                if (session.getAttribute("id") != null) {
 
-                request.setAttribute("listaEventosPropia",listaEventosPropia);
-                request.setAttribute("evento_detailed", ev);
+                    int idUsr = (int) session.getAttribute("id");
+                    ArrayList<Inscripcion> listaEventosPropia = eventoDao.listarEventosPropios(String.valueOf(idUsr));
+                    Evento ev = eventoDao.EventoXid(idEv);
 
-                java.sql.Date currentDate = CurrentDate.getCurrentDate();
-                java.util.Date utilDate = ev.getFecha();
-                java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
-                java.sql.Date eventDate = new java.sql.Date(sqlDate.getTime() + ev.getHora().getTime());
+                    request.setAttribute("listaEventosPropia",listaEventosPropia);
+                    request.setAttribute("evento_detailed", ev);
 
-                if(currentDate.compareTo(eventDate) > 0){
-                    request.getRequestDispatcher("pages/user/dyn_events/event_end.jsp").forward(request,response);
+                    if(CurrentDate.isCurrent(ev) > 0){
+                        request.getRequestDispatcher("pages/user/dyn_events/event_end.jsp").forward(request,response);
+                    } else {
+                        request.getRequestDispatcher("pages/user/dyn_events/event.jsp").forward(request,response);
+                    }
+
                 } else {
-                    request.getRequestDispatcher("pages/user/dyn_events/event.jsp").forward(request,response);
+                    request.getRequestDispatcher("login?action=unvalid_session").forward(request,response);
                 }
 
                 break;
