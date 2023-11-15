@@ -110,7 +110,7 @@
 
 
 
-    <form action="#" method="post">
+    <form action="<%=request.getContextPath()%>/user_home?action=filter&of=prox" method="post">
         <div class="input-group mb-3">
             <div class="input-group-text p-0">
                 <label>
@@ -122,6 +122,7 @@
                     </select>
                 </label>
             </div>
+
             <input type="text" name="buscar_evento" class="form-control" placeholder="Buscar Evento">
             <button class="input-group-text shadow-none px-4 btn-large" type="submit">
                 <i class="fa-solid fa-magnifying-glass" style="color: #262626;"></i>
