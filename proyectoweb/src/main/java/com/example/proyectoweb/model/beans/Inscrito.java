@@ -5,6 +5,7 @@ public class Inscrito {
     private int idEvento;
     private String rolEnEvento;
     private Usuario usuario;
+    private int cantidad;
 
     public int getIdEvento() {
         return idEvento;
@@ -28,5 +29,13 @@ public class Inscrito {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
 }
