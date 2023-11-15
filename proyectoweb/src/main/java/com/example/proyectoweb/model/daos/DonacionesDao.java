@@ -199,6 +199,46 @@ public class DonacionesDao extends DaoBase{
     }
 
 
+    public ArrayList<Donaciones> listarDonacionesPaginacion(Integer offset){
+
+        ArrayList<Donaciones> listaDonacionesPaginacion = new ArrayList<>();
+        String sql = "SELECT don.idUsuario, don.idRegistro_Donaciones, u.nombres, u.apellidos, don.comprobante, don.monto, don.comprobado, don.fecha, u.idRolAcademico FROM registro_donaciones don INNER JOIN usuarios u on (u.idUsuario = don.idUsuario) limit 10 offset ?";
+
+        try(Connection conn = getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql);){
+
+            pstmt.setInt(1,  (int) offset);
+
+            try(ResultSet rs = pstmt.executeQuery()){
+
+                while (rs.next()){
+                    Donaciones donacionAlumno = new Donaciones();
+                    donacionAlumno.setIdUsuario(rs.getInt(1));
+                    donacionAlumno.setIdDonaciones(rs.getInt(2));
+                    donacionAlumno.setNombres(rs.getString(3));
+                    donacionAlumno.setApellidos(rs.getString(4));
+                    donacionAlumno.setComprobante((Blob) rs.getBlob(5));
+                    donacionAlumno.setMonto(rs.getDouble(6));
+                    donacionAlumno.setComprobado(rs.getInt(7)); // Ahora devuelve un INT
+                    donacionAlumno.setFechaDonacion(rs.getString(8));
+                    donacionAlumno.setIdRolAcademico(rs.getString(9));
+
+                    listaDonacionesPaginacion.add(donacionAlumno);
+                }
+
+            }
+
+
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+        return listaDonacionesPaginacion;
+    }
+
+
+
+
+
 
 
 
