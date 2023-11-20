@@ -87,7 +87,7 @@
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "js.buildTools.gulp.gulp_package_dir": "",
-    "last_opened_file_path": "C:/Users/Gerardo/Documents/proyecto/PROYECTO_IWEB/proyectoweb",
+    "last_opened_file_path": "C:/Users/User/Downloads/LAB8-iweb/tres_mosqueteros",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -353,6 +353,7 @@
       <workItem from="1699992939597" duration="351000" />
       <workItem from="1700419477125" duration="23949000" />
       <workItem from="1700460136702" duration="6065000" />
+      <workItem from="1700466335337" duration="173000" />
     </task>
     <servers />
   </component>
