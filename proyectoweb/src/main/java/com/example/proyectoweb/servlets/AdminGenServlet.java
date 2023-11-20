@@ -32,9 +32,9 @@ public class AdminGenServlet extends HttpServlet {
                 String pagina = request.getParameter("pagina") == null? "1" : request.getParameter("pagina");
                 System.out.println(pagina);
 
-                ArrayList<Usuario> listaConPaginacion = userDao.listarUsuariosConPaginacion(limit*(Integer.parseInt(pagina)-1));
+                ArrayList<Usuario> listaConPaginacion = userDao.listarUsuariosConPaginacion(limit, limit*(Integer.parseInt(pagina)-1));
 
-                request.setAttribute("cantPaginas", Double.valueOf(cantPaginas).intValue()); // casteooooooooooooo
+                request.setAttribute("cantPaginas", Double.valueOf(cantPaginas).intValue());
                 request.setAttribute("listaUsuarios",listaConPaginacion);
                 request.getRequestDispatcher("pages/super_admin/tabla_inscritos.jsp").forward(request,response);
                 break;
@@ -198,6 +198,8 @@ public class AdminGenServlet extends HttpServlet {
 
         switch(action){
             case "home":
+                Integer limit = 8;
+                String pagina = request.getParameter("pagina") == null? "1" : request.getParameter("pagina");
 
                 switch (ac){
                     case "busqueda":
@@ -211,8 +213,13 @@ public class AdminGenServlet extends HttpServlet {
                     case "busquedaPorEstado":
                         String filtroEstado = request.getParameter("id");
                         ArrayList<Usuario> listaPorEstado = userDao.listarPorEstado(filtroEstado);
+                        Double totalUsuarios = (double) listaPorEstado.size();
+                        Double cantPaginas = Math.ceil(totalUsuarios/limit);
+                        ArrayList<Usuario> listaPorEstadoPaginacion = userDao.listarPorEstadoPaginacion(filtroEstado, limit, limit*(Integer.parseInt(pagina)-1));
 
-                        request.setAttribute("listaUsuarios", listaPorEstado);
+                        request.setAttribute("indicador", filtroEstado);
+                        request.setAttribute("cantPaginas", Double.valueOf(cantPaginas).intValue());
+                        request.setAttribute("listaUsuarios", listaPorEstadoPaginacion);
                         request.getRequestDispatcher("pages/super_admin/tabla_inscritos.jsp").forward(request,response);
                         break;
 

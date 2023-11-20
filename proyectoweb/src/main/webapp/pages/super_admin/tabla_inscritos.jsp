@@ -4,6 +4,7 @@
 
 <% ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) request.getAttribute("listaUsuarios");%>
 <% Integer cantPaginas = (Integer) request.getAttribute("cantPaginas"); %>
+<% String indicador = (String) request.getAttribute("indicador"); %>
 
 
 <%
@@ -234,16 +235,31 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
   <div class="container">
     <nav class="mt-4">
       <ul class="pagination justify-content-center">
-        <!---->
+
+
+
 
 
         <%  for(Integer i= 1; i<=cantPaginas; i++){ %>
+
+        <%  if(indicador == null){ %>
 
         <li class="page-item">
           <a href="<%=request.getContextPath()%>/admin_gen?action=home&pagina=<%=i%>" class="page-link"><%=i%></a>
         </li>
 
+
+        <%  }else {%>
+
+        <form method="post" action="<%=request.getContextPath()%>/admin_gen?action=home&pagina=<%=i%>&ac=busquedaPorEstado&id=<%=indicador%>">
+            <button type="submit" class="page-link"><%=i%></button>
+        </form>
+
         <%  } %>
+        <% } %>
+
+
+
 
 
         <li class="page-item">
