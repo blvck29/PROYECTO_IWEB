@@ -151,6 +151,10 @@ public class AdminGenServlet extends HttpServlet {
                 break;
 
 
+            case "sta":
+                request.getRequestDispatcher("pages/prueba/sta.jsp").forward(request,response);
+                break;
+
             case "donations":
                 DonacionesDao donacionesDao = new DonacionesDao();
 
