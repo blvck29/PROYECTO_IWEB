@@ -124,7 +124,30 @@ public class AdminGenServlet extends HttpServlet {
                 break;
 
             case "statistics":
-                request.getRequestDispatcher("pages/super_admin/statistics.jsp").forward(request,response);
+                ActividadesDao actividadesDao1 = new ActividadesDao();
+                ArrayList<Actividad> listaActividades= actividadesDao1.listarActividadesConDelegado();
+
+                ArrayList<Usuario> listaUsuario= userDao.listarTodosUsuarios();
+
+                DonacionesDao donacionesDao1= new DonacionesDao();
+                ArrayList<Donaciones> listaDonaciones1= donacionesDao1.listar();
+
+                String select = request.getParameter("select") == null? "unoCaso" : request.getParameter("select");
+                switch (select){
+                    case "unoCaso":
+                        request.setAttribute("listaDonaciones",listaDonaciones1);
+                        request.getRequestDispatcher("pages/super_admin/statisticsRecaudaciones.jsp").forward(request,response);
+                        break;
+                    case "canAl":
+                        request.setAttribute("listaUsuarios",listaUsuario);
+                        request.getRequestDispatcher("pages/super_admin/statisticsStudent.jsp").forward(request,response);
+                        break;
+                    case "cantAp":
+                        request.setAttribute("listaActividades",listaActividades);
+                        request.setAttribute("listaUsuarios",listaUsuario);
+                        request.getRequestDispatcher("pages/super_admin/statisticsSupports.jsp").forward(request,response);
+                        break;
+                }
                 break;
 
 
@@ -153,14 +176,7 @@ public class AdminGenServlet extends HttpServlet {
 
                         request.setAttribute("Donante", donanteBuscado);
                         request.getRequestDispatcher("/pages/super_admin/ver_donacion.jsp").forward(request,response);
-
-
-
-
                 }
-
-
-
                 break;
 
         }

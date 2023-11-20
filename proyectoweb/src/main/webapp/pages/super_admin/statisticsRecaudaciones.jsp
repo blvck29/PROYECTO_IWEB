@@ -1,6 +1,15 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.example.proyectoweb.model.beans.Usuario" %>
+<%@ page import="com.example.proyectoweb.model.beans.Actividad" %>
+<%@ page import="com.example.proyectoweb.model.beans.DelegadoAct" %>
+<%@ page import="com.example.proyectoweb.servlets.AdminGenServlet" %>
+<%@ page import="com.example.proyectoweb.model.beans.Donaciones" %>
+<%@ page import="com.example.proyectoweb.model.beans.*" %>
 
-
+<% ArrayList<Actividad> listaActividades = (ArrayList<Actividad>) request.getAttribute("listaActividades");%>
+<% ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) request.getAttribute("listaUsuarios");%>
+<% ArrayList<Donaciones> listaDonaciones = (ArrayList<Donaciones>) request.getAttribute("listaDonaciones");%>
 <%
     if (session.getAttribute("id") != null){
         int id = (int) session.getAttribute("id");
@@ -21,6 +30,9 @@
 %>
 
 <head>
+    <!-- Bootstrap core CSS -->
+    <link href="css/style-graficos.css" rel="stylesheet">
+    <link href="css/_progress.scss" rel="stylesheet">
 
     <meta http-equiv="Content-Type" content=text/html; charset=ISO-8859-1″>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -91,21 +103,106 @@
     <div style="margin-bottom: 50px"></div>
 
     <h2><i class="fa-solid fa-star" style="color: #8de7ef;"></i><strong style="padding-left: 10px">Estadísticas</strong></h2>
+    <div class="container d-flex col-md-10 justify-content-end">
+        <li>
+        <a class="btn btn-primary me-1 float-end mt-1 ml-1 fw-bold active" href="<%=request.getContextPath()%>=/admin_gen?action=statistics"> Recaudaciones</a>
+        </li>
+        <li>
+            <a class="btn btn-outline-primary me-1 float-end mt-1 ml-1 " href="<%=request.getContextPath()%>/admin_gen?action=statistics&select=canAl"> Cantidad de alumnos y egresados</a>
+        </li>
+        <li>
+        <a class="btn btn-outline-primary me-1 float-end mt-1 ml-1" href="<%=request.getContextPath()%>/admin_gen?action=statistics&select=cantAp"> Cantidad de apoyos por actividad</a>
+        </li>
+    </div>
+
+    <div class="container">
+        <div class="modu-dest-intern formato">
 
 
-    <div style="margin-bottom: 20px"></div>
-    <hr>
-    <div style="margin-bottom: 30px"></div>
+            <%
+            double montoEstudiantes=0;
+            double maxMontEst=0;
+            double minMontEst=9999;
+            double montoEgresados=0;
+            double maxMontEgre=0;
+            double minMontEgre=9999;
+            int cantDona=0;
+            for(Donaciones donaciones : listaDonaciones){
+                if(donaciones.getIdRolAcademico().equalsIgnoreCase("STUDENT")){
+                    montoEstudiantes+=donaciones.getMonto();
+                    if(donaciones.getMonto()>maxMontEst){
+                        maxMontEst=donaciones.getMonto();
+                    }
+                    if(donaciones.getMonto()<minMontEst){
+                        minMontEst=donaciones.getMonto();
+                    }
+                }else{
+                    if(donaciones.getIdRolAcademico().equalsIgnoreCase("GRADUATED")){
+                        montoEgresados+=donaciones.getMonto();
+                        if(donaciones.getMonto()>maxMontEgre){
+                            maxMontEgre=donaciones.getMonto();
+                        }
+                        if(donaciones.getMonto()<minMontEgre){
+                            minMontEgre=donaciones.getMonto();
+                        }
+                    }
+                }
+                cantDona+=1;
+            }
+            double porcentEst=montoEstudiantes*100/(montoEgresados+montoEstudiantes);
+            double porcentEgre=montoEgresados*100/(montoEgresados+montoEstudiantes);
+            %>
 
 
-
-
-
-
-
-
-
-
+            <div class="board">
+                <div style="padding-top: 2em;"></div>
+                <div class="titulo_grafica">
+                    <h2 style="margin-left:100px">Alumnos: <%= porcentEst%>% </h2>
+                    <div class="progress-bar">
+                        <div class="alumnos_recaudaciones"></div>
+                    </div>
+                    <h2 style="margin-left:100px">Egresados: <%=porcentEgre%>% </h2>
+                    <div class="progress-bar">
+                        <div class="egresados_recaudaciones"></div>
+                    </div>
+                    <br>
+                </div>
+                <br>
+                <br>
+                <div class="sub_board">
+                    <div class="sep_board"></div>
+                    <div class="cont_board">
+                        <div class="graf_board">
+                            <div class="barra_plot">
+                                <div class="sub_barra_egresados b1">
+                                    <div class="tag_g"><%= montoEgresados %></div>
+                                    <div class="tag_leyenda">Egresados</div>
+                                </div>
+                            </div>
+                            <div class="barra_plot">
+                                <div class="sub_barra_alumnos b2">
+                                    <div class="tag_g"> <%= montoEstudiantes %></div>
+                                    <div class="tag_leyenda">Alumnos</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tag_board">
+                            <div class="sub_tag_board">
+                                    <div></div>
+                                    <div>280</div>
+                                    <div>240</div>
+                                    <div>200</div>
+                                    <div>160</div>
+                                    <div>120</div>
+                                    <div>80</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sep_board"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="container-fluid" style="background-color: #fff; padding-right: 0; padding-left: 0">
