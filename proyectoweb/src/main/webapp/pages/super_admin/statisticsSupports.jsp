@@ -123,14 +123,6 @@
     </li>
   </div>
 
-
-
-
-
-
-
-
-
   <div class="container">
     <br>
     <h2 style="text-align: center;">Miembros y Barras por actividad</h2>
@@ -196,19 +188,6 @@
 
   </script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 </div>
 
 <div class="container-fluid" style="background-color: #fff; padding-right: 0; padding-left: 0">
@@ -223,6 +202,7 @@
     </div>
   </footer>
 </div>
+
 
 
 
