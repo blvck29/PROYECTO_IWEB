@@ -6,9 +6,17 @@
 <%@ page import="com.example.proyectoweb.servlets.AdminGenServlet" %>
 <%@ page import="com.example.proyectoweb.model.beans.Donaciones" %>
 <%@ page import="com.example.proyectoweb.model.beans.*" %>
+<%@ page import="java.util.Map" %>
 
 <% ArrayList<Actividad> listaActividades = (ArrayList<Actividad>) request.getAttribute("listaActividades");%>
 <% ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) request.getAttribute("listaUsuarios");%>
+<% ArrayList<ArrayList<Integer>> conteorolesgeneral =  (ArrayList<ArrayList<Integer>>)request.getAttribute("conteorolesgeneral");%>
+
+<% ArrayList<String> NombresActividades =  (ArrayList<String>)request.getAttribute("NombresActividades");%>
+
+
+
+
 <%
   if (session.getAttribute("id") != null){
     int id = (int) session.getAttribute("id");
@@ -114,36 +122,90 @@
     </li>
   </div>
 
+
+
+
+
+
+
+
+
   <div class="container">
-    <div class="modu-dest-intern formato">
-
-
-      <div style="padding-top: 1em;"></div>
-
-      <h1 style="padding-left: 120px; text-align: start;">Cantidad de Apoyos por Actividad</h1>
-      <p style="padding-left: 120px; text-align: start;">Resumen total de Apoyos:</p>
-
-      <div class="containerBarraP_Apoyos">
-        <div class="skills_apoyos">
-          <h2 style="margin-left:100px">Barra 75%</h2>
-          <div class="progress-bar">
-            <div class="barra"></div>
-          </div>
-          <h2 style="margin-left:100px">Participantes 15%</h2>
-          <div class="progress-bar">
-            <div class="participantes"></div>
-          </div>
-        </div>
-      </div>
-
-      <img src = "../../../assets/dist/imgs/graficoBarras.jpg">
-
-      <div style="padding-top: 2em;"></div>
-
-
-
+    <br>
+    <h2 style="text-align: center;">Miembros y Barras por actividad</h2>
+    <br>
+    <div style="max-width: 600px; margin: 0 auto;">
+      <canvas id="myChart" width="400" height="300"></canvas>
     </div>
   </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+  <script>
+    var conteoRolesGeneral = <%= request.getAttribute("conteorolesgeneral") %>;
+    var actividadesCount = conteoRolesGeneral.length;
+
+
+
+    var primerosValores = [];
+    var segundoValores = [];
+
+    conteoRolesGeneral.forEach(function(subArrayList) {
+      primerosValores.push(subArrayList[0]);
+      segundoValores.push(subArrayList[1]);
+    });
+
+    var datasets = [
+      {
+        label: "Barra",
+        data: primerosValores,
+        backgroundColor: 'rgba(54, 162, 235, 0.6)',
+        borderColor: 'rgba(54, 162, 235, 1)',
+        borderWidth: 1
+      },
+      {
+        label: "Miembros",
+        data: segundoValores,
+        backgroundColor: 'rgba(255, 99, 132, 0.6)',
+        borderColor: 'rgba(255, 99, 132, 1)',
+        borderWidth: 1
+      }
+    ];
+
+    var labelsArray = Array.from({ length: actividadesCount }, (_, i) => `Actividad ${i+1}`);
+    var misEtiquetas = ["Basquet ", "dddd", "eSports", "Fubtol","Karte","prueba","Tennis","Voley"]; // Tu arreglo de strings
+
+
+
+
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: misEtiquetas,
+        datasets: datasets
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 </div>

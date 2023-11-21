@@ -14,6 +14,7 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
+import java.util.Map;
 
 @WebServlet(name = "AdminGenServlet", value = "/admin_gen")
 public class AdminGenServlet extends HttpServlet {
@@ -130,21 +131,42 @@ public class AdminGenServlet extends HttpServlet {
                 ArrayList<Usuario> listaUsuario= userDao.listarTodosUsuarios();
 
                 DonacionesDao donacionesDao1= new DonacionesDao();
+                UsuariosDao usariosdao3=new UsuariosDao();
                 ArrayList<Donaciones> listaDonaciones1= donacionesDao1.listar();
+                double totalDonacionesEgresados=donacionesDao1.sumarDonacionesEgresados();
+                double totalDonacionesEstudiantes=donacionesDao1.sumarDonacionesEstudiantes();
+                int totalestudiantes=usariosdao3.contarEstudiantes();
+                int totalgraduados=usariosdao3.contargraduados();
+                ArrayList<ArrayList<Integer>> conteorolesgeneral = usariosdao3.contarRolesTodasActividades();
+                ArrayList<String> NombresActividades=usariosdao3.obtenerNombresActividades();
 
                 String select = request.getParameter("select") == null? "unoCaso" : request.getParameter("select");
                 switch (select){
                     case "unoCaso":
                         request.setAttribute("listaDonaciones",listaDonaciones1);
+                        request.setAttribute("totalDonacionesEstudiantes",totalDonacionesEstudiantes);
+                        request.setAttribute("totalDonacionesEgresados",totalDonacionesEgresados);
+
+
                         request.getRequestDispatcher("pages/super_admin/statisticsRecaudaciones.jsp").forward(request,response);
                         break;
                     case "canAl":
                         request.setAttribute("listaUsuarios",listaUsuario);
+                        request.setAttribute("totalestudiantes",totalestudiantes);
+                        request.setAttribute("totalgraduados",totalgraduados);
+
+
+
                         request.getRequestDispatcher("pages/super_admin/statisticsStudent.jsp").forward(request,response);
                         break;
                     case "cantAp":
                         request.setAttribute("listaActividades",listaActividades);
                         request.setAttribute("listaUsuarios",listaUsuario);
+                        request.setAttribute("conteorolesgeneral",conteorolesgeneral);
+                        request.setAttribute("NombresActividades",NombresActividades);
+                        System.out.println(NombresActividades);
+                        System.out.println(conteorolesgeneral);
+
                         request.getRequestDispatcher("pages/super_admin/statisticsSupports.jsp").forward(request,response);
                         break;
                 }
