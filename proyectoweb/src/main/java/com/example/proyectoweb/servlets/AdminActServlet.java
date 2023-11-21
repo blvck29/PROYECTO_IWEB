@@ -29,7 +29,7 @@ public class AdminActServlet extends HttpServlet {
             case "home":
                 HttpSession session = request.getSession(false); //Estaba en False
 
-                if (session != null) {
+                if (session.getAttribute("id") != null) {
                     int idUsr = (int) session.getAttribute("id");
                     Actividad actividad = actividadesDao.getActividadByIdUsuario(idUsr);
                     System.out.println(actividad.getTitulo());

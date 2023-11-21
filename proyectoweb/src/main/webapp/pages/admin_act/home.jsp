@@ -211,13 +211,17 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
             <%}
         }else{ %>
-        <h1 style="color: black "  >No hay eventos asignados a esta actividad. Crea una !!!</h1>
+        <div style="margin-top: 5rem"></div>
+        <h1 style="color: dimgray "  >No hay eventos creados para esta actividad.</h1>
         <%}%>
 
 
     </div>
 
     <br>
+
+    <% if(listaEventos.size() != 0){ %>
+
     <nav class="mt-4">
         <ul class="pagination justify-content-center">
             <!---->
@@ -247,7 +251,10 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
             </li>
         </ul>
     </nav>
+
+    <% }%>
 </div>
+
 
 <div style="margin-bottom: 50px"></div>
 
