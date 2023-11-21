@@ -226,11 +226,14 @@ public class AdminGenServlet extends HttpServlet {
                 switch (ac){
                     case "busqueda":
                         String usuarioBuscado = request.getParameter("busquedaNombreCodigo");
+
                         ArrayList<Usuario> listaBusqueda = userDao.buscarXnombreYcodigo(usuarioBuscado);
 
                         request.setAttribute("listaUsuarios",listaBusqueda);
                         request.getRequestDispatcher("pages/super_admin/tabla_inscritos.jsp").forward(request,response);
                         break;
+
+
 
                     case "busquedaPorEstado":
                         String filtroEstado = request.getParameter("id");
@@ -252,8 +255,6 @@ public class AdminGenServlet extends HttpServlet {
 
                         System.out.println("nuevo estado: " + nuevoEstadoUsuario);
                         System.out.println("idusaurio: " + idUsuario);
-
-
 
 
                         if(nuevoEstadoUsuario.equals("eliminarUsuario")){
