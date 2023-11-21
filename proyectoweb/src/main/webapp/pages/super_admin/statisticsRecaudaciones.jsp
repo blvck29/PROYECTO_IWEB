@@ -7,6 +7,7 @@
 <%@ page import="com.example.proyectoweb.model.beans.Donaciones" %>
 <%@ page import="com.example.proyectoweb.model.beans.*" %>
 
+
 <% ArrayList<Actividad> listaActividades = (ArrayList<Actividad>) request.getAttribute("listaActividades");%>
 <% ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) request.getAttribute("listaUsuarios");%>
 <% ArrayList<Donaciones> listaDonaciones = (ArrayList<Donaciones>) request.getAttribute("listaDonaciones");%>
