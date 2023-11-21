@@ -10,6 +10,12 @@
 <% ArrayList<Actividad> listaActividades = (ArrayList<Actividad>) request.getAttribute("listaActividades");%>
 <% ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) request.getAttribute("listaUsuarios");%>
 <% ArrayList<Donaciones> listaDonaciones = (ArrayList<Donaciones>) request.getAttribute("listaDonaciones");%>
+<% Double totalDonacionesEgresados = (double) request.getAttribute("totalDonacionesEgresados");%>
+<% Double totalDonacionesEstudiantes = (double) request.getAttribute("totalDonacionesEstudiantes");%>
+
+
+
+
 <%
     if (session.getAttribute("id") != null){
         int id = (int) session.getAttribute("id");
@@ -42,6 +48,7 @@
     <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 
+
     <!-- Add the slick-theme.css if you want default styling -->
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <!-- Add the slick-theme.css if you want default styling -->
@@ -49,6 +56,9 @@
 
     <script src="https://kit.fontawesome.com/a2dd6045c4.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+    <!-- CDNJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
 
     <!-- UIkit CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.17.4/dist/css/uikit.min.css" />
@@ -116,94 +126,90 @@
         </li>
     </div>
 
+
     <div class="container">
-        <div class="modu-dest-intern formato">
+        <br><h2 style="text-align: center;">Donaciones por rol</h2><br>
+        <div style="max-width: 400px; margin: 0 auto;">
+            <canvas id="myChart" width="400" height="300"></canvas>
+        </div>
+    </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
 
-            <%
-            double montoEstudiantes=0;
-            double maxMontEst=0;
-            double minMontEst=9999;
-            double montoEgresados=0;
-            double maxMontEgre=0;
-            double minMontEgre=9999;
-            int cantDona=0;
-            for(Donaciones donaciones : listaDonaciones){
-                if(donaciones.getIdRolAcademico().equalsIgnoreCase("STUDENT")){
-                    montoEstudiantes+=donaciones.getMonto();
-                    if(donaciones.getMonto()>maxMontEst){
-                        maxMontEst=donaciones.getMonto();
-                    }
-                    if(donaciones.getMonto()<minMontEst){
-                        minMontEst=donaciones.getMonto();
-                    }
-                }else{
-                    if(donaciones.getIdRolAcademico().equalsIgnoreCase("GRADUATED")){
-                        montoEgresados+=donaciones.getMonto();
-                        if(donaciones.getMonto()>maxMontEgre){
-                            maxMontEgre=donaciones.getMonto();
+        var data = {
+            labels: ['Estudiantes', 'Egresados'],
+            datasets: [
+                {
+                    label: 'Donaciones de estudiantes',
+                    data: [<%= totalDonacionesEstudiantes %>],
+                    backgroundColor: 'rgba(165, 42, 42, 0.8)', // Color de fondo para la barra de estudiantes
+                    borderColor: 'rgba(165, 42, 42, 1)', // Color del borde de la barra de estudiantes
+                    borderWidth: 1
+                },
+                {
+                    label: 'Donaciones de egresados',
+                    data: [<%= totalDonacionesEgresados %>],
+                    backgroundColor: 'rgba(0, 0, 139, 0.6)', // Color de fondo para la barra de egresados
+                    borderColor: 'rgba(0, 0, 139, 1)', // Color del borde de la barra de egresados
+                    borderWidth: 1
+                }
+            ]
+        };
+
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: data,
+            options: {
+                indexAxis: 'x', // Barras en posición vertical
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        labels: {
+                            font: {
+                                size: 12, // Tamaño de la fuente en la leyenda
+                                weight: 'bold' // Estilo de la fuente en la leyenda
+                            }
                         }
-                        if(donaciones.getMonto()<minMontEgre){
-                            minMontEgre=donaciones.getMonto();
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.3)', // Líneas de la cuadrícula en el eje Y más oscuras
+                        },
+                        ticks: {
+                            font: {
+                                size: 12, // Tamaño de las etiquetas en el eje Y
+                                weight: 'bold' // Estilo de las etiquetas en el eje Y
+                            }
+                        }
+                    },
+                    x: {
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.3)', // Líneas de la cuadrícula en el eje X más oscuras
+                        },
+                        ticks: {
+                            font: {
+                                size: 12, // Tamaño de las etiquetas en el eje X
+                                weight: 'bold' // Estilo de las etiquetas en el eje X
+                            }
                         }
                     }
                 }
-                cantDona+=1;
             }
-            double porcentEst=montoEstudiantes*100/(montoEgresados+montoEstudiantes);
-            double porcentEgre=montoEgresados*100/(montoEgresados+montoEstudiantes);
-            %>
+        });
+    </script>
 
 
-            <div class="board">
-                <div style="padding-top: 2em;"></div>
-                <div class="titulo_grafica">
-                    <h2 style="margin-left:100px">Alumnos: <%= porcentEst%>% </h2>
-                    <div class="progress-bar">
-                        <div class="alumnos_recaudaciones"></div>
-                    </div>
-                    <h2 style="margin-left:100px">Egresados: <%=porcentEgre%>% </h2>
-                    <div class="progress-bar">
-                        <div class="egresados_recaudaciones"></div>
-                    </div>
-                    <br>
-                </div>
-                <br>
-                <br>
-                <div class="sub_board">
-                    <div class="sep_board"></div>
-                    <div class="cont_board">
-                        <div class="graf_board">
-                            <div class="barra_plot">
-                                <div class="sub_barra_egresados b1">
-                                    <div class="tag_g"><%= montoEgresados %></div>
-                                    <div class="tag_leyenda">Egresados</div>
-                                </div>
-                            </div>
-                            <div class="barra_plot">
-                                <div class="sub_barra_alumnos b2">
-                                    <div class="tag_g"> <%= montoEstudiantes %></div>
-                                    <div class="tag_leyenda">Alumnos</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tag_board">
-                            <div class="sub_tag_board">
-                                    <div></div>
-                                    <div>280</div>
-                                    <div>240</div>
-                                    <div>200</div>
-                                    <div>160</div>
-                                    <div>120</div>
-                                    <div>80</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="sep_board"></div>
-                </div>
-            </div>
-        </div>
-    </div>
+
+
+
+
+
 </div>
 
 <div class="container-fluid" style="background-color: #fff; padding-right: 0; padding-left: 0">

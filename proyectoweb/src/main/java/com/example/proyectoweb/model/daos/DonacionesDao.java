@@ -40,6 +40,44 @@ public class DonacionesDao extends DaoBase{
         return listaDonacionesAlumno;
     }
 
+    public double sumarDonacionesEstudiantes() {
+        double totalDonacionesEstudiantes = 0.0;
+        String sql = "SELECT SUM(don.monto) FROM registro_donaciones don INNER JOIN usuarios u on (u.idUsuario = don.idUsuario) WHERE u.idRolAcademico = 'STUDENT'";
+
+        try (Connection conn = getConnection();
+             Statement stmt = conn.createStatement()) {
+
+            ResultSet rs = stmt.executeQuery(sql);
+
+            if (rs.next()) {
+                totalDonacionesEstudiantes = rs.getDouble(1);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return totalDonacionesEstudiantes;
+    }
+
+
+    public double sumarDonacionesEgresados() {
+        double totalDonacionesEgresados = 0.0;
+        String sql = "SELECT SUM(don.monto) FROM registro_donaciones don INNER JOIN usuarios u on (u.idUsuario = don.idUsuario) WHERE u.idRolAcademico = 'GRADUAT'";
+
+        try (Connection conn = getConnection();
+             Statement stmt = conn.createStatement()) {
+
+            ResultSet rs = stmt.executeQuery(sql);
+
+            if (rs.next()) {
+                totalDonacionesEgresados = rs.getDouble(1);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return totalDonacionesEgresados;
+    }
+
+
 
 
     public ArrayList<Donaciones> buscarPorNombre(String nombre){

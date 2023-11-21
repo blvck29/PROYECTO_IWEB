@@ -7,6 +7,10 @@
 <%@ page import="com.example.proyectoweb.model.beans.Donaciones" %>
 <%@ page import="com.example.proyectoweb.model.beans.*" %>
 <% ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) request.getAttribute("listaUsuarios");%>
+<%int totalGraduados = (int) request.getAttribute("totalgraduados");%>
+
+<%int totalEstudiantes = (int) request.getAttribute("totalestudiantes");%>
+
 
 <%
     if (session.getAttribute("id") != null){
@@ -114,63 +118,66 @@
         </li>
     </div>
 
+
+
     <div class="container">
-        <div class="modu-dest-intern formato">
-            <%
-                int cantEgresados=0;
-                int cantEstudiantes=0;
-                for(Usuario usuario: listaUsuarios) {
-                    if(usuario.getIdRolAcademico().equalsIgnoreCase("GRADUATED")){
-                        cantEgresados++;
-                    }else{
-                        if(usuario.getIdRolAcademico().equalsIgnoreCase("STUDENT")){
-                            cantEstudiantes++;
+        <br>
+        <h2 style="text-align: center;">Cantidad de estudiantes y egresados</h2>
+        <br>
+        <div style="max-width: 400px; margin: 0 auto;">
+            <canvas id="myChart" width="400" height="300"></canvas>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+
+        var data = {
+            labels: ['Egresados', 'Estudiantes'],
+            datasets: [{
+                label: 'Donaciones por rol',
+                data: [<%= totalGraduados %>, <%= totalEstudiantes %>],
+                backgroundColor: [
+                    'rgba(0, 0, 139, 0.9)', // Color de fondo para la barra de egresados (más intenso)
+                    'rgba(165, 42, 42, 1)'  // Color de fondo para la barra de estudiantes (más intenso)
+                ],
+                borderColor: [
+                    'rgba(0, 0, 139, 1)', // Color del borde de la barra de egresados
+                    'rgba(165, 42, 42, 1)' // Color del borde de la barra de estudiantes
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        var myChart = new Chart(ctx, {
+            type: 'pie',
+            data: data,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        labels: {
+                            font: {
+                                size: 12,
+                                weight: 'bold'
+                            },
+                            padding: 20 // Ajusta el espacio entre la leyenda y la gráfica
                         }
                     }
                 }
-
-                int porcEgresado = cantEgresados*100/(cantEgresados+cantEstudiantes);
-                int porStudent= cantEstudiantes*100/(cantEgresados+cantEstudiantes);
-            %>
-
-                <div class="container">
-                    <div class="modu-dest-intern formato">
-                        <section class = "home">
-                            <div style="padding-top: 1em;"></div>
-                            <h1 style="padding-left: 120px; text-align: start;">Relación Porcentual Alumnos y Egresados</h1>
-                            <p style="padding-left: 120px; text-align: start;">Resumen total de usuarios:</p>
-                            <div class="containerBarraP">
-                                <div class="skills">
-                                    <h2 style="margin-left:100px">Alumnos: <%= porStudent %>%</h2>
-                                    <div class="progress-bar">
-                                        <div class="alumnos"></div>
-                                    </div>
-                                    <h2 style="margin-left:100px">Egresados: <%=porcEgresado%>%</h2>
-                                    <div class="progress-bar">
-                                        <div class="egresados"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                        <div class = "chart-wrap">
-                            <figure class="pie-chart" style ="background:
-                conic-gradient(
-                    from 0deg,
-                    #19609F 0,
-                    #19609F calc(35%),
-                    #8F153C calc(35%),
-                    #8F153C calc(35% + 65%)
-                )
-                "></figure>
-                        </div>
-                        <div style="padding-top: 1em;"></div>
-                    </div>
-                </div>
+            }
+        });
+    </script>
 
 
 
 
-<div class="container-fluid" style="background-color: #fff; padding-right: 0; padding-left: 0">
+
+
+
+    <div class="container-fluid" style="background-color: #fff; padding-right: 0; padding-left: 0">
     <div class="my-4"></div>
     <footer id="sticky-footer" class="flex-shrink-0 py-4 text-white-50" style="background-color: #04011E">
         <div class="container">
