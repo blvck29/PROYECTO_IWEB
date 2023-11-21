@@ -27,7 +27,6 @@ public class AdminActServlet extends HttpServlet {
 
         switch (action){
             case "home":
-
                 HttpSession session = request.getSession(); //Estaba en False
 
                 if (session != null) {
@@ -48,9 +47,7 @@ public class AdminActServlet extends HttpServlet {
                 String idActividad = request.getParameter("idActividad");
                 request.setAttribute("idActividad", idActividad);
                 request.getRequestDispatcher("/pages/admin_act/new_event.jsp").forward(request,response);
-
                 break;
-
             case "edit_event":
                 String idEvento = request.getParameter("idEvento");
                 String idActividad4 = request.getParameter("idActividad");
