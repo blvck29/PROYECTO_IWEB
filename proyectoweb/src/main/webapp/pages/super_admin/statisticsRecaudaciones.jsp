@@ -120,7 +120,7 @@
         <a class="btn btn-primary me-1 float-end mt-1 ml-1 fw-bold active" href="<%=request.getContextPath()%>=/admin_gen?action=statistics"> Recaudaciones</a>
         </li>
         <li>
-            <a class="btn btn-outline-primary me-1 float-end mt-1 ml-1 " href="<%=request.getContextPath()%>/admin_gen?action=statistics&select=canAl"> Cantidad de alumnos y egresados</a>
+            <a class="btn btn-outline-primary me-1 float-end mt-1 ml-1" href="<%=request.getContextPath()%>/admin_gen?action=statistics&select=canAl"> Cantidad de alumnos y egresados</a>
         </li>
         <li>
         <a class="btn btn-outline-primary me-1 float-end mt-1 ml-1" href="<%=request.getContextPath()%>/admin_gen?action=statistics&select=cantAp"> Cantidad de apoyos por actividad</a>
