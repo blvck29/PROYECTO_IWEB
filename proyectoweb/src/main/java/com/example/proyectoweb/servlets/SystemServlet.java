@@ -62,17 +62,17 @@ public class SystemServlet extends HttpServlet {
                     Usuario user = userDao.usuarioByEmail(mailStr);
 
                     // Iniciar sesión exitosa, redireccionar al servlet de inicio.
-                    HttpSession session = request.getSession();
+                    HttpSession httpSession = request.getSession();
                     // Almacena la información del usuario en la sesión
 
-                    session.setAttribute("id", user.getIdUsuario());
-                    session.setAttribute("idRolSistema", user.getIdRolSistema());
-                    session.setAttribute("idRolAcademico", user.getIdRolAcademico());
-                    session.setAttribute("nombres", user.getNombres());
-                    session.setAttribute("apellidos", user.getApellidos());
-                    session.setAttribute("usuario", user);
+                    httpSession.setAttribute("id", user.getIdUsuario());
+                    httpSession.setAttribute("idRolSistema", user.getIdRolSistema());
+                    httpSession.setAttribute("idRolAcademico", user.getIdRolAcademico());
+                    httpSession.setAttribute("nombres", user.getNombres());
+                    httpSession.setAttribute("apellidos", user.getApellidos());
+                    httpSession.setAttribute("usuario", user);
 
-                    session.setMaxInactiveInterval(1800); // 1800 segundos = 30 minutos
+                    httpSession.setMaxInactiveInterval(1800); // 1800 segundos = 30 minutos
 
                     switch (user.getIdRolSistema()){
                         case "USER":
