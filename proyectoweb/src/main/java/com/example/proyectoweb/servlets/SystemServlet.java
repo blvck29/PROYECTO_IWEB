@@ -90,7 +90,9 @@ public class SystemServlet extends HttpServlet {
                     }
 
                 } else {
-                    response.sendRedirect("login");
+                    System.out.println("Usuario o Contraseña Incorrectos");
+                    request.setAttribute("err","Usuario o password incorrectos");
+                    request.getRequestDispatcher("index.jsp").forward(request,response);
                 }
 
                 break;

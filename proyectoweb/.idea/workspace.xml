@@ -9,20 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="250e9528-0acf-42db-be38-0516405aa721" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/_progress.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/style-graficos.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/pages/super_admin/statisticsRecaudaciones.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/pages/super_admin/statisticsSupports.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/PROYECTO_IWEB.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/PROYECTO_IWEB.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/proyectoweb/model/beans/Rol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/proyectoweb/model/beans/Rol.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/proyectoweb/servlets/AdminGenServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/proyectoweb/servlets/AdminGenServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/super_admin/statistics.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/super_admin/statisticsStudent.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/proyectoweb-1.0-SNAPSHOT/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/target/proyectoweb-1.0-SNAPSHOT/META-INF/MANIFEST.MF" afterDir="false" />
-    </list>
+    <list default="true" id="250e9528-0acf-42db-be38-0516405aa721" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -38,6 +25,7 @@
         <option value="Class" />
         <option value="Servlet" />
         <option value="Jsp File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -51,16 +39,10 @@
     <setting file="file://$PROJECT_DIR$/src/main/java/com/example/proyectoweb/model/daos/EventosDao.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/example/proyectoweb/model/daos/InscritosDao.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/example/proyectoweb/model/daos/UsuariosDao.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/com/example/proyectoweb/servlets/ActividadServlet.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/com/example/proyectoweb/servlets/DonacionesServlet.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/com/example/proyectoweb/servlets/EventoServlet.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/com/example/proyectoweb/servlets/InscritoServlet.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/com/example/proyectoweb/servlets/UsuarioHomeServlet.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/com/example/proyectoweb/servlets/UsuarioServlet.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/webapp/css/style.css" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/webapp/index.jsp" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" root2="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/webapp/pages/admin_act/administrar_apoyos.jsp" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" root2="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/webapp/pages/admin_act/home.jsp" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" root2="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/webapp/pages/prueba/sta.jsp" root0="FORCE_HIGHLIGHTING" root1="SKIP_INSPECTION" root2="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/webapp/pages/super_admin/lista_actividades.jsp" root0="FORCE_HIGHLIGHTING" root1="SKIP_INSPECTION" root2="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/webapp/pages/super_admin/lista_donaciones.jsp" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" root2="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/webapp/pages/super_admin/tabla_inscritos.jsp" root0="FORCE_HIGHLIGHTING" root1="SKIP_INSPECTION" root2="SKIP_INSPECTION" />
@@ -72,6 +54,9 @@
     <option name="FILTER_INFO" value="true" />
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -102,7 +87,8 @@
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "js.buildTools.gulp.gulp_package_dir": "",
-    "last_opened_file_path": "C:/Users/Gerardo/Documents/proyecto/PROYECTO_IWEB/proyectoweb",
+    "last_opened_file_path": "C:/Users/User/Downloads/LAB8-iweb/tres_mosqueteros",
+    "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -119,6 +105,13 @@
     ]
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\User\Downloads\PROYECTO_IWEB\proyectoweb\src\main\webapp\css" />
+      <recent name="C:\Users\User\Downloads\PROYECTO_IWEB\proyectoweb\src\main\webapp\js" />
+      <recent name="C:\Users\User\Downloads\PROYECTO_IWEB\proyectoweb\src\main\webapp\pages\prueba" />
+    </key>
+  </component>
   <component name="RunManager" selected="Tomcat Server.Tomcat 10.1.15">
     <configuration name="Tomcat 10.1.15" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.1.15" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="UPDATING_POLICY" value="restart-server" />
@@ -359,6 +352,8 @@
       <workItem from="1699482283591" duration="2452000" />
       <workItem from="1699992939597" duration="351000" />
       <workItem from="1700419477125" duration="23949000" />
+      <workItem from="1700460136702" duration="6065000" />
+      <workItem from="1700466335337" duration="173000" />
     </task>
     <servers />
   </component>

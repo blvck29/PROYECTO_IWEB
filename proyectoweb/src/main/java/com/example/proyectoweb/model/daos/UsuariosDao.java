@@ -127,16 +127,17 @@ public class UsuariosDao extends DaoBase{
         return listaUsuarios;
     }
 
-    public ArrayList<Usuario> listarUsuariosConPaginacion(Integer offset){ //admin
+    public ArrayList<Usuario> listarUsuariosConPaginacion(Integer limit, Integer offset){ //admin
         ArrayList<Usuario> listaUsuarios = new ArrayList<>();
 
         //Conexión a la DB
-        String sql = "SELECT * FROM usuarios where idEstado != 'PEN' limit 8 offset ?";
+        String sql = "SELECT * FROM usuarios where idEstado != 'PEN' limit ? offset ?";
 
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)){
 
-              pstmt.setInt(1,  offset);
+              pstmt.setInt(1,  limit);
+            pstmt.setInt(2,  offset);
 
             try(ResultSet rs = pstmt.executeQuery()){
 
@@ -383,6 +384,49 @@ public ArrayList<Usuario> listarDelegadosActDisponibles(){
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
+
+        return listaUsuarios;
+    }
+
+
+    public ArrayList<Usuario> listarPorEstadoPaginacion(String estado, Integer limit, Integer offset){
+        ArrayList<Usuario> listaUsuarios = new ArrayList<>();
+
+        String sql = "select * from usuarios where idEstado = ? limit ? offset ?";
+
+
+        try(Connection conn = getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql) ) {
+
+            pstmt.setString(1,estado);
+            pstmt.setInt(2,limit);
+            pstmt.setInt(3,offset);
+
+            try(ResultSet rs = pstmt.executeQuery()){
+
+                while (rs.next()){
+                    Usuario usuario = new Usuario();
+
+                    usuario.setIdUsuario(rs.getInt(1));
+                    usuario.setIdRolSistema(rs.getString(2));
+                    usuario.setIdEstado(rs.getString(3));
+                    usuario.setNombres(rs.getString(4));
+                    usuario.setApellidos(rs.getString(5));
+                    usuario.setCodigo(rs.getString(6));
+                    usuario.setCorreo(rs.getString(7));
+                    // Sin contraseña por seguridad.
+                    usuario.setFechaCreacion(rs.getString(9));
+                    usuario.setCantEventsInscrito(rs.getString(10));
+                    usuario.setIdRolAcademico(rs.getString(11));
+                    usuario.setKitTeleco(rs.getInt(12));
+
+
+                    listaUsuarios.add(usuario);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
         return listaUsuarios;
     }

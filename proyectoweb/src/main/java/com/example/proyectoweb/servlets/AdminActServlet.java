@@ -28,7 +28,7 @@ public class AdminActServlet extends HttpServlet {
         switch (action){
             case "home":
 
-                HttpSession session = request.getSession(false);
+                HttpSession session = request.getSession(); //Estaba en False
 
                 if (session != null) {
                     int idUsr = (int) session.getAttribute("id");
@@ -235,17 +235,6 @@ public class AdminActServlet extends HttpServlet {
                 request.setAttribute("listaIncritosxEvento", listaInscritosBuscados);
                 request.getRequestDispatcher("/pages/admin_act/ver_inscritos.jsp").forward(request,response);
                 break;
-
-
-
-
-
-
-
-
-
-
-
 
         }
     }
