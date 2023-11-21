@@ -76,7 +76,7 @@
                 <a href="#"><i class="fa-solid fa-user nav-icon2"></i>Usuario</a>
             </li>
             <li>
-                <a href="<%=request.getContextPath()%>/"><i class="fa-solid fa-door-open nav-icon2"></i>Cerrar Sesión</a>
+                <a href="<%=request.getContextPath()%>/logout"><i class="fa-solid fa-door-open nav-icon2"></i>Cerrar Sesión</a>
             </li>
         </ul>
     </nav>

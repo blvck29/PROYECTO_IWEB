@@ -27,7 +27,7 @@ public class AdminActServlet extends HttpServlet {
 
         switch (action){
             case "home":
-                HttpSession session = request.getSession(); //Estaba en False
+                HttpSession session = request.getSession(false); //Estaba en False
 
                 if (session != null) {
                     int idUsr = (int) session.getAttribute("id");
