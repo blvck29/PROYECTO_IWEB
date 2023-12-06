@@ -48,6 +48,9 @@
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <!-- Add the slick-theme.css if you want default styling -->
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <!-- Datatable -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+    <link rel = "stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap4.min.css">
 
     <title>Home | Semana de Ingeniería 2023</title>
 </head>
@@ -156,7 +159,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 <div style="padding-top: 25px;"></div>
 
 <div class="table-responsive container">
-    <table class="admintable generaltable table-sm" id="users">
+    <table id="inscritos" class="table table-striped table-bordered" style="width:100%">
         <thead>
         <tr>
             <th class="header c0 centeralign" style="" scope="col"><a><strong>NOMBRE</strong></a> / <a><strong>APELLIDO</strong></a></th>
@@ -223,7 +226,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
     </div>
 
 </div>
-    
+
 
 
 <div style="margin-bottom: 50px"></div>
@@ -244,7 +247,17 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 <script src="js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script src = "https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src = "https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<script src = "https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap4.min.js"></script>
+<script>
+    new DataTable('#inscritos', { language: {
 
+            url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-MX.json',
+
+        },
+    });
+</script>
 
 </body>
 
