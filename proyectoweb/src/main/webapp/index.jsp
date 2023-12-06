@@ -36,6 +36,13 @@
                     <label for="passwd">Contraseña</label>
                 </div>
 
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="mostrarContrasena" >
+                    <label style="color:#ffffff" class="form-check-label" for="flexCheckDefault">Mostrar contraseña</label>
+                </div>
+
+                <br>
+
                 <div class="login-forgot">
                     <label><a href="<%=request.getContextPath()%>/login?action=forgot_passwd">¿Olvidó su contraseña?</a></label>
                 </div>
@@ -60,5 +67,21 @@
     <div class="container-fluid footer-container"><p>© Pontificia Universidad Católica del Perú - Todos los derechos reservados</p></div>
 
 </section>
+
+
+
+<script>
+    document.getElementById("mostrarContrasena").addEventListener("change", function() {
+        var contrasenaInput = document.getElementById("passwd");
+        if (this.checked) {
+            contrasenaInput.type = "text";
+        } else {
+            contrasenaInput.type = "password";
+        }
+    });
+</script>
+
+
+
 </body>
 </html>
