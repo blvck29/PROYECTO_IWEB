@@ -39,22 +39,11 @@
         <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
         <!-- Add the slick-theme.css if you want default styling -->
         <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
-        <script src="https://kit.fontawesome.com/a2dd6045c4.js" crossorigin="anonymous"></script>
-        <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
         <link rel="icon" type="image/jpg" href="favicon.png" />
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script>
-            function showError(){
-                Swal.fire({
-                    icon: 'error',
-                    title: 'ERROR:',
-                    iconColor: '#DC3545',
-                    confirmButtonColor: '#DC3545',
-                    confirmButtonText: "Regresar",
-                    text: '<%=msgError%>',
-                });
-            }
-        </script>
+
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+        <link rel = "stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap4.min.css">
 
         <title>Administración de Usuarios | Semana de Ingeniería 2023</title>
     </head>
@@ -119,14 +108,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                 <div class="col-md-12">
 
                     <form method="post" action="<%=request.getContextPath()%>/admin_gen?action=activities&ac=busqueda">
-
-                        <div class="custom-form-group">
-                            <input type="text" class="form-control" name="busquedaTituloActividad" placeholder="Buscar por titulo" style="width: 120%">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Aplicar filtros</button>
-
                         <a class="btn btn-primary" href="<%=request.getContextPath()%>/admin_gen?action=activities" role="button">Borrar filtros</a>
-
                     </form>
                 </div>
             </div>
@@ -145,7 +127,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
         <div style="padding-top: 25px;"></div>
 
         <div class="table-responsive container">
-            <table class="admintable generaltable table-sm" id="users">
+            <table id="activities" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                     <tr>
                         <th class="header c1 centeralign" style="" scope="col"><a><strong>TITULO ACTIVIDAD</strong></a></th>
@@ -181,29 +163,6 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
             <div>
                 <a class="btn btn-primary" style="margin-left: 2px;" href="<%=request.getContextPath()%>/admin_gen?action=activities&ac=crear">Crear actividad</a>
             </div>
-
-
-        </div>
-
-        <div class="container">
-            <nav class="mt-4">
-                <ul class="pagination justify-content-center">
-                    <!--->
-
-                    <%for (Integer n = 1; n <= cantPaginas; n++){ %>
-                    <li class="page-item">
-                        <a href="<%=request.getContextPath()%>/admin_gen?action=activities&paginaAc=<%=n%>" class="page-link"><%=n%></a>
-                    </li>
-                    <%}%>
-
-                    <li class="page-item">
-                        <a href="#" aria-label="Next" class="page-link">
-                            <span aria-hidden="true">»</span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
         </div>
 
 
@@ -250,6 +209,35 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
         <script src="js/script.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
         <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+        <script src = "https://code.jquery.com/jquery-3.7.0.js"></script>
+        <script src = "https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+        <script src = "https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap4.min.js"></script>
+        <script>
+            new DataTable('#activities', { language: {
+
+                    url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-MX.json',
+
+                },
+            });
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            function showError(){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'ERROR:',
+                    iconColor: '#DC3545',
+                    confirmButtonColor: '#DC3545',
+                    confirmButtonText: "Regresar",
+                    text: '<%=msgError%>',
+                });
+            }
+        </script>
+        <script src="https://kit.fontawesome.com/a2dd6045c4.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+
 
 
     </body>
