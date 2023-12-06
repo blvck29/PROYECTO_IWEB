@@ -675,7 +675,9 @@ public ArrayList<Usuario> listarDelegadosActDisponibles(){
 
 
 
-    public void editarPassword(String newpass, String idUsuario){
+    public void editarPassword(String newpass, int idUsuario){
+
+        newpass = SHA256.cipherPassword(newpass);
 
         String sql = "update usuarios set idEstado = ? where idUsuario = ?";
 
@@ -683,7 +685,7 @@ public ArrayList<Usuario> listarDelegadosActDisponibles(){
             PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setString(1,newpass);
-            pstmt.setString(2, idUsuario);
+            pstmt.setInt(2, idUsuario);
             pstmt.executeUpdate();
 
         } catch (SQLException e) {

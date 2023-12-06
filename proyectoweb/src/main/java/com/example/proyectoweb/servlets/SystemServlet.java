@@ -115,7 +115,7 @@ public class SystemServlet extends HttpServlet {
                     response.sendRedirect("login?action=register&error=no_valid");
                 } else {
                     userDao.crearUsuario(names, lastnames, codigo, email, isEgresado, password);
-                    String token = tokenDao.generateToken(email);
+                    String token = tokenDao.generateToken(email,1);
                     EmailSender.sendEmail(email,"Token para Verificación"," Token: " + token + "\n Confirmar su token aquí: http://localhost:8080/proyectoweb/login?action=confirm_account");
                     response.sendRedirect("login?action=confirm_account");
                 }
@@ -143,16 +143,16 @@ public class SystemServlet extends HttpServlet {
 
                 if(userDao.usuarioByEmail(emailForgot)!=null){
                     Usuario userForgot = userDao.usuarioByEmail(emailForgot);
-                    if (userForgot.getIdRolSistema().equals("ACC")){
-                        String tokenForgot = tokenDao.generateToken(userForgot.getCorreo());
-                        EmailSender.sendEmail(userForgot.getCorreo(),"Token para Renovar Contraseña"," Token: " + tokenForgot + "\n Confirmar su token aquí: http://localhost:8080/proyectoweb/login?action=confirm_account");
+                    if (userForgot.getIdEstado().equals("ACC")){
+                        String tokenForgot = tokenDao.generateToken(userForgot.getCorreo(),2);
+                        EmailSender.sendEmail(emailForgot,"Token para Renovar Contraseña"," Token: " + tokenForgot + "\n Confirmar su token aquí: http://localhost:8080/proyectoweb/login?action=confirm_account");
                         response.sendRedirect("login?action=forgot_token");
                     } else {
                         //Falta el popup de "El correo ingresado no está aceptado por el administrador"
                         response.sendRedirect("login?action=forgot_passwd&error=no_accepted");
                     }
                 } else {
-                    //Falta el popup de "El correo ingresado no está registrado"
+                    //Falta el popup de "El correo ingresado no está aceptado"
                     response.sendRedirect("login?action=forgot_passwd&error=no_valid");
                 }
 
@@ -165,6 +165,8 @@ public class SystemServlet extends HttpServlet {
                     forgotToken.append(digit);
                 }
 
+                System.out.println(forgotToken);
+
                 if(tokenDao.findToken(String.valueOf(forgotToken))){
                     request.setAttribute("token",forgotToken);
                     response.sendRedirect("login?action=forgot_newpass");
@@ -175,11 +177,14 @@ public class SystemServlet extends HttpServlet {
                 break;
 
             case "forgot_newpass":
-                String correoChange = request.getParameter("correoChange");
+                String tokenChange = request.getParameter("tokenChange");
+                System.out.println(tokenChange);
                 String newpass = request.getParameter("newpass");
 
-
-
+                Usuario userChange = tokenDao.UserTokenById(tokenDao.getUserByToken(tokenChange));
+                userDao.editarPassword(newpass,userChange.getIdUsuario());
+                //Falta el popup de "La contraseña fue cambiada con éxito."
+                response.sendRedirect("login?action=forgot_newpass&error=change_complete");
                 break;
 
             default:

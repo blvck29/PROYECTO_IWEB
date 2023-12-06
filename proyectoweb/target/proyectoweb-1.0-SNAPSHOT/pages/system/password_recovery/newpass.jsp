@@ -8,11 +8,11 @@
     <meta http-equiv="Content-Type" content=text/html; charset=ISO-8859-1″>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="../../../css/style.css">
-    <link rel="stylesheet" href="../../../css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
 
     <script src="https://kit.fontawesome.com/a2dd6045c4.js" crossorigin="anonymous"></script>
-    <link rel="icon" type="image/jpg" href="../../../favicon.png"/>
+    <link rel="icon" type="image/jpg" href="favicon.png"/>
     <title>Semana de Ingeniería 2023</title>
 </head>
 
@@ -27,7 +27,7 @@
 
         <div class="newpass-form">
             <form method="POST" action="<%=request.getContextPath()%>/login?action=forgot_newpass" id="newpass-formulario">
-                <input type="hidden" name="correoChange" value="<%=token%>">
+                <input type="hidden" name="tokenChange" value="<%=token%>">
                 <h2>Nueva Contraseña</h2>
                 <div class="newpass-input">
                     <i class="fa-solid fa-lock"></i>

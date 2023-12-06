@@ -7,11 +7,11 @@
     <meta http-equiv="Content-Type" content=text/html; charset=ISO-8859-1″>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="../../../css/style.css">
-    <link rel="stylesheet" href="../../../css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
 
     <script src="https://kit.fontawesome.com/a2dd6045c4.js" crossorigin="anonymous"></script>
-    <link rel="icon" type="image/jpg" href="../../../favicon.png" />
+    <link rel="icon" type="image/jpg" href="favicon.png" />
     <title>Semana de Ingeniería 2023</title>
 </head>
 
@@ -26,12 +26,12 @@
             <form method="POST" action="<%=request.getContextPath()%>/login?action=forgot_token" id="token-formulario">
                 <h2>Ingrese su Token</h2>
                 <div class="otp-bx">
-                    <input type="text" maxlength="1" class="space" required>
-                    <input type="text" maxlength="1" class="space" required>
-                    <input type="text" maxlength="1" class="space" required>
-                    <input type="text" maxlength="1" class="space" required>
-                    <input type="text" maxlength="1" class="space" required>
-                    <input type="text" maxlength="1" class="space" required>
+                    <input type="text" maxlength="1" class="space" name="digit1" required>
+                    <input type="text" maxlength="1" class="space" name="digit2" required>
+                    <input type="text" maxlength="1" class="space" name="digit3" required>
+                    <input type="text" maxlength="1" class="space" name="digit4" required>
+                    <input type="text" maxlength="1" class="space" name="digit5" required>
+                    <input type="text" maxlength="1" class="space" name="digit6" required>
                 </div>
 
 

@@ -37,6 +37,7 @@ public class AdminActServlet extends HttpServlet {
                     Actividad actividad = actividadesDao.getActividadByIdUsuario(idUsr);
                     System.out.println(actividad.getTitulo());
                     ArrayList<Evento> listaEventos = eventoDao.listarEventosxActividad(actividad.getIdActividad());
+                    
 
                     request.setAttribute("actividad", actividad);
                     request.setAttribute("listaEventos", listaEventos);
