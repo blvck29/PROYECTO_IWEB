@@ -16,6 +16,14 @@ public class TokenDao extends DaoBase{
     public String generateToken(String correo){
 
         Usuario usuario = userTokenByEmail(correo);
+        String idTokenExistente = tokenExists(usuario.getIdUsuario());
+
+        if (idTokenExistente != null){
+            
+        } else {
+
+        }
+
         String idUsuario = String.valueOf(usuario.getIdUsuario());
         String token = RandomTokenGenerator.generator();
 
@@ -34,9 +42,34 @@ public class TokenDao extends DaoBase{
         return token;
     }
 
+
+    public String tokenExists(int idUsuario){
+
+        String idToken = null;
+
+        String sql = "SELECT * FROM proyectoweb.token_generado WHERE idUsuario = ?;";
+
+        try(Connection conn = getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)){
+
+            pstmt.setInt(1, idUsuario);
+            try(ResultSet rs = pstmt.executeQuery()) {
+
+                while (rs.next()) {
+
+                    idToken = String.valueOf(rs.getInt(1));
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return idToken;
+    }
+
     public Usuario userTokenByEmail(String correo){
 
-        Usuario usuario = new Usuario();
+        Usuario usuario = null;
 
         String sql = "SELECT * FROM proyectoweb.usuarios WHERE correo_pucp = ?;";
 
@@ -47,6 +80,8 @@ public class TokenDao extends DaoBase{
             try(ResultSet rs = pstmt.executeQuery()) {
 
                 while (rs.next()) {
+
+                    usuario = new Usuario();
 
                     usuario.setIdUsuario(rs.getInt(1));
                     usuario.setIdRolSistema(rs.getString(2));
@@ -71,7 +106,7 @@ public class TokenDao extends DaoBase{
 
     public Usuario UserTokenById(String id){
 
-        Usuario usuario = new Usuario();
+        Usuario usuario = null;
 
         String sql = "SELECT * FROM proyectoweb.usuarios WHERE idUsuario = ?;";
 
@@ -82,6 +117,8 @@ public class TokenDao extends DaoBase{
             try(ResultSet rs = pstmt.executeQuery()) {
 
                 while (rs.next()) {
+
+                    usuario = new Usuario();
 
                     usuario.setIdUsuario(rs.getInt(1));
                     usuario.setIdRolSistema(rs.getString(2));
