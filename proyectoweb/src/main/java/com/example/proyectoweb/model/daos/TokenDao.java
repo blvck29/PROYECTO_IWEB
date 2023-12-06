@@ -13,52 +13,59 @@ import java.util.ArrayList;
 
 public class TokenDao extends DaoBase{
 
-    public String generateToken(String correo){
+    public String generateToken(String correo, int op){
 
         Usuario usuario = userTokenByEmail(correo);
-        String idTokenExistente = tokenExists(usuario.getIdUsuario());
         String token = RandomTokenGenerator.generator();
+        String sql = null;
 
-        if (idTokenExistente != null){
+        switch (op){
 
-            String sql = "UPDATE `proyectoweb`.`token_generado` SET `token` = ? WHERE (`idUsuario` = ?);";
+            case 1:
 
-            try(Connection conn = getConnection();
-                PreparedStatement pstmt = conn.prepareStatement(sql)){
+                String idUsuario = String.valueOf(usuario.getIdUsuario());
 
-                pstmt.setString(1, token);
-                pstmt.setString(2, idTokenExistente);
-                pstmt.executeUpdate();
+                sql = "INSERT INTO `proyectoweb`.`token_generado` (`idUsuario`, `token`) VALUES (?, ?);";
 
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
+                try(Connection conn = getConnection();
+                    PreparedStatement pstmt = conn.prepareStatement(sql)){
 
-        } else {
+                    pstmt.setString(1, idUsuario);
+                    pstmt.setString(2, token);
+                    pstmt.executeUpdate();
 
-            String idUsuario = String.valueOf(usuario.getIdUsuario());
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                break;
 
-            String sql = "INSERT INTO `proyectoweb`.`token_generado` (`idUsuario`, `token`) VALUES (?, ?);";
+            case 2:
 
-            try(Connection conn = getConnection();
-                PreparedStatement pstmt = conn.prepareStatement(sql)){
+                int idTokenExistente = tokenExists(usuario.getIdUsuario());
 
-                pstmt.setString(1, idUsuario);
-                pstmt.setString(2, token);
-                pstmt.executeUpdate();
+                sql = "UPDATE `proyectoweb`.`token_generado` SET `token` = ? WHERE (`idTokens` = ?);";
 
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
+                try(Connection conn = getConnection();
+                    PreparedStatement pstmt = conn.prepareStatement(sql)){
+
+                    pstmt.setString(1, token);
+                    pstmt.setInt(2, idTokenExistente);
+                    pstmt.executeUpdate();
+
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                break;
+
         }
 
         return token;
     }
 
 
-    public String tokenExists(int idUsuario){
+    public int tokenExists(int idUsuario){
 
-        String idToken = null;
+        int idToken = 0;
 
         String sql = "SELECT * FROM proyectoweb.token_generado WHERE idUsuario = ?;";
 
@@ -70,7 +77,7 @@ public class TokenDao extends DaoBase{
 
                 while (rs.next()) {
 
-                    idToken = String.valueOf(rs.getInt(1));
+                    idToken = (rs.getInt(1));
                 }
             }
 
