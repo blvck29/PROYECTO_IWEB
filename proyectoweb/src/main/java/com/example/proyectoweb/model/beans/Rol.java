@@ -10,6 +10,5 @@ public class Rol {
     public Rol(String idRol, String nombre) {
         this.idRol = idRol;
         this.nombre = nombre;
-
     }
 }

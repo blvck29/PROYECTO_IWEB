@@ -61,12 +61,12 @@ public class SystemServlet extends HttpServlet {
                     Usuario user = userDao.usuarioByEmail(mailStr);
 
                     // Iniciar sesión exitosa, redireccionar al servlet de inicio.
-                    HttpSession session = request.getSession();
+                    HttpSession httpSession = request.getSession();
                     // Almacena la información del usuario en la sesión
 
                     session.setAttribute("usuario", user);
 
-                    session.setMaxInactiveInterval(1800); // 1800 segundos = 30 minutos
+                    httpSession.setMaxInactiveInterval(1800); // 1800 segundos = 30 minutos
 
                     switch (user.getIdRolSistema()){
                         case "USER":
@@ -84,7 +84,9 @@ public class SystemServlet extends HttpServlet {
                     }
 
                 } else {
-                    response.sendRedirect("login");
+                    System.out.println("Usuario o Contraseña Incorrectos");
+                    request.setAttribute("err","Usuario o password incorrectos");
+                    request.getRequestDispatcher("index.jsp").forward(request,response);
                 }
 
                 break;

@@ -42,7 +42,8 @@ public class ActividadesDao extends DaoBase{
     public Actividad getActividadByIdUsuario(int idUsuario){
 
         Actividad actividad = new Actividad();
-        String sql = "SELECT * FROM proyectoweb.actividad WHERE idEncargado = ?;";
+        String sql = "select * from actividad a\n" +
+                "left join usuarios u on (a.idEncargado = u.idUsuario) where idUsuario = ?;";
 
         try(Connection conn = getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql)){
@@ -57,6 +58,11 @@ public class ActividadesDao extends DaoBase{
                     actividad.setBanner(rs.getBlob(3));
                     actividad.setMiniatura(rs.getBlob(4));
                     actividad.setIdEncargado(rs.getInt(5));
+
+                    Usuario delegadoact = new Usuario();
+                    delegadoact.setNombres(rs.getString(9));
+                    actividad.setDelegado(delegadoact);
+
                 }
             }
         }catch(SQLException e){

@@ -27,11 +27,12 @@ public class AdminActServlet extends HttpServlet {
         Usuario user = (Usuario) session.getAttribute("usuario");
         if (user.getIdRolSistema().equals("DELACT")){
 
-            String action = request.getParameter("action") == null? "home" : request.getParameter("action");
+        switch (action){
+            case "home":
+                HttpSession session = request.getSession(false); //Estaba en False
 
-            switch (action){
-                case "home":
-                    int idUsr = user.getIdUsuario();
+                if (session.getAttribute("id") != null) {
+                    int idUsr = (int) session.getAttribute("id");
                     Actividad actividad = actividadesDao.getActividadByIdUsuario(idUsr);
                     System.out.println(actividad.getTitulo());
                     ArrayList<Evento> listaEventos = eventoDao.listarEventosxActividad(actividad.getIdActividad());

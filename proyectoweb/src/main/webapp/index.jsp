@@ -37,8 +37,13 @@
                 </div>
 
                 <div class="login-forgot">
-                    <label><a href="<%=request.getContextPath()%>/login?action=forgot_passwd">Olvidé la contraseña</a></label>
+                    <label><a href="<%=request.getContextPath()%>/login?action=forgot_passwd">¿Olvidó su contraseña?</a></label>
                 </div>
+
+                <% if (request.getAttribute("err") != null) {%>
+                <div class="alert alert-danger" role="alert"><%=request.getAttribute("err")%>
+                </div>
+                <% } %>
 
                 <a href="#"><input type="submit" value="Acceder" class="login-button"></a>
 

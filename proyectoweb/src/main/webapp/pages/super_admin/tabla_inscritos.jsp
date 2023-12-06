@@ -20,28 +20,19 @@
 
 
 <head>
-
+  <link rel="stylesheet" href="css/slide-bar.css">
   <meta http-equiv="Content-Type" content=text/html; charset=ISO-8859-1″>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
   <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-
   <!-- Add the slick-theme.css if you want default styling -->
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
   <!-- Add the slick-theme.css if you want default styling -->
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
-
   <script src="https://kit.fontawesome.com/a2dd6045c4.js" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-
   <link rel="icon" type="image/jpg" href="favicon.png" />
-
-  <!-- Add the slick-theme.css if you want default styling -->
-  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-  <!-- Add the slick-theme.css if you want default styling -->
-  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 
   <title>Administración de Usuarios | Semana de Ingeniería 2023</title>
 </head>
@@ -82,7 +73,7 @@
 background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgba(21,0,48,1) 100%) !important;">
     <div class="text-secondary px-4 py-5 text-center">
       <div class="py-5">
-        <h1 class="display-5 fw-bold text-white">Bienvenido, @Admin_general</h1>
+        <h1 class="display-5 fw-bold text-white">Bienvenido, Administrador General</h1>
         <div style="margin-bottom: 20px"></div>
         <h3 class="fw-bold text-white">Panel de Administración de Usuarios</h3>
         <div style="margin-bottom: 20px"></div>
@@ -239,16 +230,31 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
   <div class="container">
     <nav class="mt-4">
       <ul class="pagination justify-content-center">
-        <!---->
+
+
+
 
 
         <%  for(Integer i= 1; i<=cantPaginas; i++){ %>
+
+        <%  if(indicador == null){ %>
 
         <li class="page-item">
           <a href="<%=request.getContextPath()%>/admin_gen?action=home&pagina=<%=i%>" class="page-link"><%=i%></a>
         </li>
 
+
+        <%  }else {%>
+
+        <form method="post" action="<%=request.getContextPath()%>/admin_gen?action=home&pagina=<%=i%>&ac=busquedaPorEstado&id=<%=indicador%>">
+            <button type="submit" class="page-link"><%=i%></button>
+        </form>
+
         <%  } %>
+        <% } %>
+
+
+
 
 
         <li class="page-item">
@@ -280,6 +286,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
   <script src="js/script.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
   <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
 
 
 </body>

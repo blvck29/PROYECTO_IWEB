@@ -6,6 +6,8 @@ import com.example.proyectoweb.model.beans.Usuario;
 import java.net.ConnectException;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class UsuariosDao extends DaoBase{
 
@@ -124,16 +126,17 @@ public class UsuariosDao extends DaoBase{
         return listaUsuarios;
     }
 
-    public ArrayList<Usuario> listarUsuariosConPaginacion(Integer offset){ //admin
+    public ArrayList<Usuario> listarUsuariosConPaginacion(Integer limit, Integer offset){ //admin
         ArrayList<Usuario> listaUsuarios = new ArrayList<>();
 
         //Conexión a la DB
-        String sql = "SELECT * FROM usuarios where idEstado != 'PEN' limit 8 offset ?";
+        String sql = "SELECT * FROM usuarios where idEstado != 'PEN' limit ? offset ?";
 
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)){
 
-              pstmt.setInt(1,  offset);
+              pstmt.setInt(1,  limit);
+            pstmt.setInt(2,  offset);
 
             try(ResultSet rs = pstmt.executeQuery()){
 
@@ -384,6 +387,49 @@ public ArrayList<Usuario> listarDelegadosActDisponibles(){
         return listaUsuarios;
     }
 
+
+    public ArrayList<Usuario> listarPorEstadoPaginacion(String estado, Integer limit, Integer offset){
+        ArrayList<Usuario> listaUsuarios = new ArrayList<>();
+
+        String sql = "select * from usuarios where idEstado = ? limit ? offset ?";
+
+
+        try(Connection conn = getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql) ) {
+
+            pstmt.setString(1,estado);
+            pstmt.setInt(2,limit);
+            pstmt.setInt(3,offset);
+
+            try(ResultSet rs = pstmt.executeQuery()){
+
+                while (rs.next()){
+                    Usuario usuario = new Usuario();
+
+                    usuario.setIdUsuario(rs.getInt(1));
+                    usuario.setIdRolSistema(rs.getString(2));
+                    usuario.setIdEstado(rs.getString(3));
+                    usuario.setNombres(rs.getString(4));
+                    usuario.setApellidos(rs.getString(5));
+                    usuario.setCodigo(rs.getString(6));
+                    usuario.setCorreo(rs.getString(7));
+                    // Sin contraseña por seguridad.
+                    usuario.setFechaCreacion(rs.getString(9));
+                    usuario.setCantEventsInscrito(rs.getString(10));
+                    usuario.setIdRolAcademico(rs.getString(11));
+                    usuario.setKitTeleco(rs.getInt(12));
+
+
+                    listaUsuarios.add(usuario);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return listaUsuarios;
+    }
+
     public String verificarCorreo(String email){
 
         String correo = null;
@@ -519,6 +565,115 @@ public ArrayList<Usuario> listarDelegadosActDisponibles(){
 
 
     }
+
+
+    public int contarEstudiantes() {
+        int totalEstudiantes = 0;
+        String sql = "SELECT COUNT(*) AS total_estudiantes FROM usuarios WHERE idRolAcademico = 'STUDENT'";
+
+        try (Connection conn = getConnection();
+             Statement stmt = conn.createStatement()) {
+
+            ResultSet rs = stmt.executeQuery(sql);
+
+            if (rs.next()) {
+                totalEstudiantes = rs.getInt("total_estudiantes");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return totalEstudiantes;
+    }
+
+    public int contargraduados() {
+        int total_graduados = 0;
+        String sql = "SELECT COUNT(*) AS total_graduados FROM usuarios WHERE idRolAcademico = 'GRADUAT'";
+
+        try (Connection conn = getConnection();
+             Statement stmt = conn.createStatement()) {
+
+            ResultSet rs = stmt.executeQuery(sql);
+
+            if (rs.next()) {
+                total_graduados = rs.getInt("total_graduados");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return total_graduados;
+    }
+
+    public ArrayList<Integer> contarRolesxActividad(String idActividad) {
+        ArrayList<Integer> counts = new ArrayList<>();
+
+        String sql = "SELECT COUNT(CASE WHEN i.idRol = 'Barra' THEN 1 END) AS countBarra, " +
+                "       COUNT(CASE WHEN i.idRol = 'Member' THEN 1 END) AS countMember " +
+                "FROM proyectoweb.evento e " +
+                "INNER JOIN proyectoweb.actividad a ON e.idActividad = a.idActividad " +
+                "INNER JOIN proyectoweb.inscripcion i ON e.idEvento = i.idEvento " +
+                "WHERE a.idActividad = ? AND e.idEstado = 'PUBLIC'";
+
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, idActividad);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    counts.add(rs.getInt("countBarra"));
+                    counts.add(rs.getInt("countMember"));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return counts;
+    }
+
+    public ArrayList<ArrayList<Integer>> contarRolesTodasActividades() {
+        ArrayList<ArrayList<Integer>> countsList = new ArrayList<>();
+
+        String actividadesQuery = "SELECT idActividad FROM actividad ORDER BY idActividad ASC";
+
+        try (Connection conn = getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet actividadesResult = stmt.executeQuery(actividadesQuery)) {
+
+            while (actividadesResult.next()) {
+                String actividadId = actividadesResult.getString("idActividad");
+                ArrayList<Integer> counts = contarRolesxActividad(actividadId);
+                countsList.add(counts);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return countsList;
+    }
+
+    public ArrayList<String> obtenerNombresActividades() {
+        ArrayList<String> nombresActividades = new ArrayList<>();
+        String sql = "SELECT titulo FROM actividad ORDER BY idActividad ASC";
+
+        try (Connection conn = getConnection();
+             Statement stmt = conn.createStatement()) {
+
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                String nombreActividad = rs.getString("titulo");
+                nombresActividades.add(nombreActividad);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return nombresActividades;
+    }
+
+
+
 
 
 
