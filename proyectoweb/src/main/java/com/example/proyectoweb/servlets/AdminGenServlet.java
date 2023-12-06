@@ -19,6 +19,10 @@ import java.util.Map;
 @WebServlet(name = "AdminGenServlet", value = "/admin_gen")
 public class AdminGenServlet extends HttpServlet {
 
+    UsuariosDao userDao = new UsuariosDao();
+    ActividadesDao actividadesDao = new ActividadesDao();
+    DonacionesDao donacionesDao = new DonacionesDao();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -26,16 +30,14 @@ public class AdminGenServlet extends HttpServlet {
         Usuario user = (Usuario) session.getAttribute("usuario");
         if (user.getIdRolSistema().equals("DELGEN")){
 
-            UsuariosDao userDao = new UsuariosDao();
             String action = request.getParameter("action") == null? "home" : request.getParameter("action");
             ArrayList<Usuario> listaUsuarios = userDao.listarTodosUsuarios();
 
-                ArrayList<Usuario> listaConPaginacion = userDao.listarUsuariosConPaginacion(limit, limit*(Integer.parseInt(pagina)-1));
-
-                request.setAttribute("cantPaginas", Double.valueOf(cantPaginas).intValue());
-                request.setAttribute("listaUsuarios",listaConPaginacion);
-                request.getRequestDispatcher("pages/super_admin/tabla_inscritos.jsp").forward(request,response);
-                break;
+            switch (action){
+                case "home":
+                    request.setAttribute("listaUsuarios",listaUsuarios);
+                    request.getRequestDispatcher("pages/super_admin/tabla_inscritos.jsp").forward(request,response);
+                    break;
 
                 case "editar":
                     String codigo = request.getParameter("id");
@@ -52,12 +54,11 @@ public class AdminGenServlet extends HttpServlet {
 
                 case "activities":
 
-                    String ac = request.getParameter("ac") == null? "list" : request.getParameter("ac");
+                    String ac2 = request.getParameter("ac") == null? "list" : request.getParameter("ac");
 
-                    ActividadesDao actividadesDao = new ActividadesDao();
                     ArrayList<Actividad> listarActividadesConDelegado = actividadesDao.listarActividadesConDelegado();
 
-                    switch (ac){
+                    switch (ac2){
                         case "list":
                             request.setAttribute("listaActividades",listarActividadesConDelegado);
                             request.getRequestDispatcher("pages/super_admin/lista_actividades.jsp").forward(request,response);
@@ -115,144 +116,60 @@ public class AdminGenServlet extends HttpServlet {
                     break;
 
                 case "statistics":
-                    request.getRequestDispatcher("pages/super_admin/statistics.jsp").forward(request,response);
+                    ArrayList<Actividad> listaActividades= actividadesDao.listarActividadesConDelegado();
+
+                    ArrayList<Usuario> listaUsuario= userDao.listarTodosUsuarios();
+
+                    ArrayList<Donaciones> listaDonaciones1= donacionesDao.listar();
+                    double totalDonacionesEgresados=donacionesDao.sumarDonacionesEgresados();
+                    double totalDonacionesEstudiantes=donacionesDao.sumarDonacionesEstudiantes();
+                    int totalestudiantes=userDao.contarEstudiantes();
+                    int totalgraduados=userDao.contargraduados();
+                    ArrayList<ArrayList<Integer>> conteorolesgeneral = userDao.contarRolesTodasActividades();
+                    ArrayList<String> NombresActividades=userDao.obtenerNombresActividades();
+
+                    String select = request.getParameter("select") == null? "unoCaso" : request.getParameter("select");
+                    switch (select){
+                        case "unoCaso":
+                            request.setAttribute("listaDonaciones",listaDonaciones1);
+                            request.setAttribute("totalDonacionesEstudiantes",totalDonacionesEstudiantes);
+                            request.setAttribute("totalDonacionesEgresados",totalDonacionesEgresados);
+
+
+                            request.getRequestDispatcher("pages/super_admin/statisticsRecaudaciones.jsp").forward(request,response);
+                            break;
+                        case "canAl":
+                            request.setAttribute("listaUsuarios",listaUsuario);
+                            request.setAttribute("totalestudiantes",totalestudiantes);
+                            request.setAttribute("totalgraduados",totalgraduados);
+
+
+
+                            request.getRequestDispatcher("pages/super_admin/statisticsStudent.jsp").forward(request,response);
+                            break;
+                        case "cantAp":
+                            request.setAttribute("listaActividades",listaActividades);
+                            request.setAttribute("listaUsuarios",listaUsuario);
+                            request.setAttribute("conteorolesgeneral",conteorolesgeneral);
+                            request.setAttribute("NombresActividades",NombresActividades);
+                            System.out.println(NombresActividades);
+                            System.out.println(conteorolesgeneral);
+
+                            request.getRequestDispatcher("pages/super_admin/statisticsSupports.jsp").forward(request,response);
+                            break;
+                    }
+                    break;
+
+                case "sta":
+                    request.getRequestDispatcher("pages/prueba/sta.jsp").forward(request,response);
                     break;
 
 
                 case "donations":
-                    DonacionesDao donacionesDao = new DonacionesDao();
+                    request.getRequestDispatcher("pages/super_admin/lista_donaciones.jsp").forward(request,response);
+                    break;
 
-                    String ac2 = request.getParameter("ac") == null? "list" : request.getParameter("ac");
-                    ArrayList<Donaciones> listaDonaciones = donacionesDao.listar();
-
-                    case "crear":
-                        ArrayList<Usuario> listaDelegadosDisponibles = userDao.listarDelegadosActDisponibles();
-
-                        ArrayList<Actividad> listaActividades = actividadesDao.getListaActividades();
-                        request.setAttribute("listaActividades",listaActividades);
-                        request.setAttribute("listaUsuarios",listaDelegadosDisponibles);
-
-                        request.getRequestDispatcher("/pages/super_admin/new_activity.jsp").forward(request,response);
-                        break;
-
-                    case "edit":
-                        Actividad actividad = actividadesDao.buscarPorTitulo(request.getParameter("id"));
-                        String idDelActual = request.getParameter("idDelActual");
-                        ArrayList<Usuario> listaUsuarios2 = userDao.listarTodosUsuarios();
-                        ArrayList<Actividad> listaActividades2 = actividadesDao.getListaActividades();
-
-                        if (actividad != null){
-                            request.setAttribute("idDelActual", idDelActual);
-                            request.setAttribute("listaActividades",listaActividades2);
-                            request.setAttribute("actividad",actividad);
-                            request.setAttribute("listaUsuarios",listaUsuarios2);
-                            request.getRequestDispatcher("/pages/super_admin/edit_activity.jsp").forward(request, response);
-                        }
-                        else{
-                            response.sendRedirect(request.getContextPath()+"/admin_gen?action=activities");
-                        }
-                        break;
-
-                    case "delete":
-                        try {
-                            String idActividad = request.getParameter("id");
-                            String idDelegado = request.getParameter("idDelegado");
-                            String nuevoRol = "USER";
-                            System.out.println("id a eliminar: "+ idActividad);
-                            System.out.println("idDelegado a eliminar: " + idDelegado);
-
-                            userDao.actualizarRolSistema(idDelegado, nuevoRol);
-                            actividadesDao.eliminarActividad(idActividad);
-                            response.sendRedirect(request.getContextPath() + "/admin_gen?action=activities");
-                        } catch (SQLIntegrityConstraintViolationException e) {
-                            e.printStackTrace();  // o loguea el error
-                            HttpSession httpSession = request.getSession();
-                            httpSession.setAttribute("msgError", "No se pudo eliminar, ya que existen eventos relacionados a esta actividad");
-                            response.sendRedirect(request.getContextPath() + "/admin_gen?action=activities");
-                        }
-
-                        break;
-                }
-
-                break;
-
-            case "statistics":
-                ActividadesDao actividadesDao1 = new ActividadesDao();
-                ArrayList<Actividad> listaActividades= actividadesDao1.listarActividadesConDelegado();
-
-                ArrayList<Usuario> listaUsuario= userDao.listarTodosUsuarios();
-
-                DonacionesDao donacionesDao1= new DonacionesDao();
-                UsuariosDao usariosdao3=new UsuariosDao();
-                ArrayList<Donaciones> listaDonaciones1= donacionesDao1.listar();
-                double totalDonacionesEgresados=donacionesDao1.sumarDonacionesEgresados();
-                double totalDonacionesEstudiantes=donacionesDao1.sumarDonacionesEstudiantes();
-                int totalestudiantes=usariosdao3.contarEstudiantes();
-                int totalgraduados=usariosdao3.contargraduados();
-                ArrayList<ArrayList<Integer>> conteorolesgeneral = usariosdao3.contarRolesTodasActividades();
-                ArrayList<String> NombresActividades=usariosdao3.obtenerNombresActividades();
-
-                String select = request.getParameter("select") == null? "unoCaso" : request.getParameter("select");
-                switch (select){
-                    case "unoCaso":
-                        request.setAttribute("listaDonaciones",listaDonaciones1);
-                        request.setAttribute("totalDonacionesEstudiantes",totalDonacionesEstudiantes);
-                        request.setAttribute("totalDonacionesEgresados",totalDonacionesEgresados);
-
-
-                        request.getRequestDispatcher("pages/super_admin/statisticsRecaudaciones.jsp").forward(request,response);
-                        break;
-                    case "canAl":
-                        request.setAttribute("listaUsuarios",listaUsuario);
-                        request.setAttribute("totalestudiantes",totalestudiantes);
-                        request.setAttribute("totalgraduados",totalgraduados);
-
-
-
-                        request.getRequestDispatcher("pages/super_admin/statisticsStudent.jsp").forward(request,response);
-                        break;
-                    case "cantAp":
-                        request.setAttribute("listaActividades",listaActividades);
-                        request.setAttribute("listaUsuarios",listaUsuario);
-                        request.setAttribute("conteorolesgeneral",conteorolesgeneral);
-                        request.setAttribute("NombresActividades",NombresActividades);
-                        System.out.println(NombresActividades);
-                        System.out.println(conteorolesgeneral);
-
-                        request.getRequestDispatcher("pages/super_admin/statisticsSupports.jsp").forward(request,response);
-                        break;
-                }
-                break;
-
-
-            case "sta":
-                request.getRequestDispatcher("pages/prueba/sta.jsp").forward(request,response);
-                break;
-
-            case "donations":
-                DonacionesDao donacionesDao = new DonacionesDao();
-
-                            request.setAttribute("Donante", donanteBuscado);
-                            request.getRequestDispatcher("/pages/super_admin/ver_donacion.jsp").forward(request,response);
-
-                switch (ac2){
-                    case "list":
-                        String paginaDonations = request.getParameter("paginaDonations") == null? "1" : request.getParameter("paginaDonations");
-                        ArrayList<Donaciones> listaDonacionesPaginada = donacionesDao.listarDonacionesPaginacion(limitDonations*(Integer.parseInt(paginaDonations)-1));
-                        request.setAttribute("cantPaginasDonations", Double.valueOf(cantidadPaginasNecesariasDonaciones).intValue());
-                        request.setAttribute("listaDonaciones", listaDonacionesPaginada);
-                        request.getRequestDispatcher("pages/super_admin/lista_donaciones.jsp").forward(request,response);
-                        break;
-
-
-                    case "ver": //Editar
-                        String idDonante = request.getParameter("idDonante");
-                        Donaciones donanteBuscado = donacionesDao.buscarPorIdDonante(idDonante);
-
-                        request.setAttribute("Donante", donanteBuscado);
-                        request.getRequestDispatcher("/pages/super_admin/ver_donacion.jsp").forward(request,response);
-                }
-                break;
+            }
 
         } else {
             session.invalidate();
@@ -265,41 +182,33 @@ public class AdminGenServlet extends HttpServlet {
 
         HttpSession session = request.getSession(false);
         Usuario user = (Usuario) session.getAttribute("usuario");
-        if (user.getIdRolSistema().equals("DELGEN")){
+        if (user.getIdRolSistema().equals("DELGEN")) {
 
-        switch(action){
-            case "home":
-                Integer limit = 8;
-                String pagina = request.getParameter("pagina") == null? "1" : request.getParameter("pagina");
+            String action = request.getParameter("action") == null ? "home" : request.getParameter("action");
+            String ac = request.getParameter("ac") == null ? "busqueda" : request.getParameter("ac");
 
-                switch (ac){
-                    case "busqueda":
-                        String usuarioBuscado = request.getParameter("busquedaNombreCodigo");
+            switch (action) {
+                case "home":
+                    Integer limit = 8;
+                    String pagina = request.getParameter("pagina") == null ? "1" : request.getParameter("pagina");
 
-                        ArrayList<Usuario> listaBusqueda = userDao.buscarXnombreYcodigo(usuarioBuscado);
-
-                    switch (ac){
+                    switch (ac) {
                         case "busqueda":
                             String usuarioBuscado = request.getParameter("busquedaNombreCodigo");
                             ArrayList<Usuario> listaBusqueda = userDao.buscarXnombreYcodigo(usuarioBuscado);
 
 
+                        case "busquedaPorEstado":
+                            String filtroEstado = request.getParameter("id");
+                            ArrayList<Usuario> listaPorEstado = userDao.listarPorEstado(filtroEstado);
+                            Double totalUsuarios = (double) listaPorEstado.size();
+                            Double cantPaginas = Math.ceil(totalUsuarios / limit);
+                            ArrayList<Usuario> listaPorEstadoPaginacion = userDao.listarPorEstadoPaginacion(filtroEstado, limit, limit * (Integer.parseInt(pagina) - 1));
 
-                    case "busquedaPorEstado":
-                        String filtroEstado = request.getParameter("id");
-                        ArrayList<Usuario> listaPorEstado = userDao.listarPorEstado(filtroEstado);
-                        Double totalUsuarios = (double) listaPorEstado.size();
-                        Double cantPaginas = Math.ceil(totalUsuarios/limit);
-                        ArrayList<Usuario> listaPorEstadoPaginacion = userDao.listarPorEstadoPaginacion(filtroEstado, limit, limit*(Integer.parseInt(pagina)-1));
-
-                        request.setAttribute("indicador", filtroEstado);
-                        request.setAttribute("cantPaginas", Double.valueOf(cantPaginas).intValue());
-                        request.setAttribute("listaUsuarios", listaPorEstadoPaginacion);
-                        request.getRequestDispatcher("pages/super_admin/tabla_inscritos.jsp").forward(request,response);
-                        break;
-
-                            request.setAttribute("listaUsuarios", listaPorEstado);
-                            request.getRequestDispatcher("pages/super_admin/tabla_inscritos.jsp").forward(request,response);
+                            request.setAttribute("indicador", filtroEstado);
+                            request.setAttribute("cantPaginas", Double.valueOf(cantPaginas).intValue());
+                            request.setAttribute("listaUsuarios", listaPorEstadoPaginacion);
+                            request.getRequestDispatcher("pages/super_admin/tabla_inscritos.jsp").forward(request, response);
                             break;
 
                         case "editarEstadoUsuario":
@@ -311,12 +220,11 @@ public class AdminGenServlet extends HttpServlet {
                             System.out.println("idusaurio: " + idUsuario);
 
 
-                        if(nuevoEstadoUsuario.equals("eliminarUsuario")){
-                            userDao.eliminarUsuario(idUsuario);
-                        }
-                        else {
-                            userDao.editarEstadoUsuario(idUsuario, nuevoEstadoUsuario);
-                        }
+                            if (nuevoEstadoUsuario.equals("eliminarUsuario")) {
+                                userDao.eliminarUsuario(idUsuario);
+                            } else {
+                                userDao.editarEstadoUsuario(idUsuario, nuevoEstadoUsuario);
+                            }
 
                             response.sendRedirect(request.getContextPath() + "/admin_gen");
                             break;
@@ -326,14 +234,14 @@ public class AdminGenServlet extends HttpServlet {
 
                 case "activities":
 
-                    switch (ac){
+                    switch (ac) {
                         case "busqueda":
 
                             String actividadBuscada = request.getParameter("busquedaTituloActividad");
                             ArrayList<Actividad> listaActividadFiltrada = actividadesDao.filtrarXTitulo(actividadBuscada);
 
-                            request.setAttribute("listarActividadesConDelegado",listaActividadFiltrada);
-                            request.getRequestDispatcher("/pages/super_admin/lista_actividades.jsp").forward(request,response);
+                            request.setAttribute("listarActividadesConDelegado", listaActividadFiltrada);
+                            request.getRequestDispatcher("/pages/super_admin/lista_actividades.jsp").forward(request, response);
                             break;
 
 
@@ -344,7 +252,7 @@ public class AdminGenServlet extends HttpServlet {
                             String nuevoRol = "DELACT";
 
                             userDao.actualizarRolSistema(idDelegado, nuevoRol);
-                            actividadesDao.crearActividad(idActividad,tituloActividad,Integer.parseInt(idDelegado));
+                            actividadesDao.crearActividad(idActividad, tituloActividad, Integer.parseInt(idDelegado));
                             response.sendRedirect(request.getContextPath() + "/admin_gen?action=activities");
 
                             break;
@@ -368,13 +276,13 @@ public class AdminGenServlet extends HttpServlet {
                 case "donations":
                     DonacionesDao donacionesDao = new DonacionesDao();
 
-                    switch (ac){
+                    switch (ac) {
                         case "busqueda":
                             String nombreBuscado = request.getParameter("nombreDonante");
                             ArrayList<Donaciones> listaDonacionesFiltrada = donacionesDao.buscarPorNombre(nombreBuscado);
 
-                            request.setAttribute("listaDonaciones",listaDonacionesFiltrada);
-                            request.getRequestDispatcher("pages/super_admin/lista_donaciones.jsp").forward(request,response);
+                            request.setAttribute("listaDonaciones", listaDonacionesFiltrada);
+                            request.getRequestDispatcher("pages/super_admin/lista_donaciones.jsp").forward(request, response);
 
                             break;
 
@@ -382,8 +290,8 @@ public class AdminGenServlet extends HttpServlet {
                             String comprobacionId = request.getParameter("id");
                             ArrayList<Donaciones> listaDonacionesPorComprobacion = donacionesDao.listarComprobados(comprobacionId);
 
-                            request.setAttribute("listaDonaciones",listaDonacionesPorComprobacion);
-                            request.getRequestDispatcher("pages/super_admin/lista_donaciones.jsp").forward(request,response);
+                            request.setAttribute("listaDonaciones", listaDonacionesPorComprobacion);
+                            request.getRequestDispatcher("pages/super_admin/lista_donaciones.jsp").forward(request, response);
 
                             break;
                         case "editarDonacion":
@@ -414,5 +322,4 @@ public class AdminGenServlet extends HttpServlet {
         }
 
     }
-
 }
