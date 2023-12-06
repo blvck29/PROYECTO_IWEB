@@ -1,5 +1,6 @@
 package com.example.proyectoweb.servlets;
 
+import com.example.proyectoweb.model.EmailSender;
 import com.example.proyectoweb.model.beans.Usuario;
 import com.example.proyectoweb.model.daos.TokenDao;
 import com.example.proyectoweb.model.daos.UsuariosDao;
@@ -14,6 +15,7 @@ public class SystemServlet extends HttpServlet {
 
     UsuariosDao userDao = new UsuariosDao();
     TokenDao tokenDao = new TokenDao();
+    EmailSender emailSender = new EmailSender();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -107,8 +109,8 @@ public class SystemServlet extends HttpServlet {
                     response.sendRedirect("login?action=register&error=no_valid");
                 } else {
                     userDao.crearUsuario(names, lastnames, codigo, email, isEgresado, password);
-                    tokenDao.generateToken(email);
-                    // falta funcion para enviar correo !importante
+                    String token = tokenDao.generateToken(email);
+                    EmailSender.sendEmail(email,"Token para Verificación",token);
                     response.sendRedirect("login?action=confirm_account");
                 }
                 break;

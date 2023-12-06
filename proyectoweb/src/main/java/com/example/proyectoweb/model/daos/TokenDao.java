@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class TokenDao extends DaoBase{
 
-    public void generateToken(String correo){
+    public String generateToken(String correo){
 
         Usuario usuario = userTokenByEmail(correo);
         String idUsuario = String.valueOf(usuario.getIdUsuario());
@@ -31,6 +31,7 @@ public class TokenDao extends DaoBase{
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        return token;
     }
 
     public Usuario userTokenByEmail(String correo){
