@@ -175,6 +175,7 @@ public class SystemServlet extends HttpServlet {
                 break;
 
             case "forgot_newpass":
+                String correoChange = request.getParameter("correoChange");
                 String newpass = request.getParameter("newpass");
 
 

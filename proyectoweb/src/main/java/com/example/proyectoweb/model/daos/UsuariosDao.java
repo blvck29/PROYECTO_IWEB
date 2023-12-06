@@ -63,6 +63,8 @@ public class UsuariosDao extends DaoBase{
 
                 while(rs.next()){
 
+                    usuario = new Usuario();
+
                     usuario.setIdUsuario(rs.getInt(1));
                     usuario.setIdRolSistema(rs.getString(2));
                     usuario.setIdEstado(rs.getString(3));
@@ -673,7 +675,21 @@ public ArrayList<Usuario> listarDelegadosActDisponibles(){
 
 
 
-    
+    public void editarContraseña(String newpass, String idUsuario){
+
+        String sql = "update usuarios set idEstado = ? where idUsuario = ?";
+
+        try(Connection conn = getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1,nuevoEstado);
+            pstmt.setString(2, idUsuario);
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
 

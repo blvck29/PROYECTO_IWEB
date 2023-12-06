@@ -27,6 +27,7 @@
 
         <div class="newpass-form">
             <form method="POST" action="<%=request.getContextPath()%>/login?action=forgot_newpass" id="newpass-formulario">
+                <input type="hidden" name="correoChange" value="<%=token%>">
                 <h2>Nueva Contraseña</h2>
                 <div class="newpass-input">
                     <i class="fa-solid fa-lock"></i>
