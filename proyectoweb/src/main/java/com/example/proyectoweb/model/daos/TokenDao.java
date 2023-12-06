@@ -16,27 +16,73 @@ public class TokenDao extends DaoBase{
     public String generateToken(String correo){
 
         Usuario usuario = userTokenByEmail(correo);
-        String idUsuario = String.valueOf(usuario.getIdUsuario());
+        String idTokenExistente = tokenExists(usuario.getIdUsuario());
         String token = RandomTokenGenerator.generator();
 
-        String sql = "INSERT INTO `proyectoweb`.`token_generado` (`idUsuario`, `token`) VALUES (?, ?);";
+        if (idTokenExistente != null){
+
+            String sql = "UPDATE `proyectoweb`.`token_generado` SET `token` = ? WHERE (`idUsuario` = ?);";
+
+            try(Connection conn = getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(sql)){
+
+                pstmt.setString(1, token);
+                pstmt.setString(2, idTokenExistente);
+                pstmt.executeUpdate();
+
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
+        } else {
+
+            String idUsuario = String.valueOf(usuario.getIdUsuario());
+
+            String sql = "INSERT INTO `proyectoweb`.`token_generado` (`idUsuario`, `token`) VALUES (?, ?);";
+
+            try(Connection conn = getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(sql)){
+
+                pstmt.setString(1, idUsuario);
+                pstmt.setString(2, token);
+                pstmt.executeUpdate();
+
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        return token;
+    }
+
+
+    public String tokenExists(int idUsuario){
+
+        String idToken = null;
+
+        String sql = "SELECT * FROM proyectoweb.token_generado WHERE idUsuario = ?;";
 
         try(Connection conn = getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql)){
 
-            pstmt.setString(1, idUsuario);
-            pstmt.setString(2, token);
-            pstmt.executeUpdate();
+            pstmt.setInt(1, idUsuario);
+            try(ResultSet rs = pstmt.executeQuery()) {
+
+                while (rs.next()) {
+
+                    idToken = String.valueOf(rs.getInt(1));
+                }
+            }
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return token;
+        return idToken;
     }
 
     public Usuario userTokenByEmail(String correo){
 
-        Usuario usuario = new Usuario();
+        Usuario usuario = null;
 
         String sql = "SELECT * FROM proyectoweb.usuarios WHERE correo_pucp = ?;";
 
@@ -47,6 +93,8 @@ public class TokenDao extends DaoBase{
             try(ResultSet rs = pstmt.executeQuery()) {
 
                 while (rs.next()) {
+
+                    usuario = new Usuario();
 
                     usuario.setIdUsuario(rs.getInt(1));
                     usuario.setIdRolSistema(rs.getString(2));
@@ -71,7 +119,7 @@ public class TokenDao extends DaoBase{
 
     public Usuario UserTokenById(String id){
 
-        Usuario usuario = new Usuario();
+        Usuario usuario = null;
 
         String sql = "SELECT * FROM proyectoweb.usuarios WHERE idUsuario = ?;";
 
@@ -82,6 +130,8 @@ public class TokenDao extends DaoBase{
             try(ResultSet rs = pstmt.executeQuery()) {
 
                 while (rs.next()) {
+
+                    usuario = new Usuario();
 
                     usuario.setIdUsuario(rs.getInt(1));
                     usuario.setIdRolSistema(rs.getString(2));

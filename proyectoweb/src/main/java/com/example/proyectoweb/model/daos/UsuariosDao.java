@@ -48,7 +48,7 @@ public class UsuariosDao extends DaoBase{
 
     public Usuario usuarioByEmail(String correoPucp){
 
-        Usuario usuario = new Usuario();
+        Usuario usuario = null;
         //Conexión a la DB
         String sql = "select * from usuarios where correo_pucp = ? and idEstado = 'ACC';";
 

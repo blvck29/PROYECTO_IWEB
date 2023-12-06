@@ -24,7 +24,7 @@
     <div class="newpass-container">
 
         <div class="newpass-form">
-            <form action="../../../index.jsp" method="POST" id="newpass-formulario">
+            <form method="POST" action="<%=request.getContextPath()%>/login?action=forgot_newpass" id="newpass-formulario">
                 <h2>Nueva Contraseña</h2>
                 <div class="newpass-input">
                     <i class="fa-solid fa-lock"></i>
@@ -37,10 +37,10 @@
                     <label for="email">Confirmar Contraseña</label>
                 </div>
 
-                <a href="token.jsp"><input type="submit" value="Cambiar Contraseña" class="newpass-button"></a>
+                <a href="#"><input type="submit" value="Cambiar Contraseña" class="newpass-button"></a>
 
                 <div class="newpass-back">
-                    <label><a href="../../../index.jsp">Regresar</a></label>
+                    <label><a href="<%=request.getContextPath()%>/login">Regresar</a></label>
                 </div>
 
             </form>

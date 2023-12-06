@@ -34,6 +34,12 @@ public class SystemServlet extends HttpServlet {
             case "forgot_passwd":
                 request.getRequestDispatcher("pages/system/password_recovery/email.jsp").forward(request, response);
                 break;
+            case "forgot_token":
+                request.getRequestDispatcher("pages/system/password_recovery/token.jsp").forward(request, response);
+                break;
+            case "forgot_newpass":
+                request.getRequestDispatcher("pages/system/password_recovery/newpass.jsp").forward(request, response);
+                break;
             case "unvalid_session":
                 request.getRequestDispatcher("pages/system/unvalid_session.jsp").forward(request, response);
                 break;
@@ -126,8 +132,49 @@ public class SystemServlet extends HttpServlet {
                     tokenDao.verificarUsuario(String.valueOf(enteredToken)); // Cambia el estado de usuario a "VER"
                     response.sendRedirect("login?action=validation_complete");
                 } else {
+                    //Falta el popup de "El token no es válido"
                     response.sendRedirect("login?action=confirm_account&error=bad_token");
                 }
+
+                break;
+
+            case "forgot_passwd":
+                String emailForgot = request.getParameter("email");
+
+                if(userDao.usuarioByEmail(emailForgot)!=null){
+                    Usuario userForgot = userDao.usuarioByEmail(emailForgot);
+                    if (userForgot.getIdRolSistema().equals("ACC")){
+                        String tokenForgot = tokenDao.generateToken(userForgot.getCorreo());
+                        EmailSender.sendEmail(userForgot.getCorreo(),"Token para Renovar Contraseña",tokenForgot);
+                        response.sendRedirect("login?action=forgot_token");
+                    } else {
+                        //Falta el popup de "El correo ingresado no está aceptado por el administrador"
+                        response.sendRedirect("login?action=forgot_passwd&error=no_accepted");
+                    }
+                } else {
+                    //Falta el popup de "El correo ingresado no está registrado"
+                    response.sendRedirect("login?action=forgot_passwd&error=no_valid");
+                }
+
+                break;
+
+            case "forgot_token":
+                StringBuilder forgotToken = new StringBuilder();
+                for (int i = 1; i <= 6; i++) {
+                    String digit = request.getParameter("digit" + i);
+                    forgotToken.append(digit);
+                }
+
+                if(tokenDao.findToken(String.valueOf(forgotToken))){
+                    response.sendRedirect("login?action=forgot_newpass");
+                } else {
+                    //Falta el popup de "El token no es válido"
+                    response.sendRedirect("login?action=forgot_token&error=bad_token");
+                }
+                break;
+
+            case "forgot_newpass":
+                String newpass = request.getParameter("newpass");
 
                 break;
 

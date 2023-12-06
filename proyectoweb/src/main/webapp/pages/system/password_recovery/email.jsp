@@ -22,7 +22,7 @@
     <div class="forgot-container">
 
         <div class="forgot-form">
-            <form action="token.jsp" method="POST" id="forgot-formulario">
+            <form method="POST" action="<%=request.getContextPath()%>/login?action=forgot_passwd">
                 <h2>Recuperar Contraseña</h2>
 
                 <div class="forgot-input">
@@ -31,7 +31,7 @@
                     <label for="email">Correo de Recuperación</label>
                 </div>
 
-                <a href="token.jsp"><input type="submit" value="Enviar Correo" class="forgot-button"></a>
+                <a href="#"><input type="submit" value="Enviar Correo" class="forgot-button"></a>
 
                 <div class="forgot-back">
                     <label><a href="<%=request.getContextPath()%>/login">Regresar</a></label>
