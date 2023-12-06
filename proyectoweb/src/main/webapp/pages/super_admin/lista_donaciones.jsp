@@ -121,11 +121,6 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
         <div class="col-md-10" >
             <form method="post" action="<%=request.getContextPath()%>/admin_gen?action=donations&ac=busqueda">
 
-                <div class="custom-form-group" style ="margin-right: 80px">
-                    <input type="text" class="form-control" name="nombreDonante" placeholder="Buscar por nombre o apellido" style="width: 130%">
-                </div>
-                <button type="submit" class="btn btn-primary">Aplicar filtros</button>
-
                 <a class="btn btn-primary" href="<%=request.getContextPath()%>/admin_gen?action=donations" role="button">Borrar filtros</a>
             </form>
         </div>
@@ -231,6 +226,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
 
             <td class="cell c6 lastcol" style=""><a href="<%=request.getContextPath()%>/admin_gen?action=donations&ac=ver&idDonante=<%=donaciones.getIdUsuario()%>"><img width="24" height="24" src="https://img.icons8.com/pulsar-line/48/view-delivery.png" alt="edit-row"/></a></td>
+            <td class="cell c6 lastcol" style=""></td>
         </tr>
         <%}%>
         </tbody>
