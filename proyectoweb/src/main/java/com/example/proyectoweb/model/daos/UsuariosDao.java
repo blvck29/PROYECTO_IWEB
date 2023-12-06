@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 public class UsuariosDao extends DaoBase{
 
-
     public boolean login(String mail, String passwd){
 
         boolean valido = false;
@@ -443,12 +442,10 @@ public ArrayList<Usuario> listarDelegadosActDisponibles(){
 
         String passworHash = SHA256.cipherPassword(passwordStr);
 
-        String cond = "UNSET";
+        String cond = "STUDENT";
 
         if(isEgresado){
             cond = "GRADUAT";
-        } else {
-            cond = "STUDENT";
         }
 
         try(Connection conn = getConnection();

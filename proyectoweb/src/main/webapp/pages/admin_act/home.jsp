@@ -2,11 +2,17 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="com.example.proyectoweb.model.beans.Actividad" %>
+<%@ page import="com.example.proyectoweb.model.beans.Usuario" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
-<% ArrayList<Evento> listaEventos = (ArrayList<Evento>) request.getAttribute("listaEventos"); %>
-<% String idActividad = (String) request.getAttribute("idActividad");%>
-<% Actividad actividad = (Actividad) request.getAttribute("actividad"); %>
+
+<%Usuario user = (Usuario) session.getAttribute("usuario");%>
+
+<%  if (user.getIdRolSistema().equals("DELACT")){ %>
+
+    <% ArrayList<Evento> listaEventos = (ArrayList<Evento>) request.getAttribute("listaEventos"); %>
+    <% String idActividad = (String) request.getAttribute("idActividad");%>
+    <% Actividad actividad = (Actividad) request.getAttribute("actividad"); %>
 
 
 
@@ -313,3 +319,5 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 </body>
 
 </html>
+
+<% } else {request.getRequestDispatcher("/logout").forward(request, response);}%>

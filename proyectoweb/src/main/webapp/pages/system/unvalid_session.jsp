@@ -19,7 +19,7 @@
 
         <div class="forgot-form">
             <form action="<%=request.getContextPath()%>/login" method="POST" id="complete">
-                <h2>Se ha cerrado la Sesión!</h2>
+                <h2>¡Se ha cerrado la Sesión!</h2>
                 <div class="forgot-back" style="padding-top: 10px; max-width: 450px; margin-bottom: 25px">
                     <label>Debe iniciar sesión para acceder al contenido de la página, regrese al login.</label>
                 </div>

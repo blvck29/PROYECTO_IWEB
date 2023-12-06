@@ -53,7 +53,6 @@ public class SystemServlet extends HttpServlet {
                 break;
 
             case "login":
-
                 String mailStr = request.getParameter("email");
                 String passwdStr = request.getParameter("passwd");
 
@@ -65,11 +64,6 @@ public class SystemServlet extends HttpServlet {
                     HttpSession session = request.getSession();
                     // Almacena la información del usuario en la sesión
 
-                    session.setAttribute("id", user.getIdUsuario());
-                    session.setAttribute("idRolSistema", user.getIdRolSistema());
-                    session.setAttribute("idRolAcademico", user.getIdRolAcademico());
-                    session.setAttribute("nombres", user.getNombres());
-                    session.setAttribute("apellidos", user.getApellidos());
                     session.setAttribute("usuario", user);
 
                     session.setMaxInactiveInterval(1800); // 1800 segundos = 30 minutos
