@@ -123,61 +123,6 @@ public class ActividadesDao extends DaoBase{
         return lista;
     }
 
-    public ArrayList<Actividad> filtrarXTitulo (String tituloActividad){
-
-        ArrayList<Actividad> lista = new ArrayList<>();
-
-        // Conexión a DB
-        String sql = "SELECT ac.*, u.*\n" +
-                "FROM actividad ac\n" +
-                " INNER JOIN usuarios u on (u.idUsuario = ac.idEncargado)\n" +
-                " where lower(ac.titulo) like ?";
-
-        try (Connection conn = getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)){
-
-            pstmt.setString(1, tituloActividad + "%");
-
-
-            try(ResultSet rs = pstmt.executeQuery()){
-
-
-                while(rs.next()){
-
-                    Actividad actividad= new Actividad();
-
-                    actividad.setIdActividad(rs.getString(1));
-                    actividad.setTitulo(rs.getString(2));
-                    actividad.setBanner(rs.getBlob(3));
-                    actividad.setMiniatura(rs.getBlob(4));
-                    actividad.setIdEncargado(rs.getInt(5));
-
-                    Usuario delegado = new Usuario();
-                    delegado.setIdUsuario(rs.getInt(6));
-                    delegado.setIdRolSistema(rs.getString(7));
-                    delegado.setIdEstado(rs.getString(8));
-                    delegado.setNombres(rs.getString(9));
-                    delegado.setApellidos(rs.getString(10));
-                    delegado.setCodigo(rs.getString(11));
-                    delegado.setCorreo(rs.getString(12));
-                    // Sin contraseña por seguridad.
-                    delegado.setFechaCreacion(rs.getString(14));
-                    delegado.setCantEventsInscrito(rs.getString(15));
-                    delegado.setIdRolAcademico(rs.getString(16));
-                    delegado.setKitTeleco(rs.getInt(17));
-
-                    actividad.setDelegado(delegado);
-
-                    lista.add(actividad);
-                }
-            }
-
-        }catch (SQLException e){
-            throw new RuntimeException(e);
-        }
-
-        return lista;
-    }
 
 
     public Actividad buscarPorTitulo(String idActividad){

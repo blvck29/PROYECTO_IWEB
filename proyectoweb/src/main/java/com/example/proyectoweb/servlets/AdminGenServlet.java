@@ -231,16 +231,6 @@ public class AdminGenServlet extends HttpServlet {
                 case "activities":
 
                     switch (ac) {
-                        case "busqueda":
-
-                            String actividadBuscada = request.getParameter("busquedaTituloActividad");
-                            ArrayList<Actividad> listaActividadFiltrada = actividadesDao.filtrarXTitulo(actividadBuscada);
-
-                            request.setAttribute("listarActividadesConDelegado", listaActividadFiltrada);
-                            request.getRequestDispatcher("/pages/super_admin/lista_actividades.jsp").forward(request, response);
-                            break;
-
-
                         case "crear":
                             String tituloActividad = request.getParameter("nombreActividad");
                             String idActividad = tituloActividad.toUpperCase();

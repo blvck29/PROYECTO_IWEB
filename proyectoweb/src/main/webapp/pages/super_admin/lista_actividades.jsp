@@ -8,7 +8,6 @@
 <% ArrayList<Actividad> listaActividadesConDelegado = (ArrayList<Actividad>) request.getAttribute("listaActividades");%>
 <% String msgError = (String) session.getAttribute("msgError"); %>
 
-<%Integer cantPaginas = (Integer)request.getAttribute("cantPaginasAc"); %>
 
 <%
     if (session.getAttribute("id") != null){
