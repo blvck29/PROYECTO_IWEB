@@ -61,12 +61,12 @@ public class SystemServlet extends HttpServlet {
                     Usuario user = userDao.usuarioByEmail(mailStr);
 
                     // Iniciar sesión exitosa, redireccionar al servlet de inicio.
-                    HttpSession httpSession = request.getSession();
+                    HttpSession session = request.getSession();
                     // Almacena la información del usuario en la sesión
 
                     session.setAttribute("usuario", user);
 
-                    httpSession.setMaxInactiveInterval(1800); // 1800 segundos = 30 minutos
+                    session.setMaxInactiveInterval(1800); // 1800 segundos = 30 minutos
 
                     switch (user.getIdRolSistema()){
                         case "USER":
