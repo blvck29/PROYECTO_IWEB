@@ -675,14 +675,14 @@ public ArrayList<Usuario> listarDelegadosActDisponibles(){
 
 
 
-    public void editarContraseña(String newpass, String idUsuario){
+    public void editarPassword(String newpass, String idUsuario){
 
         String sql = "update usuarios set idEstado = ? where idUsuario = ?";
 
         try(Connection conn = getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            pstmt.setString(1,nuevoEstado);
+            pstmt.setString(1,newpass);
             pstmt.setString(2, idUsuario);
             pstmt.executeUpdate();
 
