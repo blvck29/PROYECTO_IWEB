@@ -43,8 +43,7 @@
     <!-- Add the slick-theme.css if you want default styling -->
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 
-    <script src="https://kit.fontawesome.com/a2dd6045c4.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
 
     <link rel="icon" type="image/jpg" href="favicon.png" />
 
@@ -52,6 +51,9 @@
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <!-- Add the slick-theme.css if you want default styling -->
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+    <link rel = "stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap4.min.css">
 
 
 
@@ -119,11 +121,6 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
         <div class="col-md-10" >
             <form method="post" action="<%=request.getContextPath()%>/admin_gen?action=donations&ac=busqueda">
 
-                <div class="custom-form-group" style ="margin-right: 80px">
-                    <input type="text" class="form-control" name="nombreDonante" placeholder="Buscar por nombre o apellido" style="width: 130%">
-                </div>
-                <button type="submit" class="btn btn-primary">Aplicar filtros</button>
-
                 <a class="btn btn-primary" href="<%=request.getContextPath()%>/admin_gen?action=donations" role="button">Borrar filtros</a>
             </form>
         </div>
@@ -165,7 +162,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 <div style="padding-top: 25px;"></div>
 
 <div class="table-responsive container">
-    <table class="admintable generaltable table-sm" id="users">
+    <table id="donations" class="table table-striped table-bordered" style="width:100%">
         <thead>
         <tr>
             <th class="header c1 centeralign" style="" scope="col"><a><strong>ID REGISTRO DONACION</strong></a></th>
@@ -228,40 +225,13 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
 
 
-
-
             <td class="cell c6 lastcol" style=""><a href="<%=request.getContextPath()%>/admin_gen?action=donations&ac=ver&idDonante=<%=donaciones.getIdUsuario()%>"><img width="24" height="24" src="https://img.icons8.com/pulsar-line/48/view-delivery.png" alt="edit-row"/></a></td>
+            <td class="cell c6 lastcol" style=""></td>
         </tr>
         <%}%>
         </tbody>
     </table>
 </div>
-
-<div class="container">
-    <nav class="mt-4">
-        <ul class="pagination justify-content-center">
-            <!---->
-
-
-            <%  for(Integer i= 1; i<=cantidadPaginasDonaciones; i++){ %>
-
-            <li class="page-item">
-                <a href="<%=request.getContextPath()%>/admin_gen?action=donations&paginaDonations=<%=i%>" class="page-link"><%=i%></a>
-            </li>
-
-            <%  } %>
-
-
-            <li class="page-item">
-                <a href="#" aria-label="Next" class="page-link">
-                    <span aria-hidden="true">»</span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</div>
-
 
 <div style="margin-bottom: 50px"></div>
 
@@ -282,6 +252,20 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 <script src="js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+<script src = "https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src = "https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<script src = "https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap4.min.js"></script>
+<script>
+    new DataTable('#donations', { language: {
+
+            url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-MX.json',
+
+        },
+    });
+</script>
+<script src="https://kit.fontawesome.com/a2dd6045c4.js" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 
 
 </body>

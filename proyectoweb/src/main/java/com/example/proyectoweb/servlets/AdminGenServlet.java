@@ -193,10 +193,6 @@ public class AdminGenServlet extends HttpServlet {
                     String pagina = request.getParameter("pagina") == null ? "1" : request.getParameter("pagina");
 
                     switch (ac) {
-                        case "busqueda":
-                            String usuarioBuscado = request.getParameter("busquedaNombreCodigo");
-                            ArrayList<Usuario> listaBusqueda = userDao.buscarXnombreYcodigo(usuarioBuscado);
-
 
                         case "busquedaPorEstado":
                             String filtroEstado = request.getParameter("id");
