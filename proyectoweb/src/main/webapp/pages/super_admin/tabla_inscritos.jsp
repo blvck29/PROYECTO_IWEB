@@ -94,11 +94,6 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
         <form method="post" action="<%=request.getContextPath()%>/admin_gen?action=home&ac=busqueda">
 
-          <div class="custom-form-group">
-            <input type="text" class="form-control" name="busquedaNombreCodigo" placeholder="Buscar por nombre o código" style="width: 120%">
-          </div>
-          <button type="submit" class="btn btn-primary">Aplicar filtros</button>
-
           <a class="btn btn-primary" href="<%=request.getContextPath()%>/admin_gen" role="button">Borrar filtros</a>
         </form>
       </div>
