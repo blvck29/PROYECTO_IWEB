@@ -263,14 +263,6 @@ public class AdminGenServlet extends HttpServlet {
                     DonacionesDao donacionesDao = new DonacionesDao();
 
                     switch (ac) {
-                        case "busqueda":
-                            String nombreBuscado = request.getParameter("nombreDonante");
-                            ArrayList<Donaciones> listaDonacionesFiltrada = donacionesDao.buscarPorNombre(nombreBuscado);
-
-                            request.setAttribute("listaDonaciones", listaDonacionesFiltrada);
-                            request.getRequestDispatcher("pages/super_admin/lista_donaciones.jsp").forward(request, response);
-
-                            break;
 
                         case "filtrarComprobados":
                             String comprobacionId = request.getParameter("id");
