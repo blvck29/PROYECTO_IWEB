@@ -561,9 +561,6 @@ public ArrayList<Usuario> listarDelegadosActDisponibles(){
             throw new RuntimeException(e);
         }
 
-
-
-
     }
 
 
@@ -631,6 +628,8 @@ public ArrayList<Usuario> listarDelegadosActDisponibles(){
         return counts;
     }
 
+
+
     public ArrayList<ArrayList<Integer>> contarRolesTodasActividades() {
         ArrayList<ArrayList<Integer>> countsList = new ArrayList<>();
 
@@ -674,7 +673,7 @@ public ArrayList<Usuario> listarDelegadosActDisponibles(){
 
 
 
-
+    
 
 
 

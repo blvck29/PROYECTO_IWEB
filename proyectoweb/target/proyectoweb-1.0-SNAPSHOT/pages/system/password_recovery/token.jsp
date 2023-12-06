@@ -23,7 +23,7 @@
     <div class="forgot-container">
 
         <div class="forgot-form">
-            <form action="newpass.jsp" method="POST" id="token-formulario">
+            <form method="POST" action="<%=request.getContextPath()%>/login?action=forgot_token" id="token-formulario">
                 <h2>Ingrese su Token</h2>
                 <div class="otp-bx">
                     <input type="text" maxlength="1" class="space" required>
@@ -82,10 +82,10 @@
                 </script>
 
 
-                <a href="newpass.jsp"><input type="submit" value="Confirmar Token" class="forgot-button"></a>
+                <a href="#"><input type="submit" value="Confirmar Token" class="forgot-button"></a>
 
                 <div class="forgot-back">
-                    <label><a href="../../../index.jsp">Cancelar</a></label>
+                    <label><a href="<%=request.getContextPath()%>/login">Cancelar</a></label>
                 </div>
 
             </form>

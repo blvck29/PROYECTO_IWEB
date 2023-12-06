@@ -1,5 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
+<% String token = (String) request.getAttribute("token");%>
+
 <!doctype html>
 <html lang="es">
 <head>
@@ -52,6 +54,19 @@
 
 </section>
 
+<script>
+    function validateForm() {
+        var password = document.getElementById("newpass").value;
+        var passwordconf = document.getElementById("newpassconf").value;
+
+        // Validar coincidencia de contraseñas
+        if (password !== passwordconf) {
+            alert("Las contraseñas no coinciden. Por favor, inténtalo de nuevo.");
+            return false;
+        }
+        return true;
+    }
+</script>
 
 </body>
 </html>

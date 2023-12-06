@@ -1,5 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
+<% String token = (String) request.getAttribute("token");%>
+
 <!doctype html>
 <html lang="es">
 <head>
@@ -24,7 +26,7 @@
     <div class="newpass-container">
 
         <div class="newpass-form">
-            <form action="../../../index.jsp" method="POST" id="newpass-formulario">
+            <form method="POST" action="<%=request.getContextPath()%>/login?action=forgot_newpass" id="newpass-formulario">
                 <h2>Nueva Contraseña</h2>
                 <div class="newpass-input">
                     <i class="fa-solid fa-lock"></i>
@@ -37,10 +39,10 @@
                     <label for="email">Confirmar Contraseña</label>
                 </div>
 
-                <a href="token.jsp"><input type="submit" value="Cambiar Contraseña" class="newpass-button"></a>
+                <a href="#"><input type="submit" value="Cambiar Contraseña" class="newpass-button"></a>
 
                 <div class="newpass-back">
-                    <label><a href="../../../index.jsp">Regresar</a></label>
+                    <label><a href="<%=request.getContextPath()%>/login">Regresar</a></label>
                 </div>
 
             </form>
@@ -52,6 +54,19 @@
 
 </section>
 
+<script>
+    function validateForm() {
+        var password = document.getElementById("newpass").value;
+        var passwordconf = document.getElementById("newpassconf").value;
+
+        // Validar coincidencia de contraseñas
+        if (password !== passwordconf) {
+            alert("Las contraseñas no coinciden. Por favor, inténtalo de nuevo.");
+            return false;
+        }
+        return true;
+    }
+</script>
 
 </body>
 </html>

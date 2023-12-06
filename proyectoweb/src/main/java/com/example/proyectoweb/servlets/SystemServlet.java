@@ -116,7 +116,7 @@ public class SystemServlet extends HttpServlet {
                 } else {
                     userDao.crearUsuario(names, lastnames, codigo, email, isEgresado, password);
                     String token = tokenDao.generateToken(email);
-                    EmailSender.sendEmail(email,"Token para Verificación",token);
+                    EmailSender.sendEmail(email,"Token para Verificación"," Token: " + token + "\n Confirmar su token aquí: http://localhost:8080/proyectoweb/login?action=confirm_account");
                     response.sendRedirect("login?action=confirm_account");
                 }
                 break;
@@ -145,7 +145,7 @@ public class SystemServlet extends HttpServlet {
                     Usuario userForgot = userDao.usuarioByEmail(emailForgot);
                     if (userForgot.getIdRolSistema().equals("ACC")){
                         String tokenForgot = tokenDao.generateToken(userForgot.getCorreo());
-                        EmailSender.sendEmail(userForgot.getCorreo(),"Token para Renovar Contraseña",tokenForgot);
+                        EmailSender.sendEmail(userForgot.getCorreo(),"Token para Renovar Contraseña"," Token: " + tokenForgot + "\n Confirmar su token aquí: http://localhost:8080/proyectoweb/login?action=confirm_account");
                         response.sendRedirect("login?action=forgot_token");
                     } else {
                         //Falta el popup de "El correo ingresado no está aceptado por el administrador"
@@ -166,6 +166,7 @@ public class SystemServlet extends HttpServlet {
                 }
 
                 if(tokenDao.findToken(String.valueOf(forgotToken))){
+                    request.setAttribute("token",forgotToken);
                     response.sendRedirect("login?action=forgot_newpass");
                 } else {
                     //Falta el popup de "El token no es válido"
@@ -175,6 +176,8 @@ public class SystemServlet extends HttpServlet {
 
             case "forgot_newpass":
                 String newpass = request.getParameter("newpass");
+
+
 
                 break;
 

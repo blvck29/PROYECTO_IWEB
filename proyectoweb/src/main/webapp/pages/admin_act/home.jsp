@@ -14,22 +14,12 @@
     <% String idActividad = (String) request.getAttribute("idActividad");%>
     <% Actividad actividad = (Actividad) request.getAttribute("actividad"); %>
 
-<%
-    if (session.getAttribute("id") != null){
-        int id = (int) session.getAttribute("id");
-        String idRolSistema = (String) session.getAttribute("idRolSistema");
-        String idRolAcademico = (String) session.getAttribute("idRolAcademico");
-        String nombres = (String) session.getAttribute("nombres");
-        String apellidos = (String) session.getAttribute("apellidos");
-    }
-%>
+
 
 
 <!doctype html>
 <html lang="es">
-<%
-    if (session.getAttribute("id")!=null){
-%>
+
 <head>
     <meta http-equiv="Content-Type" content=text/html; charset=ISO-8859-1″>
     <meta name="viewport" content="width=device-width, initial-scale=1">
