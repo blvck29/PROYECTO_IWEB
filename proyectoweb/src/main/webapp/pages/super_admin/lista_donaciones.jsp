@@ -2,14 +2,9 @@
 <%@ page import="com.example.proyectoweb.model.beans.Donaciones" %>
 <%@ page import="com.example.proyectoweb.model.beans.Usuario" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<% ArrayList<Donaciones> listaDonaciones = (ArrayList<Donaciones>) request.getAttribute("listaDonaciones");%>
-<%Integer cantidadPaginasDonaciones = (Integer) request.getAttribute("cantPaginasDonations");%>
 
 <%Usuario user = (Usuario) session.getAttribute("usuario");%>
-
-<%  if (user.getIdRolSistema().equals("DELGEN")){ %>
-
-    <% ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) request.getAttribute("listaUsuarios");%>
+<%ArrayList<Donaciones> listaDonaciones = (ArrayList<Donaciones>) request.getAttribute("listaDonaciones");%>
 
 <!doctype html>
 <html lang="es">
@@ -172,7 +167,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
         <tbody>
 
         <% if(listaDonaciones != null) {%>
-            <% for (Donaciones donaciones: listaDonaciones){ %>
+            <% for (Donaciones donaciones:listaDonaciones){ %>
             <tr class="">
                 <td class="centeralign cell c0" style=""><a><%=donaciones.getIdDonaciones() %></a></td>
                 <td class="centeralign cell c1" style=""><%= donaciones.getNombres() +" "+ donaciones.getApellidos()%></td>
@@ -203,27 +198,22 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                 <td class="centeralign cell c1" style=""><%= fecha %></td>
                 <td class="centeralign cell c1" style=""><%= horaMostrar %></td>
 
-                <% String estado ="---";
-                    switch(donaciones.getComprobado()){
-                        case 1:
-                            estado = "Comprobado";
-                            break;
-                        case 0:
-                            estado = "Pendiente de comprobación";
-                            break;
-                        case 2:
-                            estado = "Rechazado";
-                            break;
-                        default:
-                            estado = "---";
-                            break;
-                    }%>
-                <td class="cell c2" style=""><%= estado %></td>
+
+
+                <%if (donaciones.getComprobado() == 0){%>
+                <td class="cell c5" style="color: black">Pendiente de Comprobacion</td>
+                <%}else if(donaciones.getComprobado() == 1){%>
+                <td class="cell c5" style="color: #0d6efd">Comprobado</td>
+                <%} else if (donaciones.getComprobado() == 2) {%>
+                <td class="cell c5" style="color: red">Rechazado</td>
+                <%} %>
+
+
 
                 <td class="cell c6 lastcol" style=""><a href="<%=request.getContextPath()%>/admin_gen?action=donations&ac=ver&idDonante=<%=donaciones.getIdUsuario()%>"><img width="24" height="24" src="https://img.icons8.com/pulsar-line/48/view-delivery.png" alt="edit-row"/></a></td>
-                <td class="cell c6 lastcol" style=""></td>
             </tr>
             <%}%>
+
         <%} else {%>
             <tr>
             <td colspan="2"> No hay datos disponibles en la tabla. </td>
@@ -257,56 +247,16 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 <script src = "https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
 <script src = "https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap4.min.js"></script>
 <script>
-    new DataTable('#donations', {
-        language: {
+    new DataTable('#donations', { language: {
+
             url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-MX.json',
+
         },
     });
 </script>
-<script src="https://kit.fontawesome.com/a2dd6045c4.js" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-
 
 </body>
 
+</html>
 
-<% } else { %>
 
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
-    <script src="https://kit.fontawesome.com/a2dd6045c4.js" crossorigin="anonymous"></script>
-    <link rel="icon" type="image/jpg" href="favicon.png"/>
-    <title>Semana de Ingeniería 2023</title>
-</head>
-
-<body>
-
-<section class="index">
-
-    <div class="forgot-container">
-
-        <div class="forgot-form">
-            <form action="<%=request.getContextPath()%>/login" method="POST" id="complete">
-                <h2>Se ha cerrado la Sesión!</h2>
-                <div class="forgot-back" style="padding-top: 10px; max-width: 450px; margin-bottom: 25px">
-                    <label>Debe iniciar sesión para acceder al contenido de la página, regrese al login.</label>
-                </div>
-
-                <input type="submit" value="Regresar" class="forgot-button">
-
-            </form>
-        </div>
-    </div>
-
-    <div class="container-fluid footer-container">
-        <p>© Pontificia Universidad Católica del Perú - Todos los derechos reservados</p>
-    </div>
-
-</section>
-
-</body>
-
-<%}%>

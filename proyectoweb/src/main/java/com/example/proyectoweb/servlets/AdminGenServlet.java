@@ -26,9 +26,8 @@ public class AdminGenServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        HttpSession session = request.getSession(false);
+        HttpSession session = request.getSession();
         Usuario user = (Usuario) session.getAttribute("usuario");
-        if (user.getIdRolSistema().equals("DELGEN")){
 
             String action = request.getParameter("action") == null? "home" : request.getParameter("action");
             ArrayList<Usuario> listaUsuarios = userDao.listarTodosUsuarios();
@@ -120,7 +119,7 @@ public class AdminGenServlet extends HttpServlet {
 
                     ArrayList<Usuario> listaUsuario= userDao.listarTodosUsuarios();
 
-                    ArrayList<Donaciones> listaDonaciones1= donacionesDao.listarTodasDonaciones();
+                    ArrayList<Donaciones> listaDonaciones1= donacionesDao.listar();
                     double totalDonacionesEgresados=donacionesDao.sumarDonacionesEgresados();
                     double totalDonacionesEstudiantes=donacionesDao.sumarDonacionesEstudiantes();
                     int totalestudiantes=userDao.contarEstudiantes();
@@ -160,18 +159,40 @@ public class AdminGenServlet extends HttpServlet {
                     }
                     break;
 
+                case "sta":
+                    request.getRequestDispatcher("pages/prueba/sta.jsp").forward(request,response);
+                    break;
+
+
                 case "donations":
-                    ArrayList<Donaciones> listaDonaciones= donacionesDao.listarTodasDonaciones();
-                    request.setAttribute("listaDonaciones",listaDonaciones);
-                    request.getRequestDispatcher("pages/super_admin/lista_donaciones.jsp").forward(request,response);
+                    DonacionesDao donacionesDao = new DonacionesDao();
+
+                    String ac = request.getParameter("ac") == null? "list" : request.getParameter("ac");
+
+                    switch (ac){
+                        case "list":
+                            ArrayList<Donaciones> listaDonaciones = donacionesDao.listar();
+
+                            request.setAttribute("listaDonaciones", listaDonaciones);
+                            request.getRequestDispatcher("pages/super_admin/lista_donaciones.jsp").forward(request,response);
+
+                            break;
+
+                        case "ver": //Editar
+                            String idDonante = request.getParameter("idDonante");
+                            //Donaciones donanteBuscado = donacionesDao.buscarPorIdDonante(idDonante);
+
+                            //request.setAttribute("Donante", donanteBuscado);
+                            request.getRequestDispatcher("/pages/super_admin/ver_donacion.jsp").forward(request,response);
+
+
+                    }
+
                     break;
 
             }
 
-        } else {
-            session.invalidate();
-            request.getRequestDispatcher("login?action=unvalid_session").forward(request, response);
-        }
+
     }
 
     @Override
@@ -179,7 +200,6 @@ public class AdminGenServlet extends HttpServlet {
 
         HttpSession session = request.getSession(false);
         Usuario user = (Usuario) session.getAttribute("usuario");
-        if (user.getIdRolSistema().equals("DELGEN")) {
 
             String action = request.getParameter("action") == null ? "home" : request.getParameter("action");
             String ac = request.getParameter("ac") == null ? "busqueda" : request.getParameter("ac");
@@ -257,8 +277,6 @@ public class AdminGenServlet extends HttpServlet {
                     break;
 
                 case "donations":
-                    Integer limit1 = 8;
-                    String pagina1 = request.getParameter("pagina") == null ? "1" : request.getParameter("pagina");
                     DonacionesDao donacionesDao = new DonacionesDao();
 
                     switch (ac) {
@@ -266,12 +284,7 @@ public class AdminGenServlet extends HttpServlet {
                         case "filtrarComprobados":
                             String comprobacionId = request.getParameter("id");
                             ArrayList<Donaciones> listaDonacionesPorComprobacion = donacionesDao.listarComprobados(comprobacionId);
-                            Double totalDonaciones = (double) listaDonacionesPorComprobacion.size();
-                            Double cantPaginas = Math.ceil(totalDonaciones / limit1);
-                            ArrayList<Donaciones> listaPorEstadoPaginacion = donacionesDao.listarDonacionesPorComprobacionPaginacion(Integer.parseInt(comprobacionId), limit1,limit1 * (Integer.parseInt(pagina1) - 1));
 
-                            request.setAttribute("indicador", comprobacionId);
-                            request.setAttribute("cantPaginas", Double.valueOf(cantPaginas).intValue());
                             request.setAttribute("listaDonaciones", listaDonacionesPorComprobacion);
                             request.getRequestDispatcher("pages/super_admin/lista_donaciones.jsp").forward(request, response);
 
@@ -298,10 +311,6 @@ public class AdminGenServlet extends HttpServlet {
                     break;
             }
 
-        } else {
-            session.invalidate();
-            request.getRequestDispatcher("login?action=unvalid_session").forward(request, response);
-        }
 
     }
 }

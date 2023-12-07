@@ -1,31 +1,22 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.example.proyectoweb.model.beans.Usuario" %>
 <%@ page import="com.example.proyectoweb.model.beans.Actividad" %>
-<%@ page import="com.example.proyectoweb.model.beans.DelegadoAct" %>
-<%@ page import="com.example.proyectoweb.servlets.AdminGenServlet" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<% ArrayList<Actividad> listaActividadesConDelegado = (ArrayList<Actividad>) request.getAttribute("listaActividades");%>
-<% String msgError = (String) session.getAttribute("msgError"); %>
 
+<%Usuario user = (Usuario) session.getAttribute("usuario");%>
 
-<%
-    if (session.getAttribute("id") != null){
-        int id = (int) session.getAttribute("id");
-        String idRolSistema = (String) session.getAttribute("idRolSistema");
-        String idRolAcademico = (String) session.getAttribute("idRolAcademico");
-        String nombres = (String) session.getAttribute("nombres");
-        String apellidos = (String) session.getAttribute("apellidos");
-    }
-%>
+<%  if (user.getIdRolSistema().equals("DELGEN")){ %>
+
+    <% ArrayList<Actividad> listaActividadesConDelegado = (ArrayList<Actividad>) request.getAttribute("listaActividades");%>
+    <% String msgError = (String) session.getAttribute("msgError"); %>
+
 
 
 <!doctype html>
 <html lang="es">
 
-<%
-    if (session.getAttribute("id")!=null){
-%>
+
     <head>
         <meta http-equiv="Content-Type" content=text/html; charset=ISO-8859-1″>
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -241,43 +232,6 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
     </body>
 
-    <% } else { %>
+</html>
 
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
-    <script src="https://kit.fontawesome.com/a2dd6045c4.js" crossorigin="anonymous"></script>
-    <link rel="icon" type="image/jpg" href="favicon.png"/>
-    <title>Semana de Ingeniería 2023</title>
-</head>
-
-<body>
-
-<section class="index">
-
-    <div class="forgot-container">
-
-        <div class="forgot-form">
-            <form action="<%=request.getContextPath()%>/login" method="POST" id="complete">
-                <h2>Se ha cerrado la Sesión!</h2>
-                <div class="forgot-back" style="padding-top: 10px; max-width: 450px; margin-bottom: 25px">
-                    <label>Debe iniciar sesión para acceder al contenido de la página, regrese al login.</label>
-                </div>
-
-                <input type="submit" value="Regresar" class="forgot-button">
-
-            </form>
-        </div>
-    </div>
-
-    <div class="container-fluid footer-container">
-        <p>© Pontificia Universidad Católica del Perú - Todos los derechos reservados</p>
-    </div>
-
-</section>
-
-</body>
-
-<%}%>
+<% } else {request.getRequestDispatcher("/logout").forward(request, response);}%>

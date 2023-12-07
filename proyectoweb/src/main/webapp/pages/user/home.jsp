@@ -37,6 +37,33 @@
 
     <link rel="icon" type="image/jpg" href="favicon.png" />
 
+    <style>
+        #paginationButtons {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            margin-top: 20px;
+        }
+
+        #paginationButtons button {
+            padding: 5px 10px;
+            border-radius: 5px;
+            border: 1px solid #33C3FB;
+            background-color: #33C3FB;
+            cursor: pointer;
+            color: white;
+        }
+
+
+        #paginationButtons button.active {
+            background-color: #e0e0e0;
+            font-weight: bold;
+            color: white;
+        }
+    </style>
+
+
+
     <title>Home | Semana de Ingeniería 2023</title>
 </head>
 
@@ -175,11 +202,11 @@
 
     <div style="margin-bottom: 50px"></div>
 
-    <div class="row align-content-center" data-masonry='{"percentPosition": true }'>
+    <div class="row align-content-center" id="divRow" data-masonry='{"percentPosition": true }'>
 
-        <%int event_counter = 0;%>
+
         <% for (Evento evento : listaEventos) { %>
-        <%if (event_counter==8) { break; }%>
+
         <div class="col-sm-6 col-lg-3 mb-4">
 
             <div class="card-list">
@@ -220,10 +247,11 @@
                 </article>
             </div>
         </div>
-        <%event_counter = event_counter + 1;%>
+
         <%}%>
 
     </div>
+    <div id="paginationButtons"></div>
 
 
     <div style="margin-bottom: 60px"></div>
@@ -292,12 +320,69 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
     });
 </script>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var items = document.querySelectorAll('#divRow .col-sm-6.col-lg-3.mb-4');
+        var itemsPerPage = 6;
+        var paginationButtons = document.getElementById('paginationButtons');
+
+        function displayItems(page) {
+            var start = (page - 1) * itemsPerPage;
+            var end = start + itemsPerPage;
+
+            var visibleItems = Array.from(items).slice(start, end);
+
+            var divRow = document.getElementById('divRow');
+            divRow.innerHTML = ''; // Limpiar el contenedor
+
+            visibleItems.forEach(function (item) {
+                divRow.appendChild(item);
+            });
+        }
+
+        function setupPagination() {
+            var pageCount = Math.ceil(items.length / itemsPerPage);
+            for (var i = 1; i <= pageCount; i++) {
+                var button = document.createElement('button');
+                button.innerText = i;
+
+                button.addEventListener('click', function () {
+                    // Remove 'active' class from all buttons
+                    var buttons = paginationButtons.getElementsByTagName('button');
+                    for (var j = 0; j < buttons.length; j++) {
+                        buttons[j].classList.remove('active');
+                    }
+
+                    // Add 'active' class to the clicked button
+                    this.classList.add('active');
+
+                    var pageNumber = parseInt(this.innerText);
+                    displayItems(pageNumber);
+                });
+
+                paginationButtons.appendChild(button);
+            }
+        }
+
+
+        displayItems(1); // Mostrar la primera página al cargar
+
+        setupPagination(); // Configurar los botones de paginación
+    });
+
+</script>
+
+
 
 <script src="js/slider.js"></script>
 <script src="js/bootstrap/bootstrap.js"></script>
 <script src="js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+
+
+
 
 
 

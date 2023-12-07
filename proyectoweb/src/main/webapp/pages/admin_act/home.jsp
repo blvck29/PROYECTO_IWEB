@@ -14,9 +14,6 @@
     <% String idActividad = (String) request.getAttribute("idActividad");%>
     <% Actividad actividad = (Actividad) request.getAttribute("actividad"); %>
 
-
-
-
 <!doctype html>
 <html lang="es">
 
