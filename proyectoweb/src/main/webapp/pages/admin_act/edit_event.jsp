@@ -1,6 +1,6 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="com.example.proyectoweb.model.beans.Evento" %>
 <%@ page import="com.example.proyectoweb.model.beans.Usuario" %>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <% Evento evento = (Evento) request.getAttribute("evento");%>
 <% String idActivdad = (String) request.getAttribute("idActividad"); %>
 
