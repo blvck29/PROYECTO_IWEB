@@ -100,7 +100,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
     <div style="margin-bottom: 50px"></div>
 
-    <h2><i class="fa-solid fa-star" style="color: #8de7ef;"></i><strong style="padding-left: 10px">Eventos de la Actividad: <%=actividad.getIdActividad()%></strong></h2>
+    <h2><i class="fa-solid fa-star" style="color: #8de7ef;"></i><strong style="padding-left: 10px">Eventos de la Actividad: <%=actividad.getTitulo()%></strong></h2>
 
     <div style="margin-bottom: 40px"></div>
 
