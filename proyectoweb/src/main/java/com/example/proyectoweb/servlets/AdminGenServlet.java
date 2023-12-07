@@ -1,9 +1,6 @@
 package com.example.proyectoweb.servlets;
 
-import com.example.proyectoweb.model.beans.Actividad;
-import com.example.proyectoweb.model.beans.DelegadoAct;
-import com.example.proyectoweb.model.beans.Donaciones;
-import com.example.proyectoweb.model.beans.Usuario;
+import com.example.proyectoweb.model.beans.*;
 import com.example.proyectoweb.model.daos.ActividadesDao;
 import com.example.proyectoweb.model.daos.DonacionesDao;
 import com.example.proyectoweb.model.daos.UsuariosDao;
@@ -12,10 +9,12 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.Map;
 
+@MultipartConfig
 @WebServlet(name = "AdminGenServlet", value = "/admin_gen")
 public class AdminGenServlet extends HttpServlet {
 
@@ -248,9 +247,15 @@ public class AdminGenServlet extends HttpServlet {
                             String idActividad = tituloActividad.toUpperCase();
                             String idDelegado = request.getParameter("idDelegado");
                             String nuevoRol = "DELACT";
+                            Part part = request.getPart("fileFoto");
+                            InputStream inputStream = part.getInputStream();
+                            Imagen banner = new Imagen();
+                            Imagen miniatura = new Imagen();
+                            banner.setImagen(inputStream);
+                            miniatura.setImagen(inputStream);
 
                             userDao.actualizarRolSistema(idDelegado, nuevoRol);
-                            actividadesDao.crearActividad(idActividad, tituloActividad, Integer.parseInt(idDelegado));
+                            actividadesDao.crearActividad(idActividad, tituloActividad, Integer.parseInt(idDelegado), banner, miniatura);
                             response.sendRedirect(request.getContextPath() + "/admin_gen?action=activities");
 
                             break;

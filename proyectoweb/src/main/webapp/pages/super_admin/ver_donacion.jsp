@@ -111,7 +111,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
     <div style="margin-bottom: 40px"></div>
 
     <div class="container">
-        <form method="POST" action="<%=request.getContextPath()%>/admin_gen?action=donations&ac=editarDonacion" class="col-md-6 col-lg-6">
+        <form method="POST" action="<%=request.getContextPath()%>/admin_gen?action=donations&ac=editarDonacion">
 
 
             <div class="row">
@@ -219,7 +219,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                     <div class="uk-flex uk-flex-center uk-margin-top">
                         <div class="uk-flex uk-flex-center">
                             <a id="redirect-button" class="btn btn-primary m-2" href="<%=request.getContextPath()%>/admin_gen?action=donations">Regresar</a>
-                            <button type="submit" class="btn btn-primary">Actualizar</button>
+                            <button type="submit" class="btn btn-primary m-2">Actualizar</button>
                         </div>
                     </div>
                 </div>

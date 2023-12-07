@@ -162,16 +162,20 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
         <div class="row">
             <div class="col-lg-6 col-md-12" style="text-align: left; padding-top: 1.5em">
-                <form id="form" method="post" action="<%=request.getContextPath()%>/admin_gen?action=activities&ac=crear">
+                <form id="form" method="post" action="<%=request.getContextPath()%>/admin_gen?action=activities&ac=crear" enctype="multipart/form-data">
                 <div class="card">
                     <div class="card-body" style="padding-left: 35px">
+
                             <div style="padding-top: 1.5em;"></div>
+
                             <div class="form-group" style="padding-right: 1rem">
                                 <label style="text-align: left;">
                                     <strong>Nombre de Actividad:</strong></label>
                                 <input type="text" id="nombreAct" class="form-control" name="nombreActividad" required>
                             </div>
+
                             <div style="padding-top: 1.5em;"></div>
+
                             <div class="form-group" style="padding-right: 1rem">
                                 <label><strong>Delegado de Actividad:</strong></label>
                                 <select class="form-select" name="idDelegado" id="idDelegado" aria-label="Default select example" required>
@@ -184,6 +188,25 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                                 </div>
                             </div>
                             <div style="padding-top: 1.5em;"></div>
+
+                            <div class="container" style="padding-left: 6rem; padding-right: 6rem">
+                                <div class="uk-upload-box">
+                                    <div id="error-alert" class="uk-alert-danger uk-margin-top uk-hidden" uk-alert>
+                                        <p id="error-messages"></p>
+                                    </div>
+
+                                    <div class="drop__zone uk-placeholder uk-text-center">
+                                        <span uk-icon="icon: cloud-upload"></span>
+                                        <span class="uk-text-middle uk-margin-small-left">Adjunte arrastrando el archivo o</span>
+                                        <div uk-form-custom>
+                                            <input type="file" name="fileFoto" accept="image/png, image/jpeg, application/pdf, application/vnd.openxmlformats-officedocument.wordprocessingml.document" >
+                                            <span class="uk-link">seleccione la captura</span>
+                                        </div>
+                                        <ul id="preview" class="uk-list uk-grid-match uk-child-width-1-2 uk-child-width-1-4@l uk-child-width-1-5@xl uk-text-center" uk-grid uk-scrollspy="cls: uk-animation-scale-up; target: .list-item; delay: 80"></ul>
+                                    </div>
+                                </div>
+                            </div>
+
                     </div>
                 </div>
 
@@ -198,35 +221,6 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
             </div>
 
 
-
-            <div class="col-lg-6 col-md-12" style="padding-left: 2em; padding-right: 2em; padding-top: 1.5em">
-                <div class="container" style="padding-left: 6rem; padding-right: 6rem">
-                    <div class="uk-upload-box">
-                        <div id="error-alert" class="uk-alert-danger uk-margin-top uk-hidden" uk-alert>
-                            <p id="error-messages"></p>
-                        </div>
-
-                        <form id="upload">
-                            <div class="drop__zone uk-placeholder uk-text-center">
-                                <span uk-icon="icon: cloud-upload"></span>
-                                <span class="uk-text-middle uk-margin-small-left">Adjunte arrastrando el archivo o</span>
-                                <div uk-form-custom>
-                                    <input name="document" accept="image/png, image/jpeg, application/pdf, application/vnd.openxmlformats-officedocument.wordprocessingml.document" type="file">
-                                    <span class="uk-link">seleccione la captura</span>
-                                </div>
-                                <ul id="preview" class="uk-list uk-grid-match uk-child-width-1-2 uk-child-width-1-4@l uk-child-width-1-5@xl uk-text-center" uk-grid uk-scrollspy="cls: uk-animation-scale-up; target: .list-item; delay: 80"></ul>
-                            </div>
-                        </form>
-                    </div>
-
-                    <div class="uk-flex uk-flex-center uk-margin-top">
-                        <div class="uk-flex uk-flex-center">
-                            <a type="button" id="reset-button" class="m-2">Borrar</a>
-                            <a type="submit" id="upload-form" class="m-2">Subir</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 
