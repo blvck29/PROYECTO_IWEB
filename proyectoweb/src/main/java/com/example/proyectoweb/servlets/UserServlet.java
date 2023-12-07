@@ -10,9 +10,11 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+@MultipartConfig
 @WebServlet(name = "UserHome", value = "/user_home")
 public class UserServlet extends HttpServlet {
 
@@ -212,6 +214,25 @@ public class UserServlet extends HttpServlet {
                             break;
                     }
                     break;
+
+                case "donate":
+                    Part part = request.getPart("fileFoto");
+                    InputStream inputStream = part.getInputStream();
+                    Imagen donacion = new Imagen();
+                    donacion.setImagen(inputStream);
+
+                    if(part.getSize()==0){
+                        System.out.println("imagen vacia");
+                    }else{
+                        System.out.println("imagen correcta");
+                    }
+
+
+                    response.sendRedirect(request.getContextPath() + "/user_home?action=donate");
+
+                    break;
+
+
             }
 
 
