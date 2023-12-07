@@ -1,28 +1,21 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.example.proyectoweb.model.beans.Donaciones" %>
+<%@ page import="com.example.proyectoweb.model.beans.Usuario" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <% ArrayList<Donaciones> listaDonaciones = (ArrayList<Donaciones>) request.getAttribute("listaDonaciones");%>
 <%Integer cantidadPaginasDonaciones = (Integer) request.getAttribute("cantPaginasDonations");%>
 
-<%
-    if (session.getAttribute("id") != null){
-        int id = (int) session.getAttribute("id");
-        String idRolSistema = (String) session.getAttribute("idRolSistema");
-        String idRolAcademico = (String) session.getAttribute("idRolAcademico");
-        String nombres = (String) session.getAttribute("nombres");
-        String apellidos = (String) session.getAttribute("apellidos");
-    }
-%>
+<%Usuario user = (Usuario) session.getAttribute("usuario");%>
 
+<%  if (user.getIdRolSistema().equals("DELGEN")){ %>
+
+<% ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) request.getAttribute("listaUsuarios");%>
 
 <!doctype html>
 <html lang="es">
 
-<%
-   if (session.getAttribute("id")!=null){
-%>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -181,54 +174,59 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
         <tbody>
 
+        <% if(listaDonaciones != null) {%>
+            <% for (Donaciones donaciones: listaDonaciones){ %>
+            <tr class="">
+                <td class="centeralign cell c0" style=""><a><%=donaciones.getIdDonaciones() %></a></td>
+                <td class="centeralign cell c1" style=""><%= donaciones.getNombres() +" "+ donaciones.getApellidos()%></td>
 
-        <% for (Donaciones donaciones: listaDonaciones){ %>
-        <tr class="">
-            <td class="centeralign cell c0" style=""><a><%=donaciones.getIdDonaciones() %></a></td>
-            <td class="centeralign cell c1" style=""><%= donaciones.getNombres() +" "+ donaciones.getApellidos()%></td>
+                <% String rolAcademico ="---";
+                    switch(donaciones.getIdRolAcademico()){
+                        case "STUDENT":
+                            rolAcademico = "Estudiante";
+                            break;
+                        case "GRADUAT":
+                            rolAcademico = "Egresado";
+                            break;
+                        default:
+                            rolAcademico = "---";
+                    }%>
+                <td class="cell c2" style=""><%= rolAcademico %></td>
 
-            <% String rolAcademico ="---";
-                switch(donaciones.getIdRolAcademico()){
-                    case "STUDENT":
-                        rolAcademico = "Estudiante";
-                        break;
-                    case "GRADUAT":
-                        rolAcademico = "Egresado";
-                        break;
-                    default:
-                        rolAcademico = "---";
-                }%>
-            <td class="cell c2" style=""><%= rolAcademico %></td>
+                <td class="centeralign cell c1" style=""><%="S/. "+ donaciones.getMonto() %></td>
 
-            <td class="centeralign cell c1" style=""><%="S/. "+ donaciones.getMonto() %></td>
-
-            <%  String[] fechaHora = donaciones.getFechaDonacion().split(" ");
-                String fecha = fechaHora[0];
-                String hora = fechaHora[1];
-                String[] horaHMS = hora.split(":");
-                String horaMostrar = horaHMS[0] + ":" + horaHMS[1];
-            %>
-
-
-            <td class="centeralign cell c1" style=""><%= fecha %></td>
-            <td class="centeralign cell c1" style=""><%= horaMostrar %></td>
+                <%  String[] fechaHora = donaciones.getFechaDonacion().split(" ");
+                    String fecha = fechaHora[0];
+                    String hora = fechaHora[1];
+                    String[] horaHMS = hora.split(":");
+                    String horaMostrar = horaHMS[0] + ":" + horaHMS[1];
+                %>
 
 
-
-            <%if (donaciones.getComprobado() == 0){%>
-            <td class="cell c5" style="color: black">Pendiente de Comprobacion</td>
-            <%}else if(donaciones.getComprobado() == 1){%>
-            <td class="cell c5" style="color: #0d6efd">Comprobado</td>
-            <%} else if (donaciones.getComprobado() == 2) {%>
-            <td class="cell c5" style="color: red">Rechazado</td>
-            <%} %>
+                <td class="centeralign cell c1" style=""><%= fecha %></td>
+                <td class="centeralign cell c1" style=""><%= horaMostrar %></td>
 
 
 
-            <td class="cell c6 lastcol" style=""><a href="<%=request.getContextPath()%>/admin_gen?action=donations&ac=ver&idDonante=<%=donaciones.getIdUsuario()%>"><img width="24" height="24" src="https://img.icons8.com/pulsar-line/48/view-delivery.png" alt="edit-row"/></a></td>
-            <td class="cell c6 lastcol" style=""></td>
-        </tr>
-        <%}%>
+                <%if (donaciones.getComprobado() == 0){%>
+                <td class="cell c5" style="color: black">Pendiente de Comprobacion</td>
+                <%}else if(donaciones.getComprobado() == 1){%>
+                <td class="cell c5" style="color: #0d6efd">Comprobado</td>
+                <%} else if (donaciones.getComprobado() == 2) {%>
+                <td class="cell c5" style="color: red">Rechazado</td>
+                <%} %>
+
+
+
+                <td class="cell c6 lastcol" style=""><a href="<%=request.getContextPath()%>/admin_gen?action=donations&ac=ver&idDonante=<%=donaciones.getIdUsuario()%>"><img width="24" height="24" src="https://img.icons8.com/pulsar-line/48/view-delivery.png" alt="edit-row"/></a></td>
+                <td class="cell c6 lastcol" style=""></td>
+            </tr>
+            <%}%>
+        <%} else {%>
+            <tr>
+            <td colspan="2"> No hay datos disponibles en la tabla. </td>
+            </tr>
+        <% }%>
         </tbody>
     </table>
 </div>
