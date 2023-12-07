@@ -4,12 +4,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%Usuario user = (Usuario) session.getAttribute("usuario");%>
-
-<%  if (user.getIdRolSistema().equals("DELGEN")){ %>
-
-    <% ArrayList<Donaciones> listaDonaciones = (ArrayList<Donaciones>) request.getAttribute("listaDonaciones");%>
-    <%Integer cantidadPaginasDonaciones = (Integer) request.getAttribute("cantPaginasDonations");%>
-    <% ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) request.getAttribute("listaUsuarios");%>
+<%ArrayList<Donaciones> listaDonaciones = (ArrayList<Donaciones>) request.getAttribute("listaDonaciones");%>
 
 <!doctype html>
 <html lang="es">
@@ -164,7 +159,6 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
             <th class="header c1 centeralign" style="" scope="col"><a><strong>HORA DE DONACIÓN</strong></a></th>
             <th class="header c5" style="" scope="col">ESTADO DE DONACIÓN</th>
             <th class="header c5" style="" scope="col">VER Y EDITAR</th>
-            <td class="header c6 lastcol" style=""></td>
         </tr>
         </thead>
 
@@ -173,7 +167,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
         <tbody>
 
         <% if(listaDonaciones != null) {%>
-            <% for (Donaciones donaciones: listaDonaciones){ %>
+            <% for (Donaciones donaciones:listaDonaciones){ %>
             <tr class="">
                 <td class="centeralign cell c0" style=""><a><%=donaciones.getIdDonaciones() %></a></td>
                 <td class="centeralign cell c1" style=""><%= donaciones.getNombres() +" "+ donaciones.getApellidos()%></td>
@@ -217,9 +211,9 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
 
                 <td class="cell c6 lastcol" style=""><a href="<%=request.getContextPath()%>/admin_gen?action=donations&ac=ver&idDonante=<%=donaciones.getIdUsuario()%>"><img width="24" height="24" src="https://img.icons8.com/pulsar-line/48/view-delivery.png" alt="edit-row"/></a></td>
-                <td class="cell c6 lastcol" style=""></td>
             </tr>
             <%}%>
+
         <%} else {%>
             <tr>
             <td colspan="2"> No hay datos disponibles en la tabla. </td>
@@ -260,12 +254,9 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
         },
     });
 </script>
-<script src="https://kit.fontawesome.com/a2dd6045c4.js" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-
 
 </body>
 
 </html>
 
-<% } else {request.getRequestDispatcher("/logout").forward(request, response);}%>
+
