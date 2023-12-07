@@ -2,16 +2,11 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <% Usuario usuario = (Usuario) request.getAttribute("usuario"); %>
 
-<%
-    if (session.getAttribute("id") != null){
-        int id = (int) session.getAttribute("id");
-        String idRolSistema = (String) session.getAttribute("idRolSistema");
-        String idRolAcademico = (String) session.getAttribute("idRolAcademico");
-        String nombres = (String) session.getAttribute("nombres");
-        String apellidos = (String) session.getAttribute("apellidos");
-    }
-%>
 
+
+<%Usuario user = (Usuario) session.getAttribute("usuario");%>
+
+<%  if (user.getIdRolSistema().equals("DELGEN")){ %>
 
 <!doctype html>
 <html lang="es">
@@ -261,3 +256,7 @@
     </footer>
 </div>
 </body>
+
+</html>
+
+<% } else {request.getRequestDispatcher("/logout").forward(request, response);}%>

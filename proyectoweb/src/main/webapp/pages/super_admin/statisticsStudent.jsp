@@ -1,14 +1,16 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.example.proyectoweb.model.beans.Usuario" %>
-<%int totalGraduados = (int) request.getAttribute("totalgraduados");%>
-
-<%int totalEstudiantes = (int) request.getAttribute("totalestudiantes");%>
 
 
 <%Usuario user = (Usuario) session.getAttribute("usuario");%>
 
-<% ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) request.getAttribute("listaUsuarios");%>
+<%  if (user.getIdRolSistema().equals("DELGEN")){ %>
+
+
+    <%int totalGraduados = (int) request.getAttribute("totalgraduados");%>
+    <%int totalEstudiantes = (int) request.getAttribute("totalestudiantes");%>
+    <% ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) request.getAttribute("listaUsuarios");%>
 
 <!doctype html>
 <html lang="es">
@@ -183,3 +185,5 @@
 </body>
 
 </html>
+
+<% } else {request.getRequestDispatcher("/logout").forward(request, response);}%>

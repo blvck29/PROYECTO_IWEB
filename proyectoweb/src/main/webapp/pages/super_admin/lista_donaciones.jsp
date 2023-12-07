@@ -1,16 +1,15 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.example.proyectoweb.model.beans.Donaciones" %>
 <%@ page import="com.example.proyectoweb.model.beans.Usuario" %>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-<% ArrayList<Donaciones> listaDonaciones = (ArrayList<Donaciones>) request.getAttribute("listaDonaciones");%>
-<%Integer cantidadPaginasDonaciones = (Integer) request.getAttribute("cantPaginasDonations");%>
 
 <%Usuario user = (Usuario) session.getAttribute("usuario");%>
 
+<%  if (user.getIdRolSistema().equals("DELGEN")){ %>
 
-<% ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) request.getAttribute("listaUsuarios");%>
+    <% ArrayList<Donaciones> listaDonaciones = (ArrayList<Donaciones>) request.getAttribute("listaDonaciones");%>
+    <%Integer cantidadPaginasDonaciones = (Integer) request.getAttribute("cantPaginasDonations");%>
+    <% ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) request.getAttribute("listaUsuarios");%>
 
 <!doctype html>
 <html lang="es">
@@ -267,3 +266,6 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
 </body>
 
+</html>
+
+<% } else {request.getRequestDispatcher("/logout").forward(request, response);}%>

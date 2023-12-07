@@ -1,23 +1,16 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.example.proyectoweb.model.beans.Usuario" %>
 <%@ page import="com.example.proyectoweb.model.beans.Actividad" %>
-<%@ page import="com.example.proyectoweb.model.beans.DelegadoAct" %>
-<%@ page import="com.example.proyectoweb.servlets.AdminGenServlet" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<% ArrayList<Actividad> listaActividadesConDelegado = (ArrayList<Actividad>) request.getAttribute("listaActividades");%>
-<% String msgError = (String) session.getAttribute("msgError"); %>
 
+<%Usuario user = (Usuario) session.getAttribute("usuario");%>
 
-<%
-    if (session.getAttribute("id") != null){
-        int id = (int) session.getAttribute("id");
-        String idRolSistema = (String) session.getAttribute("idRolSistema");
-        String idRolAcademico = (String) session.getAttribute("idRolAcademico");
-        String nombres = (String) session.getAttribute("nombres");
-        String apellidos = (String) session.getAttribute("apellidos");
-    }
-%>
+<%  if (user.getIdRolSistema().equals("DELGEN")){ %>
+
+    <% ArrayList<Actividad> listaActividadesConDelegado = (ArrayList<Actividad>) request.getAttribute("listaActividades");%>
+    <% String msgError = (String) session.getAttribute("msgError"); %>
+
 
 
 <!doctype html>
@@ -239,3 +232,6 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
     </body>
 
+</html>
+
+<% } else {request.getRequestDispatcher("/logout").forward(request, response);}%>
