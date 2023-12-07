@@ -1,17 +1,13 @@
 <%@ page import="com.example.proyectoweb.model.beans.Evento" %>
 <%@ page import="com.example.proyectoweb.model.beans.Inscrito" %>
+<%@ page import="com.example.proyectoweb.model.beans.Usuario" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <% Inscrito inscrito = (Inscrito) request.getAttribute("inscrito"); %>
 
-<%
-    if (session.getAttribute("id") != null){
-        int id = (int) session.getAttribute("id");
-        String idRolSistema = (String) session.getAttribute("idRolSistema");
-        String idRolAcademico = (String) session.getAttribute("idRolAcademico");
-        String nombres = (String) session.getAttribute("nombres");
-        String apellidos = (String) session.getAttribute("apellidos");
-    }
-%>
+<%Usuario user = (Usuario) session.getAttribute("usuario");%>
+
+<%  if (user.getIdRolSistema().equals("DELACT")){ %>
+
 <!doctype html>
 <html lang="es">
 
@@ -252,3 +248,4 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
 </html>
 
+<% } else {request.getRequestDispatcher("/logout").forward(request, response);}%>

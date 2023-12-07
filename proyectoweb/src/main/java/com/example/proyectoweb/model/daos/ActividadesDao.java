@@ -1,9 +1,6 @@
 package com.example.proyectoweb.model.daos;
 
-import com.example.proyectoweb.model.beans.Actividad;
-import com.example.proyectoweb.model.beans.DelegadoAct;
-import com.example.proyectoweb.model.beans.Evento;
-import com.example.proyectoweb.model.beans.Usuario;
+import com.example.proyectoweb.model.beans.*;
 import com.sun.jdi.ArrayReference;
 
 import java.sql.*;
@@ -178,9 +175,9 @@ public class ActividadesDao extends DaoBase{
     }
 
 
-    public void crearActividad(String idActividad, String tituloAct, Integer idDelegado){
+    public void crearActividad(String idActividad, String tituloAct, Integer idDelegado, Imagen banner, Imagen miniatura){
 
-        String sql = "insert into actividad (idActividad,titulo,idEncargado) values (?,?,?)";
+        String sql = "insert into actividad (idActividad,titulo,idEncargado,banner,miniatura) values (?,?,?,?,?)";
 
         try(Connection conn = getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql)){
@@ -188,6 +185,9 @@ public class ActividadesDao extends DaoBase{
             pstmt.setString(1, idActividad);
             pstmt.setString(2, tituloAct);
             pstmt.setInt(3, idDelegado);
+            pstmt.setBlob(4, banner.getImagen());
+            pstmt.setBlob(5, miniatura.getImagen());
+
 
             pstmt.executeUpdate();
 

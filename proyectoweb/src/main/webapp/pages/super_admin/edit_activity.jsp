@@ -3,10 +3,16 @@
 <%@ page import="com.example.proyectoweb.model.beans.Usuario" %>
 <%@ page import="com.example.proyectoweb.model.beans.Actividad" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<% Actividad actividad = (Actividad) request.getAttribute("actividad"); %>
-<% ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) request.getAttribute("listaUsuarios"); %>
-<%ArrayList<Actividad> listaActividades = (ArrayList<Actividad>) request.getAttribute("listaActividades");%>
-<% String idDelActual = (String) request.getAttribute("idDelActual");%>
+
+
+<%Usuario user = (Usuario) session.getAttribute("usuario");%>
+
+<%  if (user.getIdRolSistema().equals("DELGEN")){ %>
+
+ <% Actividad actividad = (Actividad) request.getAttribute("actividad"); %>
+ <% ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) request.getAttribute("listaUsuarios"); %>
+ <% ArrayList<Actividad> listaActividades = (ArrayList<Actividad>) request.getAttribute("listaActividades");%>
+ <% String idDelActual = (String) request.getAttribute("idDelActual");%>
 
 <%
     ArrayList<Integer> listaIdsDelegados = new ArrayList<Integer>();
@@ -255,3 +261,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
 
 </body>
+
+</html>
+
+<% } else {request.getRequestDispatcher("/logout").forward(request, response);}%>

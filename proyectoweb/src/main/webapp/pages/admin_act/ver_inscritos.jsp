@@ -3,21 +3,16 @@
 <%@ page import="com.example.proyectoweb.model.beans.Inscrito" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
+
+<%Usuario user = (Usuario) session.getAttribute("usuario");%>
+
+<%  if (user.getIdRolSistema().equals("DELACT")){ %>
+
 <% ArrayList<Inscrito> listaInscritos = (ArrayList<Inscrito>) request.getAttribute("listaIncritosxEvento");%>
 <% String idActividad = (String) request.getAttribute("idActividad"); %>
 <% String idEvento = (String) request.getAttribute("idEvento"); %>
 <% String msg = (String) request.getAttribute("msg"); %>
 
-
-<%
-    if (session.getAttribute("id") != null){
-        int id = (int) session.getAttribute("id");
-        String idRolSistema = (String) session.getAttribute("idRolSistema");
-        String idRolAcademico = (String) session.getAttribute("idRolAcademico");
-        String nombres = (String) session.getAttribute("nombres");
-        String apellidos = (String) session.getAttribute("apellidos");
-    }
-%>
 <!doctype html>
 <html lang="es">
 
@@ -256,5 +251,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 </script>
 
 </body>
+
 </html>
 
+<% } else {request.getRequestDispatcher("/logout").forward(request, response);}%>

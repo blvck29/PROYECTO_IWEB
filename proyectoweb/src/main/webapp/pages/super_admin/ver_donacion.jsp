@@ -1,18 +1,14 @@
 <%@ page import="com.example.proyectoweb.model.beans.Evento" %>
 <%@ page import="com.example.proyectoweb.model.beans.Donaciones" %>
+<%@ page import="com.example.proyectoweb.model.beans.Usuario" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <% Donaciones donante = (Donaciones) request.getAttribute("Donante"); %>
 
 
-<%
-    if (session.getAttribute("id") != null){
-        int id = (int) session.getAttribute("id");
-        String idRolSistema = (String) session.getAttribute("idRolSistema");
-        String idRolAcademico = (String) session.getAttribute("idRolAcademico");
-        String nombres = (String) session.getAttribute("nombres");
-        String apellidos = (String) session.getAttribute("apellidos");
-    }
-%>
+
+<%Usuario user = (Usuario) session.getAttribute("usuario");%>
+
+<%  if (user.getIdRolSistema().equals("DELGEN")){ %>
 
 
 <!doctype html>
@@ -115,7 +111,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
     <div style="margin-bottom: 40px"></div>
 
     <div class="container">
-        <form method="POST" action="<%=request.getContextPath()%>/admin_gen?action=donations&ac=editarDonacion" class="col-md-6 col-lg-6">
+        <form method="POST" action="<%=request.getContextPath()%>/admin_gen?action=donations&ac=editarDonacion">
 
 
             <div class="row">
@@ -223,7 +219,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                     <div class="uk-flex uk-flex-center uk-margin-top">
                         <div class="uk-flex uk-flex-center">
                             <a id="redirect-button" class="btn btn-primary m-2" href="<%=request.getContextPath()%>/admin_gen?action=donations">Regresar</a>
-                            <button type="submit" class="btn btn-primary">Actualizar</button>
+                            <button type="submit" class="btn btn-primary m-2">Actualizar</button>
                         </div>
                     </div>
                 </div>
@@ -267,3 +263,5 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 </body>
 
 </html>
+
+<% } else {request.getRequestDispatcher("/logout").forward(request, response);}%>

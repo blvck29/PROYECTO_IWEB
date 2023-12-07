@@ -4,7 +4,10 @@
 
 
 
+
 <%Usuario user = (Usuario) session.getAttribute("usuario");%>
+
+<%  if (user.getIdRolSistema().equals("DELGEN")){ %>
 
 
 <% ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) request.getAttribute("listaUsuarios");%>
@@ -84,7 +87,7 @@
 background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgba(21,0,48,1) 100%) !important;">
     <div class="text-secondary px-4 py-5 text-center">
       <div class="py-5">
-        <h1 class="display-5 fw-bold text-white">Bienvenido, Administrador General</h1>
+        <h1 class="display-5 fw-bold text-white">Bienvenido, <%=user.getNombres() + " " + user.getApellidos()%></h1>
         <div style="margin-bottom: 20px"></div>
         <h3 class="fw-bold text-white">Panel de Administración de Usuarios</h3>
         <div style="margin-bottom: 20px"></div>
@@ -99,7 +102,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
   <div class="container">
     <div class="row">
 
-      <div class="col-md-10">
+      <div class="col-md-10 mb-2">
 
         <form method="post" action="<%=request.getContextPath()%>/admin_gen?action=home&ac=busqueda">
 
@@ -156,7 +159,6 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
         <th class="header c2" style="" scope="col"><a><strong>ROL ACADÉMICO</strong></a></th>
         <th class="header c3" style="" scope="col"><a><strong>ESTADO</strong></a></th>
         <th class="header c5" style="" scope="col">EDITAR</th>
-        <td class="header c6 lastcol" style=""></td>
       </tr>
       </thead>
 
@@ -225,7 +227,6 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
         <%}%>
         <td class="cell c5" style=""><a href="<%=request.getContextPath()%>/admin_gen?action=editar&id=<%=usuario.getCodigo()%>"><img width="24" height="24" src="https://img.icons8.com/sf-regular/48/edit-row.png" alt="edit-row"/></a></td>
 
-        <td class="cell c6 lastcol" style=""></td>
       </tr>
 
       <%}%>
@@ -263,11 +264,8 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
     });
   </script>
 
-
-
-
-
 </body>
 
 </html>
 
+<% } else {request.getRequestDispatcher("/logout").forward(request, response);}%>

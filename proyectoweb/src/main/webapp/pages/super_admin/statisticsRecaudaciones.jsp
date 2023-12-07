@@ -2,23 +2,20 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.example.proyectoweb.model.beans.Usuario" %>
 <%@ page import="com.example.proyectoweb.model.beans.Actividad" %>
-<%@ page import="com.example.proyectoweb.model.beans.DelegadoAct" %>
-<%@ page import="com.example.proyectoweb.servlets.AdminGenServlet" %>
 <%@ page import="com.example.proyectoweb.model.beans.Donaciones" %>
-<%@ page import="com.example.proyectoweb.model.beans.*" %>
-
-
-<% ArrayList<Actividad> listaActividades = (ArrayList<Actividad>) request.getAttribute("listaActividades");%>
-<% ArrayList<Donaciones> listaDonaciones = (ArrayList<Donaciones>) request.getAttribute("listaDonaciones");%>
-<% Double totalDonacionesEgresados = (double) request.getAttribute("totalDonacionesEgresados");%>
-<% Double totalDonacionesEstudiantes = (double) request.getAttribute("totalDonacionesEstudiantes");%>
-
-
 
 
 <%Usuario user = (Usuario) session.getAttribute("usuario");%>
 
-<% ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) request.getAttribute("listaUsuarios");%>
+<%  if (user.getIdRolSistema().equals("DELGEN")){ %>
+
+
+    <% ArrayList<Actividad> listaActividades = (ArrayList<Actividad>) request.getAttribute("listaActividades");%>
+    <% ArrayList<Donaciones> listaDonaciones = (ArrayList<Donaciones>) request.getAttribute("listaDonaciones");%>
+    <% Double totalDonacionesEgresados = (double) request.getAttribute("totalDonacionesEgresados");%>
+    <% Double totalDonacionesEstudiantes = (double) request.getAttribute("totalDonacionesEstudiantes");%>
+
+    <% ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) request.getAttribute("listaUsuarios");%>
 
 <!doctype html>
 <html lang="es">
@@ -224,3 +221,5 @@
 </body>
 
 </html>
+
+<% } else {request.getRequestDispatcher("/logout").forward(request, response);}%>

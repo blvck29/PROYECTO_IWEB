@@ -3,21 +3,15 @@
 <%@ page import="com.example.proyectoweb.model.beans.Usuario" %>
 <%@ page import="com.example.proyectoweb.model.beans.Actividad" %>
 
-
-<% ArrayList<Actividad> listaActividades = (ArrayList<Actividad>) request.getAttribute("listaActividades");%>
-
-<% ArrayList<ArrayList<Integer>> conteorolesgeneral =  (ArrayList<ArrayList<Integer>>)request.getAttribute("conteorolesgeneral");%>
-
-<% ArrayList<String> NombresActividades =  (ArrayList<String>)request.getAttribute("NombresActividades");%>
-
-
-
-
 <%Usuario user = (Usuario) session.getAttribute("usuario");%>
 
+<%  if (user.getIdRolSistema().equals("DELGEN")){ %>
 
+  <% ArrayList<Actividad> listaActividades = (ArrayList<Actividad>) request.getAttribute("listaActividades");%>
+  <% ArrayList<ArrayList<Integer>> conteorolesgeneral =  (ArrayList<ArrayList<Integer>>)request.getAttribute("conteorolesgeneral");%>
+  <% ArrayList<String> NombresActividades =  (ArrayList<String>)request.getAttribute("NombresActividades");%>
 
-<% ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) request.getAttribute("listaUsuarios");%>
+  <% ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) request.getAttribute("listaUsuarios");%>
 
 
 <!doctype html>
@@ -203,3 +197,5 @@
 </body>
 
 </html>
+
+<% } else {request.getRequestDispatcher("/logout").forward(request, response);}%>

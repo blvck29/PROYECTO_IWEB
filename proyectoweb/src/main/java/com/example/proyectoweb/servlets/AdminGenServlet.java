@@ -1,9 +1,6 @@
 package com.example.proyectoweb.servlets;
 
-import com.example.proyectoweb.model.beans.Actividad;
-import com.example.proyectoweb.model.beans.DelegadoAct;
-import com.example.proyectoweb.model.beans.Donaciones;
-import com.example.proyectoweb.model.beans.Usuario;
+import com.example.proyectoweb.model.beans.*;
 import com.example.proyectoweb.model.daos.ActividadesDao;
 import com.example.proyectoweb.model.daos.DonacionesDao;
 import com.example.proyectoweb.model.daos.UsuariosDao;
@@ -12,10 +9,12 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.Map;
 
+@MultipartConfig
 @WebServlet(name = "AdminGenServlet", value = "/admin_gen")
 public class AdminGenServlet extends HttpServlet {
 
@@ -119,7 +118,7 @@ public class AdminGenServlet extends HttpServlet {
 
                     ArrayList<Usuario> listaUsuario= userDao.listarTodosUsuarios();
 
-                    ArrayList<Donaciones> listaDonaciones1= donacionesDao.listar();
+                    ArrayList<Donaciones> listaDonaciones1= donacionesDao.listarTodasDonaciones();
                     double totalDonacionesEgresados=donacionesDao.sumarDonacionesEgresados();
                     double totalDonacionesEstudiantes=donacionesDao.sumarDonacionesEstudiantes();
                     int totalestudiantes=userDao.contarEstudiantes();
@@ -159,13 +158,25 @@ public class AdminGenServlet extends HttpServlet {
                     }
                     break;
 
-                case "sta":
-                    request.getRequestDispatcher("pages/prueba/sta.jsp").forward(request,response);
-                    break;
-
-
                 case "donations":
-                    request.getRequestDispatcher("pages/super_admin/lista_donaciones.jsp").forward(request,response);
+                    DonacionesDao donacionesDao = new DonacionesDao();
+
+                    String ac = request.getParameter("ac") == null? "list" : request.getParameter("ac");
+
+                    switch (ac){
+                        case "list":
+                            ArrayList<Donaciones> listaDonaciones = donacionesDao.listarTodasDonaciones();
+                            request.setAttribute("listaDonaciones", listaDonaciones);
+                            request.getRequestDispatcher("pages/super_admin/lista_donaciones.jsp").forward(request,response);
+                            break;
+
+                        case "ver": //Editar
+                            String idDonante = request.getParameter("idDonante");
+                            Donaciones donanteBuscado = donacionesDao.buscarPorIdDonante(idDonante);
+
+                            request.setAttribute("Donante", donanteBuscado);
+                            request.getRequestDispatcher("/pages/super_admin/ver_donacion.jsp").forward(request,response);
+                    }
                     break;
 
             }
@@ -231,9 +242,15 @@ public class AdminGenServlet extends HttpServlet {
                             String idActividad = tituloActividad.toUpperCase();
                             String idDelegado = request.getParameter("idDelegado");
                             String nuevoRol = "DELACT";
+                            Part part = request.getPart("fileFoto");
+                            InputStream inputStream = part.getInputStream();
+                            Imagen banner = new Imagen();
+                            Imagen miniatura = new Imagen();
+                            banner.setImagen(inputStream);
+                            miniatura.setImagen(inputStream);
 
                             userDao.actualizarRolSistema(idDelegado, nuevoRol);
-                            actividadesDao.crearActividad(idActividad, tituloActividad, Integer.parseInt(idDelegado));
+                            actividadesDao.crearActividad(idActividad, tituloActividad, Integer.parseInt(idDelegado), banner, miniatura);
                             response.sendRedirect(request.getContextPath() + "/admin_gen?action=activities");
 
                             break;
