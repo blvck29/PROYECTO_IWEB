@@ -257,5 +257,20 @@ public class TokenDao extends DaoBase{
         return (token!=null);
     }
 
+    public void deleteToken(String tokenExpired){
+
+        String sql = "DELETE FROM `proyectoweb`.`token_generado` WHERE (`token` = ?);";
+
+        try(Connection conn = getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1,tokenExpired);
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
 }

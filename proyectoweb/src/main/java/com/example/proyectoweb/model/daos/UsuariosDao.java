@@ -679,7 +679,7 @@ public ArrayList<Usuario> listarDelegadosActDisponibles(){
 
         newpass = SHA256.cipherPassword(newpass);
 
-        String sql = "update usuarios set idEstado = ? where idUsuario = ?";
+        String sql = "update usuarios set contrasena = ? where idUsuario = ?";
 
         try(Connection conn = getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql)) {

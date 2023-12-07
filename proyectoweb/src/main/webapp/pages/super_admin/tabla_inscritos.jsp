@@ -7,10 +7,7 @@
 <%Usuario user = (Usuario) session.getAttribute("usuario");%>
 
 <%  if (user.getIdRolSistema().equals("DELGEN")){ %>
-
   <% ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) request.getAttribute("listaUsuarios");%>
-
-
 
 
 <!doctype html>
