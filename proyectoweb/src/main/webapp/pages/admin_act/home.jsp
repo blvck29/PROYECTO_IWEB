@@ -37,6 +37,33 @@
     <!-- Add the slick-theme.css if you want default styling -->
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 
+    <!-- Estilo de los botones Pagination -->
+
+    <style>
+        #paginationButtons {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            margin-top: 20px;
+        }
+
+        #paginationButtons button {
+            padding: 5px 10px;
+            border-radius: 5px;
+            border: 1px solid #33C3FB;
+            background-color: #33C3FB;
+            cursor: pointer;
+            color: white;
+        }
+
+
+        #paginationButtons button.active {
+            background-color: #e0e0e0;
+            font-weight: bold;
+            color: white;
+        }
+    </style>
+
     <title>Home | Semana de Ingeniería 2023</title>
 </head>
 
@@ -136,7 +163,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
 
 
-    <div class="row align-content-center" data-masonry='{"percentPosition": true }'>
+    <div class="row align-content-center" id="divRow" data-masonry='{"percentPosition": true }'>
 
         <% if(listaEventos.size() != 0){ %>
 
@@ -199,6 +226,8 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
             </div>
 
             <%}
+
+
         }else{ %>
         <div style="margin-top: 5rem"></div>
         <h1 style="color: dimgray "  >No hay eventos creados para esta actividad. Cree un nuevo evento!</h1>
@@ -207,41 +236,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
     </div>
 
-    <br>
-
-    <% if(listaEventos.size() != 0){ %>
-
-    <nav class="mt-4">
-        <ul class="pagination justify-content-center">
-            <!---->
-            <li class="page-item active">
-                <a href="#" class="page-link">1</a>
-            </li>
-            <li class="page-item">
-                <a href="#" class="page-link">2</a>
-            </li>
-            <li class="page-item">
-                <a href="#" class="page-link">3</a>
-            </li>
-            <li class="page-item">
-                <a href="#" class="page-link">4</a>
-            </li>
-            <li class="page-item">
-                <a href="#" class="page-link">5</a>
-            </li>
-            <li class="page-item">
-                <a href="#" class="page-link">6</a>
-            </li>
-            <li class="page-item">
-                <a href="#" aria-label="Next" class="page-link">
-                    <span aria-hidden="true">»</span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-
-    <% }%>
+    <div id="paginationButtons"></div>
 </div>
 
 
@@ -317,7 +312,57 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://kit.fontawesome.com/a2dd6045c4.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var items = document.querySelectorAll('#divRow .col-sm-6.col-lg-3.mb-4');
+            var itemsPerPage = 6;
+            var paginationButtons = document.getElementById('paginationButtons');
 
+            function displayItems(page) {
+                var start = (page - 1) * itemsPerPage;
+                var end = start + itemsPerPage;
+
+                var visibleItems = Array.from(items).slice(start, end);
+
+                var divRow = document.getElementById('divRow');
+                divRow.innerHTML = ''; // Limpiar el contenedor
+
+                visibleItems.forEach(function (item) {
+                    divRow.appendChild(item);
+                });
+            }
+
+            function setupPagination() {
+                var pageCount = Math.ceil(items.length / itemsPerPage);
+                for (var i = 1; i <= pageCount; i++) {
+                    var button = document.createElement('button');
+                    button.innerText = i;
+
+                    button.addEventListener('click', function () {
+                        // Remove 'active' class from all buttons
+                        var buttons = paginationButtons.getElementsByTagName('button');
+                        for (var j = 0; j < buttons.length; j++) {
+                            buttons[j].classList.remove('active');
+                        }
+
+                        // Add 'active' class to the clicked button
+                        this.classList.add('active');
+
+                        var pageNumber = parseInt(this.innerText);
+                        displayItems(pageNumber);
+                    });
+
+                    paginationButtons.appendChild(button);
+                }
+            }
+
+
+            displayItems(1); // Mostrar la primera página al cargar
+
+            setupPagination(); // Configurar los botones de paginación
+        });
+
+    </script>
 
 
 </body>

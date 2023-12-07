@@ -10,6 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="250e9528-0acf-42db-be38-0516405aa721" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/scriptPagination.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/admin_act/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/admin_act/home.jsp" afterDir="false" />
     </list>
@@ -24,11 +25,11 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="Class" />
         <option value="Servlet" />
         <option value="Jsp File" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -124,6 +125,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Sergio\Desktop\PROYECTO_IWEB\proyectoweb\src\main\webapp\js" />
       <recent name="C:\Users\User\Downloads\PROYECTO_IWEB\proyectoweb\src\main\webapp\css" />
       <recent name="C:\Users\User\Downloads\PROYECTO_IWEB\proyectoweb\src\main\webapp\js" />
       <recent name="C:\Users\User\Downloads\PROYECTO_IWEB\proyectoweb\src\main\webapp\pages\prueba" />
@@ -371,7 +373,7 @@
       <workItem from="1700419477125" duration="23949000" />
       <workItem from="1700460136702" duration="6065000" />
       <workItem from="1700466335337" duration="173000" />
-      <workItem from="1701954515886" duration="2178000" />
+      <workItem from="1701954515886" duration="5502000" />
     </task>
     <servers />
   </component>
