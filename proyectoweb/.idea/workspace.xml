@@ -10,16 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="250e9528-0acf-42db-be38-0516405aa721" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/user/activity.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/user/activity.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/user/donate.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/user/donate.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/user/dyn_events/end.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/user/dyn_events/end.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/user/dyn_events/event.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/user/dyn_events/event.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/user/dyn_events/event_end.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/user/dyn_events/event_end.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/user/dyn_events/prox.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/user/dyn_events/prox.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/user/dyn_events/self.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/user/dyn_events/self.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/user/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/user/home.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/proyectoweb/model/daos/InscritosDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/proyectoweb/model/daos/InscritosDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/proyectoweb/servlets/AdminActServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/proyectoweb/servlets/AdminActServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/admin_act/ver_inscritos.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/admin_act/ver_inscritos.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -379,6 +373,7 @@
       <workItem from="1700419477125" duration="23949000" />
       <workItem from="1700460136702" duration="6065000" />
       <workItem from="1700466335337" duration="173000" />
+      <workItem from="1701954515886" duration="1172000" />
     </task>
     <servers />
   </component>

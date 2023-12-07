@@ -179,51 +179,6 @@ public void actualizarRolInscrito(String nuevoRol, String idUsuario){
     }
 
 
-    public ArrayList<Inscrito> buscarInscritosXnombreCodigo(String idEvento, String palabraIngresada){
-
-        ArrayList<Inscrito> lista = new ArrayList<>();
-
-        String sql = "SELECT ins.idEvento, ri.nombre,u.*\n" +
-                "FROM usuarios u\n" +
-                "inner join inscripcion ins on (ins.Usuario = u.idUsuario) left join rol_inscrito ri on (ri.idRol_Inscrito = ins.idRol)\n" +
-                "where ins.idEvento = ? and (u.nombres like ? or u.codigo like ?)";
-
-        try (Connection conn = getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)){
-
-            pstmt.setString(1, idEvento);
-            pstmt.setString(2, palabraIngresada + "%");
-            pstmt.setString(3, palabraIngresada + "%");
-
-
-            try(ResultSet rs = pstmt.executeQuery()){
-
-                while(rs.next()){
-                    Inscrito ins = new Inscrito();
-                    ins.setIdEvento(rs.getInt(1));
-                    ins.setRolEnEvento(rs.getString(2));
-
-                    Usuario u = new Usuario();
-                    u.setIdUsuario(rs.getInt(3));
-                    u.setIdRolSistema(rs.getString(4));
-                    u.setIdEstado(rs.getString(5));
-                    u.setNombres(rs.getString(6));
-                    u.setApellidos(rs.getString(7));
-                    u.setCodigo(rs.getString(8));
-                    u.setCorreo(rs.getString(9));
-
-                    ins.setUsuario(u);
-
-                    lista.add(ins);
-                }
-            }
-        }catch (SQLException e){
-            throw new RuntimeException(e);
-        }
-
-        return lista;
-    }
-
 
 
 

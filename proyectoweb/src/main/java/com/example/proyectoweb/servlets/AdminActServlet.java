@@ -219,18 +219,6 @@ public class AdminActServlet extends HttpServlet {
 
                     break;
 
-                case "filtroInsNombreCodigo":
-                    String busqueda = request.getParameter("busquedaNombreCodigo");
-                    String idActividad3 = request.getParameter("idActividad");
-                    ArrayList<Inscrito> listaInscritosBuscados = inscritosDao.buscarInscritosXnombreCodigo(idEvento, busqueda);
-
-                    request.setAttribute("idEvento",idEvento);
-                    request.setAttribute("idActividad",idActividad3);
-                    request.setAttribute("listaIncritosxEvento", listaInscritosBuscados);
-                    request.getRequestDispatcher("/pages/admin_act/ver_inscritos.jsp").forward(request,response);
-
-                    break;
-
 
 
             }

@@ -80,7 +80,7 @@
 background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgba(21,0,48,1) 100%) !important;")>
     <div class="text-secondary px-4 py-5 text-center">
         <div class="py-5">
-            <h1 class="display-5 fw-bold text-white">Bienvenido, @Admin_actividad</h1>
+            <h1 class="display-5 fw-bold text-white">Bienvenido, <%=user.getNombres() + " " + user.getApellidos()%></h1>
             <div style="margin-bottom: 20px"></div>
             <h3 class="fw-bold text-white">Panel de Administración de Inscritos</h3>
             <div style="margin-bottom: 20px"></div>
@@ -99,10 +99,6 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
             <form method="post" action="<%=request.getContextPath()%>/admin_act?action=filtroInsNombreCodigo&idEvento=<%=idEvento%>&idActividad=<%=idActividad%>">
 
-                <div class="custom-form-group">
-                    <input type="text" class="form-control" name="busquedaNombreCodigo" placeholder="Buscar por nombre o código" style="width: 120%">
-                </div>
-                <button type="submit" class="btn btn-primary">Aplicar filtros</button>
                 <a class="btn btn-primary" href="<%=request.getContextPath()%>/admin_act?action=verInscritos&idEvento=<%=idEvento%>" role="button">Borrar filtros</a>
 
             </form>
