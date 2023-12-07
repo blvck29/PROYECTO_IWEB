@@ -27,10 +27,11 @@ public class AdminActServlet extends HttpServlet {
         Usuario user = (Usuario) session.getAttribute("usuario");
 
             String action = request.getParameter("action") == null? "home" : request.getParameter("action");
+            int idUsr = user.getIdUsuario();
 
             switch (action){
                 case "home":
-                    int idUsr = user.getIdUsuario();
+
                     Actividad actividad = actividadesDao.getActividadByIdUsuario(idUsr);
                     System.out.println(actividad.getTitulo());
                     ArrayList<Evento> listaEventos = eventoDao.listarEventosxActividad(actividad.getIdActividad());
@@ -42,6 +43,8 @@ public class AdminActServlet extends HttpServlet {
                     break;
                 case "new_event":
                     String idActividad = request.getParameter("idActividad");
+                    Actividad actividad1 = actividadesDao.getActividadByIdUsuario(idUsr);
+                    request.setAttribute("actividad", actividad1);
                     request.setAttribute("idActividad", idActividad);
                     request.getRequestDispatcher("/pages/admin_act/new_event.jsp").forward(request, response);
                     break;
@@ -49,6 +52,8 @@ public class AdminActServlet extends HttpServlet {
                 case "edit_event":
                     String idEvento = request.getParameter("idEvento");
                     String idActividad4 = request.getParameter("idActividad");
+                    Actividad actividadEv= actividadesDao.getActividadByIdUsuario(idUsr);
+                    request.setAttribute("actividad", actividadEv);
                     Evento eventoBuscado = eventoDao.EventoXid(idEvento);
 
                     if (eventoBuscado != null) {

@@ -1,8 +1,10 @@
 <%@ page import="com.example.proyectoweb.model.beans.Usuario" %>
+<%@ page import="com.example.proyectoweb.model.beans.Actividad" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <% String idActividad = (String) request.getAttribute("idActividad"); %>
 
 <%Usuario user = (Usuario) session.getAttribute("usuario");%>
+<%Actividad actividad = (Actividad) request.getAttribute("actividad");%>
 
 <%  if (user.getIdRolSistema().equals("DELACT")){ %>
 
@@ -98,7 +100,7 @@
 background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgba(21,0,48,1) 100%) !important;">
     <div class="text-secondary px-4 py-5 text-center">
         <div class="py-5">
-            <h1 class="display-5 fw-bold text-white" style="font-family: 'Poppins', sans-serif">Eventos de <%=idActividad%></h1>
+            <h1 class="display-5 fw-bold text-white" style="font-family: 'Poppins', sans-serif">Eventos de <%=actividad.getTitulo()%></h1>
             <div class="justify-content-sm-center">
             </div>
         </div>

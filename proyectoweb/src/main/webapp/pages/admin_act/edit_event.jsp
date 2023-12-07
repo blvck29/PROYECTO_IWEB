@@ -1,8 +1,10 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="com.example.proyectoweb.model.beans.Evento" %>
 <%@ page import="com.example.proyectoweb.model.beans.Usuario" %>
+<%@ page import="com.example.proyectoweb.model.beans.Actividad" %>
 <% Evento evento = (Evento) request.getAttribute("evento");%>
 <% String idActivdad = (String) request.getAttribute("idActividad"); %>
+<%Actividad actividad = (Actividad) request.getAttribute("actividad");%>
 
 
 <%Usuario user = (Usuario) session.getAttribute("usuario");%>
@@ -103,7 +105,7 @@
 background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgba(21,0,48,1) 100%) !important;">
     <div class="text-secondary px-4 py-5 text-center">
         <div class="py-5">
-            <h1 class="display-5 fw-bold text-white" style="font-family: 'Poppins', sans-serif">Eventos de <%=evento.getIdActividad()%></h1>
+            <h1 class="display-5 fw-bold text-white" style="font-family: 'Poppins', sans-serif">Eventos de <%=actividad.getTitulo()%></h1>
             <div class="justify-content-sm-center">
             </div>
         </div>

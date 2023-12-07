@@ -10,9 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="250e9528-0acf-42db-be38-0516405aa721" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/scriptPagination.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/admin_act/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/admin_act/home.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/proyectoweb/servlets/AdminActServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/proyectoweb/servlets/AdminActServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/admin_act/edit_event.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/admin_act/edit_event.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/admin_act/new_event.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/admin_act/new_event.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -373,7 +374,8 @@
       <workItem from="1700419477125" duration="23949000" />
       <workItem from="1700460136702" duration="6065000" />
       <workItem from="1700466335337" duration="173000" />
-      <workItem from="1701954515886" duration="5502000" />
+      <workItem from="1701954515886" duration="6125000" />
+      <workItem from="1701972823056" duration="1213000" />
     </task>
     <servers />
   </component>
