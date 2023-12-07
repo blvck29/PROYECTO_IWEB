@@ -145,6 +145,19 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
         </div>
     </div>
 
+
+    <div class="uk-container uk-margin-top uk-margin-bottom">
+
+        <div style="margin-bottom: 50px"></div>
+
+        <h2><i class="fa-solid fa-star" style="color: #8de7ef;"></i><strong style="padding-left: 10px">Mis Donaciones</strong></h2>
+
+        <div style="margin-bottom: 40px"></div>
+
+    </div>
+
+
+
     <div class="uk-container uk-margin-top uk-margin-bottom">
 
         <div style="margin-bottom: 50px"></div>
@@ -153,33 +166,36 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
         <div style="margin-bottom: 40px"></div>
 
-        <div class="container" style="padding-left: 6rem; padding-right: 6rem">
-            <div class="uk-upload-box">
-                <div id="error-alert" class="uk-alert-danger uk-margin-top uk-hidden" uk-alert>
-                    <p id="error-messages"></p>
-                </div>
+        <form method="post" action="<%=request.getContextPath()%>/user_home?action=donate" enctype="multipart/form-data">
+            <div class="container" style="padding-left: 6rem; padding-right: 6rem">
+                <div class="uk-upload-box">
+                    <div id="error-alert" class="uk-alert-danger uk-margin-top uk-hidden" uk-alert>
+                        <p id="error-messages"></p>
+                    </div>
 
-                <form id="upload-form">
+
                     <div class="drop__zone uk-placeholder uk-text-center">
                         <span uk-icon="icon: cloud-upload"></span>
                         <span class="uk-text-middle uk-margin-small-left">Adjunte arrastrando el archivo o</span>
                         <div uk-form-custom>
-                            <input name="document" accept="image/png, image/jpeg, application/pdf, application/vnd.openxmlformats-officedocument.wordprocessingml.document" type="file">
+                            <input type="file" name="fileFoto" accept="image/png, image/jpeg, application/pdf, application/vnd.openxmlformats-officedocument.wordprocessingml.document" required>
                             <span class="uk-link">seleccione la captura</span>
                         </div>
                         <ul id="preview" class="uk-list uk-grid-match uk-child-width-1-2 uk-child-width-1-4@l uk-child-width-1-5@xl uk-text-center" uk-grid uk-scrollspy="cls: uk-animation-scale-up; target: .list-item; delay: 80"></ul>
                     </div>
-                </form>
+                 </div>
             </div>
+
 
             <div class="uk-flex uk-flex-center uk-margin-top">
                 <div class="uk-flex uk-flex-center">
-                    <button type="button" id="reset-button" class="btn btn-secondary m-2">Borrar</button>
-                    <button type="submit" form="upload-form" class="btn btn-primary m-2">Subir</button>
+                    <button type="button" id="reset-button" class="btn btn-secondary m-2">Cancelar</button>
+                    <button type="submit"  class="btn btn-primary m-2">Confirmar Donación</button>
                 </div>
             </div>
-        </div>
 
+
+        </form>
     </div>
 </div>
 
