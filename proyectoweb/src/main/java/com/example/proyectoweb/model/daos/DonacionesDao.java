@@ -122,6 +122,47 @@ public class DonacionesDao extends DaoBase{
 
     }
 
+
+
+    public Donaciones buscarPorIdDonante(String idDonante){
+        Donaciones donacionAlumno =null;
+
+        //Conexión a la DB
+
+        String sql = "SELECT don.idUsuario, don.idRegistro_Donaciones, u.nombres, u.apellidos, don.comprobante, don.monto, don.comprobado, don.fecha, u.idRolAcademico FROM registro_donaciones don INNER JOIN usuarios u on (u.idUsuario = don.idUsuario) where don.idUsuario=?";
+
+
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)){
+
+            pstmt.setString(1, idDonante);
+
+            try(ResultSet rs = pstmt.executeQuery()){
+
+                while(rs.next()){
+
+                    donacionAlumno = new Donaciones();
+                    donacionAlumno.setIdUsuario(rs.getInt(1));
+                    donacionAlumno.setIdDonaciones(rs.getInt(2));
+                    donacionAlumno.setNombres(rs.getString(3));
+                    donacionAlumno.setApellidos(rs.getString(4));
+                    donacionAlumno.setComprobante((Blob) rs.getBlob(5));
+                    donacionAlumno.setMonto(rs.getDouble(6));
+                    donacionAlumno.setComprobado(rs.getInt(7)); // Ahora devuelve un INT
+                    donacionAlumno.setFechaDonacion(rs.getString(8));
+                    donacionAlumno.setIdRolAcademico(rs.getString(9));
+
+                }
+
+            }
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+
+        return donacionAlumno;
+
+    }
+
     public void actualizarDonacion(int donacionId, double monto, String fecha, String hora, int estadoDonacion){
 
         String sql ="update registro_donaciones set monto= ? , fecha = ? , comprobado = ? where idRegistro_Donaciones = ? ";
