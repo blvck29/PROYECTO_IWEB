@@ -80,11 +80,6 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
             <div style="margin-bottom: 20px"></div>
             <h3 class="fw-bold text-white">Crea un nuevo evento de <%= actividad.getTitulo() %> !</h3>
             <div style="margin-bottom: 20px"></div>
-            <div class="justify-content-sm-center">
-                <button type="button" class="btn btn-outline-info btn-lg px-4">
-                    <a href="<%=request.getContextPath()%>/admin_act?action=new_event&idActividad=<%=actividad.getIdActividad()%>" class="link-info text-light">Crear Evento</a>
-                </button>
-            </div>
         </div>
     </div>
 </div>
