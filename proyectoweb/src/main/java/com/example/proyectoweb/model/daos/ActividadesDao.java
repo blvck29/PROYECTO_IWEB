@@ -227,15 +227,11 @@ public class ActividadesDao extends DaoBase{
                     ResultSet rs = pstmt.executeQuery();
                     InputStream is = (rs.next()) ? rs.getBinaryStream(4) : null;
             ) {
-
                 if (is.available() >0 ) {
                     b = true;
                 }else{
                     b = false;
                 }
-
-
-
             }
         } catch (SQLException | IOException e) {
             throw new RuntimeException(e);

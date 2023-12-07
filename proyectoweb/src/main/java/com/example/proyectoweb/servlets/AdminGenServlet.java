@@ -291,8 +291,6 @@ public class AdminGenServlet extends HttpServlet {
                                 actividadesDao.actualizarActividad(idActividad2, Integer.parseInt(idDelegado2), banner2, miniatura2);
                             }
 
-
-
                             response.sendRedirect(request.getContextPath() + "/admin_gen?action=activities");
 
                             break;
