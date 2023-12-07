@@ -2,10 +2,14 @@
 package com.example.proyectoweb.model.daos;
 
 import com.example.proyectoweb.model.beans.Donaciones;
+import com.example.proyectoweb.model.beans.Imagen;
 import com.example.proyectoweb.model.beans.Usuario;
 import com.mysql.cj.jdbc.Blob;
 
+import java.io.InputStream;
 import java.sql.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class DonacionesDao extends DaoBase{
@@ -261,6 +265,31 @@ public class DonacionesDao extends DaoBase{
         }
 
         return listaDonaciones;
+    }
+
+    public void nuevaDonacion(Integer idUsuario, double monto, Imagen foto){
+
+        LocalDateTime fechaHoraActual = LocalDateTime.now();
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String fechaHoraFormateada = fechaHoraActual.format(formato);
+
+        String sql ="insert into registro_donaciones (idUsuario, comprobante, monto, comprobado, fecha ) value (?,?,?,?,?) ";
+
+        try(Connection conn = getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1,idUsuario);
+            pstmt.setBlob(2,foto.getImagen());
+            pstmt.setDouble(3,monto);
+            pstmt.setInt(4,0);
+            pstmt.setString(5,fechaHoraFormateada);
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
     }
 
 

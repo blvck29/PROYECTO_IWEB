@@ -216,6 +216,9 @@ public class UserServlet extends HttpServlet {
                     break;
 
                 case "donate":
+
+                    String monto = request.getParameter("monto");
+
                     Part part = request.getPart("fileFoto");
                     InputStream inputStream = part.getInputStream();
                     Imagen donacion = new Imagen();
@@ -227,6 +230,8 @@ public class UserServlet extends HttpServlet {
                         System.out.println("imagen correcta");
                     }
 
+                    System.out.println("monto enviado: " + monto);
+                    System.out.println("id del usuario: " + user.getIdUsuario());
 
                     response.sendRedirect(request.getContextPath() + "/user_home?action=donate");
 

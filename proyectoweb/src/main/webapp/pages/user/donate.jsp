@@ -10,29 +10,29 @@
 
 
 <head>
+
     <meta http-equiv="Content-Type" content=text/html; charset=ISO-8859-1″>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
-    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+   <link rel="stylesheet" href="css/style.css">
+   <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
+   <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 
-    <!-- Add the slick-theme.css if you want default styling -->
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-    <!-- Add the slick-theme.css if you want default styling -->
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 
-    <script src="https://kit.fontawesome.com/a2dd6045c4.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 
-    <!-- UIkit CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.17.4/dist/css/uikit.min.css" />
+   <script src="https://kit.fontawesome.com/a2dd6045c4.js" crossorigin="anonymous"></script>
+   <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 
-    <!-- UIkit JS -->
-    <script src="https://cdn.jsdelivr.net/npm/uikit@3.17.4/dist/js/uikit.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/uikit@3.17.4/dist/js/uikit-icons.min.js"></script>
 
-    <link rel="icon" type="image/jpg" href="favicon.png" />
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.17.4/dist/css/uikit.min.css" />
+
+   <script src="https://cdn.jsdelivr.net/npm/uikit@3.17.4/dist/js/uikit.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/uikit@3.17.4/dist/js/uikit-icons.min.js"></script>
+
+   <link rel="icon" type="image/jpg" href="favicon.png" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
     <title>Home | Semana de Ingeniería 2023</title>
 </head>
@@ -152,7 +152,82 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
         <h2><i class="fa-solid fa-star" style="color: #8de7ef;"></i><strong style="padding-left: 10px">Mis Donaciones</strong></h2>
 
-        <div style="margin-bottom: 40px"></div>
+        <div style="margin-bottom: 20px"></div>
+
+        <!-- Button trigger modal -->
+        <button type="button" style="margin-left: 40px" class="btn btn-outline-primary btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Ver mis donaciones
+        </button>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog  modal-xl">
+                <div class="modal-content">
+
+
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Capturas de mis donaciones</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+
+                    <div class="modal-body">
+
+
+                        <div class="col-sm-6 col-lg-3 mb-4">
+                            <div class="card-list">
+                                <article class="card">
+
+
+                                    <figure class="card-image">
+                                        <img class="image-event" src="images/placeholder_events.jpg" alt="event" />
+                                    </figure>
+                                    <div class="card-header">
+                                        <a href="#">abc<p>abc</p></a>
+                                    </div>
+
+
+                                    <div class="card-footer">
+                                        <div class="card-meta card-meta--views">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <circle cx="12" cy="8" r="4"></circle>
+                                                <path d="M18 21v-2a4 4 0 0 0-4-4H10a4 4 0 0 0-4 4v2"></path>
+                                            </svg>
+                                            123
+                                        </div>
+
+
+                                        <div class="card-meta card-meta--date">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="Calendar">
+                                                <rect x="2" y="4" width="20" height="18" rx="4"></rect>
+                                                <path d="M8 2v4"></path>
+                                                <path d="M16 2v4"></path>
+                                                <path d="M2 10h20"></path>
+                                            </svg>
+                                            456
+                                        </div>
+                                    </div>
+
+
+                                </article>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+
+        <div style="margin-bottom: 20px"></div>
 
     </div>
 
@@ -160,42 +235,93 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
     <div class="uk-container uk-margin-top uk-margin-bottom">
 
-        <div style="margin-bottom: 50px"></div>
+        <div style="margin-bottom: 0px"></div>
 
-        <h2><i class="fa-solid fa-star" style="color: #8de7ef;"></i><strong style="padding-left: 10px">Suba el Comprobante</strong></h2>
+        <h2><i class="fa-solid fa-star" style="color: #8de7ef;"></i><strong style="padding-left: 10px">Nueva Donación</strong></h2>
 
-        <div style="margin-bottom: 40px"></div>
+        <div style="margin-bottom: 20px"></div>
 
-        <form method="post" action="<%=request.getContextPath()%>/user_home?action=donate" enctype="multipart/form-data">
-            <div class="container" style="padding-left: 6rem; padding-right: 6rem">
-                <div class="uk-upload-box">
-                    <div id="error-alert" class="uk-alert-danger uk-margin-top uk-hidden" uk-alert>
-                        <p id="error-messages"></p>
-                    </div>
+        <!-- Button trigger modal -->
+        <button type="button" style="margin-left: 40px" class="btn btn-outline-primary btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+            Donar
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog  modal-lg">
+                <div class="modal-content">
 
 
-                    <div class="drop__zone uk-placeholder uk-text-center">
-                        <span uk-icon="icon: cloud-upload"></span>
-                        <span class="uk-text-middle uk-margin-small-left">Adjunte arrastrando el archivo o</span>
-                        <div uk-form-custom>
-                            <input type="file" name="fileFoto" accept="image/png, image/jpeg, application/pdf, application/vnd.openxmlformats-officedocument.wordprocessingml.document" required>
-                            <span class="uk-link">seleccione la captura</span>
+                    <form method="post" action="<%=request.getContextPath()%>/user_home?action=donate" enctype="multipart/form-data">
+
+
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Nueva Donación</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <ul id="preview" class="uk-list uk-grid-match uk-child-width-1-2 uk-child-width-1-4@l uk-child-width-1-5@xl uk-text-center" uk-grid uk-scrollspy="cls: uk-animation-scale-up; target: .list-item; delay: 80"></ul>
-                    </div>
-                 </div>
-            </div>
 
 
-            <div class="uk-flex uk-flex-center uk-margin-top">
-                <div class="uk-flex uk-flex-center">
-                    <button type="button" id="reset-button" class="btn btn-secondary m-2">Cancelar</button>
-                    <button type="submit"  class="btn btn-primary m-2">Confirmar Donación</button>
+
+                        <div class="modal-body">
+                            <div style="padding-top: 1.5em;"></div>
+
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group" style="padding-right: 1rem">
+                                        <label style="text-align: left;"><strong>Monto a donar:</strong></label>
+                                        <input name="monto" type="number" class="form-control" step="0.1" inputmode="decimal">
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div style="padding-top: 1.5em;"></div>
+
+
+
+                            <div class="container" style="padding-left: 6rem; padding-right: 6rem">
+                                <div class="uk-upload-box">
+                                    <div id="error-alert" class="uk-alert-danger uk-margin-top uk-hidden" uk-alert>
+                                        <p id="error-messages"></p>
+                                    </div>
+
+                                    <div class="drop__zone uk-placeholder uk-text-center">
+                                        <span uk-icon="icon: cloud-upload"></span>
+                                        <span class="uk-text-middle uk-margin-small-left">Adjunte arrastrando el archivo o</span>
+                                        <div uk-form-custom>
+                                            <input type="file" name="fileFoto" accept="image/png, image/jpeg, application/pdf, application/vnd.openxmlformats-officedocument.wordprocessingml.document" required>
+                                            <span class="uk-link">seleccione la captura</span>
+                                        </div>
+                                        <ul id="preview" class="uk-list uk-grid-match uk-child-width-1-2 uk-child-width-1-4@l uk-child-width-1-5@xl uk-text-center" uk-grid uk-scrollspy="cls: uk-animation-scale-up; target: .list-item; delay: 80"></ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="modal-footer">
+                            <div class="uk-flex uk-flex-center uk-margin-top">
+                                <div class="uk-flex uk-flex-center">
+                                    <button type="submit"  class="btn btn-primary m-2">Confirmar Donación</button>
+                                    <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal">Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </form>
+
                 </div>
             </div>
+        </div>
 
 
-        </form>
+        <div style="margin-bottom: 20px"></div>
+
+
+
     </div>
 </div>
 
@@ -232,25 +358,13 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
         }
     }
 </script>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const uploadForm = document.querySelector("#upload-form");
-        const resetButton = document.querySelector("#reset-button");
-
-        resetButton.addEventListener("click", function() {
-            uploadForm.reset(); // Restablecer el formulario
-            const previewList = document.getElementById("preview");
-            previewList.innerHTML = ""; // Limpiar la lista de vista previa
-        });
-    });
-</script>
-
 <script src="js/upload.js"></script>
 <script src="js/bootstrap/bootstrap.js"></script>
 <script src="script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
 
 </body>
 </html>
