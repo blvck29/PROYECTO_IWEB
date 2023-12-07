@@ -152,6 +152,7 @@
             }
         });
     </script>
+</div>
 
 
 
@@ -159,7 +160,7 @@
 
 
 
-    <div class="container-fluid" style="background-color: #fff; padding-right: 0; padding-left: 0">
+<div class="container-fluid" style="background-color: #fff; padding-right: 0; padding-left: 0">
     <div class="my-4"></div>
     <footer id="sticky-footer" class="flex-shrink-0 py-4 text-white-50" style="background-color: #04011E">
         <div class="container">
@@ -179,7 +180,7 @@
 <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async=""></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
-</div>
+
 </body>
 
 </html>
