@@ -3,15 +3,15 @@
 <%@ page import="com.example.proyectoweb.model.beans.Inscrito" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<% ArrayList<Inscrito> listaInscritos = (ArrayList<Inscrito>) request.getAttribute("listaIncritosxEvento");%>
-<% String idActividad = (String) request.getAttribute("idActividad"); %>
-<% String idEvento = (String) request.getAttribute("idEvento"); %>
-<% String msg = (String) request.getAttribute("msg"); %>
-
 
 <%Usuario user = (Usuario) session.getAttribute("usuario");%>
 
 <%  if (user.getIdRolSistema().equals("DELACT")){ %>
+
+<% ArrayList<Inscrito> listaInscritos = (ArrayList<Inscrito>) request.getAttribute("listaIncritosxEvento");%>
+<% String idActividad = (String) request.getAttribute("idActividad"); %>
+<% String idEvento = (String) request.getAttribute("idEvento"); %>
+<% String msg = (String) request.getAttribute("msg"); %>
 
 <!doctype html>
 <html lang="es">

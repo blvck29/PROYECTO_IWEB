@@ -8,13 +8,11 @@
 
 <%Usuario user = (Usuario) session.getAttribute("usuario");%>
 
+<%  if (user.getIdRolSistema().equals("DELACT")){ %>
 
     <% ArrayList<Evento> listaEventos = (ArrayList<Evento>) request.getAttribute("listaEventos"); %>
     <% String idActividad = (String) request.getAttribute("idActividad");%>
     <% Actividad actividad = (Actividad) request.getAttribute("actividad"); %>
-
-
-
 
 <!doctype html>
 <html lang="es">
@@ -326,4 +324,4 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
 </html>
 
-
+<% } else {request.getRequestDispatcher("/logout").forward(request, response);}%>
