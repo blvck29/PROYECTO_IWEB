@@ -1,34 +1,21 @@
-<%@ page import="com.example.proyectoweb.model.beans.Actividad" %>
-<%@ page import="com.example.proyectoweb.model.beans.Evento" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="com.example.proyectoweb.model.beans.Inscripcion" %>
-<%@ page import="com.example.proyectoweb.model.beans.Inscrito" %>
 <%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="com.example.proyectoweb.model.beans.*" %>
 
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 
-<%
-    if (session.getAttribute("id") != null){
-        int id = (int) session.getAttribute("id");
-        String idRolSistema = (String) session.getAttribute("idRolSistema");
-        String idRolAcademico = (String) session.getAttribute("idRolAcademico");
-        String nombres = (String) session.getAttribute("nombres");
-        String apellidos = (String) session.getAttribute("apellidos");
-    }
-%>
+<%Usuario user = (Usuario) session.getAttribute("usuario");%>
 
-
-<!doctype html>
-<html lang="es">
-
-<%
-    if (session.getAttribute("id")!=null){
-%>
+<%  if (user.getIdRolSistema().equals("USER")){ %>
 
 <% ArrayList<Actividad> listaActividades = (ArrayList<Actividad>) request.getAttribute("listaActividades");%>
 <% ArrayList<Inscripcion> listaEventosPropia = (ArrayList<Inscripcion>) request.getAttribute("listaEventosPropia"); %>
 <% ArrayList<Inscrito> listaInscritos = (ArrayList<Inscrito>) request.getAttribute("listaInscritos"); %>
+
+<!doctype html>
+<html lang="es">
+
 
 <head>
     <meta http-equiv="Content-Type" content=text/html; charset=ISO-8859-1″>
@@ -248,47 +235,6 @@
 
 </body>
 
-
-
-<% } else { %>
-
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
-    <script src="https://kit.fontawesome.com/a2dd6045c4.js" crossorigin="anonymous"></script>
-    <link rel="icon" type="image/jpg" href="favicon.png"/>
-    <title>Semana de Ingeniería 2023</title>
-</head>
-
-<body>
-
-<section class="index">
-
-    <div class="forgot-container">
-
-        <div class="forgot-form">
-            <form action="<%=request.getContextPath()%>/login" method="POST" id="complete">
-                <h2>Se ha cerrado la Sesión!</h2>
-                <div class="forgot-back" style="padding-top: 10px; max-width: 450px; margin-bottom: 25px">
-                    <label>Debe iniciar sesión para acceder al contenido de la página, regrese al login.</label>
-                </div>
-
-                <input type="submit" value="Regresar" class="forgot-button">
-
-            </form>
-        </div>
-    </div>
-
-    <div class="container-fluid footer-container">
-        <p>© Pontificia Universidad Católica del Perú - Todos los derechos reservados</p>
-    </div>
-
-</section>
-
-</body>
-
-<%}%>
-
 </html>
+
+<% } else {request.getRequestDispatcher("/logout").forward(request, response);}%>
