@@ -26,9 +26,8 @@ public class AdminGenServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        HttpSession session = request.getSession(false);
+        HttpSession session = request.getSession();
         Usuario user = (Usuario) session.getAttribute("usuario");
-        if (user.getIdRolSistema().equals("DELGEN")){
 
             String action = request.getParameter("action") == null? "home" : request.getParameter("action");
             ArrayList<Usuario> listaUsuarios = userDao.listarTodosUsuarios();
@@ -171,10 +170,7 @@ public class AdminGenServlet extends HttpServlet {
 
             }
 
-        } else {
-            session.invalidate();
-            request.getRequestDispatcher("login?action=unvalid_session").forward(request, response);
-        }
+
     }
 
     @Override
@@ -182,7 +178,6 @@ public class AdminGenServlet extends HttpServlet {
 
         HttpSession session = request.getSession(false);
         Usuario user = (Usuario) session.getAttribute("usuario");
-        if (user.getIdRolSistema().equals("DELGEN")) {
 
             String action = request.getParameter("action") == null ? "home" : request.getParameter("action");
             String ac = request.getParameter("ac") == null ? "busqueda" : request.getParameter("ac");
@@ -294,10 +289,6 @@ public class AdminGenServlet extends HttpServlet {
                     break;
             }
 
-        } else {
-            session.invalidate();
-            request.getRequestDispatcher("login?action=unvalid_session").forward(request, response);
-        }
 
     }
 }

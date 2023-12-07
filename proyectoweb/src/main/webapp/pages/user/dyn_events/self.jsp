@@ -7,8 +7,6 @@
 
 <%Usuario user = (Usuario) session.getAttribute("usuario");%>
 
-<%  if (user.getIdRolSistema().equals("USER")){ %>
-
 <% ArrayList<Actividad> listaActividades = (ArrayList<Actividad>) request.getAttribute("listaActividades");%>
 <% ArrayList<Inscripcion> listaEventosPropia = (ArrayList<Inscripcion>) request.getAttribute("listaEventosPropia"); %>
 <% ArrayList<Inscrito> listaInscritos = (ArrayList<Inscrito>) request.getAttribute("listaInscritos"); %>
@@ -236,5 +234,3 @@
 </body>
 
 </html>
-
-<% } else {request.getRequestDispatcher("/logout").forward(request, response);}%>
