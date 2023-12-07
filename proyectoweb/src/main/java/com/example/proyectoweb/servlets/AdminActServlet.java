@@ -25,9 +25,6 @@ public class AdminActServlet extends HttpServlet {
 
         HttpSession session = request.getSession(false);
         Usuario user = (Usuario) session.getAttribute("usuario");
-        if (user.getIdRolSistema().equals("DELACT")){
-
-
 
             String action = request.getParameter("action") == null? "home" : request.getParameter("action");
 
@@ -112,12 +109,6 @@ public class AdminActServlet extends HttpServlet {
                     break;
             }
 
-
-        } else {
-            session.invalidate();
-            request.getRequestDispatcher("login?action=unvalid_session").forward(request, response);
-        }
-
     }
 
     @Override
@@ -126,7 +117,6 @@ public class AdminActServlet extends HttpServlet {
 
         HttpSession session = request.getSession(false);
         Usuario user = (Usuario) session.getAttribute("usuario");
-        if (user.getIdRolSistema().equals("DELACT")){
 
             String action = request.getParameter("action") == null? "filtros" : request.getParameter("action");
             String ac = request.getParameter("ac") == null? "eventosXfecha" : request.getParameter("ac");
@@ -245,10 +235,6 @@ public class AdminActServlet extends HttpServlet {
 
             }
 
-        } else {
-            session.invalidate();
-            request.getRequestDispatcher("login?action=unvalid_session").forward(request, response);
-        }
     }
 }
 

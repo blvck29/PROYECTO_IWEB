@@ -25,7 +25,6 @@ public class UserServlet extends HttpServlet {
 
         HttpSession session = request.getSession(false);
         Usuario user = (Usuario) session.getAttribute("usuario");
-        if (user.getIdRolSistema().equals("USER")){
 
                 String action = request.getParameter("action") == null? "home" : request.getParameter("action");
 
@@ -115,13 +114,6 @@ public class UserServlet extends HttpServlet {
                         break;
                 }
 
-        } else {
-            session.invalidate();
-            request.getRequestDispatcher("login?action=unvalid_session").forward(request, response);
-        }
-
-
-
 
 
     }
@@ -132,7 +124,6 @@ public class UserServlet extends HttpServlet {
 
         HttpSession session = request.getSession(false);
         Usuario user = (Usuario) session.getAttribute("usuario");
-        if (user.getIdRolSistema().equals("USER")){
 
             String action = request.getParameter("action") == null? "load" : request.getParameter("action");
 
@@ -205,13 +196,6 @@ public class UserServlet extends HttpServlet {
                     }
                     break;
             }
-
-        } else {
-            session.invalidate();
-            request.getRequestDispatcher("login?action=unvalid_session").forward(request, response);
-        }
-
-
 
 
     }
