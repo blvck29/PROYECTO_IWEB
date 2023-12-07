@@ -63,7 +63,7 @@
     <nav class="nav-bar">
         <ul>
             <li>
-                <a href="<%=request.getContextPath()%>/admin_gen?action=home">Usuarios</a>
+                <a href="<%=request.getContextPath()%>/admin_gen?action=home" class="active">Usuarios</a>
             </li>
             <li>
                 <a href="<%=request.getContextPath()%>/admin_gen?action=activities&ac=list">Actividades</a>
@@ -72,7 +72,7 @@
                 <a href="<%=request.getContextPath()%>/admin_gen?action=statistics">Estadísticas</a>
             </li>
             <li>
-                <a href="<%=request.getContextPath()%>/admin_gen?action=donations" class="active">Donaciones</a>
+                <a href="<%=request.getContextPath()%>/admin_gen?action=donations">Donaciones</a>
             </li>
             <li>
                 <a href="<%=request.getContextPath()%>/logout"><i class="fa-solid fa-door-open nav-icon2"></i>Cerrar Sesión</a>
@@ -86,7 +86,7 @@
 background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgba(21,0,48,1) 100%) !important;">
     <div class="text-secondary px-4 py-5 text-center">
         <div class="py-5">
-            <h1 class="display-5 fw-bold text-white">Bienvenido, @Admin_general</h1>
+            <h1 class="display-5 fw-bold text-white">Bienvenido, <%=user.getNombres() + user.getApellidos()%></h1>
             <div style="margin-bottom: 20px"></div>
             <h3 class="fw-bold text-white">Panel de Donaciones</h3>
             <div style="margin-bottom: 20px"></div>
