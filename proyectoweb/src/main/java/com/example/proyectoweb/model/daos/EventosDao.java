@@ -410,18 +410,28 @@ public class EventosDao extends DaoBase{
         }
     }
 
-    public void actualizarFotoEvento(Imagen imagen) {
-        String sql = "UPDATE evento SET imagen = ? WHERE idevento = 9";
+    public void actualizarEventoNoImagen(String idEvento, String titulo, String subTitulo, String hora, String fecha, String lugar, String descripcion, String idActividad) {
+        String sql = "UPDATE evento SET titulo = ?, SubTitulo = ?, hora = ?, fecha = ?, Lugar = ?, descripcion = ?, idActividad = ? WHERE idevento = ?";
 
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            pstmt.setBlob(1, imagen.getImagen());
+            pstmt.setString(1, titulo);
+            pstmt.setString(2, subTitulo);
+            pstmt.setString(3, hora);
+            pstmt.setString(4, fecha);
+            pstmt.setString(5, lugar);
+            pstmt.setString(6, descripcion);
+            pstmt.setString(7, idActividad);
+            pstmt.setString(8, idEvento);
+
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
+
+
 
 }

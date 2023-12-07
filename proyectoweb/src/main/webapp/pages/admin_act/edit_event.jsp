@@ -202,8 +202,37 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                             </div>
 
 
+                            <label style="text-align: left;"><strong>Imagen actual del evento:</strong></label>
+                            <img style="padding-left: 30px" class="image-event" src="<%=request.getContextPath()%>/admin_act?action=imagenPorEvento&idEvento=<%=evento.getIdEvento()%>" />
+                            <div style="margin-bottom: 20px"></div>
+
+
+                            <div class="container" style="padding-left: 6rem; padding-right: 6rem">
+                                <div class="uk-upload-box">
+                                    <div id="error-alert" class="uk-alert-danger uk-margin-top uk-hidden" uk-alert>
+                                        <p id="error-messages"></p>
+                                    </div>
+
+                                    <div class="drop__zone uk-placeholder uk-text-center">
+                                        <span uk-icon="icon: cloud-upload"></span>
+                                        <span class="uk-text-middle uk-margin-small-left">Para editar la foto del evento, adjunte arrastrando el archivo o</span>
+                                        <div uk-form-custom>
+                                            <input type="file" name="fileFoto" accept="image/png, image/jpeg, application/pdf, application/vnd.openxmlformats-officedocument.wordprocessingml.document" >
+                                            <span class="uk-link">seleccione la captura</span>
+                                        </div>
+                                        <ul id="preview" class="uk-list uk-grid-match uk-child-width-1-2 uk-child-width-1-4@l uk-child-width-1-5@xl uk-text-center" uk-grid uk-scrollspy="cls: uk-animation-scale-up; target: .list-item; delay: 80"></ul>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
                         </div>
                     </div>
+
+
 
                     <div class="uk-flex uk-flex-center uk-margin-top">
                         <div class="uk-flex uk-flex-center">
@@ -212,34 +241,12 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                         </div>
                     </div>
 
+
+
                 </div>
 
 
 
-                <div class="col-lg-6 col-md-12" style="padding-left: 100px; padding-right: 2em; padding-top: 1.5em">
-
-                    <img style="padding-left: 30px" class="image-event" src="<%=request.getContextPath()%>/admin_act?action=imagenPorEvento&idEvento=<%=evento.getIdEvento()%>" />
-                    <div style="margin-bottom: 20px"></div>
-
-
-                    <div class="container" style="padding-left: 6rem; padding-right: 6rem">
-                        <div class="uk-upload-box">
-                            <div id="error-alert" class="uk-alert-danger uk-margin-top uk-hidden" uk-alert>
-                                <p id="error-messages"></p>
-                            </div>
-
-                            <div class="drop__zone uk-placeholder uk-text-center">
-                                <span uk-icon="icon: cloud-upload"></span>
-                                <span class="uk-text-middle uk-margin-small-left">Para editar la foto del evento, adjunte arrastrando el archivo o</span>
-                                <div uk-form-custom>
-                                    <input type="file" name="fileFoto" accept="image/png, image/jpeg, application/pdf, application/vnd.openxmlformats-officedocument.wordprocessingml.document" >
-                                    <span class="uk-link">seleccione la captura</span>
-                                </div>
-                                <ul id="preview" class="uk-list uk-grid-match uk-child-width-1-2 uk-child-width-1-4@l uk-child-width-1-5@xl uk-text-center" uk-grid uk-scrollspy="cls: uk-animation-scale-up; target: .list-item; delay: 80"></ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </form>
         </div>
     </div>

@@ -192,7 +192,12 @@ public class AdminActServlet extends HttpServlet {
                     Imagen imagen2 = new Imagen();
                     imagen2.setImagen(inputStream2);
 
-                    eventoDao.actualizarEvento(idEvento,titulo2,subtitulo2,hora2,fecha2,lugar2, imagen2, descripcion2,idActividad2);
+                    if(part2.getSize()==0){
+                        eventoDao.actualizarEventoNoImagen(idEvento,titulo2,subtitulo2,hora2,fecha2,lugar2,descripcion2,idActividad2);
+                    }else{
+                        eventoDao.actualizarEvento(idEvento,titulo2,subtitulo2,hora2,fecha2,lugar2,imagen2,descripcion2,idActividad2);
+                    }
+
                     response.sendRedirect(request.getContextPath()+"/admin_act?action=home");
 
                     break;

@@ -236,7 +236,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                                         <span uk-icon="icon: cloud-upload"></span>
                                         <span class="uk-text-middle uk-margin-small-left">Adjunte arrastrando el archivo o</span>
                                         <div uk-form-custom>
-                                            <input type="file" name="fileFoto" accept="image/png, image/jpeg, application/pdf, application/vnd.openxmlformats-officedocument.wordprocessingml.document" >
+                                            <input type="file" name="fileFoto" accept="image/png, image/jpeg, application/pdf, application/vnd.openxmlformats-officedocument.wordprocessingml.document" required>
                                             <span class="uk-link">seleccione la captura</span>
                                         </div>
                                         <ul id="preview" class="uk-list uk-grid-match uk-child-width-1-2 uk-child-width-1-4@l uk-child-width-1-5@xl uk-text-center" uk-grid uk-scrollspy="cls: uk-animation-scale-up; target: .list-item; delay: 80"></ul>
