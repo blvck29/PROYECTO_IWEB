@@ -179,6 +179,21 @@ public class AdminGenServlet extends HttpServlet {
                     }
                     break;
 
+                case "imagenPorActividad":
+                    Boolean b = actividadesDao.validarSizeImagen(response, request.getParameter("idActividad"));
+
+                    System.out.println(b);
+
+                    if(b == true){
+                        actividadesDao.listarImagenPorActividad(response, request.getParameter("idActividad"),4);
+                    }else{
+                        actividadesDao.listarImagenPorActividad(response, request.getParameter("idActividad"),3);
+                    }
+
+
+
+                    break;
+
             }
 
 
@@ -242,13 +257,13 @@ public class AdminGenServlet extends HttpServlet {
                             String idActividad = tituloActividad.toUpperCase();
                             String idDelegado = request.getParameter("idDelegado");
                             String nuevoRol = "DELACT";
+
                             Part part = request.getPart("fileFoto");
                             InputStream inputStream = part.getInputStream();
                             Imagen banner = new Imagen();
                             Imagen miniatura = new Imagen();
                             banner.setImagen(inputStream);
                             miniatura.setImagen(inputStream);
-
                             userDao.actualizarRolSistema(idDelegado, nuevoRol);
                             actividadesDao.crearActividad(idActividad, tituloActividad, Integer.parseInt(idDelegado), banner, miniatura);
                             response.sendRedirect(request.getContextPath() + "/admin_gen?action=activities");
@@ -261,9 +276,23 @@ public class AdminGenServlet extends HttpServlet {
                             String idActividad2 = tituloActividad2.toUpperCase();
                             String idDelegado2 = request.getParameter("idDelegado");
 
+                            Part part2 = request.getPart("fileFoto");
+                            InputStream inputStream2 = part2.getInputStream();
+                            Imagen banner2 = new Imagen();
+                            Imagen miniatura2 = new Imagen();
+                            banner2.setImagen(inputStream2);
+                            miniatura2.setImagen(inputStream2);
                             userDao.actualizarRolSistema(idDelActual, "USER");
                             userDao.actualizarRolSistema(idDelegado2, "DELACT");
-                            actividadesDao.actualizarActividad(idActividad2, Integer.parseInt(idDelegado2));
+
+                            if(part2.getSize()==0){
+                                actividadesDao.actualizarActividadNoImagen(idActividad2, Integer.parseInt(idDelegado2));
+                            }else{
+                                actividadesDao.actualizarActividad(idActividad2, Integer.parseInt(idDelegado2), banner2, miniatura2);
+                            }
+
+
+
                             response.sendRedirect(request.getContextPath() + "/admin_gen?action=activities");
 
                             break;

@@ -2,7 +2,9 @@ package com.example.proyectoweb.model.daos;
 
 import com.example.proyectoweb.model.beans.*;
 import com.sun.jdi.ArrayReference;
+import jakarta.servlet.http.HttpServletResponse;
 
+import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -23,8 +25,8 @@ public class ActividadesDao extends DaoBase{
                 Actividad actividad = new Actividad();
                 actividad.setIdActividad(rs.getString(1));
                 actividad.setTitulo(rs.getString(2));
-                actividad.setBanner(rs.getBlob(3));
-                actividad.setMiniatura(rs.getBlob(4));
+                actividad.setBanner(rs.getBinaryStream(3));
+                actividad.setMiniatura(rs.getBinaryStream(4));
                 actividad.setIdEncargado(rs.getInt(5));
                 listaActividades.add(actividad);
             }
@@ -52,8 +54,8 @@ public class ActividadesDao extends DaoBase{
                 while (rs.next()){
                     actividad.setIdActividad(rs.getString(1));
                     actividad.setTitulo(rs.getString(2));
-                    actividad.setBanner(rs.getBlob(3));
-                    actividad.setMiniatura(rs.getBlob(4));
+                    actividad.setBanner(rs.getBinaryStream(3));
+                    actividad.setMiniatura(rs.getBinaryStream(4));
                     actividad.setIdEncargado(rs.getInt(5));
 
                     Usuario delegadoact = new Usuario();
@@ -89,8 +91,8 @@ public class ActividadesDao extends DaoBase{
 
                 actividad.setIdActividad(rs.getString(1));
                 actividad.setTitulo(rs.getString(2));
-                actividad.setBanner(rs.getBlob(3));
-                actividad.setMiniatura(rs.getBlob(4));
+                actividad.setBanner(rs.getBinaryStream(3));
+                actividad.setMiniatura(rs.getBinaryStream(4));
                 actividad.setIdEncargado(rs.getInt(5));
 
                 Usuario delegado = new Usuario();
@@ -144,8 +146,8 @@ public class ActividadesDao extends DaoBase{
 
                     actividad.setIdActividad(rs.getString(1));
                     actividad.setTitulo(rs.getString(2));
-                    actividad.setBanner(rs.getBlob(3));
-                    actividad.setMiniatura(rs.getBlob(4));
+                    actividad.setBanner(rs.getBinaryStream(3));
+                    actividad.setMiniatura(rs.getBinaryStream(4));
                     actividad.setIdEncargado(rs.getInt(5));
 
                     Usuario delegado = new Usuario();
@@ -175,20 +177,85 @@ public class ActividadesDao extends DaoBase{
     }
 
 
+    public void listarImagenPorActividad(HttpServletResponse response, String idActividad, Integer numero) {
+
+        //Conexión a la DB
+
+        String sql = "SELECT * FROM actividad WHERE idActividad = ?";
+        response.setContentType("image/*");
+
+        try (
+                Connection conn = getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(sql);
+        ) {
+            pstmt.setString(1, idActividad);
+
+            try (
+                    ResultSet rs = pstmt.executeQuery();
+                    InputStream is = (rs.next()) ? rs.getBinaryStream(numero) : null;
+                    OutputStream os = response.getOutputStream();
+                    BufferedInputStream bis = new BufferedInputStream(is);
+                    BufferedOutputStream bos = new BufferedOutputStream(os);
+            ) {
+
+                int i;
+                while ((i = bis.read()) != -1) {
+                    bos.write(i);
+                }
+
+            }
+        } catch (SQLException | IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    public boolean validarSizeImagen(HttpServletResponse response, String idActividad) {
+        Boolean b = false;
+        //Conexión a la DB
+
+        String sql = "SELECT * FROM actividad WHERE idActividad = ?";
+        response.setContentType("image/*");
+
+        try (
+                Connection conn = getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(sql);
+        ) {
+            pstmt.setString(1, idActividad);
+
+            try (
+                    ResultSet rs = pstmt.executeQuery();
+                    InputStream is = (rs.next()) ? rs.getBinaryStream(4) : null;
+            ) {
+
+                if (is.available() >0 ) {
+                    b = true;
+                }else{
+                    b = false;
+                }
+
+
+
+            }
+        } catch (SQLException | IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return b;
+    }
+
     public void crearActividad(String idActividad, String tituloAct, Integer idDelegado, Imagen banner, Imagen miniatura){
 
-        String sql = "insert into actividad (idActividad,titulo,idEncargado,banner,miniatura) values (?,?,?,?,?)";
+        String sql = "insert into actividad (idActividad,titulo,banner,miniatura,idEncargado) values (?,?,?,?,?)";
 
         try(Connection conn = getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql)){
 
             pstmt.setString(1, idActividad);
             pstmt.setString(2, tituloAct);
-            pstmt.setInt(3, idDelegado);
-            pstmt.setBlob(4, banner.getImagen());
-            pstmt.setBlob(5, miniatura.getImagen());
-
-
+            pstmt.setBlob(3, banner.getImagen());
+            pstmt.setBlob(4, miniatura.getImagen());
+            pstmt.setInt(5, idDelegado);
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
@@ -199,7 +266,25 @@ public class ActividadesDao extends DaoBase{
 
 
 
-    public void actualizarActividad(String idActividad, Integer idDelegado){
+    public void actualizarActividad(String idActividad, Integer idDelegado, Imagen banner, Imagen miniatura){
+
+        String sql = "update actividad set idEncargado = ?, miniatura=?, banner=? where idActividad = ?";
+
+        try(Connection connection = getConnection();
+            PreparedStatement pstmt = connection.prepareStatement(sql)){
+
+            pstmt.setInt(1, idDelegado);
+            pstmt.setBlob(2, banner.getImagen());
+            pstmt.setBlob(3, miniatura.getImagen());
+            pstmt.setString(4,idActividad);
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void actualizarActividadNoImagen(String idActividad, Integer idDelegado){
 
         String sql = "update actividad set idEncargado = ? where idActividad = ?";
 

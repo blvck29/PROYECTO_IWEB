@@ -1,5 +1,6 @@
 package com.example.proyectoweb.model.beans;
 
+import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.Date;
 import java.sql.Time;
@@ -7,8 +8,8 @@ import java.sql.Time;
 public class Actividad {
     private String idActividad;
     private String titulo;
-    private Blob banner;
-    private Blob miniatura;
+    private InputStream banner;
+    private InputStream miniatura;
     private int idEncargado;
 
     private Usuario delegado;
@@ -38,19 +39,19 @@ public class Actividad {
         this.titulo = titulo;
     }
 
-    public Blob getBanner() {
+    public InputStream getBanner() {
         return banner;
     }
 
-    public void setBanner(Blob banner) {
+    public void setBanner(InputStream banner) {
         this.banner = banner;
     }
 
-    public Blob getMiniatura() {
+    public InputStream getMiniatura() {
         return miniatura;
     }
 
-    public void setMiniatura(Blob miniatura) {
+    public void setMiniatura(InputStream miniatura) {
         this.miniatura = miniatura;
     }
 
