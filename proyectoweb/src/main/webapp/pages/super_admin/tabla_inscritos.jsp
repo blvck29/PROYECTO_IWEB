@@ -102,7 +102,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
   <div class="container">
     <div class="row">
 
-      <div class="col-md-10">
+      <div class="col-md-10 mb-2">
 
         <form method="post" action="<%=request.getContextPath()%>/admin_gen?action=home&ac=busqueda">
 
