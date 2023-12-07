@@ -2,12 +2,21 @@
 <%@ page import="com.example.proyectoweb.model.beans.Evento" %>
 <%@ page import="com.example.proyectoweb.model.beans.Usuario" %>
 <%@ page import="com.example.proyectoweb.model.beans.Actividad" %>
+<%@ page import="java.time.LocalDateTime" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
+<%@ page import="java.util.List" %>
 <% Evento evento = (Evento) request.getAttribute("evento");%>
 <% String idActivdad = (String) request.getAttribute("idActividad"); %>
 <%Actividad actividad = (Actividad) request.getAttribute("actividad");%>
 
 
 <%Usuario user = (Usuario) session.getAttribute("usuario");%>
+
+<%
+    String dateTime = LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME);
+    List<String> lista = List.of(dateTime.split("T"));
+    String fechaActual = lista.get(0);
+%>
 
 <%  if (user.getIdRolSistema().equals("DELACT")){ %>
 
@@ -162,7 +171,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
                             <div class="form-group" style="padding-right: 1rem">
                                 <label  style="text-align: left;"><strong>Fecha del evento:</strong></label>
-                                <input name="fecha" type="date" class="form-control" id="fecha-evento" value="<%=evento.getFecha()%>">
+                                <input name="fecha" type="date" class="form-control" min = "<%=fechaActual%>" id="fecha-evento" value="<%=evento.getFecha()%>">
                             </div>
 
                             <div style="padding-top: 1.5em;"></div>

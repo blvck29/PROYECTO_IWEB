@@ -1,10 +1,20 @@
 <%@ page import="com.example.proyectoweb.model.beans.Usuario" %>
 <%@ page import="com.example.proyectoweb.model.beans.Actividad" %>
+
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
+<%@ page import="java.time.LocalDateTime" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <% String idActividad = (String) request.getAttribute("idActividad"); %>
 
 <%Usuario user = (Usuario) session.getAttribute("usuario");%>
 <%Actividad actividad = (Actividad) request.getAttribute("actividad");%>
+<%
+    String dateTime = LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME);
+    List<String> lista = List.of(dateTime.split("T"));
+    String fechaActual = lista.get(0);
+    %>
 
 <%  if (user.getIdRolSistema().equals("DELACT")){ %>
 
@@ -184,7 +194,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
                             <div class="form-group" style="padding-right: 1rem">
                                 <label  style="text-align: left;"><strong>Fecha del evento:</strong></label>
-                                <input name="fecha" type="date" class="form-control"  required>
+                                <input name="fecha" type="date" min = "<%=fechaActual%>" class="form-control"  required>
                             </div>
 
                             <div style="padding-top: 1.5em;"></div>
