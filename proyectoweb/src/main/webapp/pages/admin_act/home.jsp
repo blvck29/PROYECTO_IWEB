@@ -126,41 +126,43 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
     <div style="margin-bottom: 40px"></div>
 
-    <div class="input-group mb-3">
+    <% if(listaEventos.size() != 0){ %>
 
-        <div class="input-group-text p-0">
-            <label>
-                <div class="btn-group">
-                    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                        Filtrar por fecha
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-lg-end">
-                        <form method="post" action="<%=request.getContextPath()%>/admin_act?action=filtros&ac=eventosXfecha&idAct=<%=actividad.getIdActividad()%>&filtro=all">
-                            <li><button class="dropdown-item" type="submit">TODOS</button></li>
-                        </form>
-                        <form method="post" action="<%=request.getContextPath()%>/admin_act?action=filtros&ac=eventosXfecha&idAct=<%=actividad.getIdActividad()%>&filtro=prox">
-                            <li><button class="dropdown-item" type="submit">PRÓXIMOS</button></li>
-                        </form>
-                        <form method="post" action="<%=request.getContextPath()%>/admin_act?action=filtros&ac=eventosXfecha&idAct=<%=actividad.getIdActividad()%>&filtro=fin">
-                            <li><button class="dropdown-item" type="submit">FINALIZADOS</button></li>
-                        </form>
-                    </ul>
-                </div>
-            </label>
+        <div class="input-group mb-3">
+
+            <div class="input-group-text p-0">
+                <label>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                            Filtrar por fecha
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-lg-end">
+                            <form method="post" action="<%=request.getContextPath()%>/admin_act?action=filtros&ac=eventosXfecha&idAct=<%=actividad.getIdActividad()%>&filtro=all">
+                                <li><button class="dropdown-item" type="submit">TODOS</button></li>
+                            </form>
+                            <form method="post" action="<%=request.getContextPath()%>/admin_act?action=filtros&ac=eventosXfecha&idAct=<%=actividad.getIdActividad()%>&filtro=prox">
+                                <li><button class="dropdown-item" type="submit">PRÓXIMOS</button></li>
+                            </form>
+                            <form method="post" action="<%=request.getContextPath()%>/admin_act?action=filtros&ac=eventosXfecha&idAct=<%=actividad.getIdActividad()%>&filtro=fin">
+                                <li><button class="dropdown-item" type="submit">FINALIZADOS</button></li>
+                            </form>
+                        </ul>
+                    </div>
+                </label>
+            </div>
+            <input type="text" class="form-control" placeholder="Buscar Evento">
+            <button class="input-group-text shadow-none px-4 btn-large">
+                <i class="fa-solid fa-magnifying-glass" style="color: #262626;"></i>
+            </button>
+
         </div>
-        <input type="text" class="form-control" placeholder="Buscar Evento">
-        <button class="input-group-text shadow-none px-4 btn-large">
-            <i class="fa-solid fa-magnifying-glass" style="color: #262626;"></i>
-        </button>
-
-    </div>
 
 
 
 
-    <div class="row align-content-center" id="divRow" data-masonry='{"percentPosition": true }'>
+        <div class="row align-content-center" id="divRow" data-masonry='{"percentPosition": true }'>
 
-        <% if(listaEventos.size() != 0){ %>
+
 
             <%for (Evento evento : listaEventos) {
 
@@ -219,8 +221,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                 </div>
 
             </div>
-
-            <%}
+         <%}
 
 
         }else{ %>
