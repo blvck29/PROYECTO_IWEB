@@ -165,7 +165,29 @@ public class AdminGenServlet extends HttpServlet {
 
 
                 case "donations":
-                    request.getRequestDispatcher("pages/super_admin/lista_donaciones.jsp").forward(request,response);
+                    DonacionesDao donacionesDao = new DonacionesDao();
+
+                    String ac = request.getParameter("ac") == null? "list" : request.getParameter("ac");
+
+                    switch (ac){
+                        case "list":
+                            ArrayList<Donaciones> listaDonaciones = donacionesDao.listar();
+
+                            request.setAttribute("listaDonaciones", listaDonaciones);
+                            request.getRequestDispatcher("pages/super_admin/lista_donaciones.jsp").forward(request,response);
+
+                            break;
+
+                        case "ver": //Editar
+                            String idDonante = request.getParameter("idDonante");
+                            //Donaciones donanteBuscado = donacionesDao.buscarPorIdDonante(idDonante);
+
+                            //request.setAttribute("Donante", donanteBuscado);
+                            request.getRequestDispatcher("/pages/super_admin/ver_donacion.jsp").forward(request,response);
+
+
+                    }
+
                     break;
 
             }
