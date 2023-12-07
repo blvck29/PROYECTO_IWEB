@@ -120,7 +120,7 @@ public class AdminGenServlet extends HttpServlet {
 
                     ArrayList<Usuario> listaUsuario= userDao.listarTodosUsuarios();
 
-                    ArrayList<Donaciones> listaDonaciones1= donacionesDao.listar();
+                    ArrayList<Donaciones> listaDonaciones1= donacionesDao.listarTodasDonaciones();
                     double totalDonacionesEgresados=donacionesDao.sumarDonacionesEgresados();
                     double totalDonacionesEstudiantes=donacionesDao.sumarDonacionesEstudiantes();
                     int totalestudiantes=userDao.contarEstudiantes();
@@ -160,12 +160,9 @@ public class AdminGenServlet extends HttpServlet {
                     }
                     break;
 
-                case "sta":
-                    request.getRequestDispatcher("pages/prueba/sta.jsp").forward(request,response);
-                    break;
-
-
                 case "donations":
+                    ArrayList<Donaciones> listaDonaciones= donacionesDao.listarTodasDonaciones();
+                    request.setAttribute("listaDonaciones",listaDonaciones);
                     request.getRequestDispatcher("pages/super_admin/lista_donaciones.jsp").forward(request,response);
                     break;
 
@@ -260,6 +257,8 @@ public class AdminGenServlet extends HttpServlet {
                     break;
 
                 case "donations":
+                    Integer limit1 = 8;
+                    String pagina1 = request.getParameter("pagina") == null ? "1" : request.getParameter("pagina");
                     DonacionesDao donacionesDao = new DonacionesDao();
 
                     switch (ac) {
@@ -267,7 +266,12 @@ public class AdminGenServlet extends HttpServlet {
                         case "filtrarComprobados":
                             String comprobacionId = request.getParameter("id");
                             ArrayList<Donaciones> listaDonacionesPorComprobacion = donacionesDao.listarComprobados(comprobacionId);
+                            Double totalDonaciones = (double) listaDonacionesPorComprobacion.size();
+                            Double cantPaginas = Math.ceil(totalDonaciones / limit1);
+                            ArrayList<Donaciones> listaPorEstadoPaginacion = donacionesDao.listarDonacionesPorComprobacionPaginacion(Integer.parseInt(comprobacionId), limit1,limit1 * (Integer.parseInt(pagina1) - 1));
 
+                            request.setAttribute("indicador", comprobacionId);
+                            request.setAttribute("cantPaginas", Double.valueOf(cantPaginas).intValue());
                             request.setAttribute("listaDonaciones", listaDonacionesPorComprobacion);
                             request.getRequestDispatcher("pages/super_admin/lista_donaciones.jsp").forward(request, response);
 
