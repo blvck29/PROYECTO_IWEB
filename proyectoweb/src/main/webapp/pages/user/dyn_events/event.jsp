@@ -8,9 +8,6 @@
 
 <%Usuario user = (Usuario) session.getAttribute("usuario");%>
 
-<%  if (user.getIdRolSistema().equals("USER")){ %>
-
-
 <% ArrayList<Inscripcion> listaEventosPropia = (ArrayList<Inscripcion>) request.getAttribute("listaEventosPropia"); %>
 <% Evento event = (Evento) request.getAttribute("evento_detailed"); %>
 
@@ -229,5 +226,3 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 </body>
 
 </html>
-
-<% } else {request.getRequestDispatcher("/logout").forward(request, response);}%>
