@@ -38,6 +38,8 @@ public class SystemServlet extends HttpServlet {
                 request.getRequestDispatcher("pages/system/password_recovery/token.jsp").forward(request, response);
                 break;
             case "forgot_newpass":
+                String token = request.getParameter("token_input") == null? "aaa" : request.getParameter("token_input");
+                request.setAttribute("token",token);
                 request.getRequestDispatcher("pages/system/password_recovery/newpass.jsp").forward(request, response);
                 break;
             case "unvalid_session":
@@ -130,6 +132,7 @@ public class SystemServlet extends HttpServlet {
 
                 if(tokenDao.findToken(String.valueOf(enteredToken))){
                     tokenDao.verificarUsuario(String.valueOf(enteredToken)); // Cambia el estado de usuario a "VER"
+                    tokenDao.deleteToken(String.valueOf(enteredToken));
                     response.sendRedirect("login?action=validation_complete");
                 } else {
                     //Falta el popup de "El token no es válido"
@@ -168,8 +171,7 @@ public class SystemServlet extends HttpServlet {
                 System.out.println(forgotToken);
 
                 if(tokenDao.findToken(String.valueOf(forgotToken))){
-                    request.setAttribute("token",forgotToken);
-                    response.sendRedirect("login?action=forgot_newpass");
+                    response.sendRedirect("login?action=forgot_newpass&token_input="+(forgotToken));
                 } else {
                     //Falta el popup de "El token no es válido"
                     response.sendRedirect("login?action=forgot_token&error=bad_token");
@@ -183,8 +185,9 @@ public class SystemServlet extends HttpServlet {
 
                 Usuario userChange = tokenDao.UserTokenById(tokenDao.getUserByToken(tokenChange));
                 userDao.editarPassword(newpass,userChange.getIdUsuario());
+                tokenDao.deleteToken(tokenChange);
                 //Falta el popup de "La contraseña fue cambiada con éxito."
-                response.sendRedirect("login?action=forgot_newpass&error=change_complete");
+                response.sendRedirect("login?action=login&notify=change_complete");
                 break;
 
             default:

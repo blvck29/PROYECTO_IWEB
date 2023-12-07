@@ -2,14 +2,10 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.example.proyectoweb.model.beans.Usuario" %>
 <%@ page import="com.example.proyectoweb.model.beans.Actividad" %>
-<%@ page import="com.example.proyectoweb.model.beans.DelegadoAct" %>
-<%@ page import="com.example.proyectoweb.servlets.AdminGenServlet" %>
-<%@ page import="com.example.proyectoweb.model.beans.Donaciones" %>
-<%@ page import="com.example.proyectoweb.model.beans.*" %>
-<%@ page import="java.util.Map" %>
+
 
 <% ArrayList<Actividad> listaActividades = (ArrayList<Actividad>) request.getAttribute("listaActividades");%>
-<% ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) request.getAttribute("listaUsuarios");%>
+
 <% ArrayList<ArrayList<Integer>> conteorolesgeneral =  (ArrayList<ArrayList<Integer>>)request.getAttribute("conteorolesgeneral");%>
 
 <% ArrayList<String> NombresActividades =  (ArrayList<String>)request.getAttribute("NombresActividades");%>
@@ -17,24 +13,16 @@
 
 
 
-<%
-  if (session.getAttribute("id") != null){
-    int id = (int) session.getAttribute("id");
-    String idRolSistema = (String) session.getAttribute("idRolSistema");
-    String idRolAcademico = (String) session.getAttribute("idRolAcademico");
-    String nombres = (String) session.getAttribute("nombres");
-    String apellidos = (String) session.getAttribute("apellidos");
-  }
-%>
+<%Usuario user = (Usuario) session.getAttribute("usuario");%>
+
+<%  if (user.getIdRolSistema().equals("DELGEN")){ %>
+
+  <% ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) request.getAttribute("listaUsuarios");%>
 
 
 <!doctype html>
 <html lang="es">
 
-
-<%
-  if (session.getAttribute("id")!=null){
-%>
 
 <head>
   <!-- Bootstrap core CSS -->

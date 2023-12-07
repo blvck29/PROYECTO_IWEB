@@ -9,7 +9,6 @@
 
 
 <% ArrayList<Actividad> listaActividades = (ArrayList<Actividad>) request.getAttribute("listaActividades");%>
-<% ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) request.getAttribute("listaUsuarios");%>
 <% ArrayList<Donaciones> listaDonaciones = (ArrayList<Donaciones>) request.getAttribute("listaDonaciones");%>
 <% Double totalDonacionesEgresados = (double) request.getAttribute("totalDonacionesEgresados");%>
 <% Double totalDonacionesEstudiantes = (double) request.getAttribute("totalDonacionesEstudiantes");%>
@@ -17,24 +16,14 @@
 
 
 
-<%
-    if (session.getAttribute("id") != null){
-        int id = (int) session.getAttribute("id");
-        String idRolSistema = (String) session.getAttribute("idRolSistema");
-        String idRolAcademico = (String) session.getAttribute("idRolAcademico");
-        String nombres = (String) session.getAttribute("nombres");
-        String apellidos = (String) session.getAttribute("apellidos");
-    }
-%>
+<%Usuario user = (Usuario) session.getAttribute("usuario");%>
 
+<%  if (user.getIdRolSistema().equals("DELGEN")){ %>
+
+    <% ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) request.getAttribute("listaUsuarios");%>
 
 <!doctype html>
 <html lang="es">
-
-
-<%
-    if (session.getAttribute("id")!=null){
-%>
 
 <head>
     <!-- Bootstrap core CSS -->
