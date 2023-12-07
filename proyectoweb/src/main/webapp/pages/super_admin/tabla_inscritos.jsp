@@ -87,7 +87,7 @@
 background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgba(21,0,48,1) 100%) !important;">
     <div class="text-secondary px-4 py-5 text-center">
       <div class="py-5">
-        <h1 class="display-5 fw-bold text-white">Bienvenido, Administrador General</h1>
+        <h1 class="display-5 fw-bold text-white">Bienvenido, <%=user.getNombres() + " " + user.getApellidos()%></h1>
         <div style="margin-bottom: 20px"></div>
         <h3 class="fw-bold text-white">Panel de Administración de Usuarios</h3>
         <div style="margin-bottom: 20px"></div>

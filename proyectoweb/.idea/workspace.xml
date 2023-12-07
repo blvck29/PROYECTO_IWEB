@@ -10,18 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="250e9528-0acf-42db-be38-0516405aa721" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/bootstrap/dataTablesDonaciones.bootstrap4.min.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/proyectoweb/model/daos/UsuariosDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/proyectoweb/model/daos/UsuariosDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/proyectoweb/servlets/AdminActServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/proyectoweb/servlets/AdminActServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/proyectoweb/servlets/SystemServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/proyectoweb/servlets/SystemServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/admin_act/edit_event.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/admin_act/edit_event.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/admin_act/editar_inscrito.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/admin_act/editar_inscrito.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/admin_act/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/admin_act/home.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/admin_act/new_event.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/admin_act/new_event.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/admin_act/upload_album.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/admin_act/upload_album.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/admin_act/ver_evento.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/admin_act/ver_evento.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/admin_act/ver_inscritos.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/admin_act/ver_inscritos.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/super_admin/lista_donaciones.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/super_admin/lista_donaciones.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/proyectoweb-1.0-SNAPSHOT/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/target/proyectoweb-1.0-SNAPSHOT/META-INF/MANIFEST.MF" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

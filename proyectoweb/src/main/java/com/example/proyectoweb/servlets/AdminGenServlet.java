@@ -118,7 +118,7 @@ public class AdminGenServlet extends HttpServlet {
 
                     ArrayList<Usuario> listaUsuario= userDao.listarTodosUsuarios();
 
-                    ArrayList<Donaciones> listaDonaciones1= donacionesDao.listar();
+                    ArrayList<Donaciones> listaDonaciones1= donacionesDao.listarTodasDonaciones();
                     double totalDonacionesEgresados=donacionesDao.sumarDonacionesEgresados();
                     double totalDonacionesEstudiantes=donacionesDao.sumarDonacionesEstudiantes();
                     int totalestudiantes=userDao.contarEstudiantes();
@@ -158,11 +158,6 @@ public class AdminGenServlet extends HttpServlet {
                     }
                     break;
 
-                case "sta":
-                    request.getRequestDispatcher("pages/prueba/sta.jsp").forward(request,response);
-                    break;
-
-
                 case "donations":
                     DonacionesDao donacionesDao = new DonacionesDao();
 
@@ -170,7 +165,7 @@ public class AdminGenServlet extends HttpServlet {
 
                     switch (ac){
                         case "list":
-                            ArrayList<Donaciones> listaDonaciones = donacionesDao.listar();
+                            ArrayList<Donaciones> listaDonaciones = donacionesDao.listarTodasDonaciones();
                             request.setAttribute("listaDonaciones", listaDonaciones);
                             request.getRequestDispatcher("pages/super_admin/lista_donaciones.jsp").forward(request,response);
                             break;
