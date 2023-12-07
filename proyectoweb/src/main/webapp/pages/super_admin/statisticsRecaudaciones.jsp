@@ -114,7 +114,7 @@
 
     <div class="container">
         <br><h2 style="text-align: center;">Donaciones por rol</h2><br>
-        <div style="max-width: 400px; margin: 0 auto;">
+        <div style="max-width: 500px; margin: 0 auto;">
             <canvas id="myChart" width="400" height="300"></canvas>
         </div>
     </div>
