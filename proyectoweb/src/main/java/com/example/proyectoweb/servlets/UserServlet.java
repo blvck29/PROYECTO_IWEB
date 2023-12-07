@@ -31,6 +31,7 @@ public class UserServlet extends HttpServlet {
                 ArrayList<Evento> listaEventos = eventoDao.listarEventos();
                 ArrayList<Actividad> listaActividades = actDao.getListaActividades();
                 ArrayList<Inscrito> listaInscritos = inscritosDao.inscritosPorEvento();
+                ActividadesDao actividadesDao = new ActividadesDao();
 
                 switch (action){
                     case "home":
@@ -111,6 +112,22 @@ public class UserServlet extends HttpServlet {
 
                     case "user":
                         request.getRequestDispatcher("pages/user/user.jsp").forward(request,response);
+                        break;
+
+
+                    case "imagenPorActividad":
+                        Boolean b = actividadesDao.validarSizeImagen(response, request.getParameter("idActividad"));
+
+                        System.out.println(b);
+
+                        if(b == true){
+                            actividadesDao.listarImagenPorActividad(response, request.getParameter("idActividad"),4);
+                        }else{
+                            actividadesDao.listarImagenPorActividad(response, request.getParameter("idActividad"),3);
+                        }
+
+
+
                         break;
                 }
 
