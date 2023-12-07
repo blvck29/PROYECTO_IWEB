@@ -1,35 +1,19 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.example.proyectoweb.model.beans.Usuario" %>
-<%@ page import="com.example.proyectoweb.model.beans.Actividad" %>
-<%@ page import="com.example.proyectoweb.model.beans.DelegadoAct" %>
-<%@ page import="com.example.proyectoweb.servlets.AdminGenServlet" %>
-<%@ page import="com.example.proyectoweb.model.beans.Donaciones" %>
-<%@ page import="com.example.proyectoweb.model.beans.*" %>
-<% ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) request.getAttribute("listaUsuarios");%>
 <%int totalGraduados = (int) request.getAttribute("totalgraduados");%>
 
 <%int totalEstudiantes = (int) request.getAttribute("totalestudiantes");%>
 
 
-<%
-    if (session.getAttribute("id") != null){
-        int id = (int) session.getAttribute("id");
-        String idRolSistema = (String) session.getAttribute("idRolSistema");
-        String idRolAcademico = (String) session.getAttribute("idRolAcademico");
-        String nombres = (String) session.getAttribute("nombres");
-        String apellidos = (String) session.getAttribute("apellidos");
-    }
-%>
+<%Usuario user = (Usuario) session.getAttribute("usuario");%>
 
+<%  if (user.getIdRolSistema().equals("DELGEN")){ %>
+
+<% ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) request.getAttribute("listaUsuarios");%>
 
 <!doctype html>
 <html lang="es">
-
-
-<%
-    if (session.getAttribute("id")!=null){
-%>
 
 <head>
     <!-- Bootstrap core CSS -->
