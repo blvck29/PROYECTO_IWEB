@@ -11,7 +11,6 @@
 <%  if (user.getIdRolSistema().equals("DELACT")){ %>
 
     <% ArrayList<Evento> listaEventos = (ArrayList<Evento>) request.getAttribute("listaEventos"); %>
-    <% String idActividad = (String) request.getAttribute("idActividad");%>
     <% Actividad actividad = (Actividad) request.getAttribute("actividad"); %>
 
 <!doctype html>

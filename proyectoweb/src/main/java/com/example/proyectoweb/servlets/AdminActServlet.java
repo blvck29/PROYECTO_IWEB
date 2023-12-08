@@ -133,25 +133,25 @@ public class AdminActServlet extends HttpServlet {
 
                     switch (ac){
                         case "eventosXfecha":
-                            String idActividad = request.getParameter("idAct");
                             String filtro = request.getParameter("filtro");
                             ArrayList<Evento> listaFiltro = new ArrayList<>();
-
-                            System.out.println("id actividad: " + idActividad);
+                            int idUsr = user.getIdUsuario();
+                            Actividad actividad = actividadesDao.getActividadByIdUsuario(idUsr);
+                            System.out.println("id actividad: " + actividad.getIdActividad());
                             System.out.println("filtro: " + filtro);
 
                             switch (filtro){
                                 case "all":
-                                    listaFiltro = eventoDao.listarEventosxActividad(idActividad);
+                                    listaFiltro = eventoDao.listarEventosxActividad(actividad.getIdActividad());
                                     break;
                                 case "prox":
-                                    listaFiltro = eventoDao.listarEventosProximosxActividad(idActividad);
+                                    listaFiltro = eventoDao.listarEventosProximosxActividad(actividad.getIdActividad());
                                     break;
                                 case "fin":
-                                    listaFiltro= eventoDao.listarEventosFinalizadosxActividad(idActividad);
+                                    listaFiltro= eventoDao.listarEventosFinalizadosxActividad(actividad.getIdActividad());
                                     break;
                             }
-                            request.setAttribute("idActividad", idActividad);
+                            request.setAttribute("actividad", actividad);
                             request.setAttribute("listaEventos",listaFiltro);
                             request.getRequestDispatcher("pages/admin_act/home.jsp").forward(request,response);
 
