@@ -3,6 +3,7 @@ package com.example.proyectoweb.servlets;
 import com.example.proyectoweb.model.CurrentDate;
 import com.example.proyectoweb.model.beans.*;
 import com.example.proyectoweb.model.daos.ActividadesDao;
+import com.example.proyectoweb.model.daos.DonacionesDao;
 import com.example.proyectoweb.model.daos.EventosDao;
 import com.example.proyectoweb.model.daos.InscritosDao;
 import jakarta.servlet.*;
@@ -34,6 +35,7 @@ public class UserServlet extends HttpServlet {
                 ArrayList<Actividad> listaActividades = actDao.getListaActividades();
                 ArrayList<Inscrito> listaInscritos = inscritosDao.inscritosPorEvento();
                 ActividadesDao actividadesDao = new ActividadesDao();
+                DonacionesDao donacionesDao = new DonacionesDao();
 
                 switch (action){
                     case "home":
@@ -45,6 +47,9 @@ public class UserServlet extends HttpServlet {
                         break;
 
                     case "donate":
+                        ArrayList<Donaciones> listaDonaciones = donacionesDao.donacionesPorUsuario(user.getIdUsuario());
+
+                        request.setAttribute("listaDonaciones", listaDonaciones);
                         request.getRequestDispatcher("pages/user/donate.jsp").forward(request,response);
                         break;
 
@@ -120,8 +125,6 @@ public class UserServlet extends HttpServlet {
                     case "imagenPorActividad":
                         Boolean b = actividadesDao.validarSizeImagen(response, request.getParameter("idActividad"));
 
-                        System.out.println(b);
-
                         if(b == true){
                             actividadesDao.listarImagenPorActividad(response, request.getParameter("idActividad"),4);
                         }else{
@@ -130,6 +133,10 @@ public class UserServlet extends HttpServlet {
 
 
 
+                        break;
+
+                    case "imagenDonacionPorUsuario":
+                        donacionesDao.listarImagenDonacionPorUsuario(response, request.getParameter("idDonacion"));
                         break;
                 }
 
@@ -149,6 +156,7 @@ public class UserServlet extends HttpServlet {
             ArrayList<Evento> listaEventos = eventoDao.listarEventos();
             ArrayList<Actividad> listaActividades = actDao.getListaActividades();
             ArrayList<Inscrito> listaInscritos = inscritosDao.inscritosPorEvento();
+            DonacionesDao donacionesDao = new DonacionesDao();
 
             switch (action) {
                 case "load":
@@ -216,7 +224,6 @@ public class UserServlet extends HttpServlet {
                     break;
 
                 case "donate":
-
                     String monto = request.getParameter("monto");
 
                     Part part = request.getPart("fileFoto");
@@ -224,17 +231,8 @@ public class UserServlet extends HttpServlet {
                     Imagen donacion = new Imagen();
                     donacion.setImagen(inputStream);
 
-                    if(part.getSize()==0){
-                        System.out.println("imagen vacia");
-                    }else{
-                        System.out.println("imagen correcta");
-                    }
-
-                    System.out.println("monto enviado: " + monto);
-                    System.out.println("id del usuario: " + user.getIdUsuario());
-
+                    donacionesDao.nuevaDonacion(user.getIdUsuario(), monto, donacion);
                     response.sendRedirect(request.getContextPath() + "/user_home?action=donate");
-
                     break;
 
 

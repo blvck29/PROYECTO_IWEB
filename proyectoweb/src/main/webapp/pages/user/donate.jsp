@@ -1,8 +1,12 @@
 <%@ page import="com.example.proyectoweb.model.beans.Usuario" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.example.proyectoweb.model.beans.Donaciones" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 
 <%Usuario user = (Usuario) session.getAttribute("usuario");%>
+<% ArrayList<Donaciones> listaDonaciones = (ArrayList<Donaciones>) request.getAttribute("listaDonaciones"); %>
 
 
 <!doctype html>
@@ -171,9 +175,10 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
 
-
                     <div class="modal-body">
 
+                        <%for (Donaciones donacion : listaDonaciones) {
+                        %>
 
                         <div class="col-sm-6 col-lg-3 mb-4">
                             <div class="card-list">
@@ -181,10 +186,10 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
 
                                     <figure class="card-image">
-                                        <img class="image-event" src="images/placeholder_events.jpg" alt="event" />
+                                        <img class="image-event" src="<%=request.getContextPath()%>/user_home?action=imagenDonacionPorUsuario&idDonacion=<%=donacion.getIdDonaciones()%>"/>
                                     </figure>
                                     <div class="card-header">
-                                        <a href="#">abc<p>abc</p></a>
+                                        <a href="#"><%=donacion.getIdDonaciones()%><p>abc</p></a>
                                     </div>
 
 
@@ -194,7 +199,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                                                 <circle cx="12" cy="8" r="4"></circle>
                                                 <path d="M18 21v-2a4 4 0 0 0-4-4H10a4 4 0 0 0-4 4v2"></path>
                                             </svg>
-                                            123
+                                            <%= "S/" + donacion.getMonto()%>
                                         </div>
 
 
@@ -205,7 +210,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                                                 <path d="M16 2v4"></path>
                                                 <path d="M2 10h20"></path>
                                             </svg>
-                                            456
+                                            <%=donacion.getFechaDonacion()%>
                                         </div>
                                     </div>
 
@@ -213,10 +218,9 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                                 </article>
                             </div>
                         </div>
-
+                    <%}%>
 
                     </div>
-
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
                     </div>
@@ -269,14 +273,14 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                                 <div class="col-md-3">
                                     <div class="form-group" style="padding-right: 1rem">
                                         <label style="text-align: left;"><strong>Monto a donar:</strong></label>
-                                        <input name="monto" type="number" class="form-control" step="0.1" inputmode="decimal">
+                                        <input name="monto" type="number" class="form-control" step="0.1" inputmode="decimal" required>
                                     </div>
                                 </div>
                             </div>
 
 
 
-                            <div style="padding-top: 1.5em;"></div>
+                            <div style="padding-top: 10px;"></div>
 
 
 
