@@ -128,7 +128,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
     <% if(listaEventos.size() != 0){ %>
 
-        <div class="input-group mb-3">
+    <!--<div class="input-group mb-3">
 
             <div class="input-group-text p-0">
                 <label>
@@ -150,13 +150,46 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                     </div>
                 </label>
             </div>
-            <form method="post" action="<%= request.getContextPath() %>/admin_act?action=filtros&ac=busquedaXEvento&idAct=<%=actividad.getIdActividad()%>">
+             <form method="post" action="<%= request.getContextPath() %>/admin_act?action=filtros&ac=busquedaXEvento&idAct=<%=actividad.getIdActividad()%>">
                 <input type="text" name="txtBuscar" class="form-control" placeholder="Buscar Evento">
                 <button class="input-group-text shadow-none px-4 btn-large">
                     <i class="fa-solid fa-magnifying-glass" style="color: #262626;"></i>
                 </button>
             </form>
+        </div>-->
+    <div style="display: flex; align-items: center;">
+        <!-- Filtro desplegable -->
+        <div style="float: left;">
+            <label>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                        Filtrar por fecha
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-lg-end">
+                        <form method="post" action="<%=request.getContextPath()%>/admin_act?action=filtros&ac=eventosXfecha&idAct=<%=actividad.getIdActividad()%>&filtro=all">
+                            <li><button class="dropdown-item" type="submit">TODOS</button></li>
+                        </form>
+                        <form method="post" action="<%=request.getContextPath()%>/admin_act?action=filtros&ac=eventosXfecha&idAct=<%=actividad.getIdActividad()%>&filtro=prox">
+                            <li><button class="dropdown-item" type="submit">PRÓXIMOS</button></li>
+                        </form>
+                        <form method="post" action="<%=request.getContextPath()%>/admin_act?action=filtros&ac=eventosXfecha&idAct=<%=actividad.getIdActividad()%>&filtro=fin">
+                            <li><button class="dropdown-item" type="submit">FINALIZADOS</button></li>
+                        </form>
+                    </ul>
+                </div>
+            </label>
         </div>
+
+        <!-- Input y botón -->
+        <form method="post" action="<%= request.getContextPath() %>/admin_act?action=filtros&ac=busquedaXEvento&idAct=<%=actividad.getIdActividad()%>" style="display: flex; margin-left: 10px;">
+            <input type="text" name="txtBuscar" class="form-control" placeholder="Buscar Evento" style="flex: 1; width: calc(100% + 800px);">
+            <button class="input-group-text shadow-none px-4 btn-large">
+                <i class="fa-solid fa-magnifying-glass" style="color: #262626;"></i>
+            </button>
+        </form>
+    </div>
+
+    <br><br>
 
 
 
