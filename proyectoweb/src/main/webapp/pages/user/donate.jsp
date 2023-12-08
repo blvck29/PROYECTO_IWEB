@@ -171,54 +171,82 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
 
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Capturas de mis donaciones</h1>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Mis Donaciones</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
 
                     <div class="modal-body">
 
-                        <%for (Donaciones donacion : listaDonaciones) {
-                        %>
+                        <%if (!listaDonaciones.isEmpty()) { %>
 
-                        <div class="col-sm-6 col-lg-3 mb-4">
-                            <div class="card-list">
-                                <article class="card">
+                        <div class="row">
+                            <% int contador = 0; %>
+                            <%for (Donaciones donacion : listaDonaciones) {
+                            %>
 
-
-                                    <figure class="card-image">
-                                        <img class="image-event" src="<%=request.getContextPath()%>/user_home?action=imagenDonacionPorUsuario&idDonacion=<%=donacion.getIdDonaciones()%>"/>
-                                    </figure>
-                                    <div class="card-header">
-                                        <a href="#"><%=donacion.getIdDonaciones()%><p>abc</p></a>
-                                    </div>
+                            <div class="col-sm-4 mb-4">
+                                <div class="card-list">
+                                    <article class="card">
 
 
-                                    <div class="card-footer">
-                                        <div class="card-meta card-meta--views">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                <circle cx="12" cy="8" r="4"></circle>
-                                                <path d="M18 21v-2a4 4 0 0 0-4-4H10a4 4 0 0 0-4 4v2"></path>
-                                            </svg>
-                                            <%= "S/" + donacion.getMonto()%>
+                                        <figure class="card-image">
+                                            <img class="image-event" src="<%=request.getContextPath()%>/user_home?action=imagenDonacionPorUsuario&idDonacion=<%=donacion.getIdDonaciones()%>" style="object-fit: cover; height: 80%; width: 100%;"/>
+                                        </figure>
+
+
+
+
+
+                                        <div class="card-footer">
+
+                                            <label>Fecha y Hora de Donación: </label>
+                                            <div class="row">
+
+                                                <div class="col-md-7">
+                                                    <div class="card-meta card-meta--date">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="Calendar">
+                                                            <rect x="2" y="4" width="20" height="18" rx="4"></rect>
+                                                            <path d="M8 2v4"></path>
+                                                            <path d="M16 2v4"></path>
+                                                            <path d="M2 10h20"></path>
+                                                        </svg>
+                                                        <%=donacion.getFechaDonacion().split(" ")[0]%>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="card-meta card-meta--date">
+                                                        <img width="18" height="20" src="https://img.icons8.com/ios/50/5C5C5C/clock--v1.png" alt="clock--v1"/>
+                                                        <%=donacion.getFechaDonacion().split(" ")[1]%>
+                                                    </div>
+
+                                                </div>
+
+
+                                            </div>
+
                                         </div>
 
 
-                                        <div class="card-meta card-meta--date">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="Calendar">
-                                                <rect x="2" y="4" width="20" height="18" rx="4"></rect>
-                                                <path d="M8 2v4"></path>
-                                                <path d="M16 2v4"></path>
-                                                <path d="M2 10h20"></path>
-                                            </svg>
-                                            <%=donacion.getFechaDonacion()%>
-                                        </div>
-                                    </div>
-
-
-                                </article>
+                                    </article>
+                                </div>
                             </div>
+
+                                <% contador++; %>
+                                <% if (contador % 3 == 0) { %>
+                                </div><div class="row">
+                                <% } %>
+                            <%}%>
+
                         </div>
-                    <%}%>
+                        <%}else { %>
+                        <br>
+                        <br>
+                        <br>
+                        <h2 style="text-align: center;">Aún no has realizado donaciones</h2>
+                        <br>
+                        <br>
+                        <%} %>
 
                     </div>
                     <div class="modal-footer">
