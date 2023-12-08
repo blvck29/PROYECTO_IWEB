@@ -12,6 +12,7 @@
 
     <% ArrayList<Evento> listaEventos = (ArrayList<Evento>) request.getAttribute("listaEventos"); %>
     <% Actividad actividad = (Actividad) request.getAttribute("actividad"); %>
+    <% String dato = (String) request.getAttribute("dato"); %>
 
 <!doctype html>
 <html lang="es">
@@ -149,11 +150,12 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                     </div>
                 </label>
             </div>
-            <input type="text" class="form-control" placeholder="Buscar Evento">
-            <button class="input-group-text shadow-none px-4 btn-large">
-                <i class="fa-solid fa-magnifying-glass" style="color: #262626;"></i>
-            </button>
-
+            <form method="post" action="<%= request.getContextPath() %>/admin_act?action=filtros&ac=busquedaXEvento&idAct=<%=actividad.getIdActividad()%>">
+                <input type="text" name="txtBuscar" class="form-control" placeholder="Buscar Evento">
+                <button class="input-group-text shadow-none px-4 btn-large">
+                    <i class="fa-solid fa-magnifying-glass" style="color: #262626;"></i>
+                </button>
+            </form>
         </div>
 
 
@@ -163,9 +165,8 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
 
 
-            <%for (Evento evento : listaEventos) {
-
-
+            <%
+                for (Evento evento : listaEventos) {
                     SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
                     String fechaFormateada = formato.format(evento.getFecha());
             %>

@@ -137,8 +137,6 @@ public class AdminActServlet extends HttpServlet {
                             ArrayList<Evento> listaFiltro = new ArrayList<>();
                             int idUsr = user.getIdUsuario();
                             Actividad actividad = actividadesDao.getActividadByIdUsuario(idUsr);
-                            System.out.println("id actividad: " + actividad.getIdActividad());
-                            System.out.println("filtro: " + filtro);
 
                             switch (filtro){
                                 case "all":
@@ -155,6 +153,17 @@ public class AdminActServlet extends HttpServlet {
                             request.setAttribute("listaEventos",listaFiltro);
                             request.getRequestDispatcher("pages/admin_act/home.jsp").forward(request,response);
 
+                            break;
+
+                        case "busquedaXEvento":
+                            int idUsr1 = user.getIdUsuario();
+                            Actividad actividad1 = actividadesDao.getActividadByIdUsuario(idUsr1);
+                            String dato= request.getParameter("txtBuscar");
+                            ArrayList<Evento> eventosBuscados= eventoDao.buscarXtitulo(actividad1.getTitulo(),dato);
+                            request.setAttribute("dato", dato);
+                            request.setAttribute("listaEventos", eventosBuscados);
+                            request.setAttribute("actividad", actividad1);
+                            request.getRequestDispatcher("pages/admin_act/home.jsp").forward(request,response);
                             break;
                     }
                     break;
