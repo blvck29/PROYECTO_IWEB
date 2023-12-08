@@ -129,14 +129,14 @@
             datasets: [
                 {
                     label: 'Donaciones de estudiantes',
-                    data: [<%= totalDonacionesEstudiantes %>],
+                    data: [<%= totalDonacionesEstudiantes %>,0],
                     backgroundColor: 'rgba(165, 42, 42, 0.8)', // Color de fondo para la barra de estudiantes
                     borderColor: 'rgba(165, 42, 42, 1)', // Color del borde de la barra de estudiantes
                     borderWidth: 1
                 },
                 {
                     label: 'Donaciones de egresados',
-                    data: [<%= totalDonacionesEgresados %>],
+                    data: [0,<%= totalDonacionesEgresados %>],
                     backgroundColor: 'rgba(0, 0, 139, 0.6)', // Color de fondo para la barra de egresados
                     borderColor: 'rgba(0, 0, 139, 1)', // Color del borde de la barra de egresados
                     borderWidth: 1
