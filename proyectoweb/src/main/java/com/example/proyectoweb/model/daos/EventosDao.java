@@ -304,9 +304,6 @@ public class EventosDao extends DaoBase{
     }
 
 
-
-
-
     // ELIMINAR EVENTO
     public void eliminarEvento(String idEvento){
 
