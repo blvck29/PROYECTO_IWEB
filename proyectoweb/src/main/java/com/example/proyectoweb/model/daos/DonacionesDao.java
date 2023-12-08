@@ -5,8 +5,9 @@ import com.example.proyectoweb.model.beans.Donaciones;
 import com.example.proyectoweb.model.beans.Imagen;
 import com.example.proyectoweb.model.beans.Usuario;
 import com.mysql.cj.jdbc.Blob;
+import jakarta.servlet.http.HttpServletResponse;
 
-import java.io.InputStream;
+import java.io.*;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -62,7 +63,7 @@ public class DonacionesDao extends DaoBase{
                 donacion.setIdDonaciones(rs.getInt(2));
                 donacion.setNombres(rs.getString(3));
                 donacion.setApellidos(rs.getString(4));
-                donacion.setComprobante((Blob) rs.getBlob(5));
+                donacion.setComprobante(rs.getBinaryStream(5));
                 donacion.setMonto(rs.getDouble(6));
                 donacion.setComprobado(rs.getInt(7));
                 donacion.setFechaDonacion(rs.getString(8));
@@ -143,7 +144,7 @@ public class DonacionesDao extends DaoBase{
                     donacion.setIdDonaciones(rs.getInt(2));
                     donacion.setNombres(rs.getString(3));
                     donacion.setApellidos(rs.getString(4));
-                    donacion.setComprobante((Blob) rs.getBlob(5));
+                    donacion.setComprobante(rs.getBinaryStream(5));
                     donacion.setMonto(rs.getDouble(6));
                     donacion.setComprobado(rs.getInt(7)); // devuelve int
                     donacion.setFechaDonacion(rs.getString(8));
@@ -186,7 +187,7 @@ public class DonacionesDao extends DaoBase{
                     donacionAlumno.setIdDonaciones(rs.getInt(2));
                     donacionAlumno.setNombres(rs.getString(3));
                     donacionAlumno.setApellidos(rs.getString(4));
-                    donacionAlumno.setComprobante((Blob) rs.getBlob(5));
+                    donacionAlumno.setComprobante(rs.getBinaryStream(5));
                     donacionAlumno.setMonto(rs.getDouble(6));
                     donacionAlumno.setComprobado(rs.getInt(7)); // Ahora devuelve un INT
                     donacionAlumno.setFechaDonacion(rs.getString(8));
@@ -225,6 +226,73 @@ public class DonacionesDao extends DaoBase{
 
     }
 
+
+    public void listarImagenDonacionPorUsuario(HttpServletResponse response, String idDonacion) {
+
+        //Conexión a la DB
+
+        String sql = "SELECT * FROM registro_donaciones WHERE idRegistro_Donaciones = ?";
+        response.setContentType("image/*");
+
+        try (
+                Connection conn = getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(sql);
+        ) {
+            pstmt.setString(1, idDonacion);
+
+            try (
+                    ResultSet rs = pstmt.executeQuery();
+                    InputStream is = (rs.next()) ? rs.getBinaryStream(3) : null;
+                    OutputStream os = response.getOutputStream();
+                    BufferedInputStream bis = new BufferedInputStream(is);
+                    BufferedOutputStream bos = new BufferedOutputStream(os)
+            ) {
+                int i;
+                while ((i = bis.read()) != -1) {
+                    bos.write(i);
+                }
+            }
+        } catch (SQLException | IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public ArrayList<Donaciones> donacionesPorUsuario(Integer idUsuario){
+        ArrayList<Donaciones> list = new ArrayList<>();
+
+        String sql = "SELECT * FROM registro_donaciones where idUsuario = ?";
+
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)){
+
+            pstmt.setInt(1, idUsuario);
+
+            try(ResultSet rs = pstmt.executeQuery()){
+
+                while(rs.next()){
+
+                    Donaciones donacionAlumno = new Donaciones();
+                    donacionAlumno.setIdDonaciones(rs.getInt(1));
+                    donacionAlumno.setIdUsuario(rs.getInt(2));
+                    donacionAlumno.setComprobante(rs.getBinaryStream(3));
+                    donacionAlumno.setMonto(rs.getDouble(4));
+                    donacionAlumno.setComprobado(rs.getInt(5));
+                    donacionAlumno.setFechaDonacion(rs.getString(6));
+                    list.add(donacionAlumno);
+
+                }
+
+            }
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+
+        return list;
+
+    }
+
+
+
     public ArrayList<Donaciones> listarDonacionesPorComprobacionPaginacion(int comprobado, int limit, int offset) {
         ArrayList<Donaciones> listaDonaciones = new ArrayList<>();
 
@@ -250,7 +318,7 @@ public class DonacionesDao extends DaoBase{
                     donacion.setIdDonaciones(rs.getInt(2));
                     donacion.setNombres(rs.getString(3));
                     donacion.setApellidos(rs.getString(4));
-                    donacion.setComprobante((Blob) rs.getBlob(5));
+                    donacion.setComprobante(rs.getBinaryStream(5));
                     donacion.setMonto(rs.getDouble(6));
                     donacion.setComprobado(rs.getInt(7));
                     donacion.setFechaDonacion(rs.getString(8));
@@ -267,7 +335,7 @@ public class DonacionesDao extends DaoBase{
         return listaDonaciones;
     }
 
-    public void nuevaDonacion(Integer idUsuario, double monto, Imagen foto){
+    public void nuevaDonacion(Integer idUsuario, String monto, Imagen foto){
 
         LocalDateTime fechaHoraActual = LocalDateTime.now();
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -280,7 +348,7 @@ public class DonacionesDao extends DaoBase{
 
             pstmt.setInt(1,idUsuario);
             pstmt.setBlob(2,foto.getImagen());
-            pstmt.setDouble(3,monto);
+            pstmt.setString(3,monto);
             pstmt.setInt(4,0);
             pstmt.setString(5,fechaHoraFormateada);
             pstmt.executeUpdate();
