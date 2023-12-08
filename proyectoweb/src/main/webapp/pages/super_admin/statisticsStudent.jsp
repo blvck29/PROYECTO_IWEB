@@ -90,7 +90,7 @@
     <div style="margin-bottom: 50px"></div>
 
     <h2><i class="fa-solid fa-star" style="color: #8de7ef;"></i><strong style="padding-left: 10px">Estadísticas</strong></h2>
-    <div class="container d-flex col-md-10 justify-content-end">
+    <ivd class="container d-flex col-md-10 justify-content-end">
         <li>
             <a class="btn btn-outline-primary me-1 float-end mt-1 ml-1" href="<%=request.getContextPath()%>/admin_gen?action=statistics"> Recaudaciones</a>
         </li>
@@ -100,7 +100,7 @@
         <li>
             <a class="btn btn-outline-primary me-1 float-end mt-1 ml-1" href="<%=request.getContextPath()%>/admin_gen?action=statistics&select=cantAp"> Cantidad de apoyos por actividad</a>
         </li>
-    </div>
+    </ivd>
 
 
 

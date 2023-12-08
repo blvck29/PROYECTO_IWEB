@@ -52,7 +52,7 @@ public class EventosDao extends DaoBase{
 
             try (
                     ResultSet rs = pstmt.executeQuery();
-                    InputStream is = (rs.next()) ? rs.getBinaryStream(7) : null;
+                    InputStream is = (rs.next()) ? rs.getBinaryStream(2) : null;
                     OutputStream os = response.getOutputStream();
                     BufferedInputStream bis = new BufferedInputStream(is);
                     BufferedOutputStream bos = new BufferedOutputStream(os)

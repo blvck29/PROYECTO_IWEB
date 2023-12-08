@@ -2,12 +2,14 @@ package com.example.proyectoweb.model.beans;
 
 import com.mysql.cj.jdbc.Blob;
 
+import java.io.InputStream;
+
 public class Donaciones {
     private int idUsuario;
     private int idDonaciones;
     private String nombres;
     private String apellidos;
-    private Blob comprobante;
+    private InputStream comprobante;
     private double monto;
     private int comprobado;
     private String idRolAcademico;
@@ -54,11 +56,11 @@ public class Donaciones {
         this.apellidos = apellidos;
     }
 
-    public Blob getComprobante() {
+    public InputStream getComprobante() {
         return comprobante;
     }
 
-    public void setComprobante(Blob comprobante) {
+    public void setComprobante(InputStream comprobante) {
         this.comprobante = comprobante;
     }
 
