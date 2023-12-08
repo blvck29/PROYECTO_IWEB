@@ -101,8 +101,9 @@
     <h2><i class="fa-solid fa-star" style="color: #8de7ef;"></i><strong style="padding-left: 10px">Estadísticas</strong></h2>
     <div class="container d-flex col-md-10 justify-content-end">
         <li>
-        <a class="btn btn-primary me-1 float-end mt-1 ml-1 fw-bold active" href="<%=request.getContextPath()%>=/admin_gen?action=statistics"> Recaudaciones</a>
+            <a class="btn btn-primary me-1 float-end mt-1 ml-1 fw-bold active" href="<%=request.getContextPath()%>/admin_gen?action=statistics"> Recaudaciones</a>
         </li>
+
         <li>
             <a class="btn btn-outline-primary me-1 float-end mt-1 ml-1" href="<%=request.getContextPath()%>/admin_gen?action=statistics&select=canAl"> Cantidad de alumnos y egresados</a>
         </li>
@@ -128,14 +129,14 @@
             datasets: [
                 {
                     label: 'Donaciones de estudiantes',
-                    data: [<%= totalDonacionesEstudiantes %>],
+                    data: [<%= totalDonacionesEstudiantes %>,0],
                     backgroundColor: 'rgba(165, 42, 42, 0.8)', // Color de fondo para la barra de estudiantes
                     borderColor: 'rgba(165, 42, 42, 1)', // Color del borde de la barra de estudiantes
                     borderWidth: 1
                 },
                 {
                     label: 'Donaciones de egresados',
-                    data: [<%= totalDonacionesEgresados %>],
+                    data: [0,<%= totalDonacionesEgresados %>],
                     backgroundColor: 'rgba(0, 0, 139, 0.6)', // Color de fondo para la barra de egresados
                     borderColor: 'rgba(0, 0, 139, 1)', // Color del borde de la barra de egresados
                     borderWidth: 1
