@@ -118,7 +118,7 @@
         var ctx = document.getElementById('myChart').getContext('2d');
 
         var data = {
-            labels: ['Egresados <%= totalGraduados/(totalEstudiantes+totalGraduados)*100 %> %', 'Estudiantes <%= totalEstudiantes/(totalEstudiantes+totalGraduados)*100 %> %'],
+            labels: ['Egresados <%= totalGraduados*100/(totalEstudiantes+totalGraduados) %> %', 'Estudiantes <%= totalEstudiantes*100/(totalEstudiantes+totalGraduados) %> %'],
             datasets: [{
                 label: 'Donaciones por rol',
                 data: [<%= totalGraduados %>, <%= totalEstudiantes %>],

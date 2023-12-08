@@ -3,6 +3,7 @@
 <%@ page import="com.example.proyectoweb.model.beans.Usuario" %>
 <%@ page import="com.example.proyectoweb.model.beans.Actividad" %>
 
+
 <%Usuario user = (Usuario) session.getAttribute("usuario");%>
 
 <%  if (user.getIdRolSistema().equals("DELGEN")){ %>
@@ -147,7 +148,7 @@
     ];
 
     var labelsArray = Array.from({ length: actividadesCount }, (_, i) => `Actividad ${i+1}`);
-    var misEtiquetas = ["Basquet ", "dddd", "eSports", "Fubtol","Karte","prueba","Tennis","Voley"]; // Tu arreglo de strings
+    var misEtiquetas = <%= new org.json.JSONArray(NombresActividades).toString() %>;
 
 
 
