@@ -18,6 +18,7 @@ public class AdminActServlet extends HttpServlet {
 
     EventosDao eventoDao = new EventosDao();
     ActividadesDao actividadesDao = new ActividadesDao();
+    ActividadesDao actDao = new ActividadesDao();
     InscritosDao inscritosDao = new InscritosDao();
 
     @Override
@@ -30,6 +31,20 @@ public class AdminActServlet extends HttpServlet {
             int idUsr = user.getIdUsuario();
 
             switch (action){
+
+                case "vista":
+                    String vista = request.getParameter("id") == null? "admin" : request.getParameter("id");
+
+                    switch (vista){
+                        case "admin":
+                            break;
+
+                        case "user":
+                            response.sendRedirect(request.getContextPath() + "/user_home?");
+                            break;
+                    }
+
+
                 case "home":
                     Actividad actividad = actividadesDao.getActividadByIdUsuario(idUsr);
                     System.out.println(actividad.getTitulo());
