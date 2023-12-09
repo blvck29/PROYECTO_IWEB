@@ -242,11 +242,19 @@ public class UserServlet extends HttpServlet {
                     if(user.getIdRolAcademico().equals("GRADUAT")){
 
                         if(Double.parseDouble(monto) >= 100){
+                            Usuario usuarioDonacion = userDao.usuarioByEmail(user.getCorreo());
 
-                            HttpSession httpSession = request.getSession();
-                            httpSession.setAttribute("msgKitTeleco", "Usted a obtenido su Kit Teleco. Se el enviará un correo con mas información sobre la entrega de este mismo.");
-                            userDao.obtieneKitTeleco(user.getIdUsuario());
-                            donacionesDao.nuevaDonacion(user.getIdUsuario(), monto, donacion);
+                            System.out.println("el estado del kit teleco de este usuario es: " + usuarioDonacion.getKitTeleco());
+
+                            if(usuarioDonacion.getKitTeleco()==0){
+                                HttpSession httpSession = request.getSession();
+                                httpSession.setAttribute("msgKitTeleco", "Usted a obtenido su Kit Teleco. Se el enviará un correo con mas información sobre la entrega de este mismo.");
+                                userDao.obtieneKitTeleco(user.getIdUsuario());
+                                donacionesDao.nuevaDonacion(user.getIdUsuario(), monto, donacion);
+
+                            }else{
+                                donacionesDao.nuevaDonacion(user.getIdUsuario(), monto, donacion);
+                            }
 
                         }else{
                             HttpSession httpSession = request.getSession();
