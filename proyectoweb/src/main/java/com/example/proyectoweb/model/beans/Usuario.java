@@ -8,6 +8,17 @@ public class Usuario {
     private String idRolSistema;
     private String idEstado;
     private String nombres;
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    private String sexo;
+
     private String apellidos;
     private String codigo;
     private String correo;

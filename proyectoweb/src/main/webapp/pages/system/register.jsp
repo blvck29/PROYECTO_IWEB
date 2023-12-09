@@ -52,12 +52,24 @@
                     <label for="passwordconf">Confirmar contraseña</label>
                 </div>
 
+                <div class="register-checkbox">
+                    <p>Sexo biológico:</p>
+                    <input type="radio" id="male" name="male" value="M">
+                    <label for="male">Masculino</label><br>
+                    <input type="radio" id="female" name="male" value="F">
+                    <label for="female">Femenino</label><br>
+                </div>
+
+
                 <input type="submit" value="Registrarse" class="register-button">
 
                 <div class="register-back">
                     <label><a href="<%=request.getContextPath()%>/login">Regresar</a></label>
 
                 </div>
+                <br><br>
+
+
 
             </form>
 

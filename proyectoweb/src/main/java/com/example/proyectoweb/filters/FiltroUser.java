@@ -19,7 +19,7 @@ public class FiltroUser implements Filter {
 
         HttpSession session = request.getSession();
         Usuario user = (Usuario) session.getAttribute("usuario");
-        if (user!=null && user.getIdRolSistema().equals("USER")){
+        if ((user!=null && user.getIdRolSistema().equals("USER")) || (user!=null && user.getIdRolSistema().equals("DELACT"))){
             filterChain.doFilter(servletRequest, servletResponse);
         } else {
             session.invalidate();

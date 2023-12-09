@@ -378,6 +378,15 @@ input:valid ~ label {
     border-bottom: 2px solid #fff;
 }
 
+
+
+.register-gender {
+    position: relative;
+    margin: 30px 0;
+    width: 400px;
+    border-bottom: 2px solid #fff;
+}
+
 .register-input label{
     position: absolute;
     top: 50%;

@@ -107,16 +107,25 @@ public class SystemServlet extends HttpServlet {
                 int codigo = Integer.parseInt(request.getParameter("code"));
                 String email = request.getParameter("email");
                 boolean isEgresado = "condit".equals(request.getParameter("condition"));
+                boolean isHombre = "M".equals(request.getParameter("male"));
+                String sexo = isHombre ? "M" : "F";
+                System.out.println(sexo);
+
                 String password = request.getParameter("password");
 
                 String correoDB =  userDao.verificarCorreo(email);
                 String codigoDB = userDao.verificarCodigo(String.valueOf(codigo));
 
-                if (correoDB != null && codigoDB != null){
+                System.out.println("ALGUIEN ESTA EN REGISTRO");
+
+                if (correoDB != null && codigoDB != null) {
                     //Falta el popup de "El correo o el codigo ingresado ya está registrado"
                     response.sendRedirect("login?action=register&error=no_valid");
+                    System.out.println("ALGUIEN ESTA EN REGISTRO  if");
                 } else {
-                    userDao.crearUsuario(names, lastnames, codigo, email, isEgresado, password);
+                    userDao.crearUsuario(names, lastnames, codigo, email, isEgresado, password, sexo);
+                    System.out.println("ALGUIEN ESTA EN REGISTRO  else antes de token");
+
                     String token = tokenDao.generateToken(email,1);
                     EmailSender.sendEmail(email,"Token para Verificación"," Token: " + token + "\n Confirmar su token aquí: http://localhost:8080/proyectoweb/login?action=confirm_account");
                     response.sendRedirect("login?action=confirm_account");
@@ -199,4 +208,3 @@ public class SystemServlet extends HttpServlet {
 
     }
 }
-

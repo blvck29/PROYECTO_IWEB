@@ -194,9 +194,50 @@
 
             </div>
           </div>
-
-
         </div>
+
+      <div class="col-lg-6 col-md-12">
+        <div class="card">
+          <div class="card-body" style="padding-left: 3px">
+            <!-- Imagen de perfil -->
+            <div style="text-align: center; margin-bottom: 0px;">
+              <figure class="card-image" style="max-width: 200px; margin: 0 auto;">
+                <% if (user.getSexo().equals("M")) { %>
+                <img class="image-event" src="images/profile1.png" alt="event" style="max-width: 100%; height: auto;">
+                <% } else if (user.getSexo().equals("F")) { %>
+                <img class="image-event" src="images/profile2.png" alt="event" style="max-width: 100%; height: auto;">
+                <% } else { %>
+                <!-- Aquí podrías manejar otro caso, por ejemplo, si no es M ni F -->
+                <p>Imagen no disponible</p>
+                <% } %>
+              </figure>
+            </div>
+
+
+            <br>
+
+            <!-- Resto del contenido -->
+            <label style="text-align: center; padding-left: 20px;"><strong>Eventos en los que estás inscrito:  </strong></label>
+
+            <% if (listaEventos != null && !listaEventos.isEmpty()) { %>
+            <% for (Evento evento : listaEventos) { %>
+            <h4 style="padding-left: 20px;">El evento es <%= evento.getTitulo() %></h4>
+            <% } %>
+            <% } else { %>
+            <p style="padding-left: 20px;">No hay eventos inscritos actualmente.</p>
+            <% } %>
+
+
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
 
     </div>
   </div>
