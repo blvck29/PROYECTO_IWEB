@@ -31,7 +31,6 @@ public class AdminActServlet extends HttpServlet {
 
             switch (action){
                 case "home":
-
                     Actividad actividad = actividadesDao.getActividadByIdUsuario(idUsr);
                     System.out.println(actividad.getTitulo());
                     ArrayList<Evento> listaEventos = eventoDao.listarEventosxActividad(actividad.getIdActividad());

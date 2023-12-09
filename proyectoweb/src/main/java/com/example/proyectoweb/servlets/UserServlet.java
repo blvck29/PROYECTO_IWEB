@@ -130,14 +130,17 @@ public class UserServlet extends HttpServlet {
                         }else{
                             actividadesDao.listarImagenPorActividad(response, request.getParameter("idActividad"),3);
                         }
-
-
-
                         break;
 
                     case "imagenDonacionPorUsuario":
                         donacionesDao.listarImagenDonacionPorUsuario(response, request.getParameter("idDonacion"));
                         break;
+
+                    case "profile":
+                        ArrayList<Evento> eventosXusuario = eventoDao.listarEventosInscritos(user.getIdUsuario());
+                        request.setAttribute("listaEventos",eventosXusuario);
+                        request.getRequestDispatcher("pages/user/profile.jsp").forward(request,response);
+
                 }
 
 
