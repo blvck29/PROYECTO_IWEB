@@ -77,6 +77,7 @@ public class UsuariosDao extends DaoBase{
                     usuario.setCantEventsInscrito(rs.getString(10));
                     usuario.setIdRolAcademico(rs.getString(11));
                     usuario.setKitTeleco(rs.getInt(12));
+                    usuario.setSexo(rs.getString(13));
                 }
 
             }
@@ -115,6 +116,8 @@ public class UsuariosDao extends DaoBase{
                 usuario.setCantEventsInscrito(rs.getString(10));
                 usuario.setIdRolAcademico(rs.getString(11));
                 usuario.setKitTeleco(rs.getInt(12));
+                usuario.setSexo(rs.getString(13));
+
 
                 listaUsuarios.add(usuario);
 
@@ -158,6 +161,8 @@ public class UsuariosDao extends DaoBase{
                     usuario.setCantEventsInscrito(rs.getString(10));
                     usuario.setIdRolAcademico(rs.getString(11));
                     usuario.setKitTeleco(rs.getInt(12));
+                    usuario.setSexo(rs.getString(13));
+
                     listaUsuarios.add(usuario);
 
                 }
@@ -204,6 +209,8 @@ public class UsuariosDao extends DaoBase{
                     usuario.setCantEventsInscrito(rs.getString(10));
                     usuario.setIdRolAcademico(rs.getString(11));
                     usuario.setKitTeleco(rs.getInt(12));
+                    usuario.setSexo(rs.getString(13));
+
 
 
                     listaUsuarios.add(usuario);
@@ -253,6 +260,8 @@ public class UsuariosDao extends DaoBase{
                     usuario.setCantEventsInscrito(rs.getString(10));
                     usuario.setIdRolAcademico(rs.getString(11));
                     usuario.setKitTeleco(rs.getInt(12));
+                    usuario.setSexo(rs.getString(13));
+
 
                 }
 
@@ -299,6 +308,8 @@ public class UsuariosDao extends DaoBase{
                     usuario.setCantEventsInscrito(rs.getString(10));
                     usuario.setIdRolAcademico(rs.getString(11));
                     usuario.setKitTeleco(rs.getInt(12));
+                    usuario.setSexo(rs.getString(13));
+
 
                 }
 
@@ -377,6 +388,8 @@ public ArrayList<Usuario> listarDelegadosActDisponibles(){
                         usuario.setCantEventsInscrito(rs.getString(10));
                         usuario.setIdRolAcademico(rs.getString(11));
                         usuario.setKitTeleco(rs.getInt(12));
+                        usuario.setSexo(rs.getString(13));
+
 
 
                         listaUsuarios.add(usuario);
@@ -420,6 +433,8 @@ public ArrayList<Usuario> listarDelegadosActDisponibles(){
                     usuario.setCantEventsInscrito(rs.getString(10));
                     usuario.setIdRolAcademico(rs.getString(11));
                     usuario.setKitTeleco(rs.getInt(12));
+                    usuario.setSexo(rs.getString(13));
+
 
 
                     listaUsuarios.add(usuario);
@@ -484,9 +499,9 @@ public ArrayList<Usuario> listarDelegadosActDisponibles(){
     }
 
 
-    public void crearUsuario(String names, String lastnames, int codigo, String email, boolean isEgresado, String passwordStr){
+    public void crearUsuario(String names, String lastnames, int codigo, String email, boolean isEgresado, String passwordStr,String sexo){
 
-        String sql = "INSERT INTO `proyectoweb`.`usuarios` (`idRolSistema`, `idEstado`, `nombres`, `apellidos`, `codigo`, `correo_pucp`, `contrasena`, `idRolAcademico`) VALUES ('USER', 'PEN', ?, ?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO `proyectoweb`.`usuarios` (`idRolSistema`, `idEstado`, `nombres`, `apellidos`, `codigo`, `correo_pucp`, `contrasena`, `idRolAcademico`,`sexo`) VALUES ('USER', 'PEN', ?, ?, ?, ?, ?, ?,?);";
 
         String passworHash = SHA256.cipherPassword(passwordStr);
 
@@ -505,6 +520,7 @@ public ArrayList<Usuario> listarDelegadosActDisponibles(){
             pstmt.setString(4, email);
             pstmt.setString(5,passworHash);
             pstmt.setString(6, cond);
+            pstmt.setString(7, sexo);
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
