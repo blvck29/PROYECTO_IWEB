@@ -193,10 +193,6 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                                             <img class="image-event" src="<%=request.getContextPath()%>/user_home?action=imagenDonacionPorUsuario&idDonacion=<%=donacion.getIdDonaciones()%>" style="object-fit: cover; height: 80%; width: 100%;"/>
                                         </figure>
 
-
-
-
-
                                         <div class="card-footer">
 
                                             <label>Fecha y Hora de Donación: </label>
