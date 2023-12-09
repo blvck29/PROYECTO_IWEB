@@ -249,7 +249,7 @@ public class UserServlet extends HttpServlet {
                         if(Double.parseDouble(monto) >= 100){
 
                             HttpSession httpSession = request.getSession();
-                            httpSession.setAttribute("msgKitTeleco", "Felicidades, usted a obtenido su Kit Teleco. Se el enviará un correo con mas información sobre la entrega de este mismo.");
+                            httpSession.setAttribute("msgKitTeleco", "Usted a obtenido su Kit Teleco. Se el enviará un correo con mas información sobre la entrega de este mismo.");
                             System.out.println("monto mayor a 100");
 
                         }else{

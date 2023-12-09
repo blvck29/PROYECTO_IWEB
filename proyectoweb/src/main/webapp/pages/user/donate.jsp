@@ -50,8 +50,12 @@
 <body
 
 <% if(msgErrorDonacion != null){   %>
-    onload = " showError('<%=msgErrorDonacion%>') "
+    onload = " showErrorDonation('<%=msgErrorDonacion%>') "
 <%} session.removeAttribute("msgErrorDonacion");%>
+
+<% if(msgKitTeleco != null){   %>
+onload = " kitTeleco('<%=msgKitTeleco%>') "
+<%} session.removeAttribute("msgKitTeleco");%>
 >
 <header>
     <div class="logo"><a href="<%=request.getContextPath()%>/user_home"><img class="logo-img" src='images/logo_topbar.png' alt="logo"></a></div>

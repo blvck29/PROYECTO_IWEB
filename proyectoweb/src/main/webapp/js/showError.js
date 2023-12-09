@@ -10,3 +10,28 @@ function showError(errorMessage) {
     });
 }
 
+function showErrorDonation(errorMessage) {
+    Swal.fire({
+        icon: 'error',
+        title: 'ERROR:',
+        iconColor: '#DC3545',
+        confirmButtonColor: '#DC3545',
+        confirmButtonText: "Cerrar",
+        text: errorMessage,
+    });
+}
+
+
+
+
+function kitTeleco(msg) {
+    Swal.fire({
+        position: "center",
+        icon: "success",
+        iconColor: '#5D1BB2',
+        title: "¡Felicidades!",
+        text: msg,
+        confirmButtonColor: '#5D1BB2',
+        confirmButtonText: "Cerrar",
+    });
+}
