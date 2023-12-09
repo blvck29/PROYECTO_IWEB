@@ -27,6 +27,8 @@ public class AdminActServlet extends HttpServlet {
         HttpSession session = request.getSession(false);
         Usuario user = (Usuario) session.getAttribute("usuario");
 
+
+
             String action = request.getParameter("action") == null? "home" : request.getParameter("action");
             int idUsr = user.getIdUsuario();
 
@@ -46,9 +48,9 @@ public class AdminActServlet extends HttpServlet {
 
 
                 case "home":
+
                     Actividad actividad = actividadesDao.getActividadByIdUsuario(idUsr);
                     ArrayList<Evento> listaEventos = eventoDao.listarEventosxActividad(actividad.getIdActividad());
-                    
 
                     request.setAttribute("actividad", actividad);
                     request.setAttribute("listaEventos", listaEventos);
@@ -123,16 +125,11 @@ public class AdminActServlet extends HttpServlet {
                     break;
 
                 case "imagenPorEvento":
+
                     eventoDao.listarImagenPorEvento(response, request.getParameter("idEvento"));
                     break;
 
                 case "profile":
-                    Actividad actividadProf= actividadesDao.getActividadByIdUsuario(idUsr);
-                    ArrayList<Evento> listaEventosProf = eventoDao.listarEventosxActividad(actividadProf.getIdActividad());
-
-
-                    request.setAttribute("actividad", actividadProf);
-                    request.setAttribute("listaEventos", listaEventosProf);
                     ArrayList<Evento> eventosXusuario = eventoDao.listarEventosInscritos(user.getIdUsuario());
                     request.setAttribute("listaEventos",eventosXusuario);
                     request.getRequestDispatcher("pages/admin_act/profile.jsp").forward(request,response);

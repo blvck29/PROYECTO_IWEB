@@ -6,7 +6,6 @@
 
 <%Usuario user = (Usuario) session.getAttribute("usuario");%>
 
-<%  if (user.getIdRolSistema().equals("DELACT")){ %>
 
 <!doctype html>
 <html lang="es">
@@ -54,13 +53,23 @@
 
     <nav class="nav-bar">
         <ul>
+            <li class="nav-item dropdown" style="margin-top: 20px">
+                <form method="get" id="eventForm" action="<%=request.getContextPath()%>/admin_act">
+                    <select name="action" class="navbar-dropdwon form-select border-0" style="font-size: 0.9rem" id="eventSelect" onchange="submitForm()">
+                        <option style="font-size: 0.9rem; display:none;">Cambiar Rol</option>
+                        <option style="font-size: 0.9rem; color:black" value="user">Usuario</option>
+                        <option style="font-size: 0.9rem; color:black" value="admin">Admin</option>
+                    </select>
+                </form>
+            </li>
             <li>
                 <a href="<%=request.getContextPath()%>/admin_act?action=home">Eventos</a>
             </li>
             <li>
-                <a href="<%=request.getContextPath()%>/admin_act?action=new_event&idActividad=">Crear Evento</a>            </li>
+                <a href="<%=request.getContextPath()%>/admin_act?action=new_event&idActividad=">Crear Evento</a>
+            </li>
             <li>
-                <a href="<%=request.getContextPath()%>/user_home?action=profile"><i class="fa-solid fa-user nav-icon2"></i>Usuario</a>
+                <a href="<%=request.getContextPath()%>/admin_act?action=profile"><i class="fa-solid fa-user nav-icon2"></i><%=user.getNombres() + " " + user.getApellidos()%></a>
             </li>
             <li>
                 <a href="<%=request.getContextPath()%>/logout"><i class="fa-solid fa-door-open nav-icon2"></i>Cerrar Sesión</a>
@@ -235,6 +244,23 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
     });
 </script>
 
+
+<script>
+    function submitForm() {
+        var selectElement = document.getElementById("eventSelect");
+        var selectedValue = selectElement.value;
+        if (selectedValue == "user") {
+            var newURL = "<%=request.getContextPath()%>/user_home";
+            window.location.href = newURL;
+        } else {
+            var newURL = "<%=request.getContextPath()%>/admin_act";
+            window.location.href = newURL;
+        }
+    }
+</script>
+
+
+
 <script src="js/upload.js"></script>
 <script src="js/bootstrap/bootstrap.js"></script>
 <script src="js/script.js"></script>
@@ -247,5 +273,3 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
 
 </html>
-
-<% } else {request.getRequestDispatcher("/logout").forward(request, response);}%>
