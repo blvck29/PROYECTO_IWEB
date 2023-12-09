@@ -358,7 +358,7 @@ input:valid ~ label {
     border: 2px solid rgba(255,255,255, .6);
     border-radius: 20px;
     backdrop-filter: blur(25px);
-    height: 770px;
+    height: 800px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -367,6 +367,7 @@ input:valid ~ label {
 
 .register-container h2 {
     font-size: 2.3rem;
+    margin-top: 70px;
     color: #fff;
     text-align: center;
 }
