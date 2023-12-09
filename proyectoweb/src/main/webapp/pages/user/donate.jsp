@@ -51,9 +51,6 @@
         onload = " showError('<%=msgErrorDonacion %>') "
     <%} session.removeAttribute("msgErrorDonacion");%>>
 
-
-<% if (user.getIdRolSistema().equals("USER")){  %>
-
 <% if(msgErrorDonacion != null){   %>
     onload = " showErrorDonation('<%=msgErrorDonacion%>') "
 <%} session.removeAttribute("msgErrorDonacion");%>
@@ -61,7 +58,11 @@
 <% if(msgKitTeleco != null){   %>
 onload = " kitTeleco('<%=msgKitTeleco%>') "
 <%} session.removeAttribute("msgKitTeleco");%>
->
+
+
+
+<% if (user.getIdRolSistema().equals("USER")){  %>
+
 <header>
 
     <div class="logo"><a href="<%=request.getContextPath()%>/user_home"><img class="logo-img" src='images/logo_topbar.png' alt="logo"></a></div>

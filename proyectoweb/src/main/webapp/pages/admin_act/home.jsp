@@ -95,7 +95,7 @@
                 <a href="<%=request.getContextPath()%>/admin_act?action=new_event&idActividad=<%=actividad.getIdActividad()%>">Crear Evento</a>
             </li>
             <li>
-                <a href="<%=request.getContextPath()%>/user_home?action=profile"><i class="fa-solid fa-user nav-icon2"></i><%=user.getNombres() + " " + user.getApellidos()%></a>
+                <a href="<%=request.getContextPath()%>/admin_act?action=profile"><i class="fa-solid fa-user nav-icon2"></i><%=user.getNombres() + " " + user.getApellidos()%></a>
             </li>
             <li>
                 <a href="<%=request.getContextPath()%>/logout"><i class="fa-solid fa-door-open nav-icon2"></i>Cerrar Sesión</a>
