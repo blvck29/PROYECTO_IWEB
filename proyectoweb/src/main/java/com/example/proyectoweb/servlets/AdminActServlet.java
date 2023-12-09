@@ -47,7 +47,6 @@ public class AdminActServlet extends HttpServlet {
 
                 case "home":
                     Actividad actividad = actividadesDao.getActividadByIdUsuario(idUsr);
-                    System.out.println(actividad.getTitulo());
                     ArrayList<Evento> listaEventos = eventoDao.listarEventosxActividad(actividad.getIdActividad());
                     
 
@@ -128,6 +127,12 @@ public class AdminActServlet extends HttpServlet {
                     break;
 
                 case "profile":
+                    Actividad actividadProf= actividadesDao.getActividadByIdUsuario(idUsr);
+                    ArrayList<Evento> listaEventosProf = eventoDao.listarEventosxActividad(actividadProf.getIdActividad());
+
+
+                    request.setAttribute("actividad", actividadProf);
+                    request.setAttribute("listaEventos", listaEventosProf);
                     ArrayList<Evento> eventosXusuario = eventoDao.listarEventosInscritos(user.getIdUsuario());
                     request.setAttribute("listaEventos",eventosXusuario);
                     request.getRequestDispatcher("pages/admin_act/profile.jsp").forward(request,response);
