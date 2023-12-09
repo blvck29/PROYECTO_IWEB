@@ -22,16 +22,26 @@ function showErrorDonation(errorMessage) {
 }
 
 
-
-
 function kitTeleco(msg) {
     Swal.fire({
         position: "center",
         icon: "success",
-        iconColor: '#5D1BB2',
+        iconColor: '#481A84',
         title: "¡Felicidades!",
         text: msg,
-        confirmButtonColor: '#5D1BB2',
+        confirmButtonColor: '#481A84',
+        confirmButtonText: "Cerrar",
+    });
+}
+
+function donacionCorrecta(msg) {
+    Swal.fire({
+        position: "center",
+        icon: "success",
+        iconColor: '#481A84',
+        title: "¡Felicidades!",
+        text: msg,
+        confirmButtonColor: '#481A84',
         confirmButtonText: "Cerrar",
     });
 }

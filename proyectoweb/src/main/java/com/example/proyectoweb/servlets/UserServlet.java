@@ -247,11 +247,13 @@ public class UserServlet extends HttpServlet {
 
                             if(usuarioDonacion.getKitTeleco()==0){
                                 HttpSession httpSession = request.getSession();
-                                httpSession.setAttribute("msgKitTeleco", "Usted a obtenido su Kit Teleco. Se el enviará un correo con mas información sobre la entrega de este mismo.");
+                                httpSession.setAttribute("msgKitTeleco", "Su donación se ha registrado correctamente y ha obtenido su Kit Teleco. Se le enviará un correo con mas información sobre la entrega de este mismo.");
                                 userDao.obtieneKitTeleco(user.getIdUsuario());
                                 donacionesDao.nuevaDonacion(user.getIdUsuario(), monto, donacion);
 
                             }else{
+                                HttpSession httpSession = request.getSession();
+                                httpSession.setAttribute("msgDonacionCorrecta", "Su donación se ha registrado correctamente.");
                                 donacionesDao.nuevaDonacion(user.getIdUsuario(), monto, donacion);
                             }
 
@@ -263,6 +265,8 @@ public class UserServlet extends HttpServlet {
 
                     }
                     else{
+                        HttpSession httpSession = request.getSession();
+                        httpSession.setAttribute("msgDonacionCorrecta", "Su donación se ha registrado correctamente.");
                         donacionesDao.nuevaDonacion(user.getIdUsuario(), monto, donacion);
                     }
 
