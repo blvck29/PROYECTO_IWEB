@@ -60,7 +60,7 @@
             <li>
                 <a href="<%=request.getContextPath()%>/admin_act?action=new_event&idActividad=">Crear Evento</a>            </li>
             <li>
-                <a href="#"><i class="fa-solid fa-user nav-icon2"></i>Usuario</a>
+                <a href="<%=request.getContextPath()%>/user_home?action=profile"><i class="fa-solid fa-user nav-icon2"></i>Usuario</a>
             </li>
             <li>
                 <a href="<%=request.getContextPath()%>/logout"><i class="fa-solid fa-door-open nav-icon2"></i>Cerrar Sesión</a>
