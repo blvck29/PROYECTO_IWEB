@@ -79,6 +79,15 @@
 
     <nav class="nav-bar">
         <ul>
+            <li class="nav-item dropdown" style="margin-top: 20px">
+                <form method="get" id="eventForm" action="<%=request.getContextPath()%>/admin_act">
+                    <select name="action" class="navbar-dropdwon form-select border-0" style="font-size: 0.9rem" id="eventSelect" onchange="submitForm()">
+                        <option style="font-size: 0.9rem; display:none;">Ver Eventos</option>
+                        <option style="font-size: 0.9rem; color:black" value="vista&id=user">Vista Usuario</option>
+                        <option style="font-size: 0.9rem; color:black" value="vista&id=admin">Vista Administrador</option>
+                    </select>
+                </form>
+            </li>
             <li>
                 <a href="<%=request.getContextPath()%>/admin_act?action=home" class="active">Eventos</a>
             </li>
@@ -331,6 +340,17 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
             ]
         });
     });
+</script>
+
+<script>
+    function submitForm() {
+        var selectElement = document.getElementById("eventSelect");
+        var selectedValue = selectElement.value;
+        if (selectedValue) {
+            var newURL = "<%=request.getContextPath()%>/user_home?action=" + selectedValue;
+            window.location.href = newURL;
+        }
+    }
 </script>
 
 
