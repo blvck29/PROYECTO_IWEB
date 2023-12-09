@@ -142,6 +142,11 @@ public class UserServlet extends HttpServlet {
                         }
                         break;
 
+                    case "imagenPorEvento":
+                        System.out.println(request.getParameter("idEvento"));
+                        eventoDao.listarImagenPorEvento(response, request.getParameter("idEvento"));
+                        break;
+
 
                 }
 
