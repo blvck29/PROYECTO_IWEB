@@ -6,7 +6,11 @@
 
 
 <%Usuario user = (Usuario) session.getAttribute("usuario");%>
-<% ArrayList<Donaciones> listaDonaciones = (ArrayList<Donaciones>) request.getAttribute("listaDonaciones"); %>
+<% ArrayList<Donaciones> listaDonaciones = (ArrayList<Donaciones>) request.getAttribute("listaDonaciones");
+    String msgErrorDonacion = (String) session.getAttribute("msgErrorDonacion");
+    String msgKitTeleco = (String) session.getAttribute("msgKitTeleco");
+
+%>
 
 
 <!doctype html>
@@ -34,6 +38,8 @@
 
    <script src="https://cdn.jsdelivr.net/npm/uikit@3.17.4/dist/js/uikit.min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/uikit@3.17.4/dist/js/uikit-icons.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/showError.js"></script>
 
    <link rel="icon" type="image/jpg" href="favicon.png" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -41,7 +47,12 @@
     <title>Home | Semana de Ingeniería 2023</title>
 </head>
 
-<body>
+<body
+
+<% if(msgErrorDonacion != null){   %>
+    onload = " showError('<%=msgErrorDonacion%>') "
+<%} session.removeAttribute("msgErrorDonacion");%>
+>
 <header>
     <div class="logo"><a href="<%=request.getContextPath()%>/user_home"><img class="logo-img" src='images/logo_topbar.png' alt="logo"></a></div>
 
@@ -192,10 +203,6 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                                         <figure class="card-image">
                                             <img class="image-event" src="<%=request.getContextPath()%>/user_home?action=imagenDonacionPorUsuario&idDonacion=<%=donacion.getIdDonaciones()%>" style="object-fit: cover; height: 80%; width: 100%;"/>
                                         </figure>
-
-
-
-
 
                                         <div class="card-footer">
 
