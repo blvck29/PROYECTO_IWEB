@@ -140,8 +140,8 @@ public class UserServlet extends HttpServlet {
                         request.getRequestDispatcher("pages/user/profile.jsp").forward(request,response);
                         for (Evento evento : eventosXusuario) {
                             System.out.println(evento.getTitulo());
-
-                    }
+                        }
+                        break;
 
 
                 }
