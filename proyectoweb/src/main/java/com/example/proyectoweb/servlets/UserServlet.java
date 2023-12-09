@@ -240,6 +240,13 @@ public class UserServlet extends HttpServlet {
                     Imagen donacion = new Imagen();
                     donacion.setImagen(inputStream);
 
+                    if(user.getIdRolSistema().equals("GRADUAT")){
+                        System.out.println("egresado");
+                    }
+                    else{
+                        System.out.println("estudiante");
+                    }
+
                     donacionesDao.nuevaDonacion(user.getIdUsuario(), monto, donacion);
                     response.sendRedirect(request.getContextPath() + "/user_home?action=donate");
                     break;
