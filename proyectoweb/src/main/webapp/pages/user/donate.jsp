@@ -9,7 +9,7 @@
 <% ArrayList<Donaciones> listaDonaciones = (ArrayList<Donaciones>) request.getAttribute("listaDonaciones");
     String msgErrorDonacion = (String) session.getAttribute("msgErrorDonacion");
     String msgKitTeleco = (String) session.getAttribute("msgKitTeleco");
-
+    String msgDonacionCorrecta = (String) session.getAttribute("msgDonacionCorrecta");
 %>
 
 
@@ -47,17 +47,23 @@
     <title>Home | Semana de Ingeniería 2023</title>
 </head>
 
-<body <% if(msgErrorDonacion != null){%>
-        onload = " showError('<%=msgErrorDonacion %>') "
-    <%} session.removeAttribute("msgErrorDonacion");%>>
+<body
 
-<% if(msgErrorDonacion != null){   %>
+    <% if(msgErrorDonacion != null){   %>
     onload = " showErrorDonation('<%=msgErrorDonacion%>') "
-<%} session.removeAttribute("msgErrorDonacion");%>
+    <%} session.removeAttribute("msgErrorDonacion");%>
 
-<% if(msgKitTeleco != null){   %>
-onload = " kitTeleco('<%=msgKitTeleco%>') "
-<%} session.removeAttribute("msgKitTeleco");%>
+    <% if(msgKitTeleco != null){   %>
+    onload = " kitTeleco('<%=msgKitTeleco%>') "
+    <%} session.removeAttribute("msgKitTeleco");%>
+
+    <% if(msgDonacionCorrecta != null){   %>
+    onload = " donacionCorrecta('<%=msgDonacionCorrecta%>') "
+    <%} session.removeAttribute("msgDonacionCorrecta");%>
+
+>
+
+
 
 
 
