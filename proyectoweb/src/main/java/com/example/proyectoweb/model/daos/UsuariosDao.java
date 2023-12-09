@@ -581,6 +581,23 @@ public ArrayList<Usuario> listarDelegadosActDisponibles(){
 
     }
 
+    public void obtieneKitTeleco(Integer idUsuario){
+
+        String sql = "update usuarios set kit_teleco = ? where idUsuario = ?";
+
+        try(Connection conn = getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1,1);
+            pstmt.setInt(2, idUsuario);
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
 
     public int contarEstudiantes() {
         int totalEstudiantes = 0;

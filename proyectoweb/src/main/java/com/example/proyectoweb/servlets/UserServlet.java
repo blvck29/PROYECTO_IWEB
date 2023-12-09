@@ -2,10 +2,7 @@ package com.example.proyectoweb.servlets;
 
 import com.example.proyectoweb.model.CurrentDate;
 import com.example.proyectoweb.model.beans.*;
-import com.example.proyectoweb.model.daos.ActividadesDao;
-import com.example.proyectoweb.model.daos.DonacionesDao;
-import com.example.proyectoweb.model.daos.EventosDao;
-import com.example.proyectoweb.model.daos.InscritosDao;
+import com.example.proyectoweb.model.daos.*;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -166,6 +163,7 @@ public class UserServlet extends HttpServlet {
             ArrayList<Actividad> listaActividades = actDao.getListaActividades();
             ArrayList<Inscrito> listaInscritos = inscritosDao.inscritosPorEvento();
             DonacionesDao donacionesDao = new DonacionesDao();
+            UsuariosDao userDao = new UsuariosDao();
 
             switch (action) {
                 case "load":
@@ -242,32 +240,33 @@ public class UserServlet extends HttpServlet {
 
 
                     if(user.getIdRolAcademico().equals("GRADUAT")){
-                        System.out.println("egresado");
-
-
 
                         if(Double.parseDouble(monto) >= 100){
+                            Usuario usuarioDonacion = userDao.usuarioByEmail(user.getCorreo());
 
-                            HttpSession httpSession = request.getSession();
-                            httpSession.setAttribute("msgKitTeleco", "Felicidades, usted a obtenido su Kit Teleco. Se el enviará un correo con mas información sobre la entrega de este mismo.");
-                            System.out.println("monto mayor a 100");
+                            System.out.println("el estado del kit teleco de este usuario es: " + usuarioDonacion.getKitTeleco());
+
+                            if(usuarioDonacion.getKitTeleco()==0){
+                                HttpSession httpSession = request.getSession();
+                                httpSession.setAttribute("msgKitTeleco", "Usted a obtenido su Kit Teleco. Se el enviará un correo con mas información sobre la entrega de este mismo.");
+                                userDao.obtieneKitTeleco(user.getIdUsuario());
+                                donacionesDao.nuevaDonacion(user.getIdUsuario(), monto, donacion);
+
+                            }else{
+                                donacionesDao.nuevaDonacion(user.getIdUsuario(), monto, donacion);
+                            }
 
                         }else{
                             HttpSession httpSession = request.getSession();
                             httpSession.setAttribute("msgErrorDonacion", "Como egresado, el monto mínimo que puede donar son S/100");
-                            System.out.println("monto menor a 100, error");
                         }
-
 
 
                     }
                     else{
-                        System.out.println("estudiante");
-
-
+                        donacionesDao.nuevaDonacion(user.getIdUsuario(), monto, donacion);
                     }
 
-                    //donacionesDao.nuevaDonacion(user.getIdUsuario(), monto, donacion);
                     response.sendRedirect(request.getContextPath() + "/user_home?action=donate");
                     break;
 
