@@ -10,8 +10,6 @@
 <%Usuario user = (Usuario) session.getAttribute("usuario");%>
 
 <% ArrayList<Evento> listaEventos = (ArrayList<Evento>) request.getAttribute("listaEventos"); %>
-<% Actividad actividad = (Actividad) request.getAttribute("actividad"); %>
-<% String dato = (String) request.getAttribute("dato"); %>
 
 
 <!doctype html>
@@ -88,13 +86,13 @@
         </form>
       </li>
       <li>
-        <a href="<%=request.getContextPath()%>/admin_act?action=home" class="active">Eventos</a>
+        <a href="<%=request.getContextPath()%>/admin_act?action=home">Eventos</a>
       </li>
       <li>
-        <a href="<%=request.getContextPath()%>/admin_act?action=new_event&idActividad=<%=actividad.getIdActividad()%>">Crear Evento</a>
+        <a href="<%=request.getContextPath()%>/admin_act?action=new_event">Crear Evento</a>
       </li>
       <li>
-        <a href="<%=request.getContextPath()%>/admin_act?action=profile"><i class="fa-solid fa-user nav-icon2"></i><%=user.getNombres() + " " + user.getApellidos()%></a>
+        <a href="<%=request.getContextPath()%>/admin_act?action=profile" class="active"><i class="fa-solid fa-user nav-icon2"></i><%=user.getNombres() + " " + user.getApellidos()%></a>
       </li>
       <li>
         <a href="<%=request.getContextPath()%>/logout"><i class="fa-solid fa-door-open nav-icon2"></i>Cerrar Sesión</a>
@@ -284,33 +282,10 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
 </body>
 
-<script>
-  function submitFormUser() {
-    var selectElement = document.getElementById("eventSelectUser");
-    var selectedValue = selectElement.value;
-    if (selectedValue) {
-      var newURL = "<%=request.getContextPath()%>/user_home?action=" + selectedValue;
-      window.location.href = newURL;
-    }
-  }
-</script>
-
 
 <script>
-  function submitFormAdmin() {
-    var selectElement = document.getElementById("eventSelectAdmin");
-    var selectedValue = selectElement.value;
-    if (selectedValue) {
-      var newURL = "<%=request.getContextPath()%>/user_home?action=" + selectedValue;
-      window.location.href = newURL;
-    }
-  }
-</script>
-
-
-<script>
-  function submitForm2() {
-    var selectElement = document.getElementById("eventSelect2");
+  function submitForm() {
+    var selectElement = document.getElementById("eventSelect");
     var selectedValue = selectElement.value;
     if (selectedValue == "user") {
       var newURL = "<%=request.getContextPath()%>/user_home";
