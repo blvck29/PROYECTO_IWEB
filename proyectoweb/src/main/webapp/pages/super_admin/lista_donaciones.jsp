@@ -41,9 +41,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
     <link rel = "stylesheet" href="css/bootstrap/dataTablesDonaciones.bootstrap4.min.css">
 
-
-
-
+    <!-- Modal-->
+    <link rel = "stylesheet" href = "css/modalButton.css">
 
     <title>Administración de Usuarios | Semana de Ingeniería 2023</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -108,7 +107,34 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
             <form method="post" action="<%=request.getContextPath()%>/admin_gen?action=donations&ac=busqueda">
 
                 <a class="btn btn-primary" href="<%=request.getContextPath()%>/admin_gen?action=donations" role="button">Borrar filtros</a>
+                <!--Boton -->
+                <div class="boton-modal">
+                    <label for = "btn-modal">
+                        Ver detalles
+                    </label>
+                </div>
+                <!-- Fin de Boton -->
+
             </form>
+
+            <!--Ventana Modal -->
+            <input type="checkbox" id="btn-modal">
+            <div class="container-modal">
+                <div class ="content-modal">
+                    <h2>Monto total | Kit Teleco | Cantidad de Donaciones</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusamus aliquid at debitis
+                        distinctio dolore ducimus eaque ex facilis incidunt magni minus odio optio, recusandae sit sunt
+                        veritatis? Dignissimos, totam?</p>
+                    <div class="btn-cerrar">
+                        <label for = "btn-modal">Cerrar</label>
+                    </div>
+                </div>
+                <label for = "btn-modal" class="cerrar-modal"></label>
+            </div>
+            <!-- Fin de Ventana Modal-->
+
+
+
         </div>
 
 
