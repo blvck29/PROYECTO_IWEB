@@ -193,7 +193,9 @@ public class SystemServlet extends HttpServlet {
                     }
                 } else {
                     //Falta el popup de "El correo ingresado no está aceptado"
-                    response.sendRedirect("login?action=forgot_passwd&error=no_valid");
+                    HttpSession httpSession = request.getSession();
+                    httpSession.setAttribute("msgErrorForgetPassEmail", "El correo ingresado no está registrado en nuestro sistema");
+                    response.sendRedirect("login?action=forgot_passwd");
                 }
 
                 break;

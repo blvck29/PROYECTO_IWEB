@@ -57,3 +57,14 @@ function tokenError(errorMessage) {
         text: errorMessage,
     });
 }
+
+function showErrorForgetPassErrorEmail(errorMessage) {
+    Swal.fire({
+        icon: 'error',
+        title: 'CORREO INVÁLIDO:',
+        iconColor: '#DC3545',
+        confirmButtonColor: '#DC3545',
+        confirmButtonText: "Volver a ingresar correo",
+        text: errorMessage,
+    });
+}

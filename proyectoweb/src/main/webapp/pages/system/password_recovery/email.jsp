@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<% String msgErrorCorreo = (String) session.getAttribute("msgErrorForgetPassEmail"); %>
 
 <!doctype html>
 <html lang="es">
@@ -15,7 +16,13 @@
 </head>
 
 
-<body>
+<body
+<% if (msgErrorCorreo != null){%>
+
+onload 
+
+<% } session.removeAttribute("msgErrorForgetPassEmail");%>
+>
 
 <section class="index">
 

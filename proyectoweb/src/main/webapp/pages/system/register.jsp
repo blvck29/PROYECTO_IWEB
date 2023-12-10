@@ -98,24 +98,6 @@
                           <small>Error message</small>
                       </div>
 
-
-                    <!--
-                      <div style="display: flex; justify-content: space-between; margin-top:10px;">
-                          <div style="width: 200px" class="register-checkbox">
-                              <input type="checkbox" id="condition" name="condition" value="condit" >
-                              <label for="condition">Soy egresado PUCP</label>
-                          </div>
-                      <div style="width: 150px; margin-bottom: 10px; margin-top:10px" class="register-checkbox">
-                              <p>Género biológico:</p>
-                              <input type="radio" id="male" name="male" value="M">
-                              <label for="male">Masculino</label><br>
-                              <input type="radio" id="female" name="male" value="F">
-                              <label for="female">Femenino</label>
-                          </div>
-                      </div>
-
--->
-
                     <div class="form123-control">
                         <label for="password">Contraseña</label>
                         <input type="password" name="password" id="password"/>
