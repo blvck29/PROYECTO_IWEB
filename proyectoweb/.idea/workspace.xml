@@ -9,13 +9,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="250e9528-0acf-42db-be38-0516405aa721" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/modalButton.css" afterDir="false" />
+    <list default="true" id="250e9528-0acf-42db-be38-0516405aa721" name="Changes" comment="perfil adminGen">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/styleFooter.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/super_admin/edit_activity.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/super_admin/edit_activity.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/super_admin/editar_estado.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/super_admin/editar_estado.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/super_admin/lista_actividades.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/super_admin/lista_actividades.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/super_admin/lista_donaciones.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/super_admin/lista_donaciones.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/super_admin/new_activity.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/super_admin/new_activity.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/super_admin/profileSuperAdmin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/super_admin/profileSuperAdmin.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/super_admin/statisticsRecaudaciones.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/super_admin/statisticsRecaudaciones.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/super_admin/statisticsStudent.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/super_admin/statisticsStudent.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/super_admin/statisticsSupports.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/super_admin/statisticsSupports.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/super_admin/tabla_inscritos.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/super_admin/tabla_inscritos.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/super_admin/ver_donacion.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/super_admin/ver_donacion.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/proyectoweb-1.0-SNAPSHOT/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/target/proyectoweb-1.0-SNAPSHOT/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/proyectoweb-1.0-SNAPSHOT/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/proyectoweb-1.0-SNAPSHOT/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/proyectoweb-1.0-SNAPSHOT/pages/system/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/proyectoweb-1.0-SNAPSHOT/pages/system/register.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,9 +42,9 @@
       <list>
         <option value="Class" />
         <option value="Servlet" />
-        <option value="Jsp File" />
         <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
@@ -382,7 +394,18 @@
       <workItem from="1701954515886" duration="6125000" />
       <workItem from="1701972823056" duration="6819000" />
       <workItem from="1702158316457" duration="11754000" />
+      <workItem from="1702174919050" duration="2428000" />
+      <workItem from="1702180575514" duration="7085000" />
     </task>
+    <task id="LOCAL-00001" summary="perfil adminGen">
+      <option name="closed" value="true" />
+      <created>1702177076112</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1702177076112</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -401,6 +424,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="perfil adminGen" />
+    <option name="LAST_COMMIT_MESSAGE" value="perfil adminGen" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -414,6 +439,11 @@
           <url>file://$PROJECT_DIR$/src/main/webapp/pages/admin_act/home.jsp</url>
           <line>269</line>
           <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/webapp/pages/super_admin/edit_activity.jsp</url>
+          <line>254</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
