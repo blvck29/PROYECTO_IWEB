@@ -5,30 +5,44 @@ const codigo = document.getElementById("codigo");
 const email = document.getElementById("email");
 const password = document.getElementById("password");
 const password2 = document.getElementById("password2");
-const password = document.getElementById("password");
 const genero = document.getElementById("genero");
+const estadoAcademico = document.getElementById("estadoAcademico");
+
+
+
+
+
+let correosUsados2 = [];
+let codigosUsados2 = [];
+
+
+async function obtenerDatosDelServidor() {
+    try {
+        const response = await fetch('/proyectoweb/login?action=obtenerDatos');
+        if (!response.ok) {
+            throw new Error('Error al obtener los datos del servidor');
+        }
+        const data = await response.json();
+        correosUsados2 = data.correos || [];
+        codigosUsados2 = data.codigos || [];
+
+    } catch (error) {
+        console.error('Error al obtener datos del servidor:', error);
+    }
+}
+obtenerDatosDelServidor();
+
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    if (checkInputs()) {
+    if (checkInputs(correosUsados2, codigosUsados2)) {
         form.submit();
     }
 });
 
-function checkInputs() {
 
-    let hasErrors = false;
-
-    // trim to remove the whitespaces
-    const usuarioValue = usuario.value.trim();
-    const lastnameValue = lastnames.value.trim();
-    const codigoValue = codigo.value.trim();
-    const emailValue = email.value.trim();
-    const passwordValue = password.value.trim();
-    const password2Value = password2.value.trim();
-    const generoValue = genero.value.trim();
-
+function checkInputs(correosUsados2, codigosUsados2) {
 
     function setErrorFor(input, message) {
         const formControl = input.parentElement;
@@ -42,6 +56,21 @@ function checkInputs() {
         const formControl = input.parentElement;
         formControl.className = "form123-control success";
     }
+
+
+
+    let hasErrors = false;
+
+    // trim to remove the whitespaces
+    const usuarioValue = usuario.value.trim();
+    const lastnameValue = lastnames.value.trim();
+    const codigoValue = codigo.value.trim();
+    const emailValue = email.value.trim();
+    const passwordValue = password.value.trim();
+    const password2Value = password2.value.trim();
+    const generoValue = genero.value.trim();
+    const estadoAcademicoValue = estadoAcademico.value.trim();
+
 
 
 
@@ -64,7 +93,7 @@ function checkInputs() {
         setErrorFor(codigo, "No puedes dejar en blanco este campo");
     } else if (codigoValue.length !== 8) {
         setErrorFor(codigo, "El código debe tener 8 dígitos");
-    }else if (codigosUsados.includes(codigoValue)) {
+    }else if (codigosUsados2.includes(codigoValue)) {
         setErrorFor(codigo, "Este código ya está registrado");
     } else {
         setSuccessFor(codigo);
@@ -75,7 +104,7 @@ function checkInputs() {
         setErrorFor(email, "No puede dejar el email en blanco");
     } else if (!isEmail(emailValue)) {
         setErrorFor(email, "Debe ingresar un correo PUCP");
-    } else if (correosUsados.includes(emailValue)) {
+    } else if (correosUsados2.includes(emailValue)) {
         setErrorFor(email, "Este correo ya está registrado");
     } else {
         setSuccessFor(email);
@@ -95,10 +124,16 @@ function checkInputs() {
         setSuccessFor(password2);
     }
 
-    if (generoValue === "") {
+    if (generoValue === "noGenero") {
         setErrorFor(genero, "No puedes dejar en blanco este campo");
     } else {
         setSuccessFor(genero);
+    }
+
+    if (estadoAcademicoValue === "noAcademic") {
+        setErrorFor(estadoAcademico, "No puedes dejar en blanco este campo");
+    } else {
+        setSuccessFor(estadoAcademico);
     }
 
 
