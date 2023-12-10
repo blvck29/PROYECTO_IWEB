@@ -346,11 +346,14 @@ public class AdminGenServlet extends HttpServlet {
                             if (estadoDonacion.equals("1")){
                                 //----Obtenemos Monto total del Usuario hasta el momento----
                                 int idUsuarioDonation = donacionesDao.obtenerIdUserxIdDonation(Integer.parseInt(donacionId));
-                                Double montoTotalAnt = donacionesDao.obtenerMontoTotalUsuario(idUsuarioDonation); //MAL EL IDDDDDDDDDDDDDDDDD
+                                //obtenemos Usuario x ID
+                                UsuariosDao usuariosDao1 = new UsuariosDao();
+                                Usuario usuario = usuariosDao1.buscarXid(idUsuarioDonation);
+                                Double montoTotalAnt = donacionesDao.obtenerMontoTotalUsuario(idUsuarioDonation);
                                 Double montoNuevo = Double.parseDouble(montoStr); //monto donado nuevo
 
                                 //actualizamos Monto Total del Usuario
-                                donacionesDao.actualizarMontoTotal(montoNuevo, idUsuarioDonation, montoTotalAnt); //MAL EL IDDDDDDDDDDDDDDDDD
+                                donacionesDao.actualizarMontoTotal(montoNuevo, usuario, montoTotalAnt);
 
                             }
 
