@@ -242,6 +242,9 @@ public class UserServlet extends HttpServlet {
                     Imagen donacion = new Imagen();
                     donacion.setImagen(inputStream);
 
+                    //----Obtenemos Monto total del Usuario hasta el momento----
+                    Double montoTotalAnt = donacionesDao.obtenerMontoTotalUsuario(user.getIdUsuario());
+                    Double montoNuevo = Double.parseDouble(monto); //monto donado nuevo
 
                     if(user.getIdRolAcademico().equals("GRADUAT")){
 
@@ -255,11 +258,15 @@ public class UserServlet extends HttpServlet {
                                 httpSession.setAttribute("msgKitTeleco", "Su donación se ha registrado correctamente y ha obtenido su Kit Teleco. Se le enviará un correo con mas información sobre la entrega de este mismo.");
                                 userDao.obtieneKitTeleco(user.getIdUsuario());
                                 donacionesDao.nuevaDonacion(user.getIdUsuario(), monto, donacion);
-
+                                //actualizamos Monto Total
+                                donacionesDao.actualizarMontoTotal(montoNuevo, user.getIdUsuario(), montoTotalAnt);
                             }else{
                                 HttpSession httpSession = request.getSession();
                                 httpSession.setAttribute("msgDonacionCorrecta", "Su donación se ha registrado correctamente.");
                                 donacionesDao.nuevaDonacion(user.getIdUsuario(), monto, donacion);
+                                //actualizamos Monto Total
+                                donacionesDao.actualizarMontoTotal(montoNuevo, user.getIdUsuario(), montoTotalAnt);
+
                             }
 
                         }else{
@@ -273,6 +280,8 @@ public class UserServlet extends HttpServlet {
                         HttpSession httpSession = request.getSession();
                         httpSession.setAttribute("msgDonacionCorrecta", "Su donación se ha registrado correctamente.");
                         donacionesDao.nuevaDonacion(user.getIdUsuario(), monto, donacion);
+                        //actualizamos Monto Total
+                        donacionesDao.actualizarMontoTotal(montoNuevo, user.getIdUsuario(), montoTotalAnt);
                     }
 
                     response.sendRedirect(request.getContextPath() + "/user_home?action=donate");

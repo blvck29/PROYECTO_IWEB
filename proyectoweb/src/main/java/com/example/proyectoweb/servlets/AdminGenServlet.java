@@ -333,6 +333,10 @@ public class AdminGenServlet extends HttpServlet {
                             donacionesDao.actualizarDonacion(Integer.parseInt(donacionId), montoInt, fechaDonacion, horaDonacion, estadoDonacionInt);
                             response.sendRedirect(request.getContextPath() + "/admin_gen?action=donations");
 
+                            //Actualizaremos el Monto Total solo si es válido el estado (estado = 1)
+
+
+
                             break;
                     }
                     break;

@@ -8,6 +8,7 @@ public class Usuario {
     private String idRolSistema;
     private String idEstado;
     private String nombres;
+    private Double montoTotal;
 
     public String getSexo() {
         return sexo;

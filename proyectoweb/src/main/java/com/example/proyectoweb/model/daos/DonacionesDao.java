@@ -360,6 +360,54 @@ public class DonacionesDao extends DaoBase{
 
     }
 
+    public Double obtenerMontoTotalUsuario(int idUsuario){
+
+        String sql = "SELECT * FROM usuarios where idUsuario = ?";
+
+        Double montoTotalCurrent = 0.0;
+
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)){
+
+            pstmt.setInt(1, idUsuario);
+
+            try(ResultSet rs = pstmt.executeQuery()){
+
+                while(rs.next()){
+
+                    montoTotalCurrent = rs.getDouble(14);
+
+                }
+
+            }
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+
+        return montoTotalCurrent;
+
+    }
+
+    public void actualizarMontoTotal(Double montoNuevo, Integer idUsuario, Double montoAntiguo){
+
+        String sql ="update usuarios set monto_total = ? where idUsuario = ? ";
+
+        Double montoActualizado = montoAntiguo + montoNuevo;
+
+        try(Connection conn = getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setDouble(1, montoActualizado);
+            pstmt.setInt(2, idUsuario);
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
+
 
     /*public ArrayList<Donaciones> listarDonacionesPaginacion(Integer offset){
 
