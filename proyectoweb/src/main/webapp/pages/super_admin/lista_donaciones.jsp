@@ -136,7 +136,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                             <!-- ... -->
 
                             <div class="table-responsive container">
-                                <table id="donations" class="table table-striped table-bordered" style="width:100%">
+                                <table id="donationsDetails" class="table table-striped table-bordered" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th class="header c1 centeralign" style="" scope="col"><a><strong>NOMBRE</strong></a></th>
@@ -343,6 +343,15 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 <script src = "https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap4.min.js"></script>
 <script>
     new DataTable('#donations', { language: {
+
+            url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-MX.json',
+
+        },
+    });
+</script>
+
+<script>
+    new DataTable('#donationsDetails', { language: {
 
             url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-MX.json',
 
