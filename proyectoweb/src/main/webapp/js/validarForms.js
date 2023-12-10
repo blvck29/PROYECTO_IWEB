@@ -5,6 +5,8 @@ const codigo = document.getElementById("codigo");
 const email = document.getElementById("email");
 const password = document.getElementById("password");
 const password2 = document.getElementById("password2");
+const password = document.getElementById("password");
+const genero = document.getElementById("genero");
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -25,6 +27,7 @@ function checkInputs() {
     const emailValue = email.value.trim();
     const passwordValue = password.value.trim();
     const password2Value = password2.value.trim();
+    const generoValue = genero.value.trim();
 
 
     function setErrorFor(input, message) {
@@ -90,6 +93,12 @@ function checkInputs() {
         setErrorFor(password2, "Las contraseñas no coinciden");
     } else {
         setSuccessFor(password2);
+    }
+
+    if (generoValue === "") {
+        setErrorFor(genero, "No puedes dejar en blanco este campo");
+    } else {
+        setSuccessFor(genero);
     }
 
 

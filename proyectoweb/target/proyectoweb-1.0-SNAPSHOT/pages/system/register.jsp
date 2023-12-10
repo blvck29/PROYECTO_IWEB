@@ -91,20 +91,26 @@
 
                     <div class="form123-control">
                         <label for="email">Estado Académico</label>
-                        <select class="form-select" aria-label="Default select example">
+                        <select class="form-select" id="estadoAcademico" name="estadoAcademico">
                             <option selected disabled>Seleccionar</option>
                             <option value="GRADUAT">Estudiante</option>
                             <option value="STUDENT">Egresado</option>
                         </select>
+                        <i class="fas fa-check-circle"></i>
+                        <i class="fas fa-exclamation-circle"></i>
+                        <small>Error message</small>
                     </div>
 
                     <div class="form123-control">
                         <label for="email">Género Biológico</label>
-                        <select class="form-select" aria-label="Default select example">
+                        <select class="form-select" id="genero" name="genero" >
                             <option selected disabled>Seleccionar</option>
                             <option value="male">Masculino</option>
-                            <option value="female">Egresado</option>
+                            <option value="female">Femenino</option>
                         </select>
+                        <i class="fas fa-check-circle"></i>
+                        <i class="fas fa-exclamation-circle"></i>
+                        <small>Error message</small>
 
                     </div>
 
