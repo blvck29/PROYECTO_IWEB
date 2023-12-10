@@ -408,6 +408,34 @@ public class DonacionesDao extends DaoBase{
 
     }
 
+    public int obtenerIdUserxIdDonation(int idDonation){
+
+        String sql = "SELECT * FROM registro_donaciones where idRegistro_Donaciones = ?";
+
+        int idUser = 0;
+
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)){
+
+            pstmt.setInt(1, idDonation);
+
+            try(ResultSet rs = pstmt.executeQuery()){
+
+                while(rs.next()){
+
+                    idUser = rs.getInt(2);
+
+                }
+
+            }
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+
+        return idUser;
+
+    }
+
 
     /*public ArrayList<Donaciones> listarDonacionesPaginacion(Integer offset){
 

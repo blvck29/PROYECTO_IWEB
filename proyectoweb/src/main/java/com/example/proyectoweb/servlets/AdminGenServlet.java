@@ -324,9 +324,7 @@ public class AdminGenServlet extends HttpServlet {
                             String horaDonacion = request.getParameter("hora-donacion");
                             String estadoDonacion = request.getParameter("estado");
 
-                            String montoStr1 = montoStr.substring(3);
-
-                            double montoInt = Double.parseDouble(montoStr1);
+                            double montoInt = Double.parseDouble(montoStr);
 
                             int estadoDonacionInt = Integer.parseInt(estadoDonacion);
 
@@ -335,6 +333,16 @@ public class AdminGenServlet extends HttpServlet {
 
                             //Actualizaremos el Monto Total solo si es válido el estado (estado = 1)
 
+                            if (estadoDonacion.equals("1")){
+                                //----Obtenemos Monto total del Usuario hasta el momento----
+                                int idUsuarioDonation = donacionesDao.obtenerIdUserxIdDonation(Integer.parseInt(donacionId));
+                                Double montoTotalAnt = donacionesDao.obtenerMontoTotalUsuario(idUsuarioDonation); //MAL EL IDDDDDDDDDDDDDDDDD
+                                Double montoNuevo = Double.parseDouble(montoStr); //monto donado nuevo
+
+                                //actualizamos Monto Total del Usuario
+                                donacionesDao.actualizarMontoTotal(montoNuevo, idUsuarioDonation, montoTotalAnt); //MAL EL IDDDDDDDDDDDDDDDDD
+
+                            }
 
 
                             break;
