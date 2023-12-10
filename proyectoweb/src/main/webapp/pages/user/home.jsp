@@ -9,8 +9,6 @@
 
 <%Usuario user = (Usuario) session.getAttribute("usuario");%>
 
-<%  if (user.getIdRolSistema().equals("USER") || user.getIdRolSistema().equals("DELACT")){ %>
-
     <% ArrayList<Actividad> listaActividades = (ArrayList<Actividad>) request.getAttribute("listaActividades");%>
     <% ArrayList<Evento> listaEventos = (ArrayList<Evento>) request.getAttribute("listaEventos"); %>
     <% ArrayList<Inscrito> listaInscritos = (ArrayList<Inscrito>) request.getAttribute("listaInscritos"); %>
@@ -73,6 +71,7 @@
 <% if (user.getIdRolSistema().equals("USER")){  %>
 
 <header>
+
     <div class="logo"><a href="<%=request.getContextPath()%>/user_home"><img class="logo-img" src='images/logo_topbar.png' alt="logo"></a></div>
 
     <div class="bars">
@@ -109,6 +108,8 @@
             </li>
         </ul>
     </nav>
+
+    </header>
 
     <% } else { %>
 
@@ -161,7 +162,7 @@
 
     <% } %>
 
-</header>
+
 
 
 <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -266,7 +267,7 @@
             <div class="card-list">
                 <article class="card">
                     <figure class="card-image">
-                        <img class="image-event" src="images/placeholder_events.jpg" alt="event" />
+                        <img class="image-event" src="<%=request.getContextPath()%>/user_home?action=imagenPorEvento&idEvento=<%=evento.getIdEvento()%>" />
                     </figure>
                     <div class="card-header">
                         <a href="<%=request.getContextPath()%>/user_home?action=details&id=<%=evento.getIdEvento()%>"><%=evento.getTitulo()%><p><%=evento.getSubTitulo()%></p></a>
@@ -473,5 +474,3 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
 
 </html>
-
-<% } else {request.getRequestDispatcher("/logout").forward(request, response);}%>

@@ -8,8 +8,6 @@
 
 <%Usuario user = (Usuario) session.getAttribute("usuario");%>
 
-<%  if (user.getIdRolSistema().equals("DELACT")){ %>
-
     <% ArrayList<Evento> listaEventos = (ArrayList<Evento>) request.getAttribute("listaEventos"); %>
     <% Actividad actividad = (Actividad) request.getAttribute("actividad"); %>
     <% String dato = (String) request.getAttribute("dato"); %>
@@ -95,7 +93,7 @@
                 <a href="<%=request.getContextPath()%>/admin_act?action=new_event&idActividad=<%=actividad.getIdActividad()%>">Crear Evento</a>
             </li>
             <li>
-                <a href="<%=request.getContextPath()%>/user_home?action=profile"><i class="fa-solid fa-user nav-icon2"></i><%=user.getNombres() + " " + user.getApellidos()%></a>
+                <a href="<%=request.getContextPath()%>/admin_act?action=profile"><i class="fa-solid fa-user nav-icon2"></i><%=user.getNombres() + " " + user.getApellidos()%></a>
             </li>
             <li>
                 <a href="<%=request.getContextPath()%>/logout"><i class="fa-solid fa-door-open nav-icon2"></i>Cerrar Sesión</a>
@@ -421,4 +419,3 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
 </html>
 
-<% } else {request.getRequestDispatcher("/logout").forward(request, response);}%>

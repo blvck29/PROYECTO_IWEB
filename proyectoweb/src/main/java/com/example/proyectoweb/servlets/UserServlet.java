@@ -2,10 +2,7 @@ package com.example.proyectoweb.servlets;
 
 import com.example.proyectoweb.model.CurrentDate;
 import com.example.proyectoweb.model.beans.*;
-import com.example.proyectoweb.model.daos.ActividadesDao;
-import com.example.proyectoweb.model.daos.DonacionesDao;
-import com.example.proyectoweb.model.daos.EventosDao;
-import com.example.proyectoweb.model.daos.InscritosDao;
+import com.example.proyectoweb.model.daos.*;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -139,12 +136,16 @@ public class UserServlet extends HttpServlet {
                     case "profile":
                         ArrayList<Evento> eventosXusuario = eventoDao.listarEventosInscritos(user.getIdUsuario());
                         request.setAttribute("listaEventos",eventosXusuario);
-                        System.out.println(("alguien llego aqui"));
                         request.getRequestDispatcher("pages/user/profile.jsp").forward(request,response);
                         for (Evento evento : eventosXusuario) {
                             System.out.println(evento.getTitulo());
+                        }
+                        break;
 
-                    }
+                    case "imagenPorEvento":
+                        System.out.println(request.getParameter("idEvento"));
+                        eventoDao.listarImagenPorEvento(response, request.getParameter("idEvento"));
+                        break;
 
 
                 }
@@ -166,6 +167,7 @@ public class UserServlet extends HttpServlet {
             ArrayList<Actividad> listaActividades = actDao.getListaActividades();
             ArrayList<Inscrito> listaInscritos = inscritosDao.inscritosPorEvento();
             DonacionesDao donacionesDao = new DonacionesDao();
+            UsuariosDao userDao = new UsuariosDao();
 
             switch (action) {
                 case "load":
@@ -240,7 +242,39 @@ public class UserServlet extends HttpServlet {
                     Imagen donacion = new Imagen();
                     donacion.setImagen(inputStream);
 
-                    donacionesDao.nuevaDonacion(user.getIdUsuario(), monto, donacion);
+
+                    if(user.getIdRolAcademico().equals("GRADUAT")){
+
+                        if(Double.parseDouble(monto) >= 100){
+                            Usuario usuarioDonacion = userDao.usuarioByEmail(user.getCorreo());
+
+                            System.out.println("el estado del kit teleco de este usuario es: " + usuarioDonacion.getKitTeleco());
+
+                            if(usuarioDonacion.getKitTeleco()==0){
+                                HttpSession httpSession = request.getSession();
+                                httpSession.setAttribute("msgKitTeleco", "Su donación se ha registrado correctamente y ha obtenido su Kit Teleco. Se le enviará un correo con mas información sobre la entrega de este mismo.");
+                                userDao.obtieneKitTeleco(user.getIdUsuario());
+                                donacionesDao.nuevaDonacion(user.getIdUsuario(), monto, donacion);
+
+                            }else{
+                                HttpSession httpSession = request.getSession();
+                                httpSession.setAttribute("msgDonacionCorrecta", "Su donación se ha registrado correctamente.");
+                                donacionesDao.nuevaDonacion(user.getIdUsuario(), monto, donacion);
+                            }
+
+                        }else{
+                            HttpSession httpSession = request.getSession();
+                            httpSession.setAttribute("msgErrorDonacion", "Como egresado, el monto mínimo que puede donar son S/100");
+                        }
+
+
+                    }
+                    else{
+                        HttpSession httpSession = request.getSession();
+                        httpSession.setAttribute("msgDonacionCorrecta", "Su donación se ha registrado correctamente.");
+                        donacionesDao.nuevaDonacion(user.getIdUsuario(), monto, donacion);
+                    }
+
                     response.sendRedirect(request.getContextPath() + "/user_home?action=donate");
                     break;
 
