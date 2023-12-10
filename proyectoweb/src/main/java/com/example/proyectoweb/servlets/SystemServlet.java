@@ -33,7 +33,7 @@ public class SystemServlet extends HttpServlet {
                 request.getRequestDispatcher("pages/system/register.jsp").forward(request, response);
                 break;
 
-            case "obtenerDatos":
+            case "obtenerDatos": //Para validaciones a la hora de registrarse
                 ArrayList<String> correos = userDao.correosExistentes();
                 ArrayList<String> codigos = userDao.codigosExistentes();
                 Gson gson = new Gson();
