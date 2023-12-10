@@ -126,7 +126,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                 <div class="modal-dialog modal-xl">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Detalles acerca de el Monto total y Kit teleco</h1>
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Detalles acerca de Monto total | Cantidad de Donaciones | Kit teleco</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body" style="max-height: 400px; overflow-y: auto;">
