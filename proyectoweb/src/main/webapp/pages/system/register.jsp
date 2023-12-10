@@ -51,77 +51,117 @@
 
             <h2>Registrarse</h2>
 
-            <div class="form123-control">
-                <label for="username">Nombres</label>
-                <input type="text" id="username" name="names" />
-                <i class="fas fa-check-circle"></i>
-                <i class="fas fa-exclamation-circle"></i>
-                <small>Error message</small>
-            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form123-control">
+                        <label for="username">Nombres</label>
+                        <input type="text" id="username" name="names" />
+                        <i class="fas fa-check-circle"></i>
+                        <i class="fas fa-exclamation-circle"></i>
+                        <small>Error message</small>
+                    </div>
 
-            <div class="form123-control">
-                <label for="lastname">Apellidos</label>
-                <input type="text" id="lastname" name="lastnames" />
-                <i class="fas fa-check-circle"></i>
-                <i class="fas fa-exclamation-circle"></i>
-                <small>Error message</small>
-            </div>
+                    <div class="form123-control">
+                        <label for="lastname">Apellidos</label>
+                        <input type="text" id="lastname" name="lastnames" />
+                        <i class="fas fa-check-circle"></i>
+                        <i class="fas fa-exclamation-circle"></i>
+                        <small>Error message</small>
+                    </div>
 
-            <div class="form123-control">
-                <label for="codigo">Código PUCP</label>
-                <input type="number" name="code" placeholder="Como mínimo 8 caracteres" id="codigo" />
-                <i class="fas fa-check-circle"></i>
-                <i class="fas fa-exclamation-circle"></i>
-                <small>Error message</small>
-            </div>
+                    <div class="form123-control">
+                        <label for="codigo">Código PUCP</label>
+                        <input type="number" name="code" placeholder="Como mínimo 8 caracteres" id="codigo" />
+                        <i class="fas fa-check-circle"></i>
+                        <i class="fas fa-exclamation-circle"></i>
+                        <small>Error message</small>
+                    </div>
 
+                    <div class="form123-control">
+                        <label for="email">Correo PUCP</label>
+                        <input type="text" placeholder="Debe Contener 8 dígitos" name="email" id="email" />
+                        <i class="fas fa-check-circle"></i>
+                        <i class="fas fa-exclamation-circle"></i>
+                        <small>Error message</small>
+                    </div>
 
-            <div class="form123-control">
-                <label for="email">Correo PUCP</label>
-                <input type="text" placeholder="Debe Contener 8 dígitos" name="email" id="email" />
-                <i class="fas fa-check-circle"></i>
-                <i class="fas fa-exclamation-circle"></i>
-                <small>Error message</small>
-            </div>
-
-            <div style="display: flex; justify-content: space-between; margin-top:10px;">
-                <div style="width: 200px" class="register-checkbox">
-                    <input type="checkbox" id="condition" name="condition" value="condit" >
-                    <label for="condition">Soy egresado PUCP</label>
                 </div>
+                <div class="col-md-6">
 
-                <div style="width: 150px; margin-bottom: 10px; margin-top:10px" class="register-checkbox">
-                    <p>Género biológico:</p>
-                    <input type="radio" id="male" name="male" value="M">
-                    <label for="male">Masculino</label><br>
-                    <input type="radio" id="female" name="male" value="F">
-                    <label for="female">Femenino</label>
+
+                    <div class="form123-control">
+                        <label for="email">Estado Académico</label>
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected disabled>Seleccionar</option>
+                            <option value="GRADUAT">Estudiante</option>
+                            <option value="STUDENT">Egresado</option>
+                        </select>
+                    </div>
+
+                    <div class="form123-control">
+                        <label for="email">Género Biológico</label>
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected disabled>Seleccionar</option>
+                            <option value="male">Masculino</option>
+                            <option value="female">Egresado</option>
+                        </select>
+
+                    </div>
+
+
+                <!--
+                    <div style="display: flex; justify-content: space-between; margin-top:10px;">
+                        <div style="width: 200px" class="register-checkbox">
+                            <input type="checkbox" id="condition" name="condition" value="condit" >
+                            <label for="condition">Soy egresado PUCP</label>
+                        </div>
+                    <div style="width: 150px; margin-bottom: 10px; margin-top:10px" class="register-checkbox">
+                            <p>Género biológico:</p>
+                            <input type="radio" id="male" name="male" value="M">
+                            <label for="male">Masculino</label><br>
+                            <input type="radio" id="female" name="male" value="F">
+                            <label for="female">Femenino</label>
+                        </div>
+                    </div>
+                -->
+
+
+
+
+
+
+                    <div class="form123-control">
+                        <label for="password">Contraseña</label>
+                        <input type="password" name="password" id="password"/>
+                        <i class="fas fa-check-circle"></i>
+                        <i class="fas fa-exclamation-circle"></i>
+                        <small>Error message</small>
+                    </div>
+
+
+
+                    <div class="form123-control">
+                        <label for="password2">Confirmar contraseña</label>
+                        <input type="password" placeholder="Las contraseñas deben coincidir" name="passwordconf" id="password2"/>
+                        <i class="fas fa-check-circle"></i>
+                        <i class="fas fa-exclamation-circle"></i>
+                        <small>Error message</small>
+                    </div>
+
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="mostrarContrasena" >
+                        <label style="color:#ffffff" class="form-check-label" for="flexCheckDefault">Mostrar contraseña</label>
+                    </div>
+
                 </div>
             </div>
 
-            <div class="form123-control">
-                <label for="password">Contraseña</label>
-                <input type="password" name="password" id="password"/>
-                <i class="fas fa-check-circle"></i>
-                <i class="fas fa-exclamation-circle"></i>
-                <small>Error message</small>
-            </div>
 
 
 
-            <div class="form123-control">
-                <label for="password2">Confirmar contraseña</label>
-                <input type="password" placeholder="Las contraseñas deben coincidir" name="passwordconf" id="password2"/>
-                <i class="fas fa-check-circle"></i>
-                <i class="fas fa-exclamation-circle"></i>
-                <small>Error message</small>
-            </div>
 
 
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="mostrarContrasena" >
-                <label style="color:#ffffff" class="form-check-label" for="flexCheckDefault">Mostrar contraseña</label>
-            </div>
             <br>
 
             <input type="submit" value="Registrarse" class="register-button">
