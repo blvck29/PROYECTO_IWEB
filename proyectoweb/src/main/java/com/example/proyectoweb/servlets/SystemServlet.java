@@ -33,7 +33,7 @@ public class SystemServlet extends HttpServlet {
                 request.getRequestDispatcher("pages/system/register.jsp").forward(request, response);
                 break;
 
-            case "obtenerDatos":
+            case "obtenerDatos": //Para validaciones a la hora de registrarse
                 ArrayList<String> correos = userDao.correosExistentes();
                 ArrayList<String> codigos = userDao.codigosExistentes();
                 Gson gson = new Gson();
@@ -125,7 +125,7 @@ public class SystemServlet extends HttpServlet {
                 String lastnames = request.getParameter("lastnames");
                 int codigo = Integer.parseInt(request.getParameter("code"));
                 String email = request.getParameter("email");
-                boolean isEgresado = "estadoAcademico".equals(request.getParameter("GRADUAT"));
+                boolean isEgresado = "GRADUAT".equals(request.getParameter("estadoAcademico"));
                 String sexo = request.getParameter("genero");
 
 
@@ -138,7 +138,7 @@ public class SystemServlet extends HttpServlet {
 
                 String password = request.getParameter("password");
 
-                System.out.println("contraseña: " + password);
+
 
                 String correoDB =  userDao.verificarCorreo(email);
                 String codigoDB = userDao.verificarCodigo(String.valueOf(codigo));
@@ -171,7 +171,8 @@ public class SystemServlet extends HttpServlet {
                     tokenDao.deleteToken(String.valueOf(enteredToken));
                     response.sendRedirect("login?action=validation_complete");
                 } else {
-                    //Falta el popup de "El token no es válido"
+                    HttpSession httpSession = request.getSession();
+                    httpSession.setAttribute("msgErrorToken", "El token ingresado es incorrecto. Verifique el token que se le envió al correo.");
                     response.sendRedirect("login?action=confirm_account&error=bad_token");
                 }
 

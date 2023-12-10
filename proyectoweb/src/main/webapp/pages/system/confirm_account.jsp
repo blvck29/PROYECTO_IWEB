@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<% String msgErrorToken = (String) session.getAttribute("msgErrorToken"); %>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -10,10 +11,17 @@
     <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
     <script src="https://kit.fontawesome.com/a2dd6045c4.js" crossorigin="anonymous"></script>
     <link rel="icon" type="image/jpg" href="favicon.png"/>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/showError.js"></script>
     <title>Semana de Ingeniería 2023</title>
 </head>
 
-<body>
+<body
+
+        <% if(msgErrorToken != null){ %>
+        onload=" tokenError('<%=msgErrorToken%>')  "
+        <%} session.removeAttribute("msgErrorToken");%>
+>
 
 <section class="index">
 
