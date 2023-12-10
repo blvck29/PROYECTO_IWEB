@@ -303,14 +303,47 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
 
 <div class="container-fluid" style="background-color: #fff; padding-right: 0; padding-left: 0">
-    <div class="my-4"></div>
-    <footer id="sticky-footer" class="flex-shrink-0 py-4 text-white-50" style="background-color: #04011E">
-        <div class="container"><div class="nav justify-content-center border-bottom pb-3 mb-3">
-            <p style="text-align: center">
-                <small class="text-center">&copy; Pontificia Universidad Católica del Perú - Todos los derechos reservados</small>
-            </p>
-        </div></div>
-    </footer>
+    <div class="container-fluid" style="padding-right: 0; padding-left: 0">
+        <footer id="sticky-footer" class="footer-distributed" style="background-color: #04011E">
+            <div class="footer-left">
+                <img src="images/logo_topbar.png" alt="Logo de Ingeniería de las Telecomunicaciones" style="width: 400px; height: auto;">
+                <p class="footer-links">
+                    <a href="<%=request.getContextPath()%>/admin_act?action=home">Eventos</a> |
+                    <a href="<%=request.getContextPath()%>/admin_act?action=profile">Perfil</a>
+                </p>
+                <p class="footer-company-name">Copyright © 2023 <strong>Pontificia Universidad Catolica del Perú</strong> Todos los derechos reservados</p>
+            </div>
+
+            <div class="footer-center">
+                <div>
+                    <i class="fa fa-map-marker"></i>
+                    <p><span>Av. Universitaria 1801, San Miguel, 15088</span> Lima, Perú</p>
+                </div>
+
+                <div>
+                    <i class="fa fa-phone"></i>
+                    <p>+51 982 876 098</p>
+                </div>
+
+                <div>
+                    <i class="fa fa-envelope"></i>
+                    <p><a href="mailto:sagar00001.co@gmail.com">fibratoxica.sdi@gmail.com</a></p>
+                </div>
+            </div>
+
+            <div class="footer-right">
+                <p class="footer-company-about">
+                    <span>Semana de Ingeniería</span>
+                    La carrera de <strong>Ingeniería de las telecomunicaciones</strong> de la <strong>Pontificia Universidad Catolica del Perú</strong> diseñó una pagina WEB para que sus alumnos puedan organizar sus eventos.
+                </p>
+                <div class="footer-icons">
+                    <a href="https://www.facebook.com/profile.php?id=100009473024310&mibextid=LQQJ4d"><i class="fa fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/leo.leonar071/?igshid=OGQ5ZDc2ODk2ZA%3D%3Ds"><i class="fa fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/@pucp"><i class="fa fa-youtube"></i></a>
+                </div>
+            </div>
+        </footer>
+    </div>
 </div>
 
 
