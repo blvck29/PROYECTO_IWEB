@@ -1,5 +1,6 @@
 package com.example.proyectoweb.model.daos;
 
+import com.example.proyectoweb.model.Dtos.DonacionUserDto;
 import com.example.proyectoweb.model.SHA256;
 import com.example.proyectoweb.model.beans.Usuario;
 
@@ -769,6 +770,36 @@ public ArrayList<Usuario> listarDelegadosActDisponibles(){
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public ArrayList<DonacionUserDto> obtenerListaDetalles(){
+
+        ArrayList<DonacionUserDto> listaDetallesDonaciones = new ArrayList<>();
+
+        String sql = "SELECT u.nombres, u.apellidos, u.codigo, u.monto_total , count(*) as cantidad_donaciones, u.kit_teleco FROM proyectoweb.usuarios u left join registro_donaciones regDon on (u.idUsuario = regDon.idUsuario) group by u.idUsuario;";
+
+        try (Connection conn = getConnection();
+             Statement stmt = conn.createStatement()) {
+
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                DonacionUserDto donacionUserDto = new DonacionUserDto();
+
+                donacionUserDto.setNombre(rs.getString(1));
+                donacionUserDto.setApellido(rs.getString(2));
+                donacionUserDto.setCodigo(rs.getString(3));
+                donacionUserDto.setMontoTotal(rs.getDouble(4));
+                donacionUserDto.setCantidadDonaciones(rs.getInt(5));
+                donacionUserDto.setKitTeleco(rs.getInt(6));
+
+                listaDetallesDonaciones.add(donacionUserDto);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return listaDetallesDonaciones;
+
     }
 
 
