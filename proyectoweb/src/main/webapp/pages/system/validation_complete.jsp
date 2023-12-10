@@ -23,7 +23,7 @@
             <form action="<%=request.getContextPath()%>/login" method="POST" id="complete">
                 <h2>Su Cuenta fue Verificada!</h2>
                 <div class="forgot-back" style="padding-top: 10px; max-width: 480px">
-                    <label>Gracias por confirmar su cuenta, el token ingresado fue validado correctamente, para loguearse deberá esperar que el administrador lo acepte.</label>
+                    <label>Gracias por confirmar su cuenta, el token ingresado fue validado correctamente. Para loguearse deberá esperar a ser aceptado por el administrador.</label>
                 </div>
 
                 <input type="submit" value="Regresar" class="forgot-button">
