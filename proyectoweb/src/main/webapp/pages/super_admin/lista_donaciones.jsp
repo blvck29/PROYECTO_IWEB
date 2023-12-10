@@ -1,10 +1,12 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.example.proyectoweb.model.beans.Donaciones" %>
 <%@ page import="com.example.proyectoweb.model.beans.Usuario" %>
+<%@ page import="com.example.proyectoweb.model.Dtos.DonacionUserDto" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%Usuario user = (Usuario) session.getAttribute("usuario");%>
 <%ArrayList<Donaciones> listaDonaciones = (ArrayList<Donaciones>) request.getAttribute("listaDonaciones");%>
+<%ArrayList<DonacionUserDto> listaDonacionesDetalles = (ArrayList<DonacionUserDto>) request.getAttribute("listaDetalles");%>
 
 <!doctype html>
 <html lang="es">
@@ -49,8 +51,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-HjQE6zC8aa2BK9xVRvPUdo4FqIkFfQF1dM1iZeFzTC1Q9dI6yCeF6pMJpPs19j7e" crossorigin="anonymous">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
     <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
-    <!--  Link Footer add
-    <link rel="stylesheet" href="css/styleFooter.css">-->
 </head>
 
 <body>
@@ -139,64 +139,29 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                                 <table id="donations" class="table table-striped table-bordered" style="width:100%">
                                     <thead>
                                         <tr>
-                                            <th class="header c1 centeralign" style="" scope="col"><a><strong>ID REGISTRO DONACION</strong></a></th>
-                                            <th class="header c1 centeralign" style="" scope="col"><a><strong>NOMBRE/APELLIDO</strong></a></th>
-                                            <th class="header c1 centeralign" style="" scope="col"><a><strong>ROL ACADÉMICO</strong></a></th>
-                                            <th class="header c1 centeralign" style="" scope="col"><a><strong>MONTO</strong></a></th>
-                                            <th class="header c1 centeralign" style="" scope="col"><a><strong>FECHA DE DONACIÓN</strong></a></th>
-                                            <th class="header c1 centeralign" style="" scope="col"><a><strong>HORA DE DONACIÓN</strong></a></th>
-                                            <th class="header c5" style="" scope="col">ESTADO DE DONACIÓN</th>
-                                            <th class="header c5" style="" scope="col">VER Y EDITAR</th>
+                                            <th class="header c1 centeralign" style="" scope="col"><a><strong>NOMBRE</strong></a></th>
+                                            <th class="header c1 centeralign" style="" scope="col"><a><strong>APELLIDO</strong></a></th>
+                                            <th class="header c1 centeralign" style="" scope="col"><a><strong>CODIGO</strong></a></th>
+                                            <th class="header c1 centeralign" style="" scope="col"><a><strong>MONTO TOTAL</strong></a></th>
+                                            <th class="header c1 centeralign" style="" scope="col"><a><strong>CANTIDAD DE DONACIONES</strong></a></th>
+                                            <th class="header c1 centeralign" style="" scope="col"><a><strong>KIT TELECO</strong></a></th>
                                         </tr>
                                     </thead>
 
-
-
                                     <tbody>
-                                        <% for (Donaciones donaciones:listaDonaciones){ %>
+                                        <% for (DonacionUserDto donaciones: listaDonacionesDetalles){ %>
                                         <tr class="">
-                                            <td class="centeralign cell c0" style=""><a><%=donaciones.getIdDonaciones() %></a></td>
-                                            <td class="centeralign cell c1" style=""><%= donaciones.getNombres() +" "+ donaciones.getApellidos()%></td>
+                                            <td class="centeralign cell c0" style=""><a><%=donaciones.getNombre() %></a></td>
+                                            <td class="centeralign cell c1" style=""><%= donaciones.getApellido()%></td>
 
-                                            <% String rolAcademico ="---";
-                                                switch(donaciones.getIdRolAcademico()){
-                                                    case "STUDENT":
-                                                        rolAcademico = "Estudiante";
-                                                        break;
-                                                    case "GRADUAT":
-                                                        rolAcademico = "Egresado";
-                                                        break;
-                                                    default:
-                                                        rolAcademico = "---";
-                                                }%>
-                                            <td class="cell c2" style=""><%= rolAcademico %></td>
+                                            <td class="cell c2" style=""><%=donaciones.getCodigo() %></td>
 
-                                            <td class="centeralign cell c1" style=""><%="S/. "+ donaciones.getMonto() %></td>
-
-                                            <%  String[] fechaHora = donaciones.getFechaDonacion().split(" ");
-                                                String fecha = fechaHora[0];
-                                                String hora = fechaHora[1];
-                                                String[] horaHMS = hora.split(":");
-                                                String horaMostrar = horaHMS[0] + ":" + horaHMS[1];
-                                            %>
+                                            <td class="centeralign cell c1" style=""><%=donaciones.getMontoTotal() %></td>
 
 
-                                            <td class="centeralign cell c1" style=""><%= fecha %></td>
-                                            <td class="centeralign cell c1" style=""><%= horaMostrar %></td>
+                                            <td class="centeralign cell c1" style=""><%= donaciones.getCantidadDonaciones() - 1 %></td>
+                                            <td class="centeralign cell c1" style=""><%= donaciones.getKitTeleco() %></td>
 
-
-
-                                            <%if (donaciones.getComprobado() == 0){%>
-                                            <td class="cell c5" style="color: black">Pendiente de Comprobacion</td>
-                                            <%}else if(donaciones.getComprobado() == 1){%>
-                                            <td class="cell c5" style="color: #0d6efd">Comprobado</td>
-                                            <%} else if (donaciones.getComprobado() == 2) {%>
-                                            <td class="cell c5" style="color: red">Rechazado</td>
-                                            <%} %>
-
-
-
-                                            <td class="cell c6 lastcol" style=""><a href="<%=request.getContextPath()%>/admin_gen?action=donations&ac=ver&idDonante=<%=donaciones.getIdUsuario()%>"><img width="24" height="24" src="https://img.icons8.com/pulsar-line/48/view-delivery.png" alt="edit-row"/></a></td>
                                         </tr>
                                         <%}%>
                                     </tbody>
