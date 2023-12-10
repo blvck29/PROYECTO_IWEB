@@ -255,6 +255,7 @@
     <div style="margin-bottom: 40px"></div>
 
 
+
     <div style="margin-bottom: 50px"></div>
 
     <div class="row align-content-center" id="divRow" data-masonry='{"percentPosition": true }'>
@@ -312,6 +313,8 @@
     <div style="margin-bottom: 60px"></div>
 
 </div>
+<%-- comensadkas --%>
+
 
 <div class="container-fluid" style="padding-left:0 !important; margin-top: 30px !important; padding-right: 0 !important; background: rgb(45,0,83) !important;
 background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgba(21,0,48,1) 100%) !important;">
