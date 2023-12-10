@@ -1,5 +1,6 @@
 package com.example.proyectoweb.servlets;
 
+import com.example.proyectoweb.model.Dtos.DonacionUserDto;
 import com.example.proyectoweb.model.beans.*;
 import com.example.proyectoweb.model.daos.ActividadesDao;
 import com.example.proyectoweb.model.daos.DonacionesDao;
@@ -309,9 +310,13 @@ public class AdminGenServlet extends HttpServlet {
                     switch (ac) {
 
                         case "filtrarComprobados":
+                            UsuariosDao usuariosDao = new UsuariosDao();
                             String comprobacionId = request.getParameter("id");
                             ArrayList<Donaciones> listaDonacionesPorComprobacion = donacionesDao.listarComprobados(comprobacionId);
-
+                            //Lista detalles
+                            ArrayList<DonacionUserDto> listaDonacionesUsuariosDetalles = usuariosDao.obtenerListaDetalles();
+                            request.setAttribute("listaDetalles", listaDonacionesUsuariosDetalles);
+                            //Lista donaciones
                             request.setAttribute("listaDonaciones", listaDonacionesPorComprobacion);
                             request.getRequestDispatcher("pages/super_admin/lista_donaciones.jsp").forward(request, response);
 

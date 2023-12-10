@@ -7,7 +7,7 @@ public class DonacionUserDto {
     private Double montoTotal;
     private int cantidadDonaciones;
     private int kitTeleco;
-    
+
 
     public String getNombre() {
         return nombre;
