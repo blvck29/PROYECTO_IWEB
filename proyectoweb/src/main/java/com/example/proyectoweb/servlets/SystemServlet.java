@@ -171,7 +171,8 @@ public class SystemServlet extends HttpServlet {
                     tokenDao.deleteToken(String.valueOf(enteredToken));
                     response.sendRedirect("login?action=validation_complete");
                 } else {
-                    //Falta el popup de "El token no es válido"
+                    HttpSession httpSession = request.getSession();
+                    httpSession.setAttribute("msgErrorToken", "El token ingresado es incorrecto. Verifique el token que se le envió al correo.");
                     response.sendRedirect("login?action=confirm_account&error=bad_token");
                 }
 
