@@ -125,7 +125,7 @@ public class SystemServlet extends HttpServlet {
                 String lastnames = request.getParameter("lastnames");
                 int codigo = Integer.parseInt(request.getParameter("code"));
                 String email = request.getParameter("email");
-                boolean isEgresado = "estadoAcademico".equals(request.getParameter("GRADUAT"));
+                boolean isEgresado = "GRADUAT".equals(request.getParameter("estadoAcademico"));
                 String sexo = request.getParameter("genero");
 
 
@@ -138,7 +138,7 @@ public class SystemServlet extends HttpServlet {
 
                 String password = request.getParameter("password");
 
-                System.out.println("contraseña: " + password);
+
 
                 String correoDB =  userDao.verificarCorreo(email);
                 String codigoDB = userDao.verificarCodigo(String.valueOf(codigo));
