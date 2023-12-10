@@ -388,7 +388,7 @@ public class DonacionesDao extends DaoBase{
 
     }
 
-    public void actualizarMontoTotal(Double montoNuevo, Integer idUsuario, Double montoAntiguo){
+    public void actualizarMontoTotal(Double montoNuevo, Integer idUsuario, Double montoAntiguo){ //Se verifica también el kit
 
         String sql ="update usuarios set monto_total = ? where idUsuario = ? ";
 
@@ -403,6 +403,27 @@ public class DonacionesDao extends DaoBase{
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+
+        // Verificamos el Monto Total del Usuario y si este pasa los 100 o los iguala para obtener el kit teleco:
+        if(montoActualizado >= 100){
+
+            String sql2 = "update usuarios set kit_teleco = ? where idUsuario = ?";
+
+            int enable = 1;
+
+            try(Connection conn = getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(sql2)) {
+
+                pstmt.setDouble(1, enable);
+                pstmt.setInt(2, idUsuario);
+                pstmt.executeUpdate();
+
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
+
         }
 
 
