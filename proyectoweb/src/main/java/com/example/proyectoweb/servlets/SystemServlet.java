@@ -33,15 +33,11 @@ public class SystemServlet extends HttpServlet {
                 request.getRequestDispatcher("pages/system/register.jsp").forward(request, response);
                 break;
 
-            case "obtenerDatos": // Nuevo caso para obtener datos de correos y códigos existentes
+            case "obtenerDatos":
                 ArrayList<String> correos = userDao.correosExistentes();
                 ArrayList<String> codigos = userDao.codigosExistentes();
-
-                // Usar Gson para convertir los ArrayLists a JSON
                 Gson gson = new Gson();
                 String jsonOutput = gson.toJson(Map.of("correos", correos, "codigos", codigos));
-
-                // Configurar la respuesta con los datos en formato JSON
                 response.setContentType("application/json");
                 response.setCharacterEncoding("UTF-8");
                 response.getWriter().write(jsonOutput);
