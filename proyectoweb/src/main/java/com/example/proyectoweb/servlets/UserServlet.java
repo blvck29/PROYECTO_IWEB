@@ -253,6 +253,7 @@ public class UserServlet extends HttpServlet {
                                 HttpSession httpSession = request.getSession();
                                 httpSession.setAttribute("msgKitTeleco", "Su donación se ha registrado correctamente y ha obtenido su Kit Teleco. Se le enviará un correo con mas información sobre la entrega de este mismo.");
                                 userDao.obtieneKitTeleco(user.getIdUsuario());
+                                //se le envia correo sobre el kit teleco
                                 donacionesDao.nuevaDonacion(user.getIdUsuario(), monto, donacion);
                             }else{
                                 HttpSession httpSession = request.getSession();

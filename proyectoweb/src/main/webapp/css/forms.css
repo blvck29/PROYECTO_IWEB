@@ -84,7 +84,15 @@ body {
     border-color: #2ecc71;
 }
 
+.form123-control.success select {
+    border-color: #2ecc71;
+}
+
 .form123-control.error input {
+    border-color: #E72C2C;
+}
+
+.form123-control.error select {
     border-color: #E72C2C;
 }
 

@@ -1,22 +1,11 @@
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="com.google.gson.Gson" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
     ArrayList<String> correos = (ArrayList<String>) request.getAttribute("correos");
     ArrayList<String> codigos = (ArrayList<String>) request.getAttribute("codigos");
-%>
-<script>
-    var correosUsados = [
-        <% for (String correo : correos) { %>
-        '<%= correo %>',
-        <% } %>
-    ];
 
-    var codigosUsados = [
-        <% for (String codigo : codigos) { %>
-        '<%= codigo %>',
-        <% } %>
-    ];
-</script>
+%>
 
 
 
@@ -89,52 +78,43 @@
                 <div class="col-md-6">
 
 
-                    <div class="form123-control">
-                        <label for="email">Estado Académico</label>
-                        <select class="form-select" id="estadoAcademico" name="estadoAcademico">
-                            <option selected disabled>Seleccionar</option>
-                            <option value="GRADUAT">Estudiante</option>
-                            <option value="STUDENT">Egresado</option>
-                        </select>
-                        <i class="fas fa-check-circle"></i>
-                        <i class="fas fa-exclamation-circle"></i>
-                        <small>Error message</small>
-                    </div>
+                      <div class="form123-control">
+                          <label for="email">Estado Académico</label>
+                          <select class="form-select" id="estadoAcademico" name="estadoAcademico">
+                              <option value="noAcademic" selected >Seleccionar</option>
+                              <option value="GRADUAT">Estudiante</option>
+                              <option value="STUDENT">Egresado</option>
+                          </select>
+                          <small>Error message</small>
+                      </div>
 
-                    <div class="form123-control">
-                        <label for="email">Género Biológico</label>
-                        <select class="form-select" id="genero" name="genero" >
-                            <option selected disabled>Seleccionar</option>
-                            <option value="male">Masculino</option>
-                            <option value="female">Femenino</option>
-                        </select>
-                        <i class="fas fa-check-circle"></i>
-                        <i class="fas fa-exclamation-circle"></i>
-                        <small>Error message</small>
-
-                    </div>
+                      <div class="form123-control">
+                          <label for="email">Género Biológico</label>
+                          <select class="form-select" id="genero" name="genero" >
+                              <option value="noGenero" selected>Seleccionar</option>
+                              <option value="M">Masculino</option>
+                              <option value="F">Femenino</option>
+                          </select>
+                          <small>Error message</small>
+                      </div>
 
 
-                <!--
-                    <div style="display: flex; justify-content: space-between; margin-top:10px;">
-                        <div style="width: 200px" class="register-checkbox">
-                            <input type="checkbox" id="condition" name="condition" value="condit" >
-                            <label for="condition">Soy egresado PUCP</label>
-                        </div>
-                    <div style="width: 150px; margin-bottom: 10px; margin-top:10px" class="register-checkbox">
-                            <p>Género biológico:</p>
-                            <input type="radio" id="male" name="male" value="M">
-                            <label for="male">Masculino</label><br>
-                            <input type="radio" id="female" name="male" value="F">
-                            <label for="female">Femenino</label>
-                        </div>
-                    </div>
-                -->
+                    <!--
+                      <div style="display: flex; justify-content: space-between; margin-top:10px;">
+                          <div style="width: 200px" class="register-checkbox">
+                              <input type="checkbox" id="condition" name="condition" value="condit" >
+                              <label for="condition">Soy egresado PUCP</label>
+                          </div>
+                      <div style="width: 150px; margin-bottom: 10px; margin-top:10px" class="register-checkbox">
+                              <p>Género biológico:</p>
+                              <input type="radio" id="male" name="male" value="M">
+                              <label for="male">Masculino</label><br>
+                              <input type="radio" id="female" name="male" value="F">
+                              <label for="female">Femenino</label>
+                          </div>
+                      </div>
 
-
-
-
-
+-->
 
                     <div class="form123-control">
                         <label for="password">Contraseña</label>

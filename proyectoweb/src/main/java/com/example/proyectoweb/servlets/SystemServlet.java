@@ -10,6 +10,9 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
+
+import com.google.gson.Gson;
 
 @WebServlet(name = "SystemServlet", value = "/login")
 public class SystemServlet extends HttpServlet {
@@ -29,6 +32,21 @@ public class SystemServlet extends HttpServlet {
                 request.setAttribute("codigos", userDao.codigosExistentes());
                 request.getRequestDispatcher("pages/system/register.jsp").forward(request, response);
                 break;
+
+            case "obtenerDatos": // Nuevo caso para obtener datos de correos y códigos existentes
+                ArrayList<String> correos = userDao.correosExistentes();
+                ArrayList<String> codigos = userDao.codigosExistentes();
+
+                // Usar Gson para convertir los ArrayLists a JSON
+                Gson gson = new Gson();
+                String jsonOutput = gson.toJson(Map.of("correos", correos, "codigos", codigos));
+
+                // Configurar la respuesta con los datos en formato JSON
+                response.setContentType("application/json");
+                response.setCharacterEncoding("UTF-8");
+                response.getWriter().write(jsonOutput);
+                break;
+
             case "confirm_account":
                 request.getRequestDispatcher("/pages/system/confirm_account.jsp").forward(request, response);
                 break;
@@ -111,16 +129,15 @@ public class SystemServlet extends HttpServlet {
                 String lastnames = request.getParameter("lastnames");
                 int codigo = Integer.parseInt(request.getParameter("code"));
                 String email = request.getParameter("email");
-                boolean isEgresado = "condit".equals(request.getParameter("condition"));
-                boolean isHombre = "M".equals(request.getParameter("male"));
-                String sexo = isHombre ? "M" : "F";
+                boolean isEgresado = "estadoAcademico".equals(request.getParameter("GRADUAT"));
+                String sexo = request.getParameter("genero");
 
 
                 System.out.println("Nombres: " + names);
                 System.out.println("Apellidos: " + lastnames);
                 System.out.println("codigo: " + codigo);
                 System.out.println("email "  + email);
-                System.out.println("Es egresado: " + isEgresado);
+                System.out.println("Es egresado?: " + isEgresado);
                 System.out.println("sexo: " + sexo);
 
                 String password = request.getParameter("password");
