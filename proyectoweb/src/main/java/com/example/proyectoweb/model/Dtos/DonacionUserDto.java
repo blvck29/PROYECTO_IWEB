@@ -7,14 +7,7 @@ public class DonacionUserDto {
     private Double montoTotal;
     private int cantidadDonaciones;
     private int kitTeleco;
-
-    public String getSql() {
-        return sql;
-    }
-
-    public void setSql(String sql) {
-        this.sql = sql;
-    }
+    
 
     public String getNombre() {
         return nombre;
