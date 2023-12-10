@@ -164,7 +164,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
                             <div class="form-group" style="padding-right: 1rem">
                                 <label style="text-align: left;"><strong>Monto Donado:</strong></label>
-                                <input name="monto" type="text" class="form-control" id="monto" value="<%="S/." + donante.getMonto()%>">
+                                <input name="monto" type="text" class="form-control" id="monto" value="<%=donante.getMonto()%>">
                             </div>
 
                             <div style="padding-top: 1.5em;"></div>
