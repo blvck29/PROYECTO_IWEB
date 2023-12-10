@@ -107,29 +107,33 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
             <form method="post" action="<%=request.getContextPath()%>/admin_gen?action=donations&ac=busqueda">
 
                 <a class="btn btn-primary" href="<%=request.getContextPath()%>/admin_gen?action=donations" role="button">Borrar filtros</a>
-                <!--Boton -->
-                <div class="boton-modal">
-                    <label for = "btn-modal">
-                        Ver detalles
-                    </label>
-                </div>
-                <!-- Fin de Boton -->
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Launch demo modal
+                </button>
 
             </form>
 
             <!--Ventana Modal -->
-            <input type="checkbox" id="btn-modal">
-            <div class="container-modal">
-                <div class ="content-modal">
-                    <h2>Monto total | Kit Teleco | Cantidad de Donaciones</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusamus aliquid at debitis
-                        distinctio dolore ducimus eaque ex facilis incidunt magni minus odio optio, recusandae sit sunt
-                        veritatis? Dignissimos, totam?</p>
-                    <div class="btn-cerrar">
-                        <label for = "btn-modal">Cerrar</label>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" style="max-height: 400px; overflow-y: auto;">
+                            <!-- Contenido del modal -->
+                            <!-- Puedes ajustar la altura máxima según tus necesidades -->
+                            <!-- El desplazamiento vertical se activará si el contenido es más largo que la altura máxima -->
+                            <!-- ... -->
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                        </div>
                     </div>
                 </div>
-                <label for = "btn-modal" class="cerrar-modal"></label>
             </div>
             <!-- Fin de Ventana Modal-->
 
