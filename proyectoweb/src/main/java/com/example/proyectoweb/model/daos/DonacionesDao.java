@@ -388,7 +388,7 @@ public class DonacionesDao extends DaoBase{
 
     }
 
-    public void actualizarMontoTotal(Double montoNuevo, Integer idUsuario, Double montoAntiguo){ //Se verifica también el kit
+    public void actualizarMontoTotal(Double montoNuevo, Usuario usuario, Double montoAntiguo){ //Se verifica también el kit
 
         String sql ="update usuarios set monto_total = ? where idUsuario = ? ";
 
@@ -398,7 +398,7 @@ public class DonacionesDao extends DaoBase{
             PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setDouble(1, montoActualizado);
-            pstmt.setInt(2, idUsuario);
+            pstmt.setInt(2, usuario.getIdUsuario());
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
@@ -406,7 +406,7 @@ public class DonacionesDao extends DaoBase{
         }
 
         // Verificamos el Monto Total del Usuario y si este pasa los 100 o los iguala para obtener el kit teleco:
-        if(montoActualizado >= 100){
+        if(montoActualizado >= 100 && usuario.getIdRolAcademico().equals("GRADUAT")){
 
             String sql2 = "update usuarios set kit_teleco = ? where idUsuario = ?";
 
@@ -416,7 +416,7 @@ public class DonacionesDao extends DaoBase{
                 PreparedStatement pstmt = conn.prepareStatement(sql2)) {
 
                 pstmt.setDouble(1, enable);
-                pstmt.setInt(2, idUsuario);
+                pstmt.setInt(2, usuario.getIdUsuario());
                 pstmt.executeUpdate();
 
             } catch (SQLException e) {
