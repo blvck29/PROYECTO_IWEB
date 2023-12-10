@@ -131,6 +131,51 @@ public class UsuariosDao extends DaoBase{
         return listaUsuarios;
     }
 
+
+    public ArrayList<String> correosExistentes (){
+
+        //Conexión a la DB
+        String sql = "select * from usuarios";
+
+        ArrayList<String> list = new ArrayList<>();
+
+        try(Connection conn = getConnection();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql)){
+
+            while(rs.next()){
+                list.add(rs.getString(7));
+            }
+
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+
+        return list;
+    }
+
+    public ArrayList<String> codigosExistentes (){
+
+        //Conexión a la DB
+        String sql = "select * from usuarios ";
+
+        ArrayList<String> list = new ArrayList<>();
+
+        try(Connection conn = getConnection();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql)){
+
+            while(rs.next()){
+                list.add(rs.getString(6));
+            }
+
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+
+        return list;
+    }
+
     public ArrayList<Usuario> listarUsuariosConPaginacion(Integer limit, Integer offset){ //admin
         ArrayList<Usuario> listaUsuarios = new ArrayList<>();
 

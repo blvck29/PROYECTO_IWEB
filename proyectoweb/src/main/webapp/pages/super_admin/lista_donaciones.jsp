@@ -46,7 +46,11 @@
 
     <title>Administración de Usuarios | Semana de Ingeniería 2023</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-HjQE6zC8aa2BK9xVRvPUdo4FqIkFfQF1dM1iZeFzTC1Q9dI6yCeF6pMJpPs19j7e" crossorigin="anonymous">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+    <!--  Link Footer add
+    <link rel="stylesheet" href="css/styleFooter.css">-->
 </head>
 
 <body>
@@ -72,6 +76,9 @@
             </li>
             <li>
                 <a href="<%=request.getContextPath()%>/admin_gen?action=donations">Donaciones</a>
+            </li>
+            <li>
+                <a href="<%=request.getContextPath()%>/admin_gen?action=profile"><i class="fa-solid fa-user nav-icon2"></i><%=user.getNombres() + " " + user.getApellidos()%></a>
             </li>
             <li>
                 <a href="<%=request.getContextPath()%>/logout"><i class="fa-solid fa-door-open nav-icon2"></i>Cerrar Sesión</a>
@@ -248,16 +255,51 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 <div style="margin-bottom: 50px"></div>
 
 
-<div class="container-fluid" style="background-color: #fff; padding-right: 0; padding-left: 0">
-    <div class="my-4"></div>
-    <footer id="sticky-footer" class="flex-shrink-0 py-4 text-white-50" style="background-color: #04011E">
-        <div class="container"><div class="nav justify-content-center border-bottom pb-3 mb-3">
-            <p style="text-align: center">
-                <small class="text-center">&copy; Pontificia Universidad Católica del Perú - Todos los derechos reservados</small>
+<div class="container-fluid" style="padding-right: 0; padding-left: 0">
+    <footer id="sticky-footer" class="footer-distributed" style="background-color: #04011E">
+        <div class="footer-left">
+            <img src="images/logo_topbar.png" alt="Logo de Ingeniería de las Telecomunicaciones" style="width: 400px; height: auto;">
+            <p class="footer-links">
+                <a href="<%=request.getContextPath()%>/admin_gen?action=home">Usuarios</a> |
+                <a href="<%=request.getContextPath()%>/admin_gen?action=activities&ac=list">Actividades</a> |
+                <a href="<%=request.getContextPath()%>/admin_gen?action=statistics">Estadisticas</a> |
+                <a href="<%=request.getContextPath()%>/admin_gen?action=donations">Donaciones</a> |
+                <a href="<%=request.getContextPath()%>/admin_gen?action=profile">Perfil</a>
             </p>
-        </div></div>
+            <p class="footer-company-name">Copyright © 2023 <strong>Pontificia Universidad Catolica del Perú</strong> Todos los derechos reservados</p>
+        </div>
+
+        <div class="footer-center">
+            <div>
+                <i class="fa fa-map-marker"></i>
+                <p><span>Av. Universitaria 1801, San Miguel, 15088</span> Lima, Perú</p>
+            </div>
+
+            <div>
+                <i class="fa fa-phone"></i>
+                <p>+51 982 876 098</p>
+            </div>
+
+            <div>
+                <i class="fa fa-envelope"></i>
+                <p><a href="mailto:sagar00001.co@gmail.com">fibratoxica.sdi@gmail.com</a></p>
+            </div>
+        </div>
+
+        <div class="footer-right">
+            <p class="footer-company-about">
+                <span>Semana de Ingeniería</span>
+                La carrera de <strong>Ingeniería de las telecomunicaciones</strong> de la <strong>Pontificia Universidad Catolica del Perú</strong> diseñó una pagina WEB para que sus alumnos puedan organizar sus eventos.
+            </p>
+            <div class="footer-icons">
+                <a href="https://www.facebook.com/profile.php?id=100009473024310&mibextid=LQQJ4d"><i class="fa fa-facebook"></i></a>
+                <a href="https://www.instagram.com/leo.leonar071/?igshid=OGQ5ZDc2ODk2ZA%3D%3Ds"><i class="fa fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@pucp"><i class="fa fa-youtube"></i></a>
+            </div>
+        </div>
     </footer>
 </div>
+
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

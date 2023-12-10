@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,500&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container123 {
+    backdrop-filter: blur(25px);
+    border: 2px solid rgba(255,255,255, .6);
+    border-radius: 20px;
+    overflow: hidden;
+    width: 550px;
+    max-width: 100%;
+    height: 950px;
+
+
+}
+
+
+
+
+.header123 {
+    border-bottom: 1px solid #f0f0f0;
+    background-color: #f7f7f7;
+    padding: 20px 40px;
+}
+
+.header123 h2 {
+    font-size: 2.3rem;
+    margin-top: 70px;
+    color: #fff;
+    text-align: center;
+}
+
+.form123 {
+    padding: 30px 40px;
+}
+
+.form123 h2{
+    font-size: 2.3rem;
+    color: #fff;
+    text-align: center
+}
+
+.form123-control {
+    margin-bottom: 10px;
+    padding-bottom: 20px;
+    position: relative;
+}
+
+.form123-control label {
+    display: inline-block;
+    margin-bottom: 5px;
+    color: white;
+}
+
+.form123-control input {
+    border: 2px solid #f0f0f0;
+    border-radius: 4px;
+    display: block;
+    font-family: inherit;
+    font-size: 14px;
+    padding: 10px;
+    width: 100%;
+}
+
+.form123-control input:focus {
+    outline: 0;
+    border-color: #777;
+}
+
+.form123-control.success input {
+    border-color: #2ecc71;
+}
+
+.form123-control.error input {
+    border-color: #E72C2C;
+}
+
+.form123-control i {
+    visibility: hidden;
+    position: absolute;
+    top: 40px;
+    right: 10px;
+}
+
+.form123-control.success i.fa-check-circle {
+    color: #2ecc71;
+    visibility: visible;
+}
+
+.form123-control.error i.fa-exclamation-circle {
+    color: #E72C2C;
+    visibility: visible;
+}
+
+.form123-control small {
+    color: #E72C2C;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    visibility: hidden;
+    font-weight: bold;
+}
+
+.form123-control.error small {
+    visibility: visible;
+}
+
+.form123 button {
+    background-color: #481A84;
+    border: 2px solid #481A84;
+    border-radius: 4px;
+    color: #fff;
+    display: block;
+    font-family: inherit;
+    font-size: 16px;
+    padding: 10px;
+    margin-top: 20px;
+    width: 100%;
+}

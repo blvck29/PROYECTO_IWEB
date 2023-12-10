@@ -3,6 +3,7 @@ package com.example.proyectoweb.servlets;
 import com.example.proyectoweb.model.beans.*;
 import com.example.proyectoweb.model.daos.ActividadesDao;
 import com.example.proyectoweb.model.daos.DonacionesDao;
+import com.example.proyectoweb.model.daos.EventosDao;
 import com.example.proyectoweb.model.daos.UsuariosDao;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -107,7 +108,6 @@ public class AdminGenServlet extends HttpServlet {
                                 httpSession.setAttribute("msgError", "No se pudo eliminar, ya que existen eventos relacionados a esta actividad");
                                 response.sendRedirect(request.getContextPath() + "/admin_gen?action=activities");
                             }
-
                             break;
                     }
 
@@ -189,11 +189,16 @@ public class AdminGenServlet extends HttpServlet {
                     }else{
                         actividadesDao.listarImagenPorActividad(response, request.getParameter("idActividad"),3);
                     }
-
-
-
                     break;
-
+                case "profile":
+                    EventosDao eventosDao= new EventosDao();
+                    ArrayList<Evento> eventosXusuario = eventosDao.listarEventosInscritos(user.getIdUsuario());
+                    request.setAttribute("listaEventos",eventosXusuario);
+                    request.getRequestDispatcher("/pages/super_admin/profileSuperAdmin.jsp").forward(request,response);
+                    for (Evento evento : eventosXusuario) {
+                        System.out.println(evento.getTitulo());
+                    }
+                    break;
             }
 
 

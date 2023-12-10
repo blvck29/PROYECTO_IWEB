@@ -1,21 +1,13 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.example.proyectoweb.model.beans.Usuario" %>
-<%@ page import="com.example.proyectoweb.model.beans.Actividad" %>
-<%@ page import="com.example.proyectoweb.model.beans.Donaciones" %>
+<%@ page import="com.example.proyectoweb.model.beans.Evento" %>
 
 
 <%Usuario user = (Usuario) session.getAttribute("usuario");%>
 
 <%  if (user.getIdRolSistema().equals("DELGEN")){ %>
-
-
-    <% ArrayList<Actividad> listaActividades = (ArrayList<Actividad>) request.getAttribute("listaActividades");%>
-    <% ArrayList<Donaciones> listaDonaciones = (ArrayList<Donaciones>) request.getAttribute("listaDonaciones");%>
-    <% Double totalDonacionesEgresados = (double) request.getAttribute("totalDonacionesEgresados");%>
-    <% Double totalDonacionesEstudiantes = (double) request.getAttribute("totalDonacionesEstudiantes");%>
-
-    <% ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) request.getAttribute("listaUsuarios");%>
+    <% ArrayList<Evento> listaEventos = (ArrayList<Evento>) request.getAttribute("listaEventos"); %>
 
 <!doctype html>
 <html lang="es">
@@ -33,7 +25,6 @@
     <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 
-
     <!-- Add the slick-theme.css if you want default styling -->
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <!-- Add the slick-theme.css if you want default styling -->
@@ -41,9 +32,6 @@
 
     <script src="https://kit.fontawesome.com/a2dd6045c4.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-
-    <!-- CDNJS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
 
     <!-- UIkit CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.17.4/dist/css/uikit.min.css" />
@@ -64,7 +52,6 @@
     <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
     <!--  Link Footer add
     <link rel="stylesheet" href="css/styleFooter.css">-->
-
     <title>Estadísticas | Semana de Ingeniería 2023</title>
 
 
@@ -105,100 +92,145 @@
 </header>
 
 <div class="container">
+
     <div style="margin-bottom: 50px"></div>
+    <h2><i class="fa-solid fa-star" style="color: #8de7ef;"></i><strong style="padding-left: 10px">Perfil</strong></h2>
+    <div style="margin-bottom: 20px"></div>
 
-    <h2><i class="fa-solid fa-star" style="color: #8de7ef;"></i><strong style="padding-left: 10px">Estadísticas</strong></h2>
-    <div class="container d-flex col-md-10 justify-content-end">
-        <li>
-            <a class="btn btn-primary me-1 float-end mt-1 ml-1 fw-bold active" href="<%=request.getContextPath()%>/admin_gen?action=statistics"> Recaudaciones</a>
-        </li>
+    <hr style="border-top: 1px solid #262626;">
 
-        <li>
-            <a class="btn btn-outline-primary me-1 float-end mt-1 ml-1" href="<%=request.getContextPath()%>/admin_gen?action=statistics&select=canAl"> Cantidad de alumnos y egresados</a>
-        </li>
-        <li>
-        <a class="btn btn-outline-primary me-1 float-end mt-1 ml-1" href="<%=request.getContextPath()%>/admin_gen?action=statistics&select=cantAp"> Cantidad de apoyos por actividad</a>
-        </li>
-    </div>
-
+    <div style="margin-bottom: 40px"></div>
 
     <div class="container">
-        <br><h2 style="text-align: center;">Donaciones por rol</h2><br>
-        <div style="max-width: 500px; margin: 0 auto;">
-            <canvas id="myChart" width="400" height="300"></canvas>
+
+        <div class="row">
+
+            <div class="col-lg-6 col-md-12" style="text-align: left; padding-top: 1.5em">
+                <div class="card">
+                    <div class="card-body" style="padding-left: 35px">
+
+                        <div style="padding-top: 1.5em;"></div>
+
+                        <div>
+                            <div class="form-group" style="padding-right: 1rem">
+                                <label  style="text-align: left;"><strong>Nombre del usuario:</strong></label>
+                                <span>
+                    <input name="titulo" type="text" class="form-control"  value="<%=user.getNombres()%>" readonly>
+                  </span>
+                            </div>
+                        </div>
+
+                        <div style="padding-top: 1.5em;"></div>
+
+                        <div>
+                            <div class="form-group" style="padding-right: 1rem">
+                                <label  style="text-align: left;"><strong>Apellidos</strong></label>
+                                <span>
+                    <input name="subtitulo" type="text" class="form-control" id="nombre" value="<%=user.getApellidos()%>" readonly>
+                  </span>
+                            </div>
+                        </div>
+
+                        <div style="padding-top: 1.5em;"></div>
+
+                        <div>
+                            <div class="form-group" style="padding-right: 1rem">
+                                <label  style="text-align: left;"><strong>Codigo PUCP</strong></label>
+                                <span>
+                    <input name="titulo" type="text" class="form-control"  value="<%=user.getCodigo()%>" readonly>
+                  </span>
+                            </div>
+                        </div>
+
+                        <div style="padding-top: 1.5em;"></div>
+
+                        <div>
+                            <div class="form-group" style="padding-right: 1rem">
+                                <label  style="text-align: left;"><strong> Rol en el sistema</strong></label>
+                                <span>
+                    <input name="titulo" type="text" class="form-control"  value="<%=user.getIdRolSistema()%>" readonly>
+                  </span>
+                            </div>
+                        </div>
+
+                        <div style="padding-top: 1.5em;"></div>
+
+                        <div>
+                            <div class="form-group" style="padding-right: 1rem">
+                                <label  style="text-align: left;"><strong> Rol academico</strong></label>
+                                <span>
+                  <input name="titulo" type="text" class="form-control"  value="<%=user.getIdRolAcademico()%>" readonly>
+                  </span>
+                            </div>
+                        </div>
+
+                        <div style="padding-top: 1.5em;"></div>
+                        <div>
+                            <div class="form-group" style="padding-right: 1rem">
+                                <label  style="text-align: left;"><strong> Cantidad de eventos inscritos</strong></label>
+                                <span>
+                    <input name="titulo" type="text" class="form-control"  value="<%=user.getCantEventsInscrito()%>" readonly>
+                  </span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-12">
+                <div class="card">
+                    <div class="card-body" style="padding-left: 3px">
+                        <!-- Imagen de perfil -->
+                        <div style="text-align: center; margin-bottom: 0px;">
+                            <figure class="card-image" style="max-width: 200px; margin: 0 auto;">
+                                <% if (user.getSexo().equals("M")) { %>
+                                <img class="image-event" src="images/profile1.png" alt="event" style="max-width: 100%; height: auto;">
+                                <% } else if (user.getSexo().equals("F")) { %>
+                                <img class="image-event" src="images/profile2.png" alt="event" style="max-width: 100%; height: auto;">
+                                <% } else { %>
+                                <!-- Aquí podrías manejar otro caso, por ejemplo, si no es M ni F -->
+                                <p>Imagen no disponible</p>
+                                <% } %>
+                            </figure>
+                        </div>
+
+
+                        <br>
+
+                        <!-- Resto del contenido -->
+                        <label style="text-align: center; padding-left: 20px;"><strong>Eventos en los que estás inscrito:  </strong></label>
+
+                        <% if (listaEventos != null && !listaEventos.isEmpty()) { %>
+                        <% for (Evento evento : listaEventos) { %>
+                        <h4 style="padding-left: 20px;">El evento es <%= evento.getTitulo() %></h4>
+                        <% } %>
+                        <% } else { %>
+                        <p style="padding-left: 20px;">No hay eventos inscritos actualmente.</p>
+                        <% } %>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
-    <script>
-        var ctx = document.getElementById('myChart').getContext('2d');
-
-        var data = {
-            labels: ['Estudiantes', 'Egresados'],
-            datasets: [
-                {
-                    label: 'Donaciones de estudiantes',
-                    data: [<%= totalDonacionesEstudiantes %>,0],
-                    backgroundColor: 'rgba(165, 42, 42, 0.8)', // Color de fondo para la barra de estudiantes
-                    borderColor: 'rgba(165, 42, 42, 1)', // Color del borde de la barra de estudiantes
-                    borderWidth: 1
-                },
-                {
-                    label: 'Donaciones de egresados',
-                    data: [0,<%= totalDonacionesEgresados %>],
-                    backgroundColor: 'rgba(0, 0, 139, 0.6)', // Color de fondo para la barra de egresados
-                    borderColor: 'rgba(0, 0, 139, 1)', // Color del borde de la barra de egresados
-                    borderWidth: 1
-                }
-            ]
-        };
-
-        var myChart = new Chart(ctx, {
-            type: 'bar',
-            data: data,
-            options: {
-                indexAxis: 'x', // Barras en posición vertical
-                responsive: true,
-                plugins: {
-                    legend: {
-                        display: true,
-                        labels: {
-                            font: {
-                                size: 12, // Tamaño de la fuente en la leyenda
-                                weight: 'bold' // Estilo de la fuente en la leyenda
-                            }
-                        }
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        grid: {
-                            color: 'rgba(0, 0, 0, 0.3)', // Líneas de la cuadrícula en el eje Y más oscuras
-                        },
-                        ticks: {
-                            font: {
-                                size: 12, // Tamaño de las etiquetas en el eje Y
-                                weight: 'bold' // Estilo de las etiquetas en el eje Y
-                            }
-                        }
-                    },
-                    x: {
-                        grid: {
-                            color: 'rgba(0, 0, 0, 0.3)', // Líneas de la cuadrícula en el eje X más oscuras
-                        },
-                        ticks: {
-                            font: {
-                                size: 12, // Tamaño de las etiquetas en el eje X
-                                weight: 'bold' // Estilo de las etiquetas en el eje X
-                            }
-                        }
-                    }
-                }
-            }
-        });
-    </script>
 </div>
+
+
+
+
+
+
 
 <div class="container-fluid" style="padding-right: 0; padding-left: 0">
     <footer id="sticky-footer" class="footer-distributed" style="background-color: #04011E">
