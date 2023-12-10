@@ -161,6 +161,7 @@ public class AdminGenServlet extends HttpServlet {
 
                 case "donations":
                     DonacionesDao donacionesDao = new DonacionesDao();
+                    UsuariosDao usuariosDao = new UsuariosDao();
 
                     String ac = request.getParameter("ac") == null? "list" : request.getParameter("ac");
 
@@ -168,6 +169,9 @@ public class AdminGenServlet extends HttpServlet {
                         case "list":
                             ArrayList<Donaciones> listaDonaciones = donacionesDao.listarTodasDonaciones();
                             request.setAttribute("listaDonaciones", listaDonaciones);
+                            //Lista detalles
+                            ArrayList<DonacionUserDto> listaDonacionesUsuariosDetalles = usuariosDao.obtenerListaDetalles();
+                            request.setAttribute("listaDetalles", listaDonacionesUsuariosDetalles);
                             request.getRequestDispatcher("pages/super_admin/lista_donaciones.jsp").forward(request,response);
                             break;
 
@@ -313,9 +317,6 @@ public class AdminGenServlet extends HttpServlet {
                             UsuariosDao usuariosDao = new UsuariosDao();
                             String comprobacionId = request.getParameter("id");
                             ArrayList<Donaciones> listaDonacionesPorComprobacion = donacionesDao.listarComprobados(comprobacionId);
-                            //Lista detalles
-                            ArrayList<DonacionUserDto> listaDonacionesUsuariosDetalles = usuariosDao.obtenerListaDetalles();
-                            request.setAttribute("listaDetalles", listaDonacionesUsuariosDetalles);
                             //Lista donaciones
                             request.setAttribute("listaDonaciones", listaDonacionesPorComprobacion);
                             request.getRequestDispatcher("pages/super_admin/lista_donaciones.jsp").forward(request, response);

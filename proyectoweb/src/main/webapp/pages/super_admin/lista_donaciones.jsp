@@ -161,7 +161,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                                             <td class="centeralign cell c1" style=""><%=donaciones.getMontoTotal() %></td>
 
 
-                                            <td class="centeralign cell c1" style=""><%= donaciones.getCantidadDonaciones() %></td>
+                                            <td class="centeralign cell c1" style=""><%= donaciones.getCantidadDonaciones() - 1 %></td>
                                             <td class="centeralign cell c1" style=""><%= donaciones.getKitTeleco() %></td>
 
                                         </tr>
