@@ -188,11 +188,11 @@ public class SystemServlet extends HttpServlet {
                         EmailSender.sendEmail(emailForgot,"Token para Renovar Contraseña"," Token: " + tokenForgot + "\n Confirmar su token aquí: http://localhost:8080/proyectoweb/login?action=confirm_account");
                         response.sendRedirect("login?action=forgot_token");
                     } else {
-                        //Falta el popup de "El correo ingresado no está aceptado por el administrador"
-                        response.sendRedirect("login?action=forgot_passwd&error=no_accepted");
+                        HttpSession httpSession = request.getSession();
+                        httpSession.setAttribute("msgErrorEmailRechazado", "El registro asociado al correo que ingresó fue rechazado por el administrador");
+                        response.sendRedirect("login?action=forgot_passwd");
                     }
                 } else {
-                    //Falta el popup de "El correo ingresado no está aceptado"
                     HttpSession httpSession = request.getSession();
                     httpSession.setAttribute("msgErrorForgetPassEmail", "El correo ingresado no está registrado en nuestro sistema");
                     response.sendRedirect("login?action=forgot_passwd");
@@ -212,8 +212,9 @@ public class SystemServlet extends HttpServlet {
                 if(tokenDao.findToken(String.valueOf(forgotToken))){
                     response.sendRedirect("login?action=forgot_newpass&token_input="+(forgotToken));
                 } else {
-                    //Falta el popup de "El token no es válido"
-                    response.sendRedirect("login?action=forgot_token&error=bad_token");
+                    HttpSession httpSession = request.getSession();
+                    httpSession.setAttribute("msgErrorForgetToken", "El token ingresado no es valido");
+                    response.sendRedirect("login?action=forgot_token");
                 }
                 break;
 
@@ -225,8 +226,9 @@ public class SystemServlet extends HttpServlet {
                 Usuario userChange = tokenDao.UserTokenById(tokenDao.getUserByToken(tokenChange));
                 userDao.editarPassword(newpass,userChange.getIdUsuario());
                 tokenDao.deleteToken(tokenChange);
-                //Falta el popup de "La contraseña fue cambiada con éxito."
-                response.sendRedirect("login?action=login&notify=change_complete");
+                HttpSession httpSession = request.getSession();
+                httpSession.setAttribute("msgSuccessNewPassword", "La contraseña fue restablecida con éxito.");
+                response.sendRedirect("login?action=login");
                 break;
 
             default:

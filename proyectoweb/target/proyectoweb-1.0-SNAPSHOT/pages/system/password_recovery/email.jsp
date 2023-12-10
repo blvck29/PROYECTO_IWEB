@@ -1,4 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<% String msgErrorCorreo = (String) session.getAttribute("msgErrorForgetPassEmail"); %>
+<% String msgCorreoRechazado = (String) session.getAttribute("msgErrorEmailRechazado"); %>
+
 
 <!doctype html>
 <html lang="es">
@@ -11,11 +14,25 @@
 
     <script src="https://kit.fontawesome.com/a2dd6045c4.js" crossorigin="anonymous"></script>
     <link rel="icon" type="image/jpg" href="favicon.png"/>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/showError.js"></script>
     <title>Semana de Ingeniería 2023</title>
 </head>
 
 
-<body>
+<body
+<% if (msgErrorCorreo != null){%>
+
+onload = " showErrorForgetPassErrorEmail('<%=msgErrorCorreo%>') "
+
+<% } session.removeAttribute("msgErrorForgetPassEmail");%>
+
+<% if (msgCorreoRechazado != null){%>
+
+onload = " showErrorEmailRechazado('<%=msgCorreoRechazado%>') "
+
+<% } session.removeAttribute("msgErrorEmailRechazado");%>
+>
 
 <section class="index">
 

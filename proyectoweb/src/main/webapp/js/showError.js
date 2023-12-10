@@ -68,3 +68,28 @@ function showErrorForgetPassErrorEmail(errorMessage) {
         text: errorMessage,
     });
 }
+
+
+function showErrorEmailRechazado(errorMessage) {
+    Swal.fire({
+        icon: 'error',
+        title: 'ERROR:',
+        iconColor: '#DC3545',
+        confirmButtonColor: '#DC3545',
+        confirmButtonText: "Cerrar",
+        text: errorMessage,
+    });
+}
+
+
+function nuevaContrasena(msg) {
+    Swal.fire({
+        position: "center",
+        icon: "success",
+        iconColor: '#481A84',
+        title: "¡Felicidades!",
+        text: msg,
+        confirmButtonColor: '#481A84',
+        confirmButtonText: "Cerrar",
+    });
+}

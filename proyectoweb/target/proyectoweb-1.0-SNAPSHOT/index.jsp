@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<% String msgSuccessNewPassword = (String) session.getAttribute("msgSuccessNewPassword"); %>
 
 
 
@@ -7,16 +8,21 @@
 <head>
     <meta http-equiv="Content-Type" content=text/html; charset=ISO-8859-1″>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="image/jpg" href="favicon.png"/>
-
     <script src="https://kit.fontawesome.com/a2dd6045c4.js" crossorigin="anonymous"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/showError.js"></script>
     <title>Login | Semana de Ingeniería 2023</title>
 </head>
-<body>
+<body
+
+<% if(msgSuccessNewPassword != null){ %>
+onload=" nuevaContrasena('<%=msgSuccessNewPassword%>')  "
+<%} session.removeAttribute("msgSuccessNewPassword");%>
+
+>
 <section class="index">
 
     <div class="login-container">
