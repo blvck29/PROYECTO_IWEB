@@ -69,6 +69,9 @@
                         <a href="<%=request.getContextPath()%>/admin_gen?action=donations">Donaciones</a>
                     </li>
                     <li>
+                        <a href="<%=request.getContextPath()%>/admin_gen?action=profile"><i class="fa-solid fa-user nav-icon2"></i><%=user.getNombres() + " " + user.getApellidos()%></a>
+                    </li>
+                    <li>
                         <a href="<%=request.getContextPath()%>/logout"><i class="fa-solid fa-door-open nav-icon2"></i>Cerrar Sesión</a>
                     </li>
                 </ul>
