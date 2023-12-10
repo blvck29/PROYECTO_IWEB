@@ -137,7 +137,7 @@ public class SystemServlet extends HttpServlet {
                     response.sendRedirect("login?action=register&error=no_valid");
 
                 } else {
-                    userDao.crearUsuario(names, lastnames, codigo, email, isEgresado, password, sexo);
+                    //userDao.crearUsuario(names, lastnames, codigo, email, isEgresado, password, sexo);
                     System.out.println("ALGUIEN ESTA EN REGISTRO  else antes de token");
 
                     //String token = tokenDao.generateToken(email,1);

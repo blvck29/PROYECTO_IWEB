@@ -69,7 +69,7 @@
 
             <div class="form123-control">
                 <label for="codigo">Código PUCP</label>
-                <input type="number" name="code" placeholder="example@pucp.edu.pe" id="codigo" />
+                <input type="number" name="code" placeholder="Como mínimo 8 caracteres" id="codigo" />
                 <i class="fas fa-check-circle"></i>
                 <i class="fas fa-exclamation-circle"></i>
                 <small>Error message</small>
@@ -78,7 +78,7 @@
 
             <div class="form123-control">
                 <label for="email">Correo PUCP</label>
-                <input type="text" placeholder="example@pucp.edu.pe" name="email" id="email" />
+                <input type="text" placeholder="Debe Contener 8 dígitos" name="email" id="email" />
                 <i class="fas fa-check-circle"></i>
                 <i class="fas fa-exclamation-circle"></i>
                 <small>Error message</small>
@@ -101,7 +101,7 @@
 
             <div class="form123-control">
                 <label for="password">Contraseña</label>
-                <input type="password" placeholder="Como mínimo 8 caracteres" name="password" id="password"/>
+                <input type="password" name="password" id="password"/>
                 <i class="fas fa-check-circle"></i>
                 <i class="fas fa-exclamation-circle"></i>
                 <small>Error message</small>
@@ -111,7 +111,7 @@
 
             <div class="form123-control">
                 <label for="password2">Confirmar contraseña</label>
-                <input type="password" placeholder="las contraseñas deben coincidir" name="passwordconf" id="password2"/>
+                <input type="password" placeholder="Las contraseñas deben coincidir" name="passwordconf" id="password2"/>
                 <i class="fas fa-check-circle"></i>
                 <i class="fas fa-exclamation-circle"></i>
                 <small>Error message</small>
