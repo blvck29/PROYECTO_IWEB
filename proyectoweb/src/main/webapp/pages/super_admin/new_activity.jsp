@@ -37,9 +37,6 @@
         '<%= id %>',
         <% }  %>
     ];
-
-    console.log(titulosActividad);
-    console.log(idsDelegados);
 </script>
 
 <%

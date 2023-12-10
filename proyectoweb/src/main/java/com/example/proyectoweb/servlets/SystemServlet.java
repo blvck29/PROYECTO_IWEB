@@ -9,6 +9,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 @WebServlet(name = "SystemServlet", value = "/login")
 public class SystemServlet extends HttpServlet {
@@ -20,9 +21,12 @@ public class SystemServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String action = request.getParameter("action") == null? "login" : request.getParameter("action");
+        UsuariosDao userDao = new UsuariosDao();
 
         switch (action) {
             case "register":
+                 request.setAttribute("correos", userDao.correosExistentes());
+                request.setAttribute("codigos", userDao.codigosExistentes());
                 request.getRequestDispatcher("pages/system/register.jsp").forward(request, response);
                 break;
             case "confirm_account":
@@ -55,6 +59,7 @@ public class SystemServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String action = request.getParameter("action") == null? "auth" : request.getParameter("action");
+        UsuariosDao userDao = new UsuariosDao();
 
         switch (action){
 
@@ -109,9 +114,18 @@ public class SystemServlet extends HttpServlet {
                 boolean isEgresado = "condit".equals(request.getParameter("condition"));
                 boolean isHombre = "M".equals(request.getParameter("male"));
                 String sexo = isHombre ? "M" : "F";
-                System.out.println(sexo);
+
+
+                System.out.println("Nombres: " + names);
+                System.out.println("Apellidos: " + lastnames);
+                System.out.println("codigo: " + codigo);
+                System.out.println("email "  + email);
+                System.out.println("Es egresado: " + isEgresado);
+                System.out.println("sexo: " + sexo);
 
                 String password = request.getParameter("password");
+
+                System.out.println("contraseña: " + password);
 
                 String correoDB =  userDao.verificarCorreo(email);
                 String codigoDB = userDao.verificarCodigo(String.valueOf(codigo));
@@ -119,11 +133,11 @@ public class SystemServlet extends HttpServlet {
                 System.out.println("ALGUIEN ESTA EN REGISTRO");
 
                 if (correoDB != null && codigoDB != null) {
-                    //Falta el popup de "El correo o el codigo ingresado ya está registrado"
-                    //response.sendRedirect("login?action=register&error=no_valid");
-                    System.out.println("ALGUIEN ESTA EN REGISTRO  if");
+
+                    response.sendRedirect("login?action=register&error=no_valid");
+
                 } else {
-                   // userDao.crearUsuario(names, lastnames, codigo, email, isEgresado, password, sexo);
+                    userDao.crearUsuario(names, lastnames, codigo, email, isEgresado, password, sexo);
                     System.out.println("ALGUIEN ESTA EN REGISTRO  else antes de token");
 
                     //String token = tokenDao.generateToken(email,1);
