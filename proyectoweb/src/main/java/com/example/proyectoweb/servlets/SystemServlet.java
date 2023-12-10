@@ -137,12 +137,12 @@ public class SystemServlet extends HttpServlet {
                     response.sendRedirect("login?action=register&error=no_valid");
 
                 } else {
-                    //userDao.crearUsuario(names, lastnames, codigo, email, isEgresado, password, sexo);
+                    userDao.crearUsuario(names, lastnames, codigo, email, isEgresado, password, sexo);
                     System.out.println("ALGUIEN ESTA EN REGISTRO  else antes de token");
 
-                    //String token = tokenDao.generateToken(email,1);
-                   // EmailSender.sendEmail(email,"Token para Verificación"," Token: " + token + "\n Confirmar su token aquí: http://localhost:8080/proyectoweb/login?action=confirm_account");
-                   // response.sendRedirect("login?action=confirm_account");
+                    String token = tokenDao.generateToken(email,1);
+                    EmailSender.sendEmail(email,"Token para Verificación"," Token: " + token + "\n Confirmar su token aquí: http://localhost:8080/proyectoweb/login?action=confirm_account");
+                    response.sendRedirect("login?action=confirm_account");
                 }
                 break;
 
