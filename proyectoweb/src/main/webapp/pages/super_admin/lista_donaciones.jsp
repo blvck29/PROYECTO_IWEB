@@ -160,7 +160,13 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
 
                                             <td class="centeralign cell c1" style=""><%= donaciones.getCantidadDonaciones() - 1 %></td>
-                                            <td class="centeralign cell c1" style=""><%= donaciones.getKitTeleco() %></td>
+                                            <% String kitWord = "i";
+                                            if(donaciones.getKitTeleco() == 1){
+                                                kitWord = "Sí";
+                                            }else{
+                                                kitWord = "No";
+                                            }%>
+                                            <td class="centeralign cell c1" style=""><%= kitWord %></td>
 
                                         </tr>
                                         <%}%>
