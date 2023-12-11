@@ -1,6 +1,7 @@
 package com.example.proyectoweb.servlets;
 
 import com.example.proyectoweb.model.CurrentDate;
+import com.example.proyectoweb.model.EmailSender;
 import com.example.proyectoweb.model.beans.*;
 import com.example.proyectoweb.model.daos.*;
 import jakarta.servlet.*;
@@ -122,7 +123,7 @@ public class UserServlet extends HttpServlet {
                     case "imagenPorActividad":
                         Boolean b = actividadesDao.validarSizeImagen(response, request.getParameter("idActividad"));
 
-                        if(b == true){
+                        if(b){
                             actividadesDao.listarImagenPorActividad(response, request.getParameter("idActividad"),4);
                         }else{
                             actividadesDao.listarImagenPorActividad(response, request.getParameter("idActividad"),3);
@@ -253,7 +254,7 @@ public class UserServlet extends HttpServlet {
                                 HttpSession httpSession = request.getSession();
                                 httpSession.setAttribute("msgKitTeleco", "Su donación se ha registrado correctamente y ha obtenido su Kit Teleco. Se le enviará un correo con mas información sobre la entrega de este mismo.");
                                 userDao.obtieneKitTeleco(user.getIdUsuario());
-                                //se le envia correo sobre el kit teleco
+                                EmailSender.sendEmail(user.getCorreo(),"Recojo de Kit Teleco!"," Lugar de recojo: Explanada de Cía \n Fecha de recojo: 15/12/2023 \n \n Gracias por su apoyo a la fibra!");
                                 donacionesDao.nuevaDonacion(user.getIdUsuario(), monto, donacion);
                             }else{
                                 HttpSession httpSession = request.getSession();
