@@ -93,3 +93,14 @@ function nuevaContrasena(msg) {
         confirmButtonText: "Cerrar",
     });
 }
+
+function showErrorLogin(errorMessage) {
+    Swal.fire({
+        icon: 'error',
+        title: 'ERROR:',
+        iconColor: '#DC3545',
+        confirmButtonColor: '#DC3545',
+        confirmButtonText: "Volver a ingresar los datos",
+        text: errorMessage,
+    });
+}

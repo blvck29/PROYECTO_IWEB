@@ -87,7 +87,7 @@
     <nav class="nav-bar">
         <ul>
             <li>
-                <a href="<%=request.getContextPath()%>/user_home" class="active" style="margin-bottom: -15px">Inicio</a>
+                <a href="<%=request.getContextPath()%>/user_home"  style="margin-bottom: -15px">Inicio</a>
             </li>
 
             <li class="nav-item dropdown" style="margin-top: 20px">
@@ -102,7 +102,7 @@
             </li>
 
             <li>
-                <a href="<%=request.getContextPath()%>/user_home?action=donate">Donaciones</a>
+                <a href="<%=request.getContextPath()%>/user_home?action=donate"   class="active">Donaciones</a>
             </li>
             <li>
                 <a href="<%=request.getContextPath()%>/user_home?action=profile"><i class="fa-solid fa-user nav-icon2"></i><%=user.getNombres() + " " + user.getApellidos()%></a>

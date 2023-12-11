@@ -114,7 +114,8 @@ public class SystemServlet extends HttpServlet {
 
                 } else {
                     System.out.println("Usuario o Contraseña Incorrectos");
-                    request.setAttribute("err","Usuario o password incorrectos");
+                    HttpSession httpSession = request.getSession();
+                    httpSession.setAttribute("msgErrorLogin","Usuario o contraseña incorrecto" );
                     request.getRequestDispatcher("index.jsp").forward(request,response);
                 }
 
