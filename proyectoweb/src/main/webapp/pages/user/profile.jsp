@@ -245,7 +245,7 @@
                 <div class="form-group" style="padding-right: 1rem">
                   <label  style="text-align: left;"><strong> Cantidad de eventos inscritos</strong></label>
                   <span>
-                    <input name="titulo" type="text" class="form-control"  value="<%=user.getCantEventsInscrito()%>" readonly>
+                    <input name="titulo" type="text" class="form-control"  value="<%=listaEventos.size()%>" readonly>
                   </span>
                 </div>
               </div>
@@ -275,11 +275,11 @@
             <br>
 
             <!-- Resto del contenido -->
-            <label style="text-align: center; padding-left: 20px;"><strong>Eventos en los que estás inscrito:  </strong></label>
+            <label style="text-align: left; padding-left: 20px; display: block; font-size: 1.5em; font-weight: bold; margin-bottom: 10px;">Eventos en los que estás inscrito:</label>
 
             <% if (listaEventos != null && !listaEventos.isEmpty()) { %>
             <% for (Evento evento : listaEventos) { %>
-            <h4 style="padding-left: 20px;">El evento es <%= evento.getTitulo() %></h4>
+            <p style="padding-left: 20px;"> * <%= evento.getTitulo() %></p>
             <% } %>
             <% } else { %>
             <p style="padding-left: 20px;">No hay eventos inscritos actualmente.</p>

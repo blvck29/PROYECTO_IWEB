@@ -473,4 +473,53 @@ public class EventosDao extends DaoBase{
         return eventosInscritos;
     }
 
+    public ArrayList<Evento> listarEventosInscritosbienhecho(int idUsuario) {
+        String sql = "SELECT e.* FROM evento e " +
+                "INNER JOIN inscripcion i ON e.idEvento = i.idEvento " +
+                "INNER JOIN usuarios u ON u.idUsuario = i.Usuario\n " +
+                "WHERE u.idUsuario = ?";
+
+
+
+
+
+        ArrayList<Evento> eventosInscritos = new ArrayList<>();
+
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, idUsuario);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    int idEvento = rs.getInt("idEvento");
+                    String titulo = rs.getString("titulo");
+                    String subTitulo = rs.getString("subTitulo");
+                    Time hora = rs.getTime("hora");
+                    Date fecha = rs.getDate("fecha");
+                    String lugar = rs.getString("lugar");
+                    InputStream imagenStream = rs.getBinaryStream("imagen");
+                    String descripcion = rs.getString("descripcion");
+                    String idEstado = rs.getString("idEstado");
+                    String idActividad = rs.getString("idActividad");
+
+                    Evento evento = new Evento(idEvento, titulo, subTitulo, hora, fecha, lugar, imagenStream,descripcion, idEstado, idActividad);
+                    System.out.println(evento.getTitulo());
+                    eventosInscritos.add(evento);
+
+                    // Cerrar el InputStream después de su uso
+                    if (imagenStream != null) {
+                        imagenStream.close();
+                    }
+                }
+            }
+
+        } catch (SQLException | IOException e) {
+            // Manejar la excepción de manera adecuada, log, lanzar excepción personalizada, etc.
+            e.printStackTrace();
+        }
+
+        return eventosInscritos;
+    }
+
 }

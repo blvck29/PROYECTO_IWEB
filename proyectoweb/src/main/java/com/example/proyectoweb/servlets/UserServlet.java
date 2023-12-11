@@ -135,12 +135,14 @@ public class UserServlet extends HttpServlet {
                         break;
 
                     case "profile":
-                        ArrayList<Evento> eventosXusuario = eventoDao.listarEventosInscritos(user.getIdUsuario());
+                        ArrayList<Evento> eventosXusuario = eventoDao.listarEventosInscritosbienhecho(user.getIdUsuario());
                         request.setAttribute("listaEventos",eventosXusuario);
                         request.getRequestDispatcher("pages/user/profile.jsp").forward(request,response);
+                        System.out.println("ANTES DEL FOR");
                         for (Evento evento : eventosXusuario) {
                             System.out.println(evento.getTitulo());
                         }
+                        System.out.println("despuesd del for de fprof");
                         break;
 
                     case "imagenPorEvento":
