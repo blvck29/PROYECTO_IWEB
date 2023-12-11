@@ -20,11 +20,7 @@
 <% if(msgSuccessNewPassword != null){ %>
 onload=" nuevaContrasena('<%=msgSuccessNewPassword%>')  "
 <%} session.removeAttribute("msgSuccessNewPassword");%>
-
-<% if(msgErrorLogin != null){ %>
-onload=" showErrorLogin('<%=msgErrorLogin%>')  "
-<%} session.removeAttribute("msgErrorLogin");%>
-
+        
 >
 <section class="index">
 
@@ -33,6 +29,14 @@ onload=" showErrorLogin('<%=msgErrorLogin%>')  "
         <div class="login-form">
             <form method="POST" action="<%=request.getContextPath()%>/login?action=login">
                 <h2>Iniciar Sesión</h2>
+
+
+                <% if(msgErrorLogin != null){ %>
+                <div class="alert alert-danger" role="alert">
+                    <%=msgErrorLogin%>
+                </div>
+                <%} session.removeAttribute("msgErrorLogin");%>
+
                 <div class="login-input">
                     <i class="fa-solid fa-envelope"></i>
                     <input type="email" id="email" name="email" required>
