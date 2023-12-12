@@ -146,7 +146,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                             <div style="padding-top: 1em;"></div>
                         </div>
                         <div class="container" style="padding-top: 1rem; align-items: center; align-content: center; text-align: center;">
-                            <button class="btn btn-secondary">Finalizado</button>
+                            <button class="btn btn-secondary" disabled>Finalizado</button>
                         </div>
                         <div style="padding-top: 1em;"></div>
 
