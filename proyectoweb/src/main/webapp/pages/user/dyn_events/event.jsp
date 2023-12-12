@@ -144,9 +144,12 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                             <div style="padding-top: 1em;"></div>
                         </div>
 
-                        <div class="container" style="padding-top: 1rem; align-items: center; align-content: center; text-align: center;">
-                            <button class="btn btn-primary">Inscribirse</button>
-                        </div>
+
+
+                        <form method="post" action="<%=request.getContextPath()%>/user_home?action=inscribirse&idEvento=<%=event.getIdEvento()%>">
+                            <button type="submit" class="btn btn-primary">Inscribirse</button>
+                        </form>
+
                         <div style="padding-top: 1em;"></div>
 
                     </div>

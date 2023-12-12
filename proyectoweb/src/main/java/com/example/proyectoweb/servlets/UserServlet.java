@@ -173,6 +173,24 @@ public class UserServlet extends HttpServlet {
             UsuariosDao userDao = new UsuariosDao();
 
             switch (action) {
+                case "inscribirse":
+                    String id_evento = request.getParameter("idEvento");
+                    System.out.println("Intentando inscribirse...");
+                    request.setAttribute("listaInscritos", listaInscritos);
+                    request.setAttribute("listaActividades",listaActividades);
+                    request.setAttribute("listaEventos",listaEventos);
+
+                    try {
+                        eventoDao.Inscribirse_a_un_evento(id_evento, user.getIdUsuario());
+                        System.out.println("¡Inscripción exitosa!");
+                        request.getRequestDispatcher("pages/user/home.jsp").forward(request,response);
+                    } catch (Exception e) {
+                        System.out.println("Error al inscribirse: " + e.getMessage());
+                        request.getRequestDispatcher("pages/user/home.jsp").forward(request,response);
+                        // Otra lógica si es necesario manejar el error de otra manera
+                    }
+                    break;
+
                 case "load":
                     request.getRequestDispatcher("user_home").forward(request, response);
                     break;
@@ -186,6 +204,26 @@ public class UserServlet extends HttpServlet {
                     request.setAttribute("listaFiltroAct",eventosSearched);
                     request.setAttribute("listaInscritos", listaInscritos);
                     request.getRequestDispatcher("pages/user/activity.jsp").forward(request,response);
+                    break;
+
+                case "eventosXactividad":
+                    String id_actividad = request.getParameter("id_actividad");
+                    Actividad actividad=actDao.buscarPorTitulo(id_actividad);
+                    ArrayList<Evento> listaFiltro = new ArrayList<>();
+                    System.out.println("Estamos en eventos por actividad , antes del dao");
+
+
+
+
+                    listaFiltro = eventoDao.listarEventosProximosxActividad(actividad.getIdActividad());
+                    System.out.println("Estamos en eventos por actividad , dsps del dao");
+
+
+
+                    request.setAttribute("actividad", actividad);
+                    request.setAttribute("listaEventos",listaFiltro);
+                    request.getRequestDispatcher("pages/user/dyn_events/prox.jsp").forward(request,response);
+
                     break;
 
                 case "filter_act":
@@ -209,6 +247,8 @@ public class UserServlet extends HttpServlet {
                     request.setAttribute("listaInscritos", listaInscritos);
                     request.getRequestDispatcher("pages/user/activity.jsp").forward(request,response);
                     break;
+
+
 
 
                 case "filter":
