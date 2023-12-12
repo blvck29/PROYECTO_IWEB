@@ -152,13 +152,22 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                     </div>
 
 
-                    </div>
                 </div>
+            </div>
 
 
 
             <div class="col-lg-6 col-md-12" style="padding-left: 2em; padding-right: 2em; padding-top: 1.5em">
-                <img src="<%=event.getImagen()%>" alt="imagen de evento" style="height: auto; width: 100%">
+
+
+                <div class="card">
+                    <div class="card-body" style="padding-left: 35px">
+                        <img src="<%=event.getImagen()%>" alt="imagen de evento" style="height: auto; width: 100%">
+
+                    </div>
+
+
+                </div>
 
             </div>
         </div>
