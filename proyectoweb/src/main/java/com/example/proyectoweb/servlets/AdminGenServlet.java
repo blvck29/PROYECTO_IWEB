@@ -89,13 +89,9 @@ public class AdminGenServlet extends HttpServlet {
 
                         case "edit":
                             Actividad actividad = actividadesDao.buscarPorTitulo(request.getParameter("id"));
-                            String idDelActual = request.getParameter("idDelActual");
                             ArrayList<Usuario> listaUsuarios2 = userDao.listarDelegadosActDisponibles();
-                            ArrayList<Actividad> listaActividades2 = actividadesDao.getListaActividades();
 
                             if (actividad != null){
-                                request.setAttribute("idDelActual", idDelActual);
-                                request.setAttribute("listaActividades",listaActividades2);
                                 request.setAttribute("actividad",actividad);
                                 request.setAttribute("listaUsuarios",listaUsuarios2);
                                 request.getRequestDispatcher("/pages/super_admin/edit_activity.jsp").forward(request, response);
@@ -297,7 +293,11 @@ public class AdminGenServlet extends HttpServlet {
                             String idDelActual = request.getParameter("idDelActual");
                             String tituloActividad2 = request.getParameter("tituloActividad");
                             String idActividad2 = tituloActividad2.toUpperCase();
-                            String idDelegado2 = request.getParameter("idDelegado");
+                            String idDelegado2 = request.getParameter("idNuevoDelegado");
+
+                            System.out.println("idDelegado actual: " + idDelActual);
+                            System.out.println("idDelegado nuevo: " + idDelegado2);
+
 
                             Part part2 = request.getPart("fileFoto");
                             InputStream inputStream2 = part2.getInputStream();

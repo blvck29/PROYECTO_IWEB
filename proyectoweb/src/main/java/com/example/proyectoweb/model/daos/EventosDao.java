@@ -498,10 +498,6 @@ public class EventosDao extends DaoBase{
                 "INNER JOIN usuarios u ON u.idUsuario = i.Usuario\n " +
                 "WHERE u.idUsuario = ?";
 
-
-
-
-
         ArrayList<Evento> eventosInscritos = new ArrayList<>();
 
         try (Connection conn = getConnection();

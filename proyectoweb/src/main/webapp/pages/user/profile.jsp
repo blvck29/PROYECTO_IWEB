@@ -9,10 +9,7 @@
 
 <%Usuario user = (Usuario) session.getAttribute("usuario");%>
 
-<% ArrayList<Actividad> listaActividades = (ArrayList<Actividad>) request.getAttribute("listaActividades");%>
 <% ArrayList<Evento> listaEventos = (ArrayList<Evento>) request.getAttribute("listaEventos"); %>
-<% ArrayList<Inscrito> listaInscritos = (ArrayList<Inscrito>) request.getAttribute("listaInscritos"); %>
-
 
 <!doctype html>
 <html lang="es">
@@ -274,10 +271,10 @@
 
             <br>
 
-            <!-- Resto del contenido -->
+            <!-- Resto del contenido-->
             <label style="text-align: left; padding-left: 20px; display: block; font-size: 1.5em; font-weight: bold; margin-bottom: 10px;">Eventos en los que estás inscrito:</label>
 
-            <% if (listaEventos != null && !listaEventos.isEmpty()) { %>
+            <% if (!listaEventos.isEmpty()) { %>
             <% for (Evento evento : listaEventos) { %>
             <p style="padding-left: 20px;"> * <%= evento.getTitulo() %></p>
             <% } %>

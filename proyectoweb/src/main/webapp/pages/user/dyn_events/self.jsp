@@ -113,13 +113,12 @@
 
         <%int event_counter = 0;%>
         <% for (Inscripcion ins : listaEventosPropia) { %>
-        <%if (event_counter==8) { break; }%>
         <div class="col-sm-6 col-lg-3 mb-4">
 
             <div class="card-list">
                 <article class="card">
                     <figure class="card-image">
-                        <img class="image-event" src="images/placeholder_events.jpg" alt="event" />
+                        <img class="image-event" src="<%=request.getContextPath()%>/user_home?action=imagenPorEvento&idEvento=<%=ins.getIdEvento()%>" />
                     </figure>
                     <div class="card-header">
                         <a href="<%=request.getContextPath()%>/user_home?action=details&id=<%=ins.getIdEvento()%>"><%=ins.getTitulo()%><p><%=ins.getSubTitulo()%></p></a>

@@ -136,6 +136,7 @@ public class UserServlet extends HttpServlet {
 
                     case "profile":
                         ArrayList<Evento> eventosXusuario = eventoDao.listarEventosInscritosbienhecho(user.getIdUsuario());
+                        System.out.println(eventosXusuario.size());
                         request.setAttribute("listaEventos",eventosXusuario);
                         request.getRequestDispatcher("pages/user/profile.jsp").forward(request,response);
                         System.out.println("ANTES DEL FOR");
