@@ -1,12 +1,20 @@
 package com.example.proyectoweb.model.beans;
 
+import java.io.InputStream;
 import java.sql.Blob;
 
 public class FotoAlbum {
+    public FotoAlbum(int idFoto, int idEvento, InputStream foto, String descricipcion) {
+        this.idFoto = idFoto;
+        this.idEvento = idEvento;
+        Foto = foto;
+        Descricipcion = descricipcion;
+    }
+
     private int idFoto;
     private int idEvento;
-    private Blob foto;
-    private String descripccion;
+    private InputStream Foto;
+    private String Descricipcion;
 
     public int getIdFoto() {
         return idFoto;
@@ -24,19 +32,23 @@ public class FotoAlbum {
         this.idEvento = idEvento;
     }
 
-    public Blob getFoto() {
-        return foto;
+    public InputStream getFoto() {
+        return Foto;
     }
 
-    public void setFoto(Blob foto) {
-        this.foto = foto;
+    public void setFoto(InputStream foto) {
+        Foto = foto;
     }
 
-    public String getDescripccion() {
-        return descripccion;
+    public String getDescricipcion() {
+        return Descricipcion;
     }
 
-    public void setDescripccion(String descripccion) {
-        this.descripccion = descripccion;
+    public void setDescricipcion(String descricipcion) {
+        Descricipcion = descricipcion;
     }
+
+
+
+
 }

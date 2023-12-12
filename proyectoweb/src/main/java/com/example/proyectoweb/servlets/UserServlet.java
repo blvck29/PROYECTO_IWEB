@@ -34,6 +34,7 @@ public class UserServlet extends HttpServlet {
                 ArrayList<Inscrito> listaInscritos = inscritosDao.inscritosPorEvento();
                 ActividadesDao actividadesDao = new ActividadesDao();
                 DonacionesDao donacionesDao = new DonacionesDao();
+                AlbumDao albumDao=new AlbumDao();
 
                 switch (action){
                     case "home":
@@ -88,6 +89,7 @@ public class UserServlet extends HttpServlet {
                     case "details":
                         String idEv = request.getParameter("id") == null? "self" : request.getParameter("id");
 
+
                         int idUsr = user.getIdUsuario();
                         ArrayList<Inscripcion> listaEventosPropia = eventoDao.listarEventosPropios(String.valueOf(idUsr));
                         Evento ev = eventoDao.EventoXid(idEv);
@@ -96,7 +98,26 @@ public class UserServlet extends HttpServlet {
                         request.setAttribute("evento_detailed", ev);
 
                         if(CurrentDate.isCurrent(ev) > 0){
+
+                            System.out.println("estoy en imagenes album en details");
+                            String idEvento = request.getParameter("idEvento");
+                            System.out.println(idEv);
+
+                            ArrayList<FotoAlbum> listafotos = new ArrayList<>();
+                            listafotos=albumDao.listarfotosDeAlbum(idEv);
+                            request.setAttribute("listafotos",listafotos);
+                            System.out.println(listafotos.size());
+
+
+
+
+
                             request.getRequestDispatcher("pages/user/dyn_events/event_end.jsp").forward(request,response);
+
+
+
+
+
                         } else {
                             request.getRequestDispatcher("pages/user/dyn_events/event.jsp").forward(request,response);
                         }
@@ -149,7 +170,19 @@ public class UserServlet extends HttpServlet {
                     case "imagenPorEvento":
                         System.out.println(request.getParameter("idEvento"));
                         eventoDao.listarImagenPorEvento(response, request.getParameter("idEvento"));
+
                         break;
+
+                    case "imagenPorAlbum":
+                        System.out.println("Estoy en imagen por album");
+                        albumDao.listarImagenPorFotoDeAlbum(response,request.getParameter("IdFoto"),3);
+
+                        break;
+
+
+
+
+
 
 
                 }
