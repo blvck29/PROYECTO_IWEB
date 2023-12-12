@@ -1,11 +1,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.google.gson.Gson" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%
-    ArrayList<String> correos = (ArrayList<String>) request.getAttribute("correos");
-    ArrayList<String> codigos = (ArrayList<String>) request.getAttribute("codigos");
 
-%>
 
 
 

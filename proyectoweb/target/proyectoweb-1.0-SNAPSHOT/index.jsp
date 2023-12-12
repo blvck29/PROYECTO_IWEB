@@ -21,7 +21,6 @@
 onload=" nuevaContrasena('<%=msgSuccessNewPassword%>')  "
 <%} session.removeAttribute("msgSuccessNewPassword");%>
 
-
 >
 <section class="index">
 

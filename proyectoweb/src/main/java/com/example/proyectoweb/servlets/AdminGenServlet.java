@@ -15,6 +15,8 @@ import java.io.InputStream;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.Map;
+import com.google.gson.Gson;
+
 
 @MultipartConfig
 @WebServlet(name = "AdminGenServlet", value = "/admin_gen")
@@ -52,6 +54,20 @@ public class AdminGenServlet extends HttpServlet {
                     }
                     break;
 
+                case "obtenerDatosCrearActividad": //Para validaciones a la hora de registrarse
+                    ArrayList<Actividad> listaActividadesGson = actividadesDao.getListaActividades();
+
+                    ArrayList<String> titulosActividad = new ArrayList<String>();
+                    for (Actividad act : listaActividadesGson) {
+                        titulosActividad.add(act.getTitulo());
+                    }
+                    Gson gson = new Gson();
+                    String jsonOutput = gson.toJson(Map.of("titulosActividad", titulosActividad));
+                    response.setContentType("application/json");
+                    response.setCharacterEncoding("UTF-8");
+                    response.getWriter().write(jsonOutput);
+                    break;
+
                 case "activities":
 
                     String ac2 = request.getParameter("ac") == null? "list" : request.getParameter("ac");
@@ -66,9 +82,6 @@ public class AdminGenServlet extends HttpServlet {
 
                         case "crear":
                             ArrayList<Usuario> listaDelegadosDisponibles = userDao.listarDelegadosActDisponibles();
-
-                            ArrayList<Actividad> listaActividades = actividadesDao.getListaActividades();
-                            request.setAttribute("listaActividades",listaActividades);
                             request.setAttribute("listaUsuarios",listaDelegadosDisponibles);
 
                             request.getRequestDispatcher("/pages/super_admin/new_activity.jsp").forward(request,response);
@@ -77,7 +90,7 @@ public class AdminGenServlet extends HttpServlet {
                         case "edit":
                             Actividad actividad = actividadesDao.buscarPorTitulo(request.getParameter("id"));
                             String idDelActual = request.getParameter("idDelActual");
-                            ArrayList<Usuario> listaUsuarios2 = userDao.listarTodosUsuarios();
+                            ArrayList<Usuario> listaUsuarios2 = userDao.listarDelegadosActDisponibles();
                             ArrayList<Actividad> listaActividades2 = actividadesDao.getListaActividades();
 
                             if (actividad != null){

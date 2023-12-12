@@ -1,6 +1,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.example.proyectoweb.model.beans.Usuario" %>
 <%@ page import="com.example.proyectoweb.model.beans.Actividad" %>
+<%@ page import="com.google.gson.Gson" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 
@@ -9,35 +10,6 @@
 <%  if (user.getIdRolSistema().equals("DELGEN")){ %>
 
     <%ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) request.getAttribute("listaUsuarios");%>
-    <%ArrayList<Actividad> listaActividades = (ArrayList<Actividad>) request.getAttribute("listaActividades");%>
-
-<%
-    ArrayList<String> titulosActividad = new ArrayList<String>();
-    ArrayList<Integer> listaIdsDelegados = new ArrayList<Integer>();
-
-    for (Actividad act : listaActividades) {
-        titulosActividad.add(act.getTitulo());
-    }
-
-    for (Actividad act : listaActividades) {
-        listaIdsDelegados.add(act.getIdEncargado());
-    }
-%>
-
-<script>
-    var titulosActividad = [
-        <% for (String titulo : titulosActividad) { %>
-        '<%= titulo %>',
-        <% } %>
-    ];
-
-    var idsDelegados = [
-        <%
-        for (Integer id : listaIdsDelegados){%>
-        '<%= id %>',
-        <% }  %>
-    ];
-</script>
 
 <%
     if (session.getAttribute("id") != null){
@@ -86,6 +58,7 @@
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="js/showError.js"></script>
+
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-HjQE6zC8aa2BK9xVRvPUdo4FqIkFfQF1dM1iZeFzTC1Q9dI6yCeF6pMJpPs19j7e" crossorigin="anonymous">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
@@ -285,33 +258,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
 
 
-<script>
-        const nombre = document.getElementById("nombreAct")
-        const form = document.getElementById("form")
-        const idDelegado = document.getElementById("idDelegado")
-
-        form.addEventListener("submit", e=>{
-
-            if (titulosActividad.includes(nombre.value)){
-                showError('El nombre de la actividad ya existe')
-                e.preventDefault() // Evita el envío del formulario si la validación falla
-            }else if (nombre.value.length<4){
-                 showError("El titulo de la actividad es muy corto")
-                 e.preventDefault()
-            }else if (nombre.value.length>8){
-                showError("El titulo de la actividad es muy largo")
-                e.preventDefault()
-            }
-            else if(idsDelegados.includes(idDelegado.value)){
-                showError("El delegado ya fue seleccionado para otra actividad")
-                e.preventDefault()
-            }
-            else{
-                //Envia el form al servlet
-            }
-        })
-</script>
-
+<script src="js/newActivity.js"></script>
 <script src="js/upload.js"></script>
 <script src="js/bootstrap/bootstrap.js"></script>
 <script src="js/script.js"></script>
