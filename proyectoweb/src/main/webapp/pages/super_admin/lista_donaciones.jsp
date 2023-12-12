@@ -129,7 +129,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                             <h1 class="modal-title fs-5" id="exampleModalLabel">Detalles acerca de Monto total | Cantidad de Donaciones | Kit teleco</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body" style="max-height: 400px; overflow-y: auto;">
+                        <div class="modal-body" style="max-height: 600px; overflow-y: auto;">
                             <!-- Contenido del modal -->
                             <!-- Puedes ajustar la altura máxima según tus necesidades -->
                             <!-- El desplazamiento vertical se activará si el contenido es más largo que la altura máxima -->
