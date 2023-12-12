@@ -159,7 +159,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
 
             <div class="col-lg-6 col-md-12" style="padding-left: 2em; padding-right: 2em; padding-top: 1.5em">
-                <div style="border: 1px solid #ccc; padding: 1em; transition: box-shadow 0.3s;">
+                <div style="border: 1px solid rgba(0, 0, 0, 0.125); padding: 8px; transition: box-shadow 0.3s; width: 65%;  border-radius: 4px;">
                     <img src="<%=request.getContextPath()%>/user_home?action=imagenPorEvento&idEvento=<%=event.getIdEvento()%>"
                          alt="imagen de evento"
                          style="height: auto; width: 100%"
