@@ -118,7 +118,7 @@
             <div class="card-list">
                 <article class="card">
                     <figure class="card-image">
-                        <img class="image-event" src="<%=request.getContextPath()%>/user_home?action=imagenPorEvento&idEvento=<%=event.getIdEvento()%>" />
+                        <img class="image-event" src="<%=request.getContextPath()%>/user_home?action=imagenPorEvento&idEvento=<%=ins.getIdEvento()%>" />
                     </figure>
                     <div class="card-header">
                         <a href="<%=request.getContextPath()%>/user_home?action=details&id=<%=ins.getIdEvento()%>"><%=ins.getTitulo()%><p><%=ins.getSubTitulo()%></p></a>
