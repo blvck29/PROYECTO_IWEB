@@ -146,7 +146,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
                     <tr class="">
                         <td class="centeralign cell c0" style=""><a><%= act.getTitulo()%></a></td>
-                        <td class="centeralign cell c1" style=""><%= act.getDelegado().getNombres() + " " + act.getDelegado().getApellidos()%> </td>
+                        <td class="centeralign cell c1" style=""><%=act.getIdActividad() + act.getIdEncargado() +  act.getDelegado().getNombres() + " " + act.getDelegado().getApellidos()%> </td>
                         <td class="centeralign cell c1" style=""><%= act.getDelegado().getCodigo()%></td>
                         <td class="cell c5" ><a href="<%=request.getContextPath() %>/admin_gen?action=activities&ac=edit&id=<%=act.getIdActividad()%>&idDelActual=<%=act.getIdEncargado()%>"><img width="24" height="24" src="https://img.icons8.com/sf-regular/48/edit-row.png" alt="edit-row"/></a></td>
                         <td class="cell c6 "><a id="<%=deleteId%>"  onclick="return confirmacionEliminar(event)" href="<%=request.getContextPath() %>/admin_gen?action=activities&ac=delete&id=<%=act.getIdActividad()%>&idDelegado=<%=act.getIdEncargado()%>"><img width="24" height="24" src="https://img.icons8.com/sf-regular/48/filled-trash.png" alt="filled-trash"/></a></td>

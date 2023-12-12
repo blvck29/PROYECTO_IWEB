@@ -11,27 +11,7 @@
 
  <% Actividad actividad = (Actividad) request.getAttribute("actividad"); %>
  <% ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) request.getAttribute("listaUsuarios"); %>
- <% ArrayList<Actividad> listaActividades = (ArrayList<Actividad>) request.getAttribute("listaActividades");%>
- <% String idDelActual = (String) request.getAttribute("idDelActual");%>
 
-<%
-    ArrayList<Integer> listaIdsDelegados = new ArrayList<Integer>();
-    for (Actividad act : listaActividades) {
-        if (act.getIdEncargado() != actividad.getIdEncargado()){
-            listaIdsDelegados.add(act.getIdEncargado());
-        }
-    }
-%>
-
-<script>
-    var idsDelegados = [
-        <%
-        for (Integer id : listaIdsDelegados){%>
-        '<%= id %>',
-        <% }  %>
-    ];
-    console.log(idsDelegados);
-</script>
 
 
 <%
@@ -153,7 +133,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
         <div class="row">
             <div class="col-lg-6 col-md-12" style="text-align: left; padding-top: 1.5em">
 
-                <form method="post" id="form" action="<%=request.getContextPath()%>/admin_gen?action=activities&ac=editar&idDelActual=<%=idDelActual%>" enctype="multipart/form-data">
+                <form method="post" id="form" action="<%=request.getContextPath()%>/admin_gen?action=activities&ac=editar&idDelActual=<%=actividad.getDelegado().getIdUsuario()%>" enctype="multipart/form-data">
                     <div class="card">
                         <div class="card-body" style="padding-left: 35px">
 
@@ -172,14 +152,15 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
                             <div class="form-group" style="padding-right: 1rem">
                                 <label id="asistentes"><strong>Encargado de Actividad:</strong></label>
-                                <select class="form-select" name="idDelegado" id="idDelegado" aria-label="Default select example" required>
+                                <select class="form-select" name="idNuevoDelegado" id="idDelegado" aria-label="Default select example" required>
+
+
+                                    <option value="<%=actividad.getDelegado().getIdUsuario()%>" selected> <%=actividad.getDelegado().getNombres() + " " + actividad.getDelegado().getApellidos()%></option>
+
                                     <%for (Usuario usuario : listaUsuarios){ %>
 
-                                        <% if(usuario.getIdUsuario()==actividad.getIdEncargado() || (!usuario.getIdRolSistema().equals("DELGEN") && !usuario.getIdRolSistema().equals("DELACT")))  { %>
+                                        <option value="<%=usuario.getIdUsuario()%>" ><%=usuario.getNombres() + " " + usuario.getApellidos()%></option>
 
-                                        <option value="<%=usuario.getIdUsuario()%>"  <%=usuario.getIdUsuario()==actividad.getIdEncargado()? "selected": ""%> ><%=usuario.getNombres() + " " + usuario.getApellidos()%></option>
-
-                                        <%}%>
 
                                     <%}%>
                                 </select>
@@ -296,23 +277,6 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
     </footer>
 </div>
 
-
-
-<script>
-    const form = document.getElementById("form")
-    const idDelegado = document.getElementById("idDelegado")
-
-    form.addEventListener("submit", e =>{
-
-        if(idsDelegados.includes(idDelegado.value)){
-            showError("Este usuario ya fue elegido como delegado de otra actividad")
-            e.preventDefault()
-        }
-        else{
-
-        }
-    })
-</script>
 
 
 
