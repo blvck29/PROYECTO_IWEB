@@ -107,6 +107,34 @@
 
     <form action="<%=request.getContextPath()%>/user_home?action=filter&of=prox" method="post">
         <div class="input-group mb-3">
+
+
+
+
+
+
+            <!-- Agrega este código en el lugar donde quieras mostrar el menú desplegable -->
+            <div style="float: left;">
+                <label>
+                    <div class="btn-group">
+                        <!-- Botón del menú desplegable -->
+                        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                            Filtrar por actividad
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-lg-end">
+                            <!-- Itera sobre las actividades disponibles -->
+                            <% for (Actividad act : listaActividades) { %>
+                            <!-- Cada actividad será una opción del menú desplegable -->
+                            <form method="post" action="<%=request.getContextPath()%>/user_home?action=eventosXactividad&id_actividad=<%=act.getIdActividad()%>">
+                                <!-- Usa el título de la actividad como etiqueta del botón -->
+                                <li><button class="dropdown-item" type="submit"><%=act.getTitulo()%></button></li>
+                            </form>
+                            <% } %>
+                        </ul>
+                    </div>
+                </label>
+            </div>
+
             <div class="input-group-text p-0">
                 <label>
                     <select name="seleccion_actividad" class="form-select form-select-lg shadow-none bg-light border-0" style="font-size: 1rem">
@@ -117,6 +145,45 @@
                     </select>
                 </label>
             </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- EL MENU DESPEGABLE CON EL FOR, PERO INTUIL
+            <div style="float: left;">
+                <label>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                            Filtrar por actividad
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-lg-end">
+
+                            <li>
+                                <% for (Actividad act : listaActividades) { %>
+                                <form method="post" action="<%=request.getContextPath()%>/user_home?action=eventosXactividad&id_actividad=<%=act.getIdActividad()%>">
+                                    <button class="dropdown-item" type="submit"><%=act.getTitulo()%></button>
+                                </form>
+                                <% } %>
+                            </li>
+
+
+                        </ul>
+                    </div>
+
+
+                </label>
+            </div>
+            -->
+
 
             <input type="text" name="buscar_evento" class="form-control" placeholder="Buscar Evento">
             <button class="input-group-text shadow-none px-4 btn-large" type="submit">

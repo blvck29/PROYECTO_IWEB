@@ -6,6 +6,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 
+
 <%Usuario user = (Usuario) session.getAttribute("usuario");%>
 
 <% ArrayList<Inscripcion> listaEventosPropia = (ArrayList<Inscripcion>) request.getAttribute("listaEventosPropia"); %>
@@ -17,6 +18,8 @@
 <head>
     <meta http-equiv="Content-Type" content=text/html; charset=ISO-8859-1″>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
 
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
@@ -29,6 +32,8 @@
 
     <script src="https://kit.fontawesome.com/a2dd6045c4.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <link rel="icon" type="image/jpg" href="favicon.png" />
 
@@ -144,31 +149,51 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                             <div style="padding-top: 1em;"></div>
                         </div>
 
-                        <div class="container" style="padding-top: 1rem; align-items: center; align-content: center; text-align: center;">
-                            <button class="btn btn-primary">Inscribirse</button>
-                        </div>
+
+
+                        <form method="post" action="<%=request.getContextPath()%>/user_home?action=inscribirse&idEvento=<%=event.getIdEvento()%>"
+                              onsubmit="mostrarAlerta(event)">
+                            <button type="submit" class="btn btn-primary">Inscribirse</button>
+                        </form>
+
+                        <script>
+                            function mostrarAlerta(event) {
+                                // Prevenir el envío del formulario inmediatamente para mostrar la alerta
+                                event.preventDefault();
+
+                                // Muestra la alerta de SweetAlert2 con un temporizador de 2000ms (2 segundos)
+                                Swal.fire({
+                                    text: "Inscribiendote...",
+                                    timer: 2000,
+                                    timerProgressBar: true,
+                                    showConfirmButton: false
+                                }).then(() => {
+                                    // Después de cerrar la alerta, enviar el formulario
+                                    event.target.submit();
+                                });
+                            }
+                        </script>
+
+
+
                         <div style="padding-top: 1em;"></div>
 
                     </div>
 
 
+                    </div>
                 </div>
-            </div>
 
 
 
             <div class="col-lg-6 col-md-12" style="padding-left: 2em; padding-right: 2em; padding-top: 1.5em">
-
-
-                <div class="card">
-                    <div class="card-body" style="padding-left: 35px">
-                        <img src="<%=event.getImagen()%>" alt="imagen de evento" style="height: auto; width: 100%">
-
-                    </div>
-
-
+                <div style="border: 1px solid #ccc; padding: 1em; transition: box-shadow 0.3s;">
+                    <img src="<%=request.getContextPath()%>/user_home?action=imagenPorEvento&idEvento=<%=event.getIdEvento()%>"
+                         alt="imagen de evento"
+                         style="height: auto; width: 100%"
+                         onmouseover="this.parentNode.style.boxShadow='0 0 10px rgba(0, 123, 255, 0.5)'"
+                         onmouseout="this.parentNode.style.boxShadow='none'">
                 </div>
-
             </div>
         </div>
     </div>

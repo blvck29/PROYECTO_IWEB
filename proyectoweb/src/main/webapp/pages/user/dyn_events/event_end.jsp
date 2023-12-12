@@ -2,12 +2,15 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.example.proyectoweb.model.beans.Evento" %>
 <%@ page import="com.example.proyectoweb.model.beans.Usuario" %>
+<%@ page import="com.example.proyectoweb.model.beans.FotoAlbum" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 
 <%Usuario user = (Usuario) session.getAttribute("usuario");%>
 
 <% ArrayList<Inscripcion> listaEventosPropia = (ArrayList<Inscripcion>) request.getAttribute("listaEventosPropia"); %>
+<% ArrayList<FotoAlbum> listafotos = (ArrayList<FotoAlbum>) request.getAttribute("listafotos"); %>
+
 <% Evento event = (Evento) request.getAttribute("evento_detailed"); %>
 
 <!doctype html>
@@ -156,8 +159,13 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
 
             <div class="col-lg-6 col-md-12" style="padding-left: 2em; padding-right: 2em; padding-top: 1.5em">
-                <img src="<%=event.getImagen()%>" alt="imagen de evento" style="height: auto; width: 100%">
-
+                <div style="border: 1px solid #ccc; padding: 1em; transition: box-shadow 0.3s;">
+                    <img src="<%=request.getContextPath()%>/user_home?action=imagenPorEvento&idEvento=<%=event.getIdEvento()%>"
+                         alt="imagen de evento"
+                         style="height: auto; width: 100%"
+                         onmouseover="this.parentNode.style.boxShadow='0 0 10px rgba(0, 123, 255, 0.5)'"
+                         onmouseout="this.parentNode.style.boxShadow='none'">
+                </div>
             </div>
         </div>
     </div>
@@ -173,80 +181,22 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
     <div style="margin-bottom: 20px"></div>
 
 
+
     <div class='gallery'>
-        <div
-                class='gallery-image async-image-holder'
-                data-async-src='../../images/placeholder_events.jpg'
-                data-async-src-low='../../images/placeholder_events.jpg'
-                data-swgl-src='../../images/placeholder_events.jpg'
+        <% if (listafotos.isEmpty()) { %>
+        <h1>¡No hay recuerdos en el álbum de evento!</h1>
+        <% } else { %>
+        <% for (FotoAlbum fotoAlbum : listafotos) { %>
+        <div class='gallery-image async-image-holder'
+             data-async-src="<%= request.getContextPath() %>/user_home?action=imagenPorAlbum&IdFoto=<%= fotoAlbum.getIdFoto() %>"
+             data-async-src-low="<%= request.getContextPath() %>/user_home?action=imagenPorAlbum&IdFoto=<%= fotoAlbum.getIdFoto() %>"
+             data-swgl-src="<%= request.getContextPath() %>/user_home?action=imagenPorAlbum&IdFoto=<%= fotoAlbum.getIdFoto() %>"
         ></div>
-        <div
-                class='gallery-image async-image-holder'
-                data-async-src='../../images/placeholder_events.jpg'
-                data-async-src-low='../../images/placeholder_events.jpg'
-                data-swgl-src='../../images/placeholder_events.jpg'
-        ></div>
-        <div
-                class='gallery-image async-image-holder'
-                data-async-src='../../images/placeholder_events.jpg'
-                data-async-src-low='../../images/placeholder_events.jpg'
-                data-swgl-src='../../images/placeholder_events.jpg'
-        ></div>
-        <div
-                class='gallery-image async-image-holder'
-                data-async-src='../../images/placeholder_events.jpg'
-                data-async-src-low='../../images/placeholder_events.jpg'
-                data-swgl-src='../../images/placeholder_events.jpg'
-        ></div>
-        <div
-                class='gallery-image async-image-holder'
-                data-async-src='../../images/placeholder_events.jpg'
-                data-async-src-low='../../images/placeholder_events.jpg'
-                data-swgl-src='../../images/placeholder_events.jpg'
-        ></div>
-        <div
-                class='gallery-image async-image-holder'
-                data-async-src='../../images/placeholder_events.jpg'
-                data-async-src-low='../../images/placeholder_events.jpg'
-                data-swgl-src='../../images/placeholder_events.jpg'
-        ></div>
-        <div
-                class='gallery-image async-image-holder'
-                data-async-src='../../images/placeholder_events.jpg'
-                data-async-src-low='../../images/placeholder_events.jpg'
-                data-swgl-src='../../images/placeholder_events.jpg'
-        ></div>
-        <div
-                class='gallery-image async-image-holder'
-                data-async-src='../../images/placeholder_events.jpg'
-                data-async-src-low='../../images/placeholder_events.jpg'
-                data-swgl-src='../../images/placeholder_events.jpg'
-        ></div>
-        <div
-                class='gallery-image async-image-holder'
-                data-async-src='../../images/placeholder_events.jpg'
-                data-async-src-low='../../images/placeholder_events.jpg'
-                data-swgl-src='../../images/placeholder_events.jpg'
-        ></div>
-        <div
-                class='gallery-image async-image-holder'
-                data-async-src='../../images/placeholder_events.jpg'
-                data-async-src-low='../../images/placeholder_events.jpg'
-                data-swgl-src='../../images/placeholder_events.jpg'
-        ></div>
-        <div
-                class='gallery-image async-image-holder'
-                data-async-src='../../images/placeholder_events.jpg'
-                data-async-src-low='../../images/placeholder_events.jpg'
-                data-swgl-src='../../images/placeholder_events.jpg'
-        ></div>
-        <div
-                class='gallery-image async-image-holder'
-                data-async-src='../../images/placeholder_events.jpg'
-                data-async-src-low='../../images/placeholder_events.jpg'
-                data-swgl-src='../../images/placeholder_events.jpg'
-        ></div>
+        <% } %>
+        <% } %>
     </div>
+
+
 
 
 

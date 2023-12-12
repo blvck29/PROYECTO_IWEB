@@ -355,6 +355,25 @@ public class EventosDao extends DaoBase{
 
     }
 
+    public void Inscribirse_a_un_evento(String idEvento, int idUsuario) {
+        String insertSql = "INSERT INTO inscripcion (idEvento, Usuario, idRol) VALUES (?, ?, 'UNSET')";
+
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(insertSql)) {
+
+            pstmt.setString(1, idEvento);
+            pstmt.setInt(2, idUsuario);
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+
+
+
 
     // CREAR EVENTO
 
