@@ -6,15 +6,11 @@
 <%@ page import="com.example.proyectoweb.model.beans.Usuario" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
-
-
 <%Usuario user = (Usuario) session.getAttribute("usuario");%>
-
 
 <% ArrayList<Evento> listaEventosFin = (ArrayList<Evento>) request.getAttribute("listaEventosFin"); %>
 <% ArrayList<Actividad> listaActividades = (ArrayList<Actividad>) request.getAttribute("listaActividades");%>
 <% ArrayList<Inscrito> listaInscritos = (ArrayList<Inscrito>) request.getAttribute("listaInscritos"); %>
-
 
 <!doctype html>
 <html lang="es">
@@ -123,7 +119,7 @@
             </li>
         </ul>
     </nav>
-    
+
 </header>
 
 
