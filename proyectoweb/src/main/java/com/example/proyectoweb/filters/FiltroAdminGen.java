@@ -20,6 +20,11 @@ public class FiltroAdminGen implements Filter {
         HttpSession session = request.getSession();
         Usuario user = (Usuario) session.getAttribute("usuario");
         if (user!=null && user.getIdRolSistema().equals("DELGEN")){
+
+            response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+            response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+            response.setDateHeader("Expires", 0);
+
             filterChain.doFilter(servletRequest, servletResponse);
         } else {
             session.invalidate();

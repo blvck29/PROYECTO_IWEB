@@ -455,7 +455,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         var items = document.querySelectorAll('#divRow .col-sm-6.col-lg-3.mb-4');
-        var itemsPerPage = 6;
+        var itemsPerPage = 8;
         var paginationButtons = document.getElementById('paginationButtons');
 
         function displayItems(page) {
