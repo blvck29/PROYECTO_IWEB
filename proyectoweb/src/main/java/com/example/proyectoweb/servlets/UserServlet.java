@@ -323,8 +323,6 @@ public class UserServlet extends HttpServlet {
                     String of = request.getParameter("of") == null? "prox" : request.getParameter("of");
 
                     request.setAttribute("listaInscritos", listaInscritos);
-
-                    String actSelected = request.getParameter("seleccion_actividad"); //para el combobox
                     String eventTitle = request.getParameter("buscar_evento");
                     ArrayList<Evento> listaEventosProx;
 
@@ -337,22 +335,9 @@ public class UserServlet extends HttpServlet {
                                 listaEventosProx = eventoDao.buscarXtituloEz(eventTitle);
                                 request.setAttribute("listaEventosProx", listaEventosProx);
                                 request.setAttribute("listaActividades",listaActividades);
-
-                                if(!actSelected.equals("Todo")){
-                                    Actividad actividadSelec = actDao.buscarPorTitulo(actSelected);
-                                    ArrayList<Evento> listaEventosxActividad = eventoDao.listarEventosxActividad(actividadSelec.getIdActividad());
-                                    request.setAttribute("listaEventosProx", listaEventosxActividad);
-                                    request.setAttribute("listaActividades",listaActividades);
-
-                                }
                                 request.getRequestDispatcher("pages/user/dyn_events/prox.jsp").forward(request,response);
 
-
-
                             }
-
-
-
 
                             break;
 
