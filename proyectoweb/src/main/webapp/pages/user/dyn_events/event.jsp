@@ -12,6 +12,9 @@
 <% ArrayList<Inscripcion> listaEventosPropia = (ArrayList<Inscripcion>) request.getAttribute("listaEventosPropia"); %>
 <% Evento event = (Evento) request.getAttribute("evento_detailed"); %>
 
+<% String estadoInscripcion = (String) request.getAttribute("estadoInscripcionDelUsuario"); %>
+
+
 <!doctype html>
 <html lang="es">
 
@@ -36,6 +39,8 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <link rel="icon" type="image/jpg" href="favicon.png" />
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 
     <!--Footer-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-HjQE6zC8aa2BK9xVRvPUdo4FqIkFfQF1dM1iZeFzTC1Q9dI6yCeF6pMJpPs19j7e" crossorigin="anonymous">
@@ -151,10 +156,26 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
 
 
+                        <% if (estadoInscripcion == null) { %>
                         <form method="post" action="<%=request.getContextPath()%>/user_home?action=inscribirse&idEvento=<%=event.getIdEvento()%>"
                               onsubmit="mostrarAlerta(event)">
                             <button type="submit" class="btn btn-primary">Inscribirse</button>
                         </form>
+                        <% } else if (estadoInscripcion.equals("BARRA")) { %>
+                        <div class="alert alert-info" role="alert">
+                            Usted ya está inscrito como Barra
+                        </div>
+                        <% } else if (estadoInscripcion.equals("MEMBER")) { %>
+                        <div class="alert alert-info" role="alert">
+                            Usted ya está inscrito como Participante
+                        </div>
+                        <% } else if (estadoInscripcion.equals("UNSET")) { %>
+                        <div class="alert alert-info" role="alert">
+                            Su inscripcion esta en proceso...
+                        </div>
+                        <% } %>
+
+
 
 
 
