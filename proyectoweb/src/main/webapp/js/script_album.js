@@ -1,4 +1,4 @@
-jQuery(document).ready(function () {
+$(document).ready(function () {
     ImgUpload();
   });
   
@@ -8,19 +8,25 @@ jQuery(document).ready(function () {
   
     $('.upload__inputfile').each(function () {
       $(this).on('change', function (e) {
+        console.log("Evento de cambio activado.");
         imgWrap = $(this).closest('.upload__box').find('.upload__img-wrap');
         var maxLength = $(this).attr('data-max_length');
+        console.log("Longitud máxima:", maxLength);
   
         var files = e.target.files;
         var filesArr = Array.prototype.slice.call(files);
+        console.log("Total de archivos seleccionados:", filesArr.length); // Registro del número total de archivos seleccionados
+
         var iterator = 0;
         filesArr.forEach(function (f, index) {
   
           if (!f.type.match('image.*')) {
+            console.log("El archivo no es una imagen:", f.name); // Registro si el archivo no es una imagen
             return;
           }
   
           if (imgArray.length > maxLength) {
+            console.log("Se excedió la longitud máxima.");
             return false
           } else {
             var len = 0;
@@ -52,6 +58,7 @@ jQuery(document).ready(function () {
       for (var i = 0; i < imgArray.length; i++) {
         if (imgArray[i].name === file) {
           imgArray.splice(i, 1);
+          console.log("Imagen eliminada:", file);
           break;
         }
       }
