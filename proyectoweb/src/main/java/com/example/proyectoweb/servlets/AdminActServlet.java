@@ -2,6 +2,7 @@ package com.example.proyectoweb.servlets;
 
 import com.example.proyectoweb.model.beans.*;
 import com.example.proyectoweb.model.daos.ActividadesDao;
+import com.example.proyectoweb.model.daos.AlbumDao;
 import com.example.proyectoweb.model.daos.EventosDao;
 import com.example.proyectoweb.model.daos.InscritosDao;
 import jakarta.servlet.*;
@@ -20,6 +21,7 @@ public class AdminActServlet extends HttpServlet {
     ActividadesDao actividadesDao = new ActividadesDao();
     ActividadesDao actDao = new ActividadesDao();
     InscritosDao inscritosDao = new InscritosDao();
+    AlbumDao albumDao = new AlbumDao();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -142,8 +144,21 @@ public class AdminActServlet extends HttpServlet {
                 case "album":
                     String idEventoAlbum = request.getParameter("idEvento");
                     Evento eventoAlbum = eventoDao.buscarEventoId(idEventoAlbum);
+                    ArrayList<Integer> idsFotosAlbum = albumDao.idFotosAlbum(idEventoAlbum);
+                    request.setAttribute("listaIds", idsFotosAlbum);
                     request.setAttribute("evento", eventoAlbum);
+
+                    for(Integer i : idsFotosAlbum){
+                        System.out.println(i);
+                    }
+
+
                     request.getRequestDispatcher("pages/admin_act/upload_album.jsp").forward(request, response);
+                    break;
+
+
+                case "imagenDeAlbum":
+                    albumDao.listarImagenesAlbum(response, request.getParameter("idImagen"));
                     break;
 
             }

@@ -60,7 +60,7 @@ public class AlbumDao extends DaoBase{
             try(ResultSet rs = pstmt.executeQuery()){
 
                 while (rs.next()){
-                    FotoAlbum fotoAlbum = new FotoAlbum(rs.getInt(1),rs.getInt(2),rs.getBinaryStream(3),rs.getString(4));
+                    FotoAlbum fotoAlbum = new FotoAlbum(rs.getInt(1),rs.getInt(2),rs.getBinaryStream(3));
 
                     listaFotosDeAlbum.add(fotoAlbum);
 
@@ -71,6 +71,63 @@ public class AlbumDao extends DaoBase{
             throw new RuntimeException(e);
         }
         return listaFotosDeAlbum;
+    }
+
+
+    public ArrayList<Integer> idFotosAlbum (String idEvento){ //user
+
+        ArrayList<Integer> list = new ArrayList<>();
+
+        String sql = "SELECT * FROM fotos_album WHERE idEvento = ?";
+
+        try(Connection conn = getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)){
+
+            pstmt.setString(1,idEvento);
+
+            try(ResultSet rs = pstmt.executeQuery()){
+
+                while (rs.next()){
+
+                    list.add(rs.getInt(1));
+
+                }
+            }
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+        return list;
+    }
+
+
+    public void listarImagenesAlbum(HttpServletResponse response, String idImagen) {
+
+        //Conexión a la DB
+
+        String sql = "SELECT * FROM fotos_album WHERE IdFoto = ?";
+        response.setContentType("image/*");
+
+        try (
+                Connection conn = getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(sql);
+        ) {
+            pstmt.setString(1, idImagen);
+
+            try (
+                    ResultSet rs = pstmt.executeQuery();
+                    InputStream is = (rs.next()) ? rs.getBinaryStream(3) : null;
+                    OutputStream os = response.getOutputStream();
+                    BufferedInputStream bis = new BufferedInputStream(is);
+                    BufferedOutputStream bos = new BufferedOutputStream(os)
+            ) {
+                int i;
+                while ((i = bis.read()) != -1) {
+                    bos.write(i);
+                }
+            }
+        } catch (SQLException | IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 

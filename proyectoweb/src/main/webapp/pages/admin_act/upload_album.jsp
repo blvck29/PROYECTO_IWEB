@@ -6,8 +6,9 @@
 
 <%Usuario user = (Usuario) session.getAttribute("usuario");%>
 
-<% ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) request.getAttribute("listaUsuarios");
-    Evento evento = (Evento) request.getAttribute("evento");
+<%
+  Evento evento = (Evento) request.getAttribute("evento");
+  ArrayList<Integer> listaIds = (ArrayList<Integer>) request.getAttribute("listaIds");
 %>
 
 <!doctype html>
@@ -98,7 +99,7 @@
 
 
 <div class="container-fluid" style="padding-left:0 !important; padding-right: 0 !important; background: rgb(45,0,83) !important;
-background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgba(21,0,48,1) 100%) !important;")>
+background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgba(21,0,48,1) 100%) !important;">
     <div class="text-secondary px-4 py-5 text-center">
         <div class="py-5">
             <h1 class="display-5 fw-bold text-white" style="font-family: 'Poppins', sans-serif">Bienvenido, @Admin_Act</h1>
@@ -129,7 +130,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
             <!-- Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog  modal-lg">
+                <div class="modal-dialog  modal-xl">
                     <div class="modal-content">
 
 
@@ -145,7 +146,30 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
                                 <div style="padding-top: 10px;"></div>
 
+                                <div class="row">
+                                <% int contador = 0; %>
+                                <% for (Integer id : listaIds) { %>
 
+
+                                    <div class="col-sm-4 mb-4">
+
+                                        <div style="border: 1px solid rgba(0, 0, 0, 0.125); padding: 8px; transition: box-shadow 0.3s; width: 100%;  border-radius: 4px;">
+                                            <img src="<%=request.getContextPath()%>/admin_act?action=imagenDeAlbum&idImagen=<%=id%>"
+                                                 alt="imagen de evento"
+                                                 style="height: auto; width: 100%"
+                                                 onmouseover="this.parentNode.style.boxShadow='0 0 10px rgba(0, 123, 255, 0.5)'"
+                                                 onmouseout="this.parentNode.style.boxShadow='none'">
+                                        </div>
+
+                                    </div>
+
+                                        <% contador++; %>
+                                        <% if (contador % 3 == 0) { %>
+                                        </div><div class="row">
+                                        <% } %>
+
+                                <%}%>
+                                </div>
 
                             </div>
 
@@ -199,8 +223,6 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
 
                             <div class="modal-body">
-
-                                <div style="padding-top: 10px;"></div>
 
                                 <input class="form-control" type="hidden"  name="idEvento"   value="<%=evento.getIdEvento()%>">
 
