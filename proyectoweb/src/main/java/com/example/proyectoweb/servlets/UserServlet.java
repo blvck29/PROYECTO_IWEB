@@ -307,8 +307,10 @@ public class UserServlet extends HttpServlet {
                     switch (of){
                         case "prox":
                             if(eventTitle!=null){
-                                listaEventosProx = eventoDao.buscarXtitulo(actSelected, eventTitle);
+                                listaEventosProx = eventoDao.buscarXtituloEz(eventTitle);
                                 request.setAttribute("listaEventosProx", listaEventosProx);
+                                request.setAttribute("listaActividades",listaActividades);
+                                request.getRequestDispatcher("pages/user/dyn_events/prox.jsp").forward(request,response);
                             } else {
                                 listaEventosProx = eventoDao.listarEventosProximosxActividad(actSelected);
                                 request.setAttribute("listaEventosProx", listaEventosProx);
