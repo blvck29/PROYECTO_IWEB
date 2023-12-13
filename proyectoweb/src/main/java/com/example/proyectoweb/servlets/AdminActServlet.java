@@ -147,12 +147,6 @@ public class AdminActServlet extends HttpServlet {
                     ArrayList<Integer> idsFotosAlbum = albumDao.idFotosAlbum(idEventoAlbum);
                     request.setAttribute("listaIds", idsFotosAlbum);
                     request.setAttribute("evento", eventoAlbum);
-
-                    for(Integer i : idsFotosAlbum){
-                        System.out.println(i);
-                    }
-
-
                     request.getRequestDispatcher("pages/admin_act/upload_album.jsp").forward(request, response);
                     break;
 
