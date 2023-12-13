@@ -144,18 +144,24 @@ public class AdminActServlet extends HttpServlet {
                 case "album":
                     String idEventoAlbum = request.getParameter("idEvento");
                     Evento eventoAlbum = eventoDao.buscarEventoId(idEventoAlbum);
-                    ArrayList<Integer> idsFotosAlbum = albumDao.idFotosAlbum(idEventoAlbum);
-                    request.setAttribute("listaIds", idsFotosAlbum);
-                    request.setAttribute("evento", eventoAlbum);
 
-                    for(Integer i : idsFotosAlbum){
-                        System.out.println(i);
+                    if(eventoAlbum!=null){
+                        if (eventoAlbum.getIdEstado().equals("FINISH")) {
+                            ArrayList<Integer> idsFotosAlbum = albumDao.idFotosAlbum(idEventoAlbum);
+                            request.setAttribute("listaIds", idsFotosAlbum);
+                            request.setAttribute("evento", eventoAlbum);
+                            request.getRequestDispatcher("pages/admin_act/upload_album.jsp").forward(request, response);
+                        }else{
+                            response.sendRedirect(request.getContextPath() + "/admin_act?action=home");
+                        }
+                    }else{
+                        response.sendRedirect(request.getContextPath() + "/admin_act?action=home");
                     }
 
 
-                    request.getRequestDispatcher("pages/admin_act/upload_album.jsp").forward(request, response);
-                    break;
 
+
+                    break;
 
                 case "imagenDeAlbum":
                     albumDao.listarImagenesAlbum(response, request.getParameter("idImagen"));
@@ -312,9 +318,7 @@ public class AdminActServlet extends HttpServlet {
                     }
 
                     eventoDao.crearAlbumFotos(fotosValidas, idEventoAlbum);
-
-
-                    response.sendRedirect(request.getContextPath() + "/admin_act?action=home");
+                    response.sendRedirect(request.getContextPath() +"/admin_act?action=album&idEvento="+idEventoAlbum);
                     break;
 
             }

@@ -178,7 +178,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                                 <br>
                                 <br>
                                 <br>
-                                <h2 style="text-align: center;">Aún no se han subidos imagenes álbum de este evento</h2>
+                                <h2 style="text-align: center;">Aún no se han subidos imágenes al álbum de este evento</h2>
                                 <br>
                                 <br>
                                 <%} %>
@@ -323,42 +323,10 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 </div>
 
 
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const fileInput = document.getElementById("file-input");
-        const resetButton = document.querySelector("#reset-button");
-        const uploadButton = document.querySelector("#upload-button");
-
-        resetButton.addEventListener("click", function() {
-            fileInput.value = ''; // Limpiar la selección de archivos
-            const previewList = document.getElementById("preview");
-            previewList.innerHTML = ""; // Limpiar la lista de vista previa
-        });
-
-        uploadButton.addEventListener("click", function() {
-        });
-    });
-</script>
-
-
-<script>
-    function submitForm() {
-        var selectElement = document.getElementById("eventSelect");
-        var selectedValue = selectElement.value;
-        if (selectedValue == "user") {
-            var newURL = "<%=request.getContextPath()%>/user_home";
-            window.location.href = newURL;
-        } else {
-            var newURL = "<%=request.getContextPath()%>/admin_act";
-            window.location.href = newURL;
-        }
-    }
-</script>
 
 
 
 <script src="js/script_album.js"></script>
-<script src="js/upload.js"></script>
 <script src="js/bootstrap/bootstrap.js"></script>
 <script src="js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>

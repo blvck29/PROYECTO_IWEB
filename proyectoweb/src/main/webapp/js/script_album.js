@@ -54,6 +54,7 @@ $(document).ready(function () {
     });
   
     $('body').on('click', ".upload__img-close", function (e) {
+      e.preventDefault();
       var file = $(this).parent().data("file");
       for (var i = 0; i < imgArray.length; i++) {
         if (imgArray[i].name === file) {
