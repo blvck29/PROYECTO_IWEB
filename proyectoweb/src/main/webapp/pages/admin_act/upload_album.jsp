@@ -119,24 +119,35 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
 
 
-        <div class="container">
-            <div class="modu-dest-intern formato">
+        <div class="card">
+            <div class="card-body" style="padding-left: 35px">
 
-                <div class="upload__box">
-                    <div class="upload__btn-box">
-                        <label class="upload__btn">
-                            <pp>Seleccionar Imágenes</pp>
+                    <div style="padding-top: 1.5em;"></div>
 
-                            <input type="file" multiple="" data-max_length="20" class="upload__inputfile">
+                    <div class="modu-dest-intern formato">
 
-                        </label>
-                        <div style="padding-top: 1em;"></div>
+                        <div class="upload__box">
+                            <div class="upload__btn-box">
+
+                                <label class="upload__btn">
+                                    <pp>Seleccionar Imágenes</pp>
+                                    <input type="file" multiple="" data-max_length="20" class="upload__inputfile">
+
+                                </label>
+
+                                <div style="padding-top: 1em;"></div>
+                                
+                            </div>
+
+                            <div class="upload__img-wrap"></div>
+
+                        </div>
                     </div>
-                    <div class="upload__img-wrap"></div>
-                </div>
-
             </div>
         </div>
+
+
+    </div>
 
         <div class="uk-flex uk-flex-center uk-margin-top">
             <div class="uk-flex uk-flex-center">
