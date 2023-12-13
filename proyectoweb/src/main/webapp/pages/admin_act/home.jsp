@@ -210,6 +210,8 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
 
 
+
+
             <%
                 for (Evento evento : listaEventos) {
                     SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
@@ -284,8 +286,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
 
         }else{ %>
-        <div style="margin-top: 5rem"></div>
-        <h1 style="color: dimgray "  >No hay eventos creados para esta actividad. Cree un nuevo evento!</h1>
+        
         <%}%>
 
 
