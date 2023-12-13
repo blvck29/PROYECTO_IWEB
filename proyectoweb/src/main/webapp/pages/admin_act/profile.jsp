@@ -123,78 +123,89 @@
 
     <div class="row">
 
-        <div class="col-lg-6 col-md-12" style="text-align: left;">
-          <div class="card">
-            <div class="card-body" style="padding-left: 35px">
+      <div class="col-lg-6 col-md-12" style="text-align: left;">
+        <div class="card">
+          <div class="card-body" style="padding-left: 35px">
 
-              <div style="padding-top: 1.5em;"></div>
+            <div style="padding-top: 1.5em;"></div>
 
-              <div>
-                <div class="form-group" style="padding-right: 1rem">
-                  <label  style="text-align: left;"><strong>Nombre del usuario:</strong></label>
-                  <span>
+            <div>
+              <div class="form-group" style="padding-right: 1rem">
+                <label  style="text-align: left;"><strong>Nombre del usuario:</strong></label>
+                <span>
                     <input name="titulo" type="text" class="form-control"  value="<%=user.getNombres()%>" readonly>
                   </span>
-                </div>
               </div>
+            </div>
 
-              <div style="padding-top: 1.5em;"></div>
+            <div style="padding-top: 1.5em;"></div>
 
-              <div>
-                <div class="form-group" style="padding-right: 1rem">
-                  <label  style="text-align: left;"><strong>Apellidos</strong></label>
-                  <span>
+            <div>
+              <div class="form-group" style="padding-right: 1rem">
+                <label  style="text-align: left;"><strong>Apellidos</strong></label>
+                <span>
                     <input name="subtitulo" type="text" class="form-control" id="nombre" value="<%=user.getApellidos()%>" readonly>
                   </span>
-                </div>
               </div>
+            </div>
 
-              <div style="padding-top: 1.5em;"></div>
+            <div style="padding-top: 1.5em;"></div>
 
-              <div>
-                <div class="form-group" style="padding-right: 1rem">
-                  <label  style="text-align: left;"><strong>Codigo PUCP</strong></label>
-                  <span>
+            <div>
+              <div class="form-group" style="padding-right: 1rem">
+                <label  style="text-align: left;"><strong>Codigo PUCP</strong></label>
+                <span>
                     <input name="titulo" type="text" class="form-control"  value="<%=user.getCodigo()%>" readonly>
                   </span>
-                </div>
               </div>
-
-              <div style="padding-top: 1.5em;"></div>
-
-              <div>
-                <div class="form-group" style="padding-right: 1rem">
-                  <label  style="text-align: left;"><strong> Rol en el sistema</strong></label>
-                  <span>
-                    <input name="titulo" type="text" class="form-control"  value="<%=user.getIdRolSistema()%>" readonly>
-                  </span>
-                </div>
-              </div>
-
-              <div style="padding-top: 1.5em;"></div>
-
-              <div>
-                <div class="form-group" style="padding-right: 1rem">
-                  <label  style="text-align: left;"><strong> Rol academico</strong></label>
-                  <span>
-                  <input name="titulo" type="text" class="form-control"  value="<%=user.getIdRolAcademico()%>" readonly>
-                  </span>
-                </div>
-              </div>
-
-              <div style="padding-top: 1.5em;"></div>
-              <div>
-                <div class="form-group" style="padding-right: 1rem">
-                  <label  style="text-align: left;"><strong> Cantidad de eventos inscritos</strong></label>
-                  <span>
-                    <input name="titulo" type="text" class="form-control"  value="<%=user.getCantEventsInscrito()%>" readonly>
-                  </span>
-                </div>
-              </div>
-
             </div>
+
+            <div style="padding-top: 1.5em;"></div>
+
+            <div>
+              <div class="form-group" style="padding-right: 1rem">
+                <label  style="text-align: left;"><strong> Rol en el sistema</strong></label>
+                <span>
+
+                    <% if (user.getIdRolSistema().equals("USER")){%>
+                    <input name="titulo" type="text" class="form-control"  value="Usuario" readonly>
+                    <%} else if (user.getIdRolSistema().equals("DELACT")){%>
+                    <input name="titulo" type="text" class="form-control"  value="Delegado de Actividad" readonly>
+                    <%}%>
+
+                  </span>
+              </div>
+            </div>
+
+            <div style="padding-top: 1.5em;"></div>
+
+            <div>
+              <div class="form-group" style="padding-right: 1rem">
+                <label  style="text-align: left;"><strong> Rol academico</strong></label>
+                <span>
+
+                    <% if (user.getIdRolAcademico().equals("GRADUAT")){%>
+                    <input name="titulo" type="text" class="form-control"  value="Egresado" readonly>
+                    <%} else if (user.getIdRolAcademico().equals("STUDENT")){%>
+                    <input name="titulo" type="text" class="form-control"  value="Estudiante" readonly>
+                    <%}%>
+                  </span>
+              </div>
+            </div>
+
+            <div style="padding-top: 1.5em;"></div>
+            <div>
+              <div class="form-group" style="padding-right: 1rem">
+                <label  style="text-align: left;"><strong> Cantidad de eventos inscritos</strong></label>
+                <span>
+                    <input name="titulo" type="text" class="form-control"  value="<%=listaEventos.size()%> Eventos" readonly>
+                  </span>
+              </div>
+            </div>
+
           </div>
         </div>
+      </div>
 
       <div class="col-lg-6 col-md-12">
         <div class="card">

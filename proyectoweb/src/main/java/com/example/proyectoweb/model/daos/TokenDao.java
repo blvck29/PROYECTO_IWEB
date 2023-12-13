@@ -13,50 +13,24 @@ import java.util.ArrayList;
 
 public class TokenDao extends DaoBase{
 
-    public String generateToken(String correo, int op){
+    public String generateToken(String correo){
 
         Usuario usuario = userTokenByEmail(correo);
         String token = RandomTokenGenerator.generator();
-        String sql = null;
 
-        switch (op){
+        String idUsuario = String.valueOf(usuario.getIdUsuario());
 
-            case 1:
+        String sql = "INSERT INTO `proyectoweb`.`token_generado` (`idUsuario`, `token`) VALUES (?, ?);";
 
-                String idUsuario = String.valueOf(usuario.getIdUsuario());
+        try(Connection conn = getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)){
 
-                sql = "INSERT INTO `proyectoweb`.`token_generado` (`idUsuario`, `token`) VALUES (?, ?);";
+            pstmt.setString(1, idUsuario);
+            pstmt.setString(2, token);
+            pstmt.executeUpdate();
 
-                try(Connection conn = getConnection();
-                    PreparedStatement pstmt = conn.prepareStatement(sql)){
-
-                    pstmt.setString(1, idUsuario);
-                    pstmt.setString(2, token);
-                    pstmt.executeUpdate();
-
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-                break;
-
-            case 2:
-
-                int idTokenExistente = tokenExists(usuario.getIdUsuario());
-
-                sql = "UPDATE `proyectoweb`.`token_generado` SET `token` = ? WHERE (`idTokens` = ?);";
-
-                try(Connection conn = getConnection();
-                    PreparedStatement pstmt = conn.prepareStatement(sql)){
-
-                    pstmt.setString(1, token);
-                    pstmt.setInt(2, idTokenExistente);
-                    pstmt.executeUpdate();
-
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-                break;
-
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
 
         return token;
@@ -86,6 +60,7 @@ public class TokenDao extends DaoBase{
         }
         return idToken;
     }
+
 
     public Usuario userTokenByEmail(String correo){
 
