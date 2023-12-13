@@ -802,6 +802,42 @@ public ArrayList<Usuario> listarDelegadosActDisponibles(){
 
     }
 
+    public String EstadoDeInscripcionDeUsuario(int idUsuario,String idEvento){ //admin
+
+        String estado = null;
+        //Conexión a la DB
+
+
+        String sql = "select * from inscripcion where Usuario =? and idEvento=?";
+
+
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)){
+
+            pstmt.setInt(1, idUsuario);
+            pstmt.setString(2, idEvento);
+
+
+
+            try(ResultSet rs = pstmt.executeQuery()){
+
+                while(rs.next()){
+
+
+                    estado=rs.getString(3);
+
+
+
+                }
+
+            }
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+
+        return estado;
+    }
+
 
 
 }

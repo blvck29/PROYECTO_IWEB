@@ -34,6 +34,7 @@ public class UserServlet extends HttpServlet {
                 ArrayList<Inscrito> listaInscritos = inscritosDao.inscritosPorEvento();
                 ActividadesDao actividadesDao = new ActividadesDao();
                 DonacionesDao donacionesDao = new DonacionesDao();
+                UsuariosDao usuariosDao=new UsuariosDao();
                 AlbumDao albumDao=new AlbumDao();
 
                 switch (action){
@@ -119,7 +120,16 @@ public class UserServlet extends HttpServlet {
 
 
                         } else {
+                            int idUsr1 = user.getIdUsuario();
+                            String estadoInscripcionDelUsuario= usuariosDao.EstadoDeInscripcionDeUsuario(idUsr1,idEv);
+                            System.out.println(estadoInscripcionDelUsuario);
+                            request.setAttribute("estadoInscripcionDelUsuario",estadoInscripcionDelUsuario);
+
+
+
+
                             request.getRequestDispatcher("pages/user/dyn_events/event.jsp").forward(request,response);
+
                         }
                         break;
 
