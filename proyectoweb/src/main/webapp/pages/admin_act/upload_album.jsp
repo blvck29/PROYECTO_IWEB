@@ -35,7 +35,7 @@
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.17.4/dist/js/uikit.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.17.4/dist/js/uikit-icons.min.js"></script>
 
-    <link rel="icon" type="image/jpg" href="../../favicon.png" />
+    <link rel="icon" type="image/jpg" href="favicon.png" />
 
     <!-- Add the slick-theme.css if you want default styling -->
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
@@ -46,6 +46,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-HjQE6zC8aa2BK9xVRvPUdo4FqIkFfQF1dM1iZeFzTC1Q9dI6yCeF6pMJpPs19j7e" crossorigin="anonymous">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
     <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="css/uploadAlbum.css">
+
 
     <title>Administración de Usuarios | Semana de Ingeniería 2023</title>
 </head>
@@ -115,19 +119,24 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
 
 
-        <div class="upload__box">
-            <div class="upload__btn-box">
-                <label class="upload__btn">
-                    <pp>Seleccionar Imágenes</pp>
+        <div class="container">
+            <div class="modu-dest-intern formato">
 
-                    <input type="file" multiple="" data-max_length="20" class="upload__inputfile">
+                <div class="upload__box">
+                    <div class="upload__btn-box">
+                        <label class="upload__btn">
+                            <pp>Seleccionar Imágenes</pp>
 
-                </label>
-                <div style="padding-top: 1em;"></div>
+                            <input type="file" multiple="" data-max_length="20" class="upload__inputfile">
+
+                        </label>
+                        <div style="padding-top: 1em;"></div>
+                    </div>
+                    <div class="upload__img-wrap"></div>
+                </div>
+
             </div>
-            <div class="upload__img-wrap"></div>
         </div>
-
 
         <div class="uk-flex uk-flex-center uk-margin-top">
             <div class="uk-flex uk-flex-center">
@@ -221,7 +230,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
 
 
-
+<script src="js/script_album.js"></script>
 <script src="js/upload.js"></script>
 <script src="js/bootstrap/bootstrap.js"></script>
 <script src="js/script.js"></script>
