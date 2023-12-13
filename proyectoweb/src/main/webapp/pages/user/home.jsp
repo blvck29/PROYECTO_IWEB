@@ -234,7 +234,7 @@
     <div class = "container" style="max-height: 300px">
         <div class="carousel-act">
             <%for (Actividad actividad : listaActividades) {%>
-            <div class="bg-image" style="max-width: 21rem;">
+            <div class="bg-image" style="max-height: 400px; object-fit: cover;">
                 <img src="<%=request.getContextPath()%>/user_home?action=imagenPorActividad&idActividad=<%=actividad.getIdActividad()%>" class="w-100" alt="event">
                 <div class="mask text-light d-flex justify-content-center flex-column text-center" style="background-color: rgba(0, 0, 0, 0.5)">
                     <h4><%=actividad.getTitulo()%></h4>
