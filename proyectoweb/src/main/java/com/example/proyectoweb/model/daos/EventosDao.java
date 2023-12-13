@@ -563,6 +563,25 @@ public class EventosDao extends DaoBase{
         }
     }
 
+
+
+    public void actualizarEstadoEventoFinished(Integer idEvento) {
+        String sql = "UPDATE evento SET idEstado = ? WHERE idevento = ?";
+
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, "FINISH");
+            pstmt.setInt(2, idEvento);
+
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public ArrayList<Evento> listarEventosInscritos(int idUsuario) {
         String sql = "SELECT e.* FROM evento e " +
                 "INNER JOIN inscripcion i ON e.idEvento = i.idEvento " +

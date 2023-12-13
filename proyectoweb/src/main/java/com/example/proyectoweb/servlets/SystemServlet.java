@@ -1,7 +1,9 @@
 package com.example.proyectoweb.servlets;
 
 import com.example.proyectoweb.model.EmailSender;
+import com.example.proyectoweb.model.beans.Evento;
 import com.example.proyectoweb.model.beans.Usuario;
+import com.example.proyectoweb.model.daos.EventosDao;
 import com.example.proyectoweb.model.daos.TokenDao;
 import com.example.proyectoweb.model.daos.UsuariosDao;
 import jakarta.servlet.*;
@@ -9,7 +11,11 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Map;
 
 import com.google.gson.Gson;
@@ -96,6 +102,19 @@ public class SystemServlet extends HttpServlet {
                     session.setAttribute("usuario", user);
 
                     session.setMaxInactiveInterval(1800); // 1800 segundos = 30 minutos
+
+
+                    // Validar Eventos antes de mostrar vistas
+                    EventosDao eventosDao = new EventosDao();
+                    ArrayList<Evento> listarEventosFinalizados = eventosDao.listarEventosFinalizados();
+
+                    if(!listarEventosFinalizados.isEmpty()){
+                        for(Evento evento : listarEventosFinalizados){
+                            eventosDao.actualizarEstadoEventoFinished(evento.getIdEvento());
+                        }
+                    }
+                    ///////////
+
 
                     switch (user.getIdRolSistema()){
                         case "USER":
