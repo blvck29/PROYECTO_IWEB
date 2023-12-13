@@ -133,7 +133,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
                                 <label class="upload__btn">
                                     <pp>SELECCIONAR IMÁGENES</pp>
-                                    <input type="file" multiple="" data-max_length="20" class="upload__inputfile">
+                                    <input type="file" name="fotos" multiple="" data-max_length="20" class="upload__inputfile" required>
 
                                 </label>
 
@@ -149,8 +149,8 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
                     <div class="uk-flex uk-flex-center uk-margin-top">
                         <div class="uk-flex uk-flex-center">
-                            <button type="button" id="reset-button" class="btn btn-secondary m-2">Borrar</button>
-                            <button type="button" id="upload-button" class="btn btn-primary m-2">Subir</button>
+                            <button type="button" id="reset-button" class="btn btn-secondary m-2">Cancelar</button>
+                            <button type="submit" id="upload-button" class="btn btn-primary m-2">Subir Fotos</button>
                         </div>
                     </div>
 
