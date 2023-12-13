@@ -1,11 +1,14 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.example.proyectoweb.model.beans.Usuario" %>
+<%@ page import="com.example.proyectoweb.model.beans.Evento" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 
 <%Usuario user = (Usuario) session.getAttribute("usuario");%>
 
-<% ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) request.getAttribute("listaUsuarios");%>
+<% ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) request.getAttribute("listaUsuarios");
+    Evento evento = (Evento) request.getAttribute("evento");
+%>
 
 <!doctype html>
 <html lang="es">
@@ -100,7 +103,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
         <div class="py-5">
             <h1 class="display-5 fw-bold text-white" style="font-family: 'Poppins', sans-serif">Bienvenido, @Admin_Act</h1>
             <div style="margin-bottom: 20px"></div>
-            <h3 class="fw-bold text-white" style="font-family: 'Poppins', sans-serif">Creando Álbum de Fotos</h3>
+            <h3 class="fw-bold text-white" style="font-family: 'Poppins', sans-serif">Creando Álbum de Fotos del Evento <%=evento.getTitulo()%></h3>
             <div style="margin-bottom: 20px"></div>
             <div class="justify-content-sm-center">
             </div>
@@ -108,70 +111,140 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
     </div>
 </div>
 
-<div style="padding-top: 40px;"></div>
+<div style="padding-top: 20px;"></div>
 
 
-<div class="container">
-    <div class="uk-container uk-margin-top uk-margin-bottom">
-
-        <h2><i class="fa-solid fa-star" style="color: #8de7ef;"></i><strong style="padding-left: 10px">Suba las Fotos del Álbum</strong></h2>
-        <div style="margin-bottom: 40px"></div>
+    <div class="container">
 
 
+        <div class="uk-container uk-margin-top uk-margin-bottom">
 
-        <div class="card">
-            <div class="card-body" style="padding-left: 35px">
+            <h2><i class="fa-solid fa-star" style="color: #8de7ef;"></i><strong style="padding-left: 10px">Álbum de Fotos </strong></h2>
+            <div style="margin-bottom: 20px"></div>
 
-                    <div style="padding-top: 1.5em;"></div>
+            <!-- Button trigger modal -->
+            <button type="button" style="margin-left: 40px" class="btn btn-outline-primary btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Ver Álbum
+            </button>
 
-                <form method="post" action="<%=request.getContextPath()%>/admin_act?action=subirFotosAlbum" enctype="multipart/form-data">
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog  modal-lg">
+                    <div class="modal-content">
 
-                    <div class="modu-dest-intern formato">
 
-                        <div class="upload__box">
-                            <div class="upload__btn-box">
 
-                                <label class="upload__btn">
-                                    <pp>SELECCIONAR IMÁGENES</pp>
-                                    <input type="file" name="fotos" multiple="" data-max_length="20" class="upload__inputfile" required>
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Fotos Actuales Subidas</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
 
-                                </label>
 
-                                <div style="padding-top: 1em;"></div>
+
+                            <div class="modal-body">
+
+                                <div style="padding-top: 10px;"></div>
+
+
 
                             </div>
 
-                            <div class="upload__img-wrap"></div>
 
-                        </div>
+
+                            <div class="modal-footer">
+                                <div class="uk-flex uk-flex-center uk-margin-top">
+                                    <div class="uk-flex uk-flex-center">
+                                        <button type="button" id="reset-button" class="btn btn-secondary m-2" data-bs-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
                     </div>
-
-
-                    <div class="uk-flex uk-flex-center uk-margin-top">
-                        <div class="uk-flex uk-flex-center">
-                            <button type="button" id="reset-button" class="btn btn-secondary m-2">Cancelar</button>
-                            <button type="submit" id="upload-button" class="btn btn-primary m-2">Subir Fotos</button>
-                        </div>
-                    </div>
-
-
-                </form>
-
+                </div>
             </div>
+
+
         </div>
 
 
+
+
+
+        <div class="uk-container uk-margin-top uk-margin-bottom">
+
+            <h2><i class="fa-solid fa-star" style="color: #8de7ef;"></i><strong style="padding-left: 10px">Suba las Fotos del Álbum</strong></h2>
+            <div style="margin-bottom: 20px"></div>
+
+            <!-- Button trigger modal -->
+            <button type="button" style="margin-left: 40px" class="btn btn-outline-primary btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                Subir Nuevas Fotos
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog  modal-lg">
+                    <div class="modal-content">
+
+
+                        <form method="post" action="<%=request.getContextPath()%>/admin_act?action=subirFotosAlbum" enctype="multipart/form-data">
+
+
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Subir Fotos</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+
+
+
+                            <div class="modal-body">
+
+                                <div style="padding-top: 10px;"></div>
+
+                                <input class="form-control" type="hidden"  name="idEvento"   value="<%=evento.getIdEvento()%>">
+
+                                <div class="modu-dest-intern formato">
+                                    <div class="upload__box">
+                                        <div class="upload__btn-box">
+                                            <label class="upload__btn">
+                                                <pp>SELECCIONAR IMÁGENES</pp>
+                                                <input type="file" name="fotos" multiple="" data-max_length="20" class="upload__inputfile" required>
+                                            </label>
+                                            <div style="padding-top: 1em;"></div>
+                                        </div>
+                                        <div class="upload__img-wrap"></div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="modal-footer">
+                                <div class="uk-flex uk-flex-center uk-margin-top">
+                                    <div class="uk-flex uk-flex-center">
+                                        <button type="button" id="reset-button" class="btn btn-secondary m-2" data-bs-dismiss="modal">Cancelar</button>
+                                        <button type="submit" id="upload-button" class="btn btn-primary m-2">Subir Fotos</button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
     </div>
 
 
-    </div>
-</div>
+    <div style="margin-bottom: 50px"></div>
 
-
-
-<div style="margin-bottom: 50px"></div>
-
-</div>
 
 <div class="container-fluid" style="padding-right: 0; padding-left: 0">
     <footer id="sticky-footer" class="footer-distributed" style="background-color: #04011E">

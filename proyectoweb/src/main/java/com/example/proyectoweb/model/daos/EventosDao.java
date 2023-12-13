@@ -3,6 +3,7 @@ import com.example.proyectoweb.model.beans.Evento;
 import com.example.proyectoweb.model.beans.Imagen;
 import com.example.proyectoweb.model.beans.Inscripcion;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
 //import org.apache.http.io.BufferInfo;
 
 import java.io.*;
@@ -304,6 +305,33 @@ public class EventosDao extends DaoBase{
     }
 
 
+    public Evento buscarEventoId(String id) {
+
+        Evento evento = null;
+        //Conexión a la DB
+        String sql = "SELECT * FROM proyectoweb.evento WHERE idEvento = ?";
+
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)){
+
+            pstmt.setString(1, id);
+
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+
+                while (rs.next()) {
+                    evento = new Evento(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getTime(4), rs.getDate(5), rs.getString(6), rs.getBinaryStream(7), rs.getString(8), rs.getString(9), rs.getString(10));
+                }
+
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return evento;
+    }
+
+
     // ELIMINAR EVENTO
     public void eliminarEvento(String idEvento){
 
@@ -398,6 +426,37 @@ public class EventosDao extends DaoBase{
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+
+    }
+
+
+
+    public void crearAlbumFotos(ArrayList<Part> AlbumFotos, String idEvento) throws IOException {
+
+
+        for(Part part : AlbumFotos){
+
+            InputStream inputStream2 = part.getInputStream();
+            Imagen imagen = new Imagen();
+            imagen.setImagen(inputStream2);
+
+
+            String sql = "INSERT INTO fotos_album (idEvento, Foto) \n" +
+                    "VALUES (?, ?);";
+
+            try(Connection conn = getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(sql)){
+
+                pstmt.setString(1, idEvento);
+                pstmt.setBlob(2, imagen.getImagen());
+
+                pstmt.executeUpdate();
+
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
         }
 
     }

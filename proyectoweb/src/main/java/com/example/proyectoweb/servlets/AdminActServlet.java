@@ -140,8 +140,9 @@ public class AdminActServlet extends HttpServlet {
                     break;
 
                 case "album":
-
-
+                    String idEventoAlbum = request.getParameter("idEvento");
+                    Evento eventoAlbum = eventoDao.buscarEventoId(idEventoAlbum);
+                    request.setAttribute("evento", eventoAlbum);
                     request.getRequestDispatcher("pages/admin_act/upload_album.jsp").forward(request, response);
                     break;
 
@@ -273,10 +274,32 @@ public class AdminActServlet extends HttpServlet {
 
 
                 case "subirFotosAlbum":
-                    System.out.println("subirFotosAlbum");
+                    String idEventoAlbum = request.getParameter("idEvento");
+                    ArrayList<Part> fotosAlbum = new ArrayList<>(request.getParts());
 
 
+                    ArrayList<Part> fotosValidas = new ArrayList<>();
 
+                    for (Part fotoCheck : fotosAlbum) {
+                        if (fotoCheck.getContentType() != null) {
+                            fotosValidas.add(fotoCheck);
+                        }
+                    }
+
+                    if (!fotosValidas.isEmpty()) {
+                        for (Part foto : fotosValidas) {
+                            System.out.println("Nombre del archivo: " + foto.getSubmittedFileName());
+                            System.out.println("Tipo de contenido: " + foto.getContentType());
+                            System.out.println("Tamaño del archivo: " + foto.getSize() + " bytes");
+                        }
+                    } else {
+                        System.out.println("No se recibieron archivos válidos");
+                    }
+
+                    eventoDao.crearAlbumFotos(fotosValidas, idEventoAlbum);
+
+
+                    response.sendRedirect(request.getContextPath() + "/admin_act?action=home");
                     break;
 
             }
