@@ -123,7 +123,7 @@
 
     <div class="row">
 
-        <div class="col-lg-6 col-md-12" style="text-align: left; padding-top: 1.5em">
+        <div class="col-lg-6 col-md-12" style="text-align: left;">
           <div class="card">
             <div class="card-body" style="padding-left: 35px">
 

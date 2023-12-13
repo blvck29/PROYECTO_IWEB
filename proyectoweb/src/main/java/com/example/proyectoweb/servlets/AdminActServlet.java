@@ -283,8 +283,9 @@ public class AdminActServlet extends HttpServlet {
 
         HttpSession session = request.getSession(false);
         Usuario user = (Usuario) session.getAttribute("usuario");
+        Actividad actividadDelUsuario = actDao.getActividadByIdUsuario(user.getIdUsuario());
 
-            String action = request.getParameter("action") == null? "filtros" : request.getParameter("action");
+        String action = request.getParameter("action") == null? "filtros" : request.getParameter("action");
             String ac = request.getParameter("ac") == null? "eventosXfecha" : request.getParameter("ac");
             String idEvento = request.getParameter("idEvento");
 
@@ -396,6 +397,7 @@ public class AdminActServlet extends HttpServlet {
                     request.setAttribute("msg", msg);
                     request.setAttribute("listaIncritosxEvento", listaFiltrada);
                     request.setAttribute("idEvento", idEvento);
+                    request.setAttribute("idActividad", actividadDelUsuario.getIdActividad());
                     request.getRequestDispatcher("/pages/admin_act/ver_inscritos.jsp").forward(request,response);
 
                     break;
