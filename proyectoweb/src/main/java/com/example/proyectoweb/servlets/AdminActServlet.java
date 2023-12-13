@@ -150,7 +150,6 @@ public class AdminActServlet extends HttpServlet {
                     request.getRequestDispatcher("pages/admin_act/upload_album.jsp").forward(request, response);
                     break;
 
-
                 case "imagenDeAlbum":
                     albumDao.listarImagenesAlbum(response, request.getParameter("idImagen"));
                     break;
@@ -308,7 +307,11 @@ public class AdminActServlet extends HttpServlet {
                     eventoDao.crearAlbumFotos(fotosValidas, idEventoAlbum);
 
 
-                    response.sendRedirect(request.getContextPath() + "/admin_act?action=home");
+                    Evento eventoAlbum = eventoDao.buscarEventoId(idEventoAlbum);
+                    ArrayList<Integer> idsFotosAlbum = albumDao.idFotosAlbum(idEventoAlbum);
+                    request.setAttribute("listaIds", idsFotosAlbum);
+                    request.setAttribute("evento", eventoAlbum);
+                    request.getRequestDispatcher("pages/admin_act/upload_album.jsp").forward(request, response);
                     break;
 
             }
