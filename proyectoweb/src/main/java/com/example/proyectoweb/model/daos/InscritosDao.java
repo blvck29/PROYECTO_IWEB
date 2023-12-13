@@ -75,20 +75,21 @@ public class InscritosDao extends DaoBase{
         return listaInscritos;
     }
 
-    public Inscrito buscarInscritoXid(String idUsuario){
+    public Inscrito buscarInscritoXid(String idUsuario, int idEvento){
 
         Inscrito ins = null;
 
         String sql = "SELECT ins.idEvento, ri.nombre,u.*\n" +
-                "FROM usuarios u\n" +
-                "\tinner join inscripcion ins on (ins.Usuario = u.idUsuario)\n" +
-                "    left join rol_inscrito ri on (ri.idRol_Inscrito = ins.idRol)\n" +
-                "where u.idUsuario = ? ";
+                "                FROM usuarios u\n" +
+                "                inner join inscripcion ins on (ins.Usuario = u.idUsuario)\n" +
+                "                left join rol_inscrito ri on (ri.idRol_Inscrito = ins.idRol)\n" +
+                "                where (u.idUsuario = ? and ins.idEvento = ?);";
 
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)){
 
             pstmt.setString(1, idUsuario);
+            pstmt.setInt(2, idEvento);
 
             try(ResultSet rs = pstmt.executeQuery()){
 
