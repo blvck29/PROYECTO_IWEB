@@ -305,13 +305,7 @@ public class AdminActServlet extends HttpServlet {
                     }
 
                     eventoDao.crearAlbumFotos(fotosValidas, idEventoAlbum);
-
-
-                    Evento eventoAlbum = eventoDao.buscarEventoId(idEventoAlbum);
-                    ArrayList<Integer> idsFotosAlbum = albumDao.idFotosAlbum(idEventoAlbum);
-                    request.setAttribute("listaIds", idsFotosAlbum);
-                    request.setAttribute("evento", eventoAlbum);
-                    request.getRequestDispatcher("pages/admin_act/upload_album.jsp").forward(request, response);
+                    response.sendRedirect(request.getContextPath() +"/admin_act?action=album&idEvento="+idEventoAlbum);
                     break;
 
             }

@@ -178,7 +178,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                                 <br>
                                 <br>
                                 <br>
-                                <h2 style="text-align: center;">Aún no se han subidos imagenes álbum de este evento</h2>
+                                <h2 style="text-align: center;">Aún no se han subidos imágenes al álbum de este evento</h2>
                                 <br>
                                 <br>
                                 <%} %>
