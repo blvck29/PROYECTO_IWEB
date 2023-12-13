@@ -16,8 +16,8 @@
     <meta http-equiv="Content-Type" content=text/html; charset=ISO-8859-1″>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="../../css/style.css">
-    <link rel="stylesheet" href="../../css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 
     <!-- Add the slick-theme.css if you want default styling -->
@@ -28,13 +28,6 @@
     <script src="https://kit.fontawesome.com/a2dd6045c4.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 
-    <link rel="icon" type="image/jpg" href="../../favicon.png" />
-
-    <!-- Add the slick-theme.css if you want default styling -->
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-    <!-- Add the slick-theme.css if you want default styling -->
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
-
     <!-- UIkit CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.17.4/dist/css/uikit.min.css" />
 
@@ -42,10 +35,21 @@
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.17.4/dist/js/uikit.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.17.4/dist/js/uikit-icons.min.js"></script>
 
+    <link rel="icon" type="image/jpg" href="favicon.png" />
+
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+
     <!--Footer-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-HjQE6zC8aa2BK9xVRvPUdo4FqIkFfQF1dM1iZeFzTC1Q9dI6yCeF6pMJpPs19j7e" crossorigin="anonymous">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
     <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="css/uploadAlbum.css">
+
 
     <title>Administración de Usuarios | Semana de Ingeniería 2023</title>
 </head>
@@ -96,7 +100,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
         <div class="py-5">
             <h1 class="display-5 fw-bold text-white" style="font-family: 'Poppins', sans-serif">Bienvenido, @Admin_Act</h1>
             <div style="margin-bottom: 20px"></div>
-            <h3 class="fw-bold text-white" style="font-family: 'Poppins', sans-serif">Creando Album para @Evento</h3>
+            <h3 class="fw-bold text-white" style="font-family: 'Poppins', sans-serif">Creando Álbum de Fotos</h3>
             <div style="margin-bottom: 20px"></div>
             <div class="justify-content-sm-center">
             </div>
@@ -113,29 +117,53 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
         <h2><i class="fa-solid fa-star" style="color: #8de7ef;"></i><strong style="padding-left: 10px">Suba las Fotos del Álbum</strong></h2>
         <div style="margin-bottom: 40px"></div>
 
-        <div class="uk-upload-box">
-            <div id="error-alert" class="uk-alert-danger uk-margin-top uk-hidden" uk-alert>
-                <p id="error-messages"></p>
-            </div>
 
-            <div class="drop__zone uk-placeholder uk-text-center">
-                <span uk-icon="icon: cloud-upload"></span>
-                <span class="uk-text-middle uk-margin-small-left">Adjunte arrastrando el archivo o</span>
-                <div uk-form-custom>
-                    <input id="file-input" name="documents[]" type="file" accept="image/png, image/jpeg, application/pdf, application/vnd.openxmlformats-officedocument.wordprocessingml.document" multiple>
-                    <span class="uk-link">Seleccione las fotos</span>
-                </div>
 
-                <ul id="preview" class="uk-list uk-grid-match uk-child-width-1-2 uk-child-width-1-4@l uk-child-width-1-5@xl uk-text-center" uk-grid uk-scrollspy="cls: uk-animation-scale-up; target: .list-item; delay: 80"></ul>
+        <div class="card">
+            <div class="card-body" style="padding-left: 35px">
+
+                    <div style="padding-top: 1.5em;"></div>
+
+                <form method="post" action="<%=request.getContextPath()%>/admin_act?action=donate" enctype="multipart/form-data">
+
+                    <div class="modu-dest-intern formato">
+
+                        <div class="upload__box">
+                            <div class="upload__btn-box">
+
+                                <label class="upload__btn">
+                                    <pp>SELECCIONAR IMÁGENES</pp>
+                                    <input type="file" multiple="" data-max_length="20" class="upload__inputfile">
+
+                                </label>
+
+                                <div style="padding-top: 1em;"></div>
+
+                            </div>
+
+                            <div class="upload__img-wrap"></div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="uk-flex uk-flex-center uk-margin-top">
+                        <div class="uk-flex uk-flex-center">
+                            <button type="button" id="reset-button" class="btn btn-secondary m-2">Borrar</button>
+                            <button type="button" id="upload-button" class="btn btn-primary m-2">Subir</button>
+                        </div>
+                    </div>
+
+
+                </form>
+
             </div>
         </div>
 
-        <div class="uk-flex uk-flex-center uk-margin-top">
-            <div class="uk-flex uk-flex-center">
-                <button type="button" id="reset-button" class="btn btn-secondary m-2">Borrar</button>
-                <button type="button" id="upload-button" class="btn btn-primary m-2">Subir</button>
-            </div>
-        </div>
+
+    </div>
+
+
     </div>
 </div>
 
@@ -222,8 +250,8 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
 
 
-
-<script src="../../js/upload.js"></script>
+<script src="js/script_album.js"></script>
+<script src="js/upload.js"></script>
 <script src="js/bootstrap/bootstrap.js"></script>
 <script src="js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>

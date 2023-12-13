@@ -139,6 +139,12 @@ public class AdminActServlet extends HttpServlet {
                     }
                     break;
 
+                case "album":
+
+
+                    request.getRequestDispatcher("pages/admin_act/upload_album.jsp").forward(request, response);
+                    break;
+
             }
 
     }
@@ -262,6 +268,14 @@ public class AdminActServlet extends HttpServlet {
                     request.setAttribute("listaIncritosxEvento", listaFiltrada);
                     request.setAttribute("idEvento", idEvento);
                     request.getRequestDispatcher("/pages/admin_act/ver_inscritos.jsp").forward(request,response);
+
+                    break;
+
+
+                case "subirFotosAlbum":
+                    System.out.println("subirFotosAlbum");
+
+
 
                     break;
 
