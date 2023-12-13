@@ -1,4 +1,3 @@
-<%@ page import="com.example.proyectoweb.model.beans.Evento" %>
 <%@ page import="com.example.proyectoweb.model.beans.Donaciones" %>
 <%@ page import="com.example.proyectoweb.model.beans.Usuario" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
@@ -13,8 +12,6 @@
 
 <!doctype html>
 <html lang="es">
-
-
 
 <head>
     <meta http-equiv="Content-Type" content=text/html; charset=ISO-8859-1″>
