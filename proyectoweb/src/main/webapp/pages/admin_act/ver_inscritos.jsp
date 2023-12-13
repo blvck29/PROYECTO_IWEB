@@ -111,7 +111,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
             <form method="post" action="<%=request.getContextPath()%>/admin_act?action=filtroInsNombreCodigo&idEvento=<%=idEvento%>&idActividad=<%=idActividad%>">
 
-                <a class="btn btn-primary" href="<%=request.getContextPath()%>/admin_act?action=verInscritos&idEvento=<%=idEvento%>" role="button">Borrar filtros</a>
+                <a class="btn btn-primary" href="<%=request.getContextPath()%>/admin_act?action=verInscritos&idEvento=<%=idEvento%>&idActividad=<%=idActividad%>" role="button">Borrar filtros</a>
 
             </form>
 

@@ -4,7 +4,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <% Inscrito inscrito = (Inscrito) request.getAttribute("inscrito"); %>
 
-<%Usuario user = (Usuario) session.getAttribute("usuario");%>
+<%Usuario user = (Usuario) session.getAttribute("usuario");
+    String idActividad = (String) request.getAttribute("idActividad");%>
 
 
 <!doctype html>
@@ -150,6 +151,9 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
                 <form method="post" id="formEdit" action="<%=request.getContextPath()%>/admin_act?action=editarRolInscrito&idUsuario=<%=inscrito.getUsuario().getIdUsuario()%>&idEvento=<%=inscrito.getIdEvento()%>">
 
+                    <input name="idActividad" type="hidden" value="<%=idActividad%>">
+
+
                     <div class="form-group">
                         <label><strong>Editar estado:</strong></label>
                         <div style="margin-bottom: 20px"></div>
@@ -190,7 +194,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                         <div style="margin-bottom: 20px"></div>
 
                         <div class="button-container">
-                            <a id="redirect-button" class="btn btn-secondary m-2" href="<%=request.getContextPath()%>/admin_act?action=verInscritos&idEvento=<%=inscrito.getIdEvento()%>">Cancelar</a>
+                            <a id="redirect-button" class="btn btn-secondary m-2" href="<%=request.getContextPath()%>/admin_act?action=verInscritos&idEvento=<%=inscrito.getIdEvento()%>&idActividad=<%=idActividad%>">Cancelar</a>
                             <button onclick="alert" type="submit" class="btn btn-primary m-2">Guardar</button>
                         </div>
                         <div style="margin-bottom: 20px"></div>

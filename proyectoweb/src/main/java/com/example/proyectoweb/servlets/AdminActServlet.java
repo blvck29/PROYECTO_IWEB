@@ -148,10 +148,13 @@ public class AdminActServlet extends HttpServlet {
 
 
                     if(idActividad3.equals(actividadDelUsuario.getIdActividad())){
+                        System.out.println("aqui 1");
 
                         if(eventoDao.buscarEventoXid(idEvento3) != null){
+                            System.out.println("aqui 2");
 
                             if(eventoDao.buscarEventoXid(idEvento3).getIdActividad().equals(actividadDelUsuario.getIdActividad())){
+                                System.out.println("aqui 3");
 
                                 ArrayList<Inscrito> listaInscritosxEvento = inscritosDao.listarInscritosXevento(idEvento3);
                                 request.setAttribute("idEvento", idEvento3);
@@ -189,13 +192,43 @@ public class AdminActServlet extends HttpServlet {
 
                 case "editarRolInscrito":
 
-
-                    String idInscrito = request.getParameter("idInscrito");
                     String idEventoIns = request.getParameter("idevento");
-                    Inscrito inscrito = inscritosDao.buscarInscritoXid(idInscrito,Integer.parseInt(idEventoIns)); //deberia tmb buscar por idevento
+                    String idInscrito = request.getParameter("idInscrito");
 
-                    request.setAttribute("inscrito", inscrito);
-                    request.getRequestDispatcher("/pages/admin_act/editar_inscrito.jsp").forward(request, response);
+                    Evento event = eventoDao.buscarEventoXid(idEventoIns);
+
+                    if(event != null){
+
+                        if(event.getIdActividad().equals(actividadDelUsuario.getIdActividad())){
+
+                            if(inscritosDao.buscarInscritoXid(idInscrito, Integer.parseInt(idEventoIns)) != null){
+
+                                if(inscritosDao.buscarInscritoXidFiltro(idInscrito).getIdEvento() == Integer.parseInt(idEventoIns)){
+
+                                    Inscrito inscrito = inscritosDao.buscarInscritoXid(idInscrito,Integer.parseInt(idEventoIns)); //deberia tmb buscar por idevento
+
+                                    request.setAttribute("idActividad", actividadDelUsuario.getIdActividad());
+                                    request.setAttribute("inscrito", inscrito);
+                                    request.getRequestDispatcher("/pages/admin_act/editar_inscrito.jsp").forward(request, response);
+
+
+                                }else{
+                                    response.sendRedirect(request.getContextPath() + "/admin_act");
+                                }
+
+                            }else{
+                                response.sendRedirect(request.getContextPath() + "/admin_act");
+                            }
+
+                        }else{
+                            response.sendRedirect(request.getContextPath() + "/admin_act");
+                        }
+
+                    }else{
+                        response.sendRedirect(request.getContextPath() + "/admin_act");
+                    }
+
+
                     break;
 
                 case "imagenPorEvento":
@@ -229,9 +262,6 @@ public class AdminActServlet extends HttpServlet {
                     }else{
                         response.sendRedirect(request.getContextPath() + "/admin_act?action=home");
                     }
-
-
-
 
                     break;
 
@@ -350,10 +380,11 @@ public class AdminActServlet extends HttpServlet {
                 case "editarRolInscrito":
                     String idUsuario = request.getParameter("idUsuario");
                     String rolNuevo = request.getParameter("rolNuevo");
+                    String idActividad3 = request.getParameter("idActividad");
                     System.out.println("El nuevo rol es: " + rolNuevo);
 
                     inscritosDao.actualizarRolInscrito(rolNuevo, idUsuario);
-                    response.sendRedirect(request.getContextPath() +"/admin_act?action=verInscritos&idEvento="+idEvento);
+                    response.sendRedirect(request.getContextPath() +"/admin_act?action=verInscritos&idEvento="+idEvento+"&idActividad="+idActividad3);
                     break;
 
                 case "filtroInscritosRol":
