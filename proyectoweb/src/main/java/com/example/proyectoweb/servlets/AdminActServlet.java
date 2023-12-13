@@ -289,6 +289,9 @@ public class AdminActServlet extends HttpServlet {
                     }
 
 
+                    System.out.println("El id del evento es: " + idEvento);
+
+                    
 
 
 

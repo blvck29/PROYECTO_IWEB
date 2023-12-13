@@ -3,6 +3,7 @@ import com.example.proyectoweb.model.beans.Evento;
 import com.example.proyectoweb.model.beans.Imagen;
 import com.example.proyectoweb.model.beans.Inscripcion;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
 //import org.apache.http.io.BufferInfo;
 
 import java.io.*;
@@ -425,6 +426,37 @@ public class EventosDao extends DaoBase{
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+
+    }
+
+
+
+    public void crearAlbumFotos(ArrayList<Part> AlbumFotos, String idEvento) throws IOException {
+
+
+        for(Part part : AlbumFotos){
+
+            InputStream inputStream2 = part.getInputStream();
+            Imagen imagen = new Imagen();
+            imagen.setImagen(inputStream2);
+
+
+            String sql = "INSERT INTO fotos_album (idEvento, Foto) \n" +
+                    "VALUES (?, ?);";
+
+            try(Connection conn = getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(sql)){
+
+                pstmt.setString(1, idEvento);
+                pstmt.setBlob(2, imagen.getImagen());
+
+                pstmt.executeUpdate();
+
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
         }
 
     }
