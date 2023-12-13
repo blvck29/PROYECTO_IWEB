@@ -289,12 +289,9 @@ public class AdminActServlet extends HttpServlet {
                     }
 
 
-                    System.out.println("El id del evento es: " + idEvento);
+                    System.out.println("El id del evento es: " + idEventoAlbum);
 
-                    
-
-
-
+                    eventoDao.crearAlbumFotos(fotosAlbum, idEventoAlbum);
 
 
                     break;
