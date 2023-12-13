@@ -9,7 +9,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="250e9528-0acf-42db-be38-0516405aa721" name="Changes" comment="" />
+    <list default="true" id="250e9528-0acf-42db-be38-0516405aa721" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/user/activity.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/user/activity.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/user/dyn_events/end.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/user/dyn_events/end.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/user/dyn_events/event.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/user/dyn_events/event.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/user/dyn_events/event_end.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/user/dyn_events/event_end.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/user/dyn_events/prox.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/user/dyn_events/prox.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/pages/user/dyn_events/self.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/pages/user/dyn_events/self.jsp" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -376,6 +384,7 @@
       <workItem from="1701972823056" duration="6819000" />
       <workItem from="1702158316457" duration="11754000" />
       <workItem from="1702214839109" duration="907000" />
+      <workItem from="1702503106823" duration="1831000" />
     </task>
     <servers />
   </component>
@@ -401,12 +410,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/webapp/pages/admin_act/home.jsp</url>
-          <line>203</line>
+          <line>277</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/webapp/pages/admin_act/home.jsp</url>
-          <line>269</line>
+          <line>333</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>

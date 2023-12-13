@@ -162,7 +162,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
     <div style="margin-bottom: 50px"></div>
 
-    <h2><i class="fa-solid fa-star" style="color: #8de7ef;"></i><strong style="padding-left: 10px">Eventos de <%=idActividad%>></strong></h2>
+    <h2><i class="fa-solid fa-star" style="color: #8de7ef;"></i><strong style="padding-left: 10px">Eventos de <%=idActividad%></strong></h2>
 
     <div style="margin-bottom: 40px"></div>
 
@@ -199,7 +199,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
     <hr class="hr hr-blurry"/>
     <div style="margin-bottom: 25px"></div>
 
-    <div class="row align-content-center" data-masonry='{"percentPosition": true }'>
+    <div class="row align-content-center" id="divRow" data-masonry='{"percentPosition": true }'>
 
         <%int event_counter = 0;%>
 
@@ -250,49 +250,14 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
     </div>
 
-    <%if (event_counter >=8) {%>
-
-    <nav class="mt-4">
-        <ul class="pagination justify-content-center">
-            <!---->
-            <li class="page-item active">
-                <a href="#" class="page-link">1</a>
-            </li>
-            <li class="page-item">
-                <a href="#" class="page-link">2</a>
-            </li>
-            <li class="page-item">
-                <a href="#" class="page-link">3</a>
-            </li>
-            <li class="page-item">
-                <a href="#" class="page-link">4</a>
-            </li>
-            <li class="page-item">
-                <a href="#" class="page-link">5</a>
-            </li>
-            <li class="page-item">
-                <a href="#" class="page-link">6</a>
-            </li>
-            <li class="page-item">
-                <a href="#" aria-label="Next" class="page-link">
-                    <span aria-hidden="true">»</span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-
-    <%} else if (event_counter==0){%>
+    <%if (event_counter==0){%>
 
     <div class="container align-content-center"><h2>No hay eventos creados</h2></div>
 
     <div style="margin-bottom: 560px"></div>
 
-    <%} else if (event_counter<5){%>
+    <%} %>
 
-    <div style="margin-bottom: 200px"></div>
-
-    <%}%>
 
 
 
@@ -344,6 +309,58 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
     </footer>
 </div>
 
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var items = document.querySelectorAll('#divRow .col-sm-6.col-lg-3.mb-4');
+        var itemsPerPage = 8;
+        var paginationButtons = document.getElementById('paginationButtons');
+
+        function displayItems(page) {
+            var start = (page - 1) * itemsPerPage;
+            var end = start + itemsPerPage;
+
+            var visibleItems = Array.from(items).slice(start, end);
+
+            var divRow = document.getElementById('divRow');
+            divRow.innerHTML = ''; // Limpiar el contenedor
+
+            visibleItems.forEach(function (item) {
+                divRow.appendChild(item);
+            });
+        }
+
+        function setupPagination() {
+            var pageCount = Math.ceil(items.length / itemsPerPage);
+            for (var i = 1; i <= pageCount; i++) {
+                var button = document.createElement('button');
+                button.innerText = i;
+
+                button.addEventListener('click', function () {
+                    // Remove 'active' class from all buttons
+                    var buttons = paginationButtons.getElementsByTagName('button');
+                    for (var j = 0; j < buttons.length; j++) {
+                        buttons[j].classList.remove('active');
+                    }
+
+                    // Add 'active' class to the clicked button
+                    this.classList.add('active');
+
+                    var pageNumber = parseInt(this.innerText);
+                    displayItems(pageNumber);
+                });
+
+                paginationButtons.appendChild(button);
+            }
+        }
+
+
+        displayItems(1); // Mostrar la primera página al cargar
+
+        setupPagination(); // Configurar los botones de paginación
+    });
+
+</script>
 
 <script>
     function submitFormUser() {

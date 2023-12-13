@@ -82,6 +82,8 @@
 
 
 <body>
+
+<% if (user.getIdRolSistema().equals("USER")){  %>
 <header>
     <div class="logo"><a href="<%=request.getContextPath()%>/user_home"><img class="logo-img" src='images/logo_topbar.png' alt="logo"></a></div>
 
@@ -99,7 +101,7 @@
 
             <li class="nav-item dropdown" style="margin-top: 20px">
                 <form method="get" id="eventForm" action="<%=request.getContextPath()%>/user_home">
-                    <select name="action" class="navbar-dropdwon form-select border-0" style="font-size: 0.9rem" id="eventSelect" onchange="submitForm()">
+                    <select name="action" class="navbar-dropdwon form-select border-0" style="font-size: 0.9rem" id="eventSelect" onchange="submitFormUser()">
                         <option style="font-size: 0.9rem; display:none;">Ver Eventos</option>
                         <option style="font-size: 0.9rem; color:black" value="events&id=self">Inscrito</option>
                         <option style="font-size: 0.9rem; color:black" value="events&id=prox">Próximos</option>
@@ -122,6 +124,56 @@
 
 </header>
 
+<% } else { %>
+
+
+<header>
+    <div class="logo"><a href="<%=request.getContextPath()%>/admin_act?action=home"><img class="logo-img" src='images/logo_topbar.png' alt="logo"></a></div>
+
+    <div class="bars">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+
+    <nav class="nav-bar">
+        <ul>
+            <li class="nav-item dropdown" style="margin-top: 20px">
+                <form method="get" id="eventForm2" action="<%=request.getContextPath()%>/admin_act">
+                    <select name="action" class="navbar-dropdwon form-select border-0" style="font-size: 0.9rem" id="eventSelect2" onchange="submitForm2()">
+                        <option style="font-size: 0.9rem; display:none;">Cambiar Rol</option>
+                        <option style="font-size: 0.9rem; color:black" value="user">Usuario</option>
+                        <option style="font-size: 0.9rem; color:black" value="admin">Admin</option>
+                    </select>
+                </form>
+            </li>
+            <li class="nav-item dropdown" style="margin-top: 20px">
+                <form method="get" id="eventFormAdmin" action="<%=request.getContextPath()%>/user_home">
+                    <select name="action" class="navbar-dropdwon form-select border-0" style="font-size: 0.9rem" id="eventSelectAdmin" onchange="submitFormAdmin()">
+                        <option style="font-size: 0.9rem; display:none;">Ver Eventos</option>
+                        <option style="font-size: 0.9rem; color:black" value="events&id=self">Inscrito</option>
+                        <option style="font-size: 0.9rem; color:black" value="events&id=prox">Próximos</option>
+                        <option style="font-size: 0.9rem; color:black" value="events&id=end">Finalizados</option>
+                    </select>
+                </form>
+            </li>
+
+            <li>
+                <a href="<%=request.getContextPath()%>/user_home?action=donate">Donaciones</a>
+            </li>
+            <li>
+                <a href="<%=request.getContextPath()%>/user_home?action=profile"><i class="fa-solid fa-user nav-icon2"></i><%=user.getNombres() + " " + user.getApellidos()%></a>
+            </li>
+            <li>
+                <a href="<%=request.getContextPath()%>/logout"><i class="fa-solid fa-door-open nav-icon2"></i>Cerrar Sesión</a>
+            </li>
+        </ul>
+    </nav>
+
+
+</header>
+
+<% } %>
 
 <div class="container">
 
@@ -236,8 +288,8 @@
 </div>
 
 <script>
-    function submitForm() {
-        var selectElement = document.getElementById("eventSelect");
+    function submitFormUser() {
+        var selectElement = document.getElementById("eventSelectUser");
         var selectedValue = selectElement.value;
         if (selectedValue) {
             var newURL = "<%=request.getContextPath()%>/user_home?action=" + selectedValue;
@@ -245,6 +297,34 @@
         }
     }
 </script>
+
+
+<script>
+    function submitFormAdmin() {
+        var selectElement = document.getElementById("eventSelectAdmin");
+        var selectedValue = selectElement.value;
+        if (selectedValue) {
+            var newURL = "<%=request.getContextPath()%>/user_home?action=" + selectedValue;
+            window.location.href = newURL;
+        }
+    }
+</script>
+
+
+<script>
+    function submitForm2() {
+        var selectElement = document.getElementById("eventSelect2");
+        var selectedValue = selectElement.value;
+        if (selectedValue == "user") {
+            var newURL = "<%=request.getContextPath()%>/user_home";
+            window.location.href = newURL;
+        } else {
+            var newURL = "<%=request.getContextPath()%>/admin_act";
+            window.location.href = newURL;
+        }
+    }
+</script>
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         var items = document.querySelectorAll('#divRow .col-sm-6.col-lg-3.mb-4');
