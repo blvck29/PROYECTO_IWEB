@@ -144,8 +144,10 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
                             <div class="modal-body">
 
-                                <div style="padding-top: 10px;"></div>
 
+                                <%if (!listaIds.isEmpty()) { %>
+                                
+                                <div style="padding-top: 10px;"></div>
                                 <div class="row">
                                 <% int contador = 0; %>
                                 <% for (Integer id : listaIds) { %>
@@ -170,6 +172,16 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
                                 <%}%>
                                 </div>
+
+
+                                <%}else { %>
+                                <br>
+                                <br>
+                                <br>
+                                <h2 style="text-align: center;">Aún no se han subidos imagenes álbum de este evento</h2>
+                                <br>
+                                <br>
+                                <%} %>
 
                             </div>
 
