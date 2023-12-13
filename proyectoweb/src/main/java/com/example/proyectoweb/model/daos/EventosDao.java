@@ -100,6 +100,8 @@ public class EventosDao extends DaoBase{
 
     }
 
+
+
     public ArrayList<Inscripcion> listarEventosPropios (String idUser){ //user
 
         //Conexión a la DB

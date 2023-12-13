@@ -184,7 +184,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
     <div class='gallery'>
         <% if (listafotos.isEmpty()) { %>
-        <h1>¡No hay recuerdos en el álbum de evento!</h1>
+        <h1 style="font-size: 30px;">¡Aún no hay recuerdos en el álbum de fotos de este evento!</h1>
         <% } else { %>
         <% for (FotoAlbum fotoAlbum : listafotos) { %>
         <div class='gallery-image async-image-holder'
