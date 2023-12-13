@@ -1,11 +1,14 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.example.proyectoweb.model.beans.Usuario" %>
+<%@ page import="com.example.proyectoweb.model.beans.Evento" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 
 <%Usuario user = (Usuario) session.getAttribute("usuario");%>
 
-<% ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) request.getAttribute("listaUsuarios");%>
+<% ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) request.getAttribute("listaUsuarios");
+    Evento evento = (Evento) request.getAttribute("evento");
+%>
 
 <!doctype html>
 <html lang="es">
@@ -100,7 +103,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
         <div class="py-5">
             <h1 class="display-5 fw-bold text-white" style="font-family: 'Poppins', sans-serif">Bienvenido, @Admin_Act</h1>
             <div style="margin-bottom: 20px"></div>
-            <h3 class="fw-bold text-white" style="font-family: 'Poppins', sans-serif">Creando Álbum de Fotos</h3>
+            <h3 class="fw-bold text-white" style="font-family: 'Poppins', sans-serif">Creando Álbum de Fotos del Evento <%=evento.getTitulo()%></h3>
             <div style="margin-bottom: 20px"></div>
             <div class="justify-content-sm-center">
             </div>
@@ -125,6 +128,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                     <div style="padding-top: 1.5em;"></div>
 
                 <form method="post" action="<%=request.getContextPath()%>/admin_act?action=subirFotosAlbum" enctype="multipart/form-data">
+                    <input class="form-control" type="hidden"  name="idEvento"   value="<%=evento.getIdEvento()%>">
 
                     <div class="modu-dest-intern formato">
 
