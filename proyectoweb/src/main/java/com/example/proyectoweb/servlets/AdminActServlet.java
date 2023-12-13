@@ -270,6 +270,14 @@ public class AdminActServlet extends HttpServlet {
 
                     break;
 
+
+                case "subirFotosAlbum":
+                    System.out.println("subirFotosAlbum");
+
+
+
+                    break;
+
             }
 
     }

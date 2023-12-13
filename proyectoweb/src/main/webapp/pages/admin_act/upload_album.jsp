@@ -124,37 +124,46 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
                     <div style="padding-top: 1.5em;"></div>
 
+                <form method="post" action="<%=request.getContextPath()%>/admin_act?action=donate" enctype="multipart/form-data">
+
                     <div class="modu-dest-intern formato">
 
                         <div class="upload__box">
                             <div class="upload__btn-box">
 
                                 <label class="upload__btn">
-                                    <pp>Seleccionar Imágenes</pp>
+                                    <pp>SELECCIONAR IMÁGENES</pp>
                                     <input type="file" multiple="" data-max_length="20" class="upload__inputfile">
 
                                 </label>
 
                                 <div style="padding-top: 1em;"></div>
-                                
+
                             </div>
 
                             <div class="upload__img-wrap"></div>
 
                         </div>
                     </div>
+
+
+                    <div class="uk-flex uk-flex-center uk-margin-top">
+                        <div class="uk-flex uk-flex-center">
+                            <button type="button" id="reset-button" class="btn btn-secondary m-2">Borrar</button>
+                            <button type="button" id="upload-button" class="btn btn-primary m-2">Subir</button>
+                        </div>
+                    </div>
+
+
+                </form>
+
             </div>
         </div>
 
 
     </div>
 
-        <div class="uk-flex uk-flex-center uk-margin-top">
-            <div class="uk-flex uk-flex-center">
-                <button type="button" id="reset-button" class="btn btn-secondary m-2">Borrar</button>
-                <button type="button" id="upload-button" class="btn btn-primary m-2">Subir</button>
-            </div>
-        </div>
+
     </div>
 </div>
 

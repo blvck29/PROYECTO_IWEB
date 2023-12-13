@@ -130,7 +130,6 @@ imgprv {
     padding: 22px 24px 40px 24px;
 }
 .modu-dest-intern {
-    background: url('https://cdn01.pucp.education/template/inst-homepucp/images/textura-dest.gif');
     padding: 22px 24px;
     border-bottom: 5px solid #D8DEE0;
     margin-bottom: 70px;
@@ -161,7 +160,6 @@ iframe {
     overflow: clip !important;
 }
 .modu-dest-intern {
-    background: url(https://cdn01.pucp.education/template/inst-homepucp/images/textura-dest.gif);
     padding: 22px 24px;
     border-bottom: 5px solid #D8DEE0;
     margin-bottom: 70px;
