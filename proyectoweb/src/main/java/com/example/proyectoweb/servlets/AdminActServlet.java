@@ -118,7 +118,8 @@ public class AdminActServlet extends HttpServlet {
 
                 case "editarRolInscrito":
                     String idInscrito = request.getParameter("idInscrito");
-                    Inscrito inscrito = inscritosDao.buscarInscritoXid(idInscrito);
+                    String idEventoIns = request.getParameter("idevento");
+                    Inscrito inscrito = inscritosDao.buscarInscritoXid(idInscrito,Integer.parseInt(idEventoIns)); //deberia tmb buscar por idevento
 
                     request.setAttribute("inscrito", inscrito);
                     request.getRequestDispatcher("/pages/admin_act/editar_inscrito.jsp").forward(request, response);
