@@ -47,6 +47,40 @@
     <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
 
     <title>Home | Semana de Ingeniería 2023</title>
+
+    <style>
+        #paginationButtons {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            margin-top: 20px;
+        }
+
+        #paginationButtons button {
+            padding: 5px 10px;
+            border-radius: 5px;
+            border: 1px solid #33C3FB;
+            background-color: #33C3FB;
+            cursor: pointer;
+            color: white;
+        }
+
+
+        #paginationButtons button.active {
+            background-color: #e0e0e0;
+            font-weight: bold;
+            color: white;
+        }
+
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+    </style>
+
 </head>
 
 
@@ -172,7 +206,7 @@
 
     <div style="margin-bottom: 50px"></div>
 
-    <div class="row align-content-center" data-masonry='{"percentPosition": true }'>
+    <div class="row align-content-center" id="divRow" data-masonry='{"percentPosition": true }'>
 
         <%int event_counter = 0;%>
         <% for (Evento event : listaEventosProx) { %>
@@ -221,53 +255,17 @@
 
     </div>
 
-    <%if (event_counter >=8) {%>
+    <% if (event_counter==0){%>
 
-    <nav class="mt-4">
-        <ul class="pagination justify-content-center">
-            <!---->
-            <li class="page-item active">
-                <a href="#" class="page-link">1</a>
-            </li>
-            <li class="page-item">
-                <a href="#" class="page-link">2</a>
-            </li>
-            <li class="page-item">
-                <a href="#" class="page-link">3</a>
-            </li>
-            <li class="page-item">
-                <a href="#" class="page-link">4</a>
-            </li>
-            <li class="page-item">
-                <a href="#" class="page-link">5</a>
-            </li>
-            <li class="page-item">
-                <a href="#" class="page-link">6</a>
-            </li>
-            <li class="page-item">
-                <a href="#" aria-label="Next" class="page-link">
-                    <span aria-hidden="true">»</span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
+    <div class="container align-content-center"><h2>No hay eventos programados a futuro...</h2></div>
+    <div style="margin-bottom: 350px"></div>
 
-    <%} else if (event_counter==0){%>
-
-    <div class="container align-content-center"><h2>No hay eventos Próximos</h2></div>
-
-    <div style="margin-bottom: 560px"></div>
-
-    <%} else if (event_counter<5){%>
-
-    <div style="margin-bottom: 200px"></div>
-
-    <%}%>
+    <%} %>
 
 </div>
 
-<div style="margin-bottom: 50px"></div>
+<div id="paginationButtons"></div>
+<div style="margin-bottom: 60px"></div>
 
 
 <div class="container-fluid" style="padding-right: 0; padding-left: 0">

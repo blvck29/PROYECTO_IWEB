@@ -371,6 +371,8 @@ input:valid ~ label {
 
 .footer-container {
     position: relative;
+    color: #e9ecef;
+    padding-top: 30px;
     height: 10vh;
     backdrop-filter: blur(25px);
     background-color: rgba(0, 0, 0, 0.4);

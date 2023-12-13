@@ -371,7 +371,7 @@ public class UserServlet extends HttpServlet {
                                 HttpSession httpSession = request.getSession();
                                 httpSession.setAttribute("msgDonacionCorrecta", "Su donación se ha registrado correctamente.");
                                 donacionesDao.nuevaDonacion(user.getIdUsuario(), monto, donacion);
-
+                                EmailSender.sendEmail(user.getCorreo(),"Gracias por su donación a la fibra!"," Monto donado: " + monto + " soles");
                             }
 
                         }else{
