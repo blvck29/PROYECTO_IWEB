@@ -277,23 +277,29 @@ public class AdminActServlet extends HttpServlet {
                     String idEventoAlbum = request.getParameter("idEvento");
                     ArrayList<Part> fotosAlbum = new ArrayList<>(request.getParts());
 
-                    System.out.println();
-                    if (!fotosAlbum.isEmpty()) {
-                        for (Part foto : fotosAlbum) {
+
+                    ArrayList<Part> fotosValidas = new ArrayList<>();
+
+                    for (Part fotoCheck : fotosAlbum) {
+                        if (fotoCheck.getContentType() != null) {
+                            fotosValidas.add(fotoCheck);
+                        }
+                    }
+
+                    if (!fotosValidas.isEmpty()) {
+                        for (Part foto : fotosValidas) {
                             System.out.println("Nombre del archivo: " + foto.getSubmittedFileName());
                             System.out.println("Tipo de contenido: " + foto.getContentType());
                             System.out.println("Tamaño del archivo: " + foto.getSize() + " bytes");
                         }
                     } else {
-                        System.out.println("No se recibieron archivos");
+                        System.out.println("No se recibieron archivos válidos");
                     }
 
-
-                    System.out.println("El id del evento es: " + idEventoAlbum);
-
-                    eventoDao.crearAlbumFotos(fotosAlbum, idEventoAlbum);
+                    eventoDao.crearAlbumFotos(fotosValidas, idEventoAlbum);
 
 
+                    response.sendRedirect(request.getContextPath() + "/admin_act?action=home");
                     break;
 
             }

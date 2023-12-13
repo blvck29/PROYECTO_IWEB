@@ -132,7 +132,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                 <div class="modal-dialog  modal-lg">
                     <div class="modal-content">
 
-                        
+
 
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5" id="exampleModalLabel">Fotos Actuales Subidas</h1>
@@ -154,7 +154,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                             <div class="modal-footer">
                                 <div class="uk-flex uk-flex-center uk-margin-top">
                                     <div class="uk-flex uk-flex-center">
-                                        <button type="button" id="reset-button" class="btn btn-secondary m-2">Cerrar</button>
+                                        <button type="button" id="reset-button" class="btn btn-secondary m-2" data-bs-dismiss="modal">Cerrar</button>
                                     </div>
                                 </div>
                             </div>
@@ -224,7 +224,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                             <div class="modal-footer">
                                 <div class="uk-flex uk-flex-center uk-margin-top">
                                     <div class="uk-flex uk-flex-center">
-                                        <button type="button" id="reset-button" class="btn btn-secondary m-2">Cancelar</button>
+                                        <button type="button" id="reset-button" class="btn btn-secondary m-2" data-bs-dismiss="modal">Cancelar</button>
                                         <button type="submit" id="upload-button" class="btn btn-primary m-2">Subir Fotos</button>
                                     </div>
                                 </div>
