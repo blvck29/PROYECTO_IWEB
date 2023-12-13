@@ -28,6 +28,7 @@ public class AdminActServlet extends HttpServlet {
 
         HttpSession session = request.getSession(false);
         Usuario user = (Usuario) session.getAttribute("usuario");
+        Actividad actividadDelUsuario = actDao.getActividadByIdUsuario(user.getIdUsuario());
 
 
 
@@ -60,26 +61,120 @@ public class AdminActServlet extends HttpServlet {
                     break;
                 case "new_event":
                     String idActividad = request.getParameter("idActividad");
-                    Actividad actividad1 = actividadesDao.getActividadByIdUsuario(idUsr);
-                    request.setAttribute("actividad", actividad1);
-                    request.setAttribute("idActividad", idActividad);
-                    request.getRequestDispatcher("/pages/admin_act/new_event.jsp").forward(request, response);
+
+                    if(idActividad.equals(actividadDelUsuario.getIdActividad())){
+
+                        Actividad actividad1 = actividadesDao.getActividadByIdUsuario(idUsr);
+                        request.setAttribute("actividad", actividad1);
+                        request.setAttribute("idActividad", idActividad);
+                        request.getRequestDispatcher("/pages/admin_act/new_event.jsp").forward(request, response);
+
+                    }else{
+                        response.sendRedirect(request.getContextPath() + "/admin_act");
+
+                    }
+
                     break;
 
                 case "edit_event":
+
                     String idEvento = request.getParameter("idEvento");
                     String idActividad4 = request.getParameter("idActividad");
-                    Actividad actividadEv= actividadesDao.getActividadByIdUsuario(idUsr);
-                    request.setAttribute("actividad", actividadEv);
-                    Evento eventoBuscado = eventoDao.EventoXid(idEvento);
 
-                    if (eventoBuscado != null) {
-                        request.setAttribute("idActividad", idActividad4);
-                        request.setAttribute("evento", eventoBuscado);
-                        request.getRequestDispatcher("/pages/admin_act/edit_event.jsp").forward(request, response);
-                    } else {
+                    if(idActividad4.equals(actividadDelUsuario.getIdActividad())){
+
+                        Actividad actividadEv= actividadesDao.getActividadByIdUsuario(idUsr);
+                        request.setAttribute("actividad", actividadEv);
+                        Evento eventoBuscado = eventoDao.EventoXid(idEvento);
+
+                        if (eventoBuscado != null) {
+
+                            if(eventoBuscado.getIdActividad().equals(actividadDelUsuario.getIdActividad())){
+
+                                request.setAttribute("idActividad", idActividad4);
+                                request.setAttribute("evento", eventoBuscado);
+                                request.getRequestDispatcher("/pages/admin_act/edit_event.jsp").forward(request, response);
+
+                            }else{
+                                response.sendRedirect(request.getContextPath() + "/admin_act");
+                            }
+
+                        } else {
+                            response.sendRedirect(request.getContextPath() + "/admin_act");
+                        }
+
+                    }else{
                         response.sendRedirect(request.getContextPath() + "/admin_act");
+
                     }
+
+                    break;
+
+                case "verEvento":
+                    String idEvento2 = request.getParameter("idEvento");
+                    String idActividad1 = request.getParameter("idActividad");
+
+
+                    if(idActividad1.equals(actividadDelUsuario.getIdActividad())){
+                        Evento eventoBuscado2 = eventoDao.EventoXid(idEvento2);
+
+                        if (eventoBuscado2 != null) {
+
+                            if(eventoBuscado2.getIdActividad().equals(actividadDelUsuario.getIdActividad())){
+                                request.setAttribute("idActividad", idActividad1);
+                                request.setAttribute("evento", eventoBuscado2);
+                                request.getRequestDispatcher("/pages/admin_act/ver_evento.jsp").forward(request, response);
+
+
+                            }else{
+                                response.sendRedirect(request.getContextPath() + "/admin_act");
+                            }
+
+                        } else {
+                            response.sendRedirect(request.getContextPath() + "/admin_act");
+                        }
+
+                    }else{
+                        response.sendRedirect(request.getContextPath() + "/admin_act");
+
+                    }
+
+                    break;
+
+
+                case "verInscritos":
+                    String idEvento3 = request.getParameter("idEvento");
+                    String idActividad3 = request.getParameter("idActividad");
+
+
+                    if(idActividad3.equals(actividadDelUsuario.getIdActividad())){
+
+                        if(eventoDao.buscarEventoXid(idEvento3) != null){
+
+                            if(eventoDao.buscarEventoXid(idEvento3).getIdActividad().equals(actividadDelUsuario.getIdActividad())){
+
+                                ArrayList<Inscrito> listaInscritosxEvento = inscritosDao.listarInscritosXevento(idEvento3);
+                                request.setAttribute("idEvento", idEvento3);
+                                request.setAttribute("idActividad", idActividad3);
+                                request.setAttribute("listaIncritosxEvento", listaInscritosxEvento);
+                                request.getRequestDispatcher("/pages/admin_act/ver_inscritos.jsp").forward(request, response);
+
+                            }else{
+                                response.sendRedirect(request.getContextPath() + "/admin_act");
+                            }
+
+
+
+                        }else{
+                            response.sendRedirect(request.getContextPath() + "/admin_act");
+                        }
+
+
+                    }else{
+                        response.sendRedirect(request.getContextPath() + "/admin_act");
+
+                    }
+
                     break;
 
                 case "borrarEvento":
@@ -92,33 +187,9 @@ public class AdminActServlet extends HttpServlet {
                     response.sendRedirect(request.getContextPath() + "/admin_act");
                     break;
 
-                case "verEvento":
-                    String idEvento2 = request.getParameter("idEvento");
-                    String idActividad1 = request.getParameter("idActividad");
-                    Evento eventoBuscado2 = eventoDao.EventoXid(idEvento2);
-
-                    if (eventoBuscado2 != null) {
-                        request.setAttribute("idActividad", idActividad1);
-                        request.setAttribute("evento", eventoBuscado2);
-                        request.getRequestDispatcher("/pages/admin_act/ver_evento.jsp").forward(request, response);
-                    } else {
-                        response.sendRedirect(request.getContextPath() + "/admin_act");
-                    }
-                    break;
-
-                case "verInscritos":
-                    String idEvento3 = request.getParameter("idEvento");
-                    String idActividad3 = request.getParameter("idActividad");
-                    System.out.println("el id de actividad es: " + idActividad3);
-                    ArrayList<Inscrito> listaInscritosxEvento = inscritosDao.listarInscritosXevento(idEvento3);
-
-                    request.setAttribute("idEvento", idEvento3);
-                    request.setAttribute("idActividad", idActividad3);
-                    request.setAttribute("listaIncritosxEvento", listaInscritosxEvento);
-                    request.getRequestDispatcher("/pages/admin_act/ver_inscritos.jsp").forward(request, response);
-                    break;
-
                 case "editarRolInscrito":
+
+
                     String idInscrito = request.getParameter("idInscrito");
                     String idEventoIns = request.getParameter("idevento");
                     Inscrito inscrito = inscritosDao.buscarInscritoXid(idInscrito,Integer.parseInt(idEventoIns)); //deberia tmb buscar por idevento
@@ -135,6 +206,7 @@ public class AdminActServlet extends HttpServlet {
                 case "profile":
                     ArrayList<Evento> eventosXusuario = eventoDao.listarEventosInscritos(user.getIdUsuario());
                     request.setAttribute("listaEventos",eventosXusuario);
+                    request.setAttribute("idActividad", actividadDelUsuario.getIdActividad());
                     request.getRequestDispatcher("pages/admin_act/profile.jsp").forward(request,response);
                     for (Evento evento : eventosXusuario) {
                         System.out.println(evento.getTitulo());
@@ -165,6 +237,10 @@ public class AdminActServlet extends HttpServlet {
 
                 case "imagenDeAlbum":
                     albumDao.listarImagenesAlbum(response, request.getParameter("idImagen"));
+                    break;
+
+                default:
+                    response.sendRedirect(request.getContextPath() + "/admin_act?action=home");
                     break;
 
             }

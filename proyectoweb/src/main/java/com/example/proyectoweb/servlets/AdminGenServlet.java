@@ -213,6 +213,10 @@ public class AdminGenServlet extends HttpServlet {
                         System.out.println(evento.getTitulo());
                     }
                     break;
+
+                default:
+                    response.sendRedirect(request.getContextPath() + "/admin_gen");
+                    break;
             }
 
 

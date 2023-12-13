@@ -9,7 +9,8 @@
 
 <%Usuario user = (Usuario) session.getAttribute("usuario");%>
 
-<% ArrayList<Evento> listaEventos = (ArrayList<Evento>) request.getAttribute("listaEventos"); %>
+<% ArrayList<Evento> listaEventos = (ArrayList<Evento>) request.getAttribute("listaEventos");
+  String idActividad = (String) request.getAttribute("idActividad");%>
 
 
 <!doctype html>
@@ -90,13 +91,13 @@
         </form>
       </li>
       <li>
-        <a href="<%=request.getContextPath()%>/admin_act?action=home">Eventos</a>
+        <a href="<%=request.getContextPath()%>/admin_act?action=home" class="active">Eventos</a>
       </li>
       <li>
-        <a href="<%=request.getContextPath()%>/admin_act?action=new_event">Crear Evento</a>
+        <a href="<%=request.getContextPath()%>/admin_act?action=new_event&idActividad=<%=idActividad%>">Crear Evento</a>
       </li>
       <li>
-        <a href="<%=request.getContextPath()%>/admin_act?action=profile" class="active"><i class="fa-solid fa-user nav-icon2"></i><%=user.getNombres() + " " + user.getApellidos()%></a>
+        <a href="<%=request.getContextPath()%>/admin_act?action=profile"><i class="fa-solid fa-user nav-icon2"></i><%=user.getNombres() + " " + user.getApellidos()%></a>
       </li>
       <li>
         <a href="<%=request.getContextPath()%>/logout"><i class="fa-solid fa-door-open nav-icon2"></i>Cerrar Sesión</a>

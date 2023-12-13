@@ -209,6 +209,11 @@ public class UserServlet extends HttpServlet {
                         break;
 
 
+                    default:
+                        response.sendRedirect(request.getContextPath() + "/user_home");
+                        break;
+
+
 
 
 
@@ -319,21 +324,35 @@ public class UserServlet extends HttpServlet {
 
                     request.setAttribute("listaInscritos", listaInscritos);
 
-                    String actSelected = request.getParameter("seleccion_actividad");
+                    String actSelected = request.getParameter("seleccion_actividad"); //para el combobox
                     String eventTitle = request.getParameter("buscar_evento");
                     ArrayList<Evento> listaEventosProx;
 
                     switch (of){
                         case "prox":
-                            if(eventTitle!=null){
+
+                            if(eventTitle.equals("")){
+                                response.sendRedirect(request.getContextPath() + "/user_home?action=events&id=prox");
+                            }else{
                                 listaEventosProx = eventoDao.buscarXtituloEz(eventTitle);
                                 request.setAttribute("listaEventosProx", listaEventosProx);
                                 request.setAttribute("listaActividades",listaActividades);
+
+                                if(!actSelected.equals("Todo")){
+                                    Actividad actividadSelec = actDao.buscarPorTitulo(actSelected);
+                                    ArrayList<Evento> listaEventosxActividad = eventoDao.listarEventosxActividad(actividadSelec.getIdActividad());
+                                    request.setAttribute("listaEventosProx", listaEventosxActividad);
+                                    request.setAttribute("listaActividades",listaActividades);
+
+                                }
                                 request.getRequestDispatcher("pages/user/dyn_events/prox.jsp").forward(request,response);
-                            } else {
-                                listaEventosProx = eventoDao.listarEventosProximosxActividad(actSelected);
-                                request.setAttribute("listaEventosProx", listaEventosProx);
+
+
+
                             }
+
+
+
 
                             break;
 
