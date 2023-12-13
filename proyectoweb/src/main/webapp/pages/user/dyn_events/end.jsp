@@ -136,27 +136,6 @@
 
     <div style="margin-bottom: 40px"></div>
 
-    <form action="#" method="post">
-        <div class="input-group mb-3">
-            <div class="input-group-text p-0">
-                <label>
-                    <select name="seleccion_actividad" class="form-select form-select-lg shadow-none bg-light border-0" style="font-size: 1rem">
-                        <option style="font-size: 1rem">Todo</option>
-                        <%for (Actividad act : listaActividades){%>
-                        <option style="font-size: 1rem" value="<%=act.getTitulo()%>"><%=act.getTitulo()%></option>
-                        <%}%>
-                    </select>
-                </label>
-            </div>
-            <input type="text" name="buscar_evento" class="form-control" placeholder="Buscar Evento">
-            <button class="input-group-text shadow-none px-4 btn-large" type="submit">
-                <i class="fa-solid fa-magnifying-glass" style="color: #262626;"></i>
-            </button>
-        </div>
-    </form>
-
-    <div style="margin-bottom: 50px"></div>
-
     <div class="row align-content-center" id="divRow" data-masonry='{"percentPosition": true }'>
 
         <%int event_counter = 0;%>
@@ -271,7 +250,57 @@
         }
     }
 </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var items = document.querySelectorAll('#divRow .col-sm-6.col-lg-3.mb-4');
+        var itemsPerPage = 8;
+        var paginationButtons = document.getElementById('paginationButtons');
 
+        function displayItems(page) {
+            var start = (page - 1) * itemsPerPage;
+            var end = start + itemsPerPage;
+
+            var visibleItems = Array.from(items).slice(start, end);
+
+            var divRow = document.getElementById('divRow');
+            divRow.innerHTML = ''; // Limpiar el contenedor
+
+            visibleItems.forEach(function (item) {
+                divRow.appendChild(item);
+            });
+        }
+
+        function setupPagination() {
+            var pageCount = Math.ceil(items.length / itemsPerPage);
+            for (var i = 1; i <= pageCount; i++) {
+                var button = document.createElement('button');
+                button.innerText = i;
+
+                button.addEventListener('click', function () {
+                    // Remove 'active' class from all buttons
+                    var buttons = paginationButtons.getElementsByTagName('button');
+                    for (var j = 0; j < buttons.length; j++) {
+                        buttons[j].classList.remove('active');
+                    }
+
+                    // Add 'active' class to the clicked button
+                    this.classList.add('active');
+
+                    var pageNumber = parseInt(this.innerText);
+                    displayItems(pageNumber);
+                });
+
+                paginationButtons.appendChild(button);
+            }
+        }
+
+
+        displayItems(1); // Mostrar la primera página al cargar
+
+        setupPagination(); // Configurar los botones de paginación
+    });
+
+</script>
 
 <script src="js/slider.js"></script>
 <script src="js/bootstrap/bootstrap.js"></script>

@@ -323,6 +323,58 @@
 </script>
 
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var items = document.querySelectorAll('#divRow .col-sm-6.col-lg-3.mb-4');
+        var itemsPerPage = 8;
+        var paginationButtons = document.getElementById('paginationButtons');
+
+        function displayItems(page) {
+            var start = (page - 1) * itemsPerPage;
+            var end = start + itemsPerPage;
+
+            var visibleItems = Array.from(items).slice(start, end);
+
+            var divRow = document.getElementById('divRow');
+            divRow.innerHTML = ''; // Limpiar el contenedor
+
+            visibleItems.forEach(function (item) {
+                divRow.appendChild(item);
+            });
+        }
+
+        function setupPagination() {
+            var pageCount = Math.ceil(items.length / itemsPerPage);
+            for (var i = 1; i <= pageCount; i++) {
+                var button = document.createElement('button');
+                button.innerText = i;
+
+                button.addEventListener('click', function () {
+                    // Remove 'active' class from all buttons
+                    var buttons = paginationButtons.getElementsByTagName('button');
+                    for (var j = 0; j < buttons.length; j++) {
+                        buttons[j].classList.remove('active');
+                    }
+
+                    // Add 'active' class to the clicked button
+                    this.classList.add('active');
+
+                    var pageNumber = parseInt(this.innerText);
+                    displayItems(pageNumber);
+                });
+
+                paginationButtons.appendChild(button);
+            }
+        }
+
+
+        displayItems(1); // Mostrar la primera página al cargar
+
+        setupPagination(); // Configurar los botones de paginación
+    });
+
+</script>
+
 <script src="js/slider.js"></script>
 <script src="js/bootstrap/bootstrap.js"></script>
 <script src="js/script.js"></script>
