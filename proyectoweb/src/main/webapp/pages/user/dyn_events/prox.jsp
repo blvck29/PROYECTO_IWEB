@@ -109,18 +109,11 @@
         <div class="input-group mb-3">
 
 
-
-
-
-
             <!-- Agrega este código en el lugar donde quieras mostrar el menú desplegable -->
             <div style="float: left;">
                 <label>
                     <div class="btn-group">
                         <!-- Botón del menú desplegable -->
-                        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                            Filtrar por actividad
-                        </button>
                         <ul class="dropdown-menu dropdown-menu-lg-end">
                             <!-- Itera sobre las actividades disponibles -->
                             <% for (Actividad act : listaActividades) { %>
@@ -134,21 +127,6 @@
                     </div>
                 </label>
             </div>
-
-            <div class="input-group-text p-0">
-                <label>
-                    <select name="seleccion_actividad" class="form-select form-select-lg shadow-none bg-light border-0" style="font-size: 1rem">
-                        <option style="font-size: 1rem">Todo</option>
-                        <%for (Actividad act : listaActividades){%>
-                        <option style="font-size: 1rem" value="<%=act.getTitulo()%>"><%=act.getTitulo()%></option>
-                        <%}%>
-                    </select>
-                </label>
-            </div>
-
-
-
-
 
 
 
