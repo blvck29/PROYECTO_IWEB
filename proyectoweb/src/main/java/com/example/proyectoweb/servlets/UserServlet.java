@@ -89,48 +89,67 @@ public class UserServlet extends HttpServlet {
 
                     case "details":
                         String idEv = request.getParameter("id") == null? "self" : request.getParameter("id");
+                        int idEv1 = Integer.parseInt(idEv);
 
+                        boolean encontrado = false;
 
-                        int idUsr = user.getIdUsuario();
-                        ArrayList<Inscripcion> listaEventosPropia = eventoDao.listarEventosPropios(String.valueOf(idUsr));
-                        Evento ev = eventoDao.EventoXid(idEv);
+                        for (Evento evento : listaEventos) {
+                            if (evento.getIdEvento()==idEv1) {
+                                encontrado = true;
+                                break; // Si encontraste el ID, no necesitas seguir buscando, así que sales del ciclo
+                            }
+                        }
 
-                        request.setAttribute("listaEventosPropia",listaEventosPropia);
-                        request.setAttribute("evento_detailed", ev);
+                        if(encontrado){
+                            int idUsr = user.getIdUsuario();
+                            ArrayList<Inscripcion> listaEventosPropia = eventoDao.listarEventosPropios(String.valueOf(idUsr));
+                            Evento ev = eventoDao.EventoXid(idEv);
 
-                        if(CurrentDate.isCurrent(ev) > 0){
+                            request.setAttribute("listaEventosPropia",listaEventosPropia);
+                            request.setAttribute("evento_detailed", ev);
 
-                            System.out.println("estoy en imagenes album en details");
-                            String idEvento = request.getParameter("idEvento");
-                            System.out.println(idEv);
+                            if(CurrentDate.isCurrent(ev) > 0){
 
-                            ArrayList<FotoAlbum> listafotos = new ArrayList<>();
-                            listafotos=albumDao.listarfotosDeAlbum(idEv);
-                            request.setAttribute("listafotos",listafotos);
-                            System.out.println(listafotos.size());
+                                System.out.println("estoy en imagenes album en details");
+                                String idEvento = request.getParameter("idEvento");
+                                System.out.println(idEv);
 
-
-
-
-
-                            request.getRequestDispatcher("pages/user/dyn_events/event_end.jsp").forward(request,response);
-
-
-
-
-
-                        } else {
-                            int idUsr1 = user.getIdUsuario();
-                            String estadoInscripcionDelUsuario= usuariosDao.EstadoDeInscripcionDeUsuario(idUsr1,idEv);
-                            System.out.println(estadoInscripcionDelUsuario);
-                            request.setAttribute("estadoInscripcionDelUsuario",estadoInscripcionDelUsuario);
+                                ArrayList<FotoAlbum> listafotos = new ArrayList<>();
+                                listafotos=albumDao.listarfotosDeAlbum(idEv);
+                                request.setAttribute("listafotos",listafotos);
+                                System.out.println(listafotos.size());
 
 
 
 
-                            request.getRequestDispatcher("pages/user/dyn_events/event.jsp").forward(request,response);
+
+                                request.getRequestDispatcher("pages/user/dyn_events/event_end.jsp").forward(request,response);
+
+
+
+
+
+                            } else {
+                                int idUsr1 = user.getIdUsuario();
+                                String estadoInscripcionDelUsuario= usuariosDao.EstadoDeInscripcionDeUsuario(idUsr1,idEv);
+                                System.out.println(estadoInscripcionDelUsuario);
+                                request.setAttribute("estadoInscripcionDelUsuario",estadoInscripcionDelUsuario);
+
+
+
+
+                                request.getRequestDispatcher("pages/user/dyn_events/event.jsp").forward(request,response);
+
+                            }
+                        }
+                        else{
+                            request.setAttribute("listaInscritos", listaInscritos);
+                            request.setAttribute("listaActividades",listaActividades);
+                            request.setAttribute("listaEventos",listaEventos);
+                            request.getRequestDispatcher("pages/user/home.jsp").forward(request,response);
 
                         }
+
                         break;
 
 
