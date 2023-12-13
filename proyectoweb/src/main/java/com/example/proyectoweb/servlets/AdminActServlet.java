@@ -28,6 +28,7 @@ public class AdminActServlet extends HttpServlet {
 
         HttpSession session = request.getSession(false);
         Usuario user = (Usuario) session.getAttribute("usuario");
+        Actividad actividadDelUsuario = actDao.getActividadByIdUsuario(user.getIdUsuario());
 
 
 
@@ -60,10 +61,20 @@ public class AdminActServlet extends HttpServlet {
                     break;
                 case "new_event":
                     String idActividad = request.getParameter("idActividad");
-                    Actividad actividad1 = actividadesDao.getActividadByIdUsuario(idUsr);
-                    request.setAttribute("actividad", actividad1);
-                    request.setAttribute("idActividad", idActividad);
-                    request.getRequestDispatcher("/pages/admin_act/new_event.jsp").forward(request, response);
+
+                    if(idActividad.equals(actividadDelUsuario.getIdActividad())){
+
+                        Actividad actividad1 = actividadesDao.getActividadByIdUsuario(idUsr);
+                        request.setAttribute("actividad", actividad1);
+                        request.setAttribute("idActividad", idActividad);
+                        request.getRequestDispatcher("/pages/admin_act/new_event.jsp").forward(request, response);
+
+                    }else{
+                        response.sendRedirect(request.getContextPath() + "/admin_act");
+
+                    }
+
+
                     break;
 
                 case "edit_event":
@@ -135,6 +146,7 @@ public class AdminActServlet extends HttpServlet {
                 case "profile":
                     ArrayList<Evento> eventosXusuario = eventoDao.listarEventosInscritos(user.getIdUsuario());
                     request.setAttribute("listaEventos",eventosXusuario);
+                    request.setAttribute("idActividad", actividadDelUsuario.getIdActividad());
                     request.getRequestDispatcher("pages/admin_act/profile.jsp").forward(request,response);
                     for (Evento evento : eventosXusuario) {
                         System.out.println(evento.getTitulo());
