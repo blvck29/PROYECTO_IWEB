@@ -124,7 +124,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
 
                     <div style="padding-top: 1.5em;"></div>
 
-                <form method="post" action="<%=request.getContextPath()%>/admin_act?action=donate" enctype="multipart/form-data">
+                <form method="post" action="<%=request.getContextPath()%>/admin_act?action=subirFotosAlbum" enctype="multipart/form-data">
 
                     <div class="modu-dest-intern formato">
 
