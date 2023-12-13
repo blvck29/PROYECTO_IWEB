@@ -214,6 +214,12 @@ public class AdminGenServlet extends HttpServlet {
                     }
                     break;
 
+                case "imagenDonacionPorUsuario":
+                    DonacionesDao donacionesDao1 = new DonacionesDao();
+                    System.out.println(request.getParameter("idDonacion"));
+                    donacionesDao1.listarImagenDonacionPorUsuario(response, request.getParameter("idDonacion"));
+                    break;
+
                 default:
                     response.sendRedirect(request.getContextPath() + "/admin_gen");
                     break;
