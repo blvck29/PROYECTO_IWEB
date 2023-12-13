@@ -1663,3 +1663,37 @@ body {
 
 }
 
+
+
+/* ----------------------------------------- */
+
+
+/* Para navegadores basados en WebKit (Chrome, Safari, etc.) */
+input:-webkit-autofill {
+    -webkit-text-fill-color: white !important; /* Cambia el color del texto */
+    color: white !important; /* Cambia el color del texto */
+    -webkit-box-shadow: 0 0 0 30px #1C0339 inset !important; /* Fondo */
+}
+
+/* Para navegadores basados en Blink (Opera) */
+input:-webkit-autofill {
+    -webkit-text-fill-color: white !important; /* Cambia el color del texto */
+    color: white !important; /* Cambia el color del texto */
+    -webkit-box-shadow: 0 0 0 30px #1C0339 inset !important; /* Fondo */
+}
+
+/* Para navegadores basados en Gecko (Firefox) */
+input:-moz-autofill {
+    -moz-text-fill-color: white !important; /* Cambia el color del texto */
+    color: white !important; /* Cambia el color del texto */
+    -moz-box-shadow: 0 0 0 30px #1C0339 inset !important; /* Fondo */
+}
+
+/* Para Edge */
+input:-ms-input-placeholder {
+    color: white !important; /* Cambia el color del texto */
+    background-color: #1C0339 !important; /* Fondo */
+}
+
+
+
