@@ -138,6 +138,12 @@ public class AdminActServlet extends HttpServlet {
                     }
                     break;
 
+                case "album":
+
+
+                    request.getRequestDispatcher("pages/admin_act/upload_album.jsp").forward(request, response);
+                    break;
+
             }
 
     }

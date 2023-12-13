@@ -256,7 +256,7 @@ background: radial-gradient(circle, rgba(45,0,83,1) 0%, rgba(35,3,80,1) 59%, rgb
                                              style="fill:#0d6efd;">
                                             <g fill="#0d6efd" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(8.53333,8.53333)"><path d="M4,5c-1.105,0 -2,0.895 -2,2v16c0,1.105 0.895,2 2,2h22c1.105,0 2,-0.895 2,-2v-16c0,-1.105 -0.895,-2 -2,-2zM23,8c1.105,0 2,0.895 2,2c0,1.105 -0.895,2 -2,2c-1.105,0 -2,-0.895 -2,-2c0,-1.105 0.895,-2 2,-2zM9,12.00195c0.61925,0 1.23844,0.23648 1.71094,0.70899l3.26172,3.26172l1.02734,1.02734l1.15625,1.15625c0.422,0.422 1.10339,0.41809 1.52539,-0.00391c0.423,-0.422 0.423,-1.10825 0,-1.53125l-1.15234,-1.15039l0.75977,-0.75976c0.945,-0.945 2.47687,-0.945 3.42188,0l4.28906,4.28906v3h-20v-7l2.28906,-2.28906c0.4725,-0.4725 1.09169,-0.70899 1.71094,-0.70899z"></path></g></g>
                                         </svg>
-                                        <a href="<%=request.getContextPath()%>/admin_act?action=album_event&idEvento=<%=evento.getIdEvento()%>">Álbum</a>
+                                        <a href="<%=request.getContextPath()%>/admin_act?action=album&idEvento=<%=evento.getIdEvento()%>">Álbum</a>
 
                                         <% }  %>
 
