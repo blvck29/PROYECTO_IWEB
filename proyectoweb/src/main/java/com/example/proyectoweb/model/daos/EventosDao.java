@@ -159,6 +159,33 @@ public class EventosDao extends DaoBase{
         return evento;
     }
 
+
+    public Evento buscarEventoXid (String idEv){ //user
+
+        //Conexión a la DB
+
+        String sql = "SELECT * FROM evento where idEvento = ?;";
+
+        Evento evento = null;
+
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)){
+
+            pstmt.setString(1, idEv);
+
+            try(ResultSet rs = pstmt.executeQuery()){
+
+                while(rs.next()){
+                    evento = new Evento(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getTime(4),rs.getDate(5),rs.getString(6),rs.getBinaryStream(7),rs.getString(8),rs.getString(9),rs.getString(10));
+                }
+            }
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+
+        return evento;
+    }
+
     public ArrayList<Evento> listarEventosProximos (){ //user
 
         //Conexión a la DB

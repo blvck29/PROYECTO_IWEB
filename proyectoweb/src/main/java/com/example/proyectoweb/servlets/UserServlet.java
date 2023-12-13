@@ -190,6 +190,11 @@ public class UserServlet extends HttpServlet {
                         break;
 
 
+                    default:
+                        response.sendRedirect(request.getContextPath() + "/user_home");
+                        break;
+
+
 
 
 
