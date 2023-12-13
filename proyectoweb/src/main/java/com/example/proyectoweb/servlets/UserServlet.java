@@ -382,9 +382,17 @@ public class UserServlet extends HttpServlet {
 
                     }
                     else{
-                        HttpSession httpSession = request.getSession();
-                        httpSession.setAttribute("msgDonacionCorrecta", "Su donación se ha registrado correctamente.");
-                        donacionesDao.nuevaDonacion(user.getIdUsuario(), monto, donacion);
+
+                        if(Double.parseDouble(monto) > 0){
+                            HttpSession httpSession = request.getSession();
+                            httpSession.setAttribute("msgDonacionCorrecta", "Su donación se ha registrado correctamente.");
+                            donacionesDao.nuevaDonacion(user.getIdUsuario(), monto, donacion);
+
+                        }else{
+                            HttpSession httpSession = request.getSession();
+                            httpSession.setAttribute("msgErrorDonacion", "El monto de su donación debe ser mayor a S/0");
+                        }
+
                     }
 
                     response.sendRedirect(request.getContextPath() + "/user_home?action=donate");
